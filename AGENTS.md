@@ -8,9 +8,10 @@ planning or implementing work.
 
 ## Environment
 
-This workspace may run in a restricted Jai jail or a Fedora-based Lima VM mapped
-from a Fedora x86_64 Wayland host. Inspect the environment instead of assuming
-root access, X11, KVM, hardware acceleration, or unrestricted networking.
+This workspace may run in a restricted Jai jail, a Fedora x86_64 Lima VM, or a
+native-architecture Apple Silicon Lima VM. Inspect the environment instead of
+assuming root access, X11, KVM, hardware acceleration, host architecture, or
+unrestricted networking.
 Relevant indicators include:
 
 ```sh
@@ -19,8 +20,10 @@ test -r /dev/kvm && ls -l /dev/kvm
 ```
 
 In a Lima VM, `sudo` is generally available. In Jai, access is restricted. The
-host compositor is Wayland, although an Xwayland `DISPLAY` may be available for
-graphical emulator and GTK work. Never encode machine-local paths or manually
+Fedora host compositor is Wayland, although an Xwayland `DISPLAY` may be
+available for graphical emulator and GTK work. Apple Silicon macOS developers
+use the portable CLI/REPL path directly through Nix or in a native ARM64 Lima
+VM; they must not be required to install or use GTK. Never encode machine-local paths or manually
 installed SDK components into the project.
 
 Follow the environment contract described in [README.md](README.md). Verify

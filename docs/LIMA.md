@@ -1,6 +1,6 @@
 # Lima development VM
 
-This project can run in a disposable Fedora x86_64
+This project can run in a disposable native-architecture Fedora
 [Lima](https://lima-vm.io/) VM. Lima supplies the operating-system and process
 isolation, a persistent guest disk, SSH, and optional host filesystem sharing.
 Nix supplies the pinned Jolt, Chez, Android, Java, GTK, and build dependencies.
@@ -25,15 +25,21 @@ The Android SDK, NDK, emulator image, JDK, Gradle support, Jolt/Chez versions,
 GTK4, and project compiler/debug tools belong in `flake.nix` and `flake.lock`,
 not in `lima-vm.yaml`.
 
-The configuration targets an x86_64 Linux host and uses QEMU's `host` CPU model.
-This is needed for the best available nested-KVM path, but it does **not**
-guarantee that `/dev/kvm` will be usable in the guest. Host firmware, kernel KVM
-module settings, QEMU, and Lima all participate. Project scripts must diagnose
-KVM and retain a software-emulation fallback.
+The template deliberately leaves `arch` unset: Lima chooses the host-native
+architecture. On the primary Fedora x86_64 host it creates an x86_64 guest; on
+Apple Silicon macOS it creates an aarch64 guest, normally with Lima's native VZ
+driver. A foreign-architecture guest is possible with QEMU but is system
+emulation, is slow, and is not the portable-core development path.
+
+On the Linux Android-integration host, `/dev/kvm` availability in the guest is
+still not guaranteed. Host firmware, kernel KVM module settings, QEMU, and Lima
+all participate. Project scripts must diagnose acceleration and retain a
+software-emulation fallback.
 
 ## Host prerequisites
 
-Install Lima 2.0 or newer and QEMU on the Fedora host. Use the host's package
+Install Lima 2.0 or newer. On Fedora, install QEMU; on Apple Silicon macOS,
+Lima's native VZ driver is the normal choice. Use the host's package
 manager or the official Lima installation instructions; do not install Lima
 inside the guest.
 
@@ -41,10 +47,16 @@ Check the installation:
 
 ```sh
 limactl --version
+```
+
+On Fedora, also check:
+
+```sh
 qemu-system-x86_64 --version
 ```
 
-For accelerated virtualization, verify host KVM before creating the VM:
+For accelerated Android virtualization on Fedora, verify host KVM before
+creating the VM:
 
 ```sh
 test -c /dev/kvm && ls -l /dev/kvm
@@ -60,9 +72,46 @@ group.
 
 The requested VM resources are substantial. Ensure the host can spare at least
 8 CPUs, 16 GiB RAM, and disk space for the 100 GiB sparse guest disk plus
-Android/Nix downloads. Adjust `cpus`, `memory`, and `disk` in a local copy of the
+Android/Nix downloads. On Apple Silicon, the portable CLI/REPL workflow normally
+needs less; use a local resource override when not doing Android work. Adjust `cpus`, `memory`, and `disk` in a local copy of the
 configuration before creation if necessary. Disk shrinking is generally not a
 safe in-place operation.
+
+## Apple Silicon macOS development
+
+The preferred macOS workflow for the portable core is direct native Nix:
+
+```sh
+nix develop
+./scripts/cli --event '{:type :counter/inc}'
+jolt nrepl-server
+```
+
+The flake must support `aarch64-darwin` for this shell. GTK and the Linux
+Android-emulator configuration are not prerequisites and must not be pulled into
+the macOS portable-core shell.
+
+If a Linux environment is needed—for example, to match CI shell behavior—start
+this same template on an Apple Silicon Mac. With `arch` unset, Lima chooses an
+`aarch64` Fedora guest and, on supported macOS versions, its native VZ driver:
+
+```sh
+limactl start --name=jolt-android-arm64 ./lima-vm.yaml
+limactl shell jolt-android-arm64 -- uname -m
+# expected: aarch64
+```
+
+Use the normal provisioning and VNC instructions below, replacing the instance
+name. This native ARM64 VM is suitable for Jolt CLI/nREPL and portable-core
+tests. Android emulator, Android SDK packaging, GTK availability, and nested
+virtualization on macOS are separate capabilities to detect and document; they
+are not implied by the VM booting.
+
+Lima can also create a foreign-architecture VM with QEMU by explicitly choosing
+an `arch`, but that is full system emulation and is deliberately not configured
+here. Do not use an x86_64 guest on Apple Silicon merely to develop the portable
+core. See Lima's [multi-architecture documentation](https://lima-vm.io/docs/config/multi-arch/)
+for the trade-offs.
 
 ## Provision a new VM
 

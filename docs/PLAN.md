@@ -2,7 +2,7 @@
 
 ## 1. Objective
 
-Build a reproducible proof-of-concept demonstrating that **Jolt can serve as a native Clojure application/runtime core inside an Android 15 application**, while a meaningful subset of the same application/domain code runs unchanged on **x86_64 Linux with GTK4**.
+Build a reproducible proof-of-concept demonstrating that **Jolt can serve as a native Clojure application/runtime core inside an Android 15 application**, while a meaningful subset of the same application/domain code runs unchanged in a **Linux GTK4 host** and a **portable CLI/REPL host**. The CLI/REPL host is the mandatory non-GUI development path for the portable core and must work on native Linux and Apple Silicon macOS without requiring GTK.
 
 The PoC should answer, experimentally rather than theoretically:
 
@@ -15,9 +15,10 @@ The PoC should answer, experimentally rather than theoretically:
 7. Can Android API objects remain on the Kotlin side while domain/application semantics live in portable Jolt?
 8. Can an Android 15 x86_64 emulator execute the ARM64 Jolt library through the API-35 translation facility?
 9. If not, what alternative emulator strategy is usable?
-10. How much source can genuinely be shared with a GTK4 Linux Jolt application?
+10. How much source can genuinely be shared with GTK4 and CLI/REPL Jolt hosts?
+11. Can an Apple Silicon macOS developer use the portable core locally through Nix, or in a native-architecture Lima VM, without relying on Linux/GTK?
 
-This is explicitly a **platform-feasibility PoC**, not the beginning of a production mobile framework.
+This is explicitly a **platform-feasibility PoC**, not the beginning of a production mobile framework. The portable CLI/REPL host is deliberately narrow: it validates the shared core and supports development; it is not a terminal UI framework.
 
 Chez itself currently lists Android ARMv7/AArch64 as supported, while Jolt already provides native-library generation through `build --library`, so the critical unknown lies between those two capabilities: making Jolt's library build cross-target Android correctly. ([GitHub][1])
 
@@ -25,7 +26,7 @@ Chez itself currently lists Android ARMv7/AArch64 as supported, while Jolt alrea
 
 # 2. Non-negotiable development rules
 
-The coding agent should work autonomously from a root shell on Fedora 44 x86_64 with an X11 display.
+The primary Android integration environment is Fedora 44 x86_64 with an X11 display. Portable-core development must also be supported on native Apple Silicon macOS through Nix or a native-architecture Lima VM; do not require Linux/GTK for CLI, tests, or nREPL.
 
 Use this workflow for every non-trivial feature:
 
@@ -156,9 +157,12 @@ jolt-android-poc/
 │   │   └── poc/
 │   │       └── android_entry.jolt
 │   │
-│   └── linux/
+│   ├── linux/
+│   │   └── poc/
+│   │       └── gtk_app.jolt
+│   └── cli/
 │       └── poc/
-│           └── gtk_app.jolt
+│           └── main.jolt
 │
 ├── android/
 │   ├── settings.gradle.kts
@@ -184,6 +188,7 @@ jolt-android-poc/
 │
 ├── test/
 │   ├── shared/
+│   ├── cli/
 │   ├── linux/
 │   └── android/
 │
@@ -197,6 +202,7 @@ jolt-android-poc/
 │   ├── screenshot
 │   ├── android-repl
 │   ├── gtk-run
+│   ├── cli
 │   └── verify
 │
 ├── experiments/
@@ -229,7 +235,7 @@ Use `.cljc` for code that is intended to remain portable. Jolt deliberately supp
 
 Use Nix flakes as the default dependency boundary.
 
-`android-nixpkgs` is a reasonable base because it supports `x86_64-linux`, packages Google's SDK repository, and provides immutable Android SDK compositions. ([GitHub][6])
+`android-nixpkgs` is a reasonable Linux Android-tooling base because it supports `x86_64-linux`, packages Google's SDK repository, and provides immutable Android SDK compositions. ([GitHub][6]) The flake must separately expose a portable-core shell on `x86_64-linux`, `aarch64-linux`, and `aarch64-darwin`; do not imply that Android emulator or GTK packages are available on all three.
 
 Pin everything through `flake.lock`.
 
@@ -244,13 +250,13 @@ Android SDK platform 35
 Android build-tools 35
 Android platform-tools
 Android emulator
-Android API 35 google_apis x86_64 image
+Android API 35 google_apis x86_64 image (Linux Android shell)
 Android NDK
 CMake
 Ninja
 clang/lld
 pkg-config
-GTK4
+GTK4 (Linux GTK shell)
 glib
 git
 gdb/lldb where practical
@@ -264,7 +270,7 @@ Prefer the current supported stable NDK rather than arbitrary latest. As of Augu
 
 Do not rely on Android Studio's mutable SDK manager for the build.
 
-Android Studio itself can be installed for debugging/inspection, but:
+Android Studio itself can be installed for debugging/inspection, but the Linux Android shell must make:
 
 ```text
 nix develop
@@ -273,7 +279,7 @@ adb ...
 emulator ...
 ```
 
-must be sufficient for normal operation.
+sufficient for normal operation. On macOS, the portable-core shell must make `jolt`, the CLI, tests, and nREPL available without Android Studio, Linux, or GTK.
 
 ### Required environment diagnostic
 
@@ -460,6 +466,8 @@ EPIC: Shared architecture
  ├─ domain reducer
  ├─ effect model
  ├─ wire protocol
+ ├─ portable CLI host
+ ├─ macOS/ARM64 CLI fixture run
  └─ conformance tests
 
 EPIC: Android demo
@@ -479,7 +487,7 @@ EPIC: GTK demo
  └─ feature parity
 
 EPIC: REPL
- ├─ Linux nREPL
+ ├─ portable Linux/macOS nREPL
  ├─ Android debug eval
  └─ reload experiment
 
@@ -497,9 +505,11 @@ Wire dependencies with `bd dep add`, rather than relying solely on hierarchy.
 
 ---
 
-# 8. Phase 1 — prove ordinary Jolt/Linux first
+# 8. Phase 1 — prove ordinary portable Jolt first
 
-Before Android modifications, establish a known-good baseline.
+Before Android modifications, establish a known-good portable-core baseline on
+Linux. Repeat the CLI fixtures and nREPL check on Apple Silicon macOS or a native
+ARM64 Lima VM before treating the CLI host as multiplatform.
 
 Clone/pin Jolt and verify:
 
@@ -547,6 +557,33 @@ From the Jolt REPL:
 Only after this works should the equivalent assertions become unit tests.
 
 ---
+
+# 8A. Phase 1A — portable CLI/REPL reference host
+
+Before building GTK, create a non-GUI host for the shared core. It is mandatory
+because it gives Linux and Apple Silicon macOS developers the same fast,
+REPL-driven path without a Linux desktop dependency.
+
+Provide `src/cli/poc/main.jolt` and `scripts/cli`. The CLI must accept a
+serialized event (initially EDN), invoke the shared reducer, and emit a
+canonical serialized `{:model ... :effects ...}` result. Platform effects must
+be represented by a mock/CLI adapter, not GTK or Android objects. Define
+stdin/stdout, exit status, malformed-input, and effect-output behavior so shell
+fixtures can test it deterministically.
+
+The mandatory portable-core development loop is:
+
+```bash
+nix develop
+jolt -e '(require ...)'
+./scripts/cli --event '{:type :counter/inc}'
+jolt nrepl-server
+```
+
+The exact namespace and script syntax may evolve, but the core must work in the
+pinned `x86_64-linux`, `aarch64-linux`, and `aarch64-darwin` shells. Demonstrate
+normal Jolt nREPL on native Linux and macOS. This host validates portable domain
+behavior; it does not replace Android JNI/lifecycle tests or GTK rendering.
 
 # 9. Phase 2 — Linux GTK reference host
 
@@ -1098,7 +1135,7 @@ This directly proves the hardest threading rule.
 
 ---
 
-# 18. Shared Android/Linux capability model
+# 18. Shared Android/GTK/CLI capability model
 
 Represent platform capabilities as data.
 
@@ -1117,6 +1154,11 @@ Example:
  :capabilities
  #{:clipboard
    :persistence
+   :open-uri}}
+
+{:platform :cli
+ :capabilities
+ #{:persistence
    :open-uri}}
 ```
 
@@ -1142,7 +1184,7 @@ through the portable reducer.
 
 # 19. Multiplatform acceptance boundary
 
-The following should be identical source on Android and GTK:
+The following should be identical source on Android, GTK, and CLI:
 
 ```text
 domain model
@@ -1179,21 +1221,22 @@ Android-specific Jolt LOC
 Kotlin LOC
 JNI/C LOC
 GTK-specific Jolt LOC
+CLI-specific Jolt LOC
 ```
 
 Do not optimize for an artificially high sharing percentage.
 
 ---
 
-# 20. Phase 8 — Android REPL
+# 20. Phase 8 — REPL and debug evaluation
 
 There should be two levels of REPL support.
 
-## Level A — mandatory
+## Level A — mandatory portable-core nREPL
 
-Run shared/domain code with normal Jolt nREPL on Fedora.
-
-This is the primary REPL-driven development environment.
+Run shared/domain code with normal Jolt nREPL through the CLI/REPL host on
+native Linux and Apple Silicon macOS. This is the primary REPL-driven
+development environment and must not depend on GTK.
 
 For every domain change:
 
@@ -1378,9 +1421,10 @@ capability decisions
 
 Run constantly.
 
-## Tier 2 — Linux Jolt integration
+## Tier 2 — portable CLI and Linux GTK integration
 
-Run against GTK/mock platform.
+Run deterministic event/wire fixtures through the CLI on every supported native
+host, then run GTK/mock-platform integration on Linux.
 
 Verify:
 
@@ -1388,6 +1432,7 @@ Verify:
 same reducers
 same events
 same state evolution
+canonical CLI output
 ```
 
 ## Tier 3 — native C ABI tests
@@ -1896,7 +1941,11 @@ Same meaningful `.cljc` domain runs under:
 ```text
 Android / Jolt / Chez ARM64
 Linux / Jolt / Chez x86_64 / GTK4
+CLI / Jolt / Chez native x86_64 Linux, ARM64 Linux, and ARM64 macOS
 ```
+
+The CLI/REPL host is required for Level 6. GTK remains a Linux UI reference
+host; macOS portable-core development must not depend on it.
 
 **Level 6 is the target.**
 
@@ -1919,22 +1968,21 @@ The PoC should end up approximately here:
                             │
                            Jolt
                             │
-              ┌─────────────┴─────────────┐
-              │                           │
-              ▼                           ▼
-         Android ARM64              Linux x86_64
-              │                           │
-      libjoltcore.so                  Jolt process
-              │                           │
-         JNI bridge                    Glimmer
-              │                           │
-      JoltRuntimeThread               glimmer-gtk
-              │                           │
-            Kotlin                       GTK4
-              │
-           Compose
-              │
-        Android SDK
+       ┌──────┴──────────┬───────────────┐
+       │                 │               │
+       ▼                 ▼               ▼
+Android ARM64       Linux x86_64      CLI / nREPL
+       │             Jolt process      Jolt process
+libjoltcore.so          │               │
+       │             Glimmer          native Linux/macOS
+  JNI bridge              │
+JoltRuntimeThread     glimmer-gtk
+       │                 │
+    Kotlin              GTK4
+       │
+    Compose
+       │
+ Android SDK
 ```
 
 This is preferable to building a generic Java-object bridge initially.
@@ -1951,13 +1999,14 @@ The coding agent should begin in approximately this order:
 1  Bootstrap pinned Nix development shell
 2  Verify KVM + API35 emulator + screenshot automation
 3  Test ARM64 native library on API35 x86_64 emulator
-4  Establish Jolt Linux nREPL + unit-test baseline
-5  Build shared reducer and GTK reference application
-6  Cross-compile standalone Chez for Android ARM64
-7  Embed Chez in minimal JNI Android application
-8  Inspect/reduce Jolt build --library cross-target requirements
-9  Build minimal Jolt ARM64 Android library exporting answer() = 42
-10 Call Jolt export repeatedly from Android and stress GC
+4  Establish portable Jolt CLI/nREPL + unit-test baseline on Linux
+5  Prove the same CLI fixtures on Apple Silicon macOS or native ARM64 Lima
+6  Build shared reducer and GTK reference application
+7  Cross-compile standalone Chez for Android ARM64
+8  Embed Chez in minimal JNI Android application
+9  Inspect/reduce Jolt build --library cross-target requirements
+10 Build minimal Jolt ARM64 Android library exporting answer() = 42
+11 Call Jolt export repeatedly from Android and stress GC
 ```
 
 Only after **10** succeeds should the agent build the larger demo.

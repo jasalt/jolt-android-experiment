@@ -1,4 +1,4 @@
-# Lima sandbox for Jolt Android development on an x86_64 Linux host.
+# Lima sandbox for Jolt Android and portable-core development on native hosts.
 #
 # Project dependencies belong in flake.nix. This file installs only the guest
 # facilities needed before `nix develop` can work: Nix itself, SSH/X11 support,
@@ -13,19 +13,16 @@ minimumLimaVersion: 2.0.0
 base:
 - template:_images/fedora
 
-# This project targets an x86_64 Fedora host. QEMU/KVM with the host CPU gives
-# the guest the best chance of exposing nested virtualization to the Android
-# emulator. /dev/kvm availability is still a host capability and is diagnosed,
-# not assumed; the emulator must retain its software-acceleration fallback.
-vmType: qemu
-arch: x86_64
-vmOpts:
-  qemu:
-    cpuType:
-      x86_64: host
+# Do not set `arch`: Lima selects the host-native architecture. This produces
+# x86_64 Fedora guests on the Linux Android-integration host and aarch64 Fedora
+# guests on Apple Silicon macOS. Do not use a foreign-architecture VM for normal
+# portable-core development; QEMU system emulation is much slower. Android
+# emulator acceleration remains a host capability and is diagnosed, not assumed.
 
 # Android SDK/NDK builds, Chez/Jolt native compilation, and an emulator need
-# substantially more headroom than Lima's defaults. These are initial defaults;
+# substantially more headroom than Lima's defaults on Linux. On Apple Silicon,
+# these are upper bounds for a native portable-core VM; reduce them in a local
+# template if Android tooling is not being used. These are initial defaults;
 # stop the VM and edit its instance configuration if the host cannot provide
 # them.
 cpus: 8

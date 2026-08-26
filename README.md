@@ -36,9 +36,12 @@ framework. The PoC investigates whether it can:
 - send Android events into portable Jolt code and execute returned effects using
   Android APIs;
 - preserve Jolt's single-runtime-thread requirement;
-- provide a useful Linux nREPL workflow and an Android debug-eval path;
-- run meaningful shared `.cljc` domain code in both Android and Linux GTK4
-  applications;
+- provide a useful Jolt nREPL workflow for the portable core and an Android
+  debug-eval path;
+- run meaningful shared `.cljc` domain code in Android, Linux GTK4, and a
+  non-GUI CLI/REPL reference host;
+- let Apple Silicon macOS developers work on the portable core locally with
+  Nix, without requiring Linux or GTK;
 - determine whether an API-35 x86_64 emulator can execute the ARM64 library, and
   document practical fallbacks if not.
 
@@ -58,15 +61,15 @@ shared .cljc domain/reducer/events/effects/wire model
               │
              Jolt
        ┌──────┴────────┐
-Android ARM64       Linux x86_64
-Jolt/Chez .so       Jolt + Glimmer/GTK4
-JNI + Kotlin
+Android ARM64       Linux GTK4             CLI / nREPL
+Jolt/Chez .so       Jolt + Glimmer          Jolt portable core
+JNI + Kotlin         GTK4                    Linux / macOS ARM
 Compose + Android SDK
 ```
 
 The principal decisions are recorded in [docs/adr/](docs/adr/README.md):
 
-1. [share a Jolt core and use platform host adapters](docs/adr/0001-shared-jolt-core-platform-adapters.md);
+1. [share a Jolt core across Android, GTK, and CLI/REPL hosts](docs/adr/0001-shared-jolt-core-platform-adapters.md);
 2. [confine every embedded Jolt call to one Android runtime thread](docs/adr/0002-single-jolt-runtime-thread.md);
 3. [use a narrow, data-oriented native boundary](docs/adr/0003-data-oriented-native-boundary.md).
 
@@ -136,9 +139,11 @@ Chez Android
 → demo application
 ```
 
-Linux Jolt execution, nREPL, and portable tests come before Android compiler
-changes. Standalone Chez embedding comes before Jolt embedding. Repeated JNI/Jolt
-calls under allocation and GC pressure come before substantial Compose UI.
+Portable CLI execution, nREPL, and portable tests come before Android compiler
+changes; GTK is an additional Linux UI reference host, not a prerequisite for
+portable-core work. Standalone Chez embedding comes before Jolt embedding.
+Repeated JNI/Jolt calls under allocation and GC pressure come before substantial
+Compose UI.
 
 Validation grows from pure Jolt tests through Linux integration, native C ABI
 tests, JNI instrumentation, Android UI workflows, semantic layout assertions,
@@ -147,10 +152,15 @@ preserved as self-contained experiments rather than hidden by workarounds.
 
 ## Development environment
 
-The supported build boundary will be a pinned Nix flake on Fedora x86_64. It is
-intended to provide Jolt/Chez sources and tools, JDK/Gradle, Android API 35 SDK
-and emulator components, the NDK toolchain, CMake/Ninja, GTK4, and diagnostic
-tools without relying on Android Studio's mutable SDK manager.
+The supported build boundary will be a pinned Nix flake. The portable-core shell
+must support native `x86_64-linux`, `aarch64-linux`, and `aarch64-darwin` hosts.
+It is intended to provide Jolt/Chez sources and tools, JDK/Gradle, Android API
+35 SDK and emulator components, the NDK toolchain, CMake/Ninja, GTK4 where
+applicable, and diagnostic tools without relying on Android Studio's mutable SDK
+manager. Android and GTK tool availability is platform-specific and must be
+reported explicitly rather than assumed on macOS. Apple Silicon developers can
+use the portable-core shell directly or the native `aarch64` Lima VM described
+in [docs/LIMA.md](docs/LIMA.md).
 
 The repository is currently not bootstrapped, so there is no working quick start
 yet. Once available, the expected clean workflow is:
@@ -171,8 +181,8 @@ commands above as implemented.
 
 - [docs/PLAN.md](docs/PLAN.md) — complete initial requirements, experiments, phases, and
   graded success criteria
-- [docs/LIMA.md](docs/LIMA.md) — provision and operate the Lima development VM,
-  including its VNC desktop
+- [docs/LIMA.md](docs/LIMA.md) — provision and operate native Linux or Apple
+  Silicon Lima development VMs, including the VNC desktop
 - [docs/adr/](docs/adr/README.md) — architecture decision records
 - `experiments/` — minimal reproductions and observed platform results (created
   as experiments begin)
