@@ -197,6 +197,10 @@ commands above as implemented.
 Some listed result documents do not exist yet and will be created when their
 corresponding experiments begin.
 
+## Other related projects
+
+- Apple UIKit support on macOS https://github.com/jolt-lang/examples/tree/main/todomvc-uikit
+
 ## Contributing
 
 Read this README, [docs/PLAN.md](docs/PLAN.md), and the relevant
