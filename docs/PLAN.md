@@ -408,6 +408,15 @@ bd init
 bd prime
 ```
 
+Beads uses the same project Git repository and its existing `origin`; do not
+provision a separate Dolt remote or service. `.beads/` contains Git-tracked
+Beads configuration, while the embedded Dolt database keeps task data in
+separate `refs/dolt/data` refs and ignored database/runtime directories. Use
+`bd vc status`, `bd vc commit`, `bd dolt pull`, and `bd dolt push` for task-data
+history and synchronization. JSONL auto-export is for viewing/interchange, not
+the source of truth. Keep Beads/Dolt commits logically aligned with source
+commits without assuming either commits the other.
+
 Current Beads is explicitly designed as a dependency-aware issue graph for coding agents, with `bd ready`, claiming, dependencies and persistent project memory. ([GitHub][11])
 
 Add to `AGENTS.md`:

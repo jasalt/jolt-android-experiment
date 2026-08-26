@@ -89,16 +89,43 @@ Use Beads for all planning, task state, dependencies, and durable discoveries.
 Do not create `TODO.md`, `TASKS.md`, another plan file, or ad-hoc task lists.
 `docs/PLAN.md` is the existing project specification, not a live task tracker.
 
-Initialize Beads once when implementation begins:
+Initialize Beads after the project Git `origin` exists:
 
 ```sh
+git remote get-url origin
 bd init
+bd hooks list
 bd prime
 ```
+
+Beads uses the **same project Git repository**, not a separately provisioned
+Dolt remote or service. `bd init` configures the existing Git `origin` for Beads
+sync; Beads data is stored in Dolt refs (`refs/dolt/data`), separate from normal
+source Git refs and source files. The project repository tracks
+`.beads/config.yaml`, `.beads/metadata.json`, and `.beads/.gitignore`; its
+embedded database/runtime directories remain ignored. Never add
+`.beads/embeddeddolt/` or `.beads/dolt/` to Git or Git LFS.
+
+Use Beads commands rather than editing database files:
+
+```sh
+bd vc status
+bd vc commit -m 'describe task-state update'
+bd dolt pull
+bd dolt push
+```
+
+`bd init` installs Git hooks by default; retain or refresh them with `bd hooks
+install` so ordinary project Git operations integrate with Beads. Optional
+`.beads/issues.jsonl` auto-export is for viewing and interchange, not the source
+of truth or synchronization mechanism. Keep source commits and Beads/Dolt
+commits logically aligned, but do not claim that one automatically commits the
+other.
 
 At every session start:
 
 ```sh
+bd dolt pull
 bd prime
 bd ready
 ```
@@ -109,8 +136,8 @@ scope. Use `bd remember` for durable discoveries. Add concise progress and exact
 validation evidence to the bead. Do not close a bead without reproducible
 evidence.
 
-A completed engineering bead should normally correspond to one small atomic git
-commit. Do not commit unrelated platform discoveries together. Do not discard,
+A completed engineering bead should normally correspond to one small atomic
+source Git commit and a corresponding Beads/Dolt commit. Do not commit unrelated platform discoveries together. Do not discard,
 rewrite, or commit unrelated user changes. Never claim a commit was made unless
 it actually was.
 

@@ -207,6 +207,12 @@ and distinguish proposed, observed, inferred, and blocked behavior in
 contributor-facing documentation.
 
 Task state and dependency tracking use Beads; `docs/PLAN.md` remains the project
-specification rather than a mutable task list.
+specification rather than a mutable task list. Beads uses the existing project
+Git repository and its `origin`, not a separately provisioned Dolt remote:
+`.beads/` holds Git-tracked Beads configuration while the embedded Dolt data
+uses separate `refs/dolt/data` refs and ignored database/runtime directories.
+Use `bd vc status`, `bd vc commit`, `bd dolt pull`, and `bd dolt push` to manage
+Beads state through the project repository. The optional JSONL export is for
+viewing/interchange, not the source of truth or synchronization mechanism.
 
 Consider adding LLM assistant / coding agent sessions into [SESSIONS.md](SESSIONS.md).
