@@ -2,7 +2,12 @@
 
 An experimental proof of concept for running [Jolt](https://jolt-lang.net/) and
 Chez Scheme as a native Clojure application/runtime core in an Android 15 app,
-while running meaningful shared application code unchanged in a Linux GTK4 app.
+while running meaningful shared application code in Linux GTK4 and portable
+CLI/REPL hosts.
+
+The experiment explores a different trade-off from conventional Clojure on Android. JVM Clojure can run within Android's managed runtime model and use Java interoperability to access much of the Android SDK directly, making it the more straightforward choice when Android itself is the primary target. Jolt instead compiles through Chez Scheme to native code and has no general Java interop, so Android framework access must cross an explicit Kotlin/JNI boundary. That adds integration work, but it also creates a deliberately narrow separation between portable Clojure application logic and the host platform rather than coupling that logic to Android classes and JVM semantics.
+
+The potential benefit is a small native Clojure-oriented core that can be reused beyond Android: the same .cljc domain, state-transition, validation, serialization, and effect-handling code could run under Jolt on Linux, macOS, and potentially iOS while each platform retains its native UI and SDK integration. Compared with Clojure/JVM on Android, this sacrifices the mature JVM ecosystem, direct Android API access, and a well-understood runtime in exchange for native deployment, closer C interoperability, reduced dependence on the JVM, and a plausible shared-runtime path across Android and Apple platforms. This PoC is intended to determine whether those benefits survive the practical costs of cross-compiling Chez/Jolt, JNI data ownership, runtime-thread confinement, Android lifecycle integration, debugging, packaging, and emulator compatibility.
 
 ## Status
 
