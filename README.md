@@ -166,6 +166,8 @@ commands above as implemented.
 
 - [docs/PLAN.md](docs/PLAN.md) — complete initial requirements, experiments, phases, and
   graded success criteria
+- [docs/LIMA.md](docs/LIMA.md) — provision and operate the Lima development VM,
+  including its VNC desktop
 - [docs/adr/](docs/adr/README.md) — architecture decision records
 - `experiments/` — minimal reproductions and observed platform results (created
   as experiments begin)

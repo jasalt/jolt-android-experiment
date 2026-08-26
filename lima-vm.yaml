@@ -1,32 +1,84 @@
-# A template to use Podman instead of containerd & nerdctl
-# $ limactl start ./podman.yaml
-# $ limactl shell podman podman run -it -v $HOME:$HOME --rm docker.io/library/alpine
-
-# To run `podman` on the host (assumes podman-remote is installed):
-# $ export CONTAINER_HOST=$(limactl list podman --format 'unix://{{.Dir}}/sock/podman.sock')
-# $ podman --remote ...
-
-# To run `docker` on the host (assumes docker-cli is installed):
-# $ export DOCKER_HOST=$(limactl list podman --format 'unix://{{.Dir}}/sock/podman.sock')
-# $ docker ...
+# Lima sandbox for Jolt Android development on an x86_64 Linux host.
+#
+# Project dependencies belong in flake.nix. This file installs only the guest
+# facilities needed before `nix develop` can work: Nix itself, SSH/X11 support,
+# a virtual X desktop with VNC, and a small agent/tooling baseline.
+#
+# Create the instance from the host with:
+#   limactl start --name=jolt-android ./lima-vm.yaml
+# See docs/LIMA.md for provisioning, VNC, lifecycle, and diagnostics.
 
 minimumLimaVersion: 2.0.0
 
 base:
 - template:_images/fedora
-- template:_default/mounts
 
+# This project targets an x86_64 Fedora host. QEMU/KVM with the host CPU gives
+# the guest the best chance of exposing nested virtualization to the Android
+# emulator. /dev/kvm availability is still a host capability and is diagnosed,
+# not assumed; the emulator must retain its software-acceleration fallback.
+vmType: qemu
+arch: x86_64
+vmOpts:
+  qemu:
+    cpuType:
+      x86_64: host
+
+# Android SDK/NDK builds, Chez/Jolt native compilation, and an emulator need
+# substantially more headroom than Lima's defaults. These are initial defaults;
+# stop the VM and edit its instance configuration if the host cannot provide
+# them.
+cpus: 8
+memory: 16GiB
+disk: 100GiB
+
+# Keep the source tree on the host so editor/agent changes survive VM deletion.
+# Lima has no config-relative project-directory template, so the portable
+# default mounts the host home at the same path. This is a deliberate trust
+# boundary: code in the guest can modify the host home. See docs/LIMA.md for a
+# stricter copy/clone-on-guest alternative.
+mounts:
+- location: "~"
+  writable: true
+mountInotify: true
+
+# There is no container runtime in this VM. Nix supplies the reproducible
+# project environment and performs sandboxed builds through nix-daemon.
 containerd:
   system: false
   user: false
+
 provision:
 - mode: system
   script: |
     #!/bin/bash
     set -eux -o pipefail
 
-    # X11 Forwarding support
-    dnf -y install xorg-x11-xauth
+    # Keep the mutable VM base intentionally small. Android/Jolt versions and
+    # build dependencies must be pinned by the repository flake, not DNF.
+    dnf -y install \
+      ca-certificates curl git gzip bzip2 xz tar unzip which findutils iproute \
+      openssh-server xorg-x11-xauth \
+      tmux fd-find ripgrep jq socat nmap-ncat \
+      npm chromium kitty-terminfo \
+      xorg-x11-server-Xvfb openbox x11vnc ffmpeg-free xdotool \
+      xdpyinfo xprop glx-utils mesa-dri-drivers mesa-libGL
+
+    # Nix is the project dependency boundary. Fedora's package sets up the
+    # build users and systemd daemon without running an unpinned curl installer.
+    dnf -y install nix nix-daemon
+    install -d -m 0755 /etc/nix
+    touch /etc/nix/nix.conf
+    if ! grep -q '^experimental-features[[:space:]]*=' /etc/nix/nix.conf; then
+      printf '%s\n' 'experimental-features = nix-command flakes' >>/etc/nix/nix.conf
+    fi
+    if ! grep -q '^sandbox[[:space:]]*=' /etc/nix/nix.conf; then
+      printf '%s\n' 'sandbox = true' >>/etc/nix/nix.conf
+    fi
+    systemctl enable --now nix-daemon.socket
+
+    # Optional host-display forwarding is useful for quick checks. The stable
+    # automation and inspection display is the loopback-only VNC desktop below.
     install -d -m 0755 /etc/ssh/sshd_config.d
     cat >/etc/ssh/sshd_config.d/99-lima-x11.conf <<'EOF'
     X11Forwarding yes
@@ -36,54 +88,210 @@ provision:
     sshd -t
     systemctl restart sshd
 
-    dnf -y install tmux fd-find python3-dnf python3-libselinux npm ripgrep chromium-browser kitty-terminfo
+    # Pi runs outside the project flake as the coding harness. Project build
+    # tools must not be added here merely because an agent happens to need them.
     npm install -g --ignore-scripts agent-browser @earendil-works/pi-coding-agent
 
-    # Docker
-    dnf config-manager addrepo --from-repofile https://download.docker.com/linux/fedora/docker-ce.repo
-    dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-    systemctl enable --now docker
+    # A direct X11 desktop is simpler and more observable than nesting Weston:
+    # Android emulator / GTK -> Xvfb -> FFmpeg or x11vnc -> SSH tunnel -> host.
+    # x11vnc never listens beyond guest loopback; the SSH tunnel is the access
+    # control and transport-security boundary.
+    cat >/usr/local/bin/lima-x11 <<'SCRIPT'
+    #!/bin/bash
+    set -euo pipefail
 
-    # DDEV
-    echo '[ddev]
-    name=ddev
-    baseurl=https://pkg.ddev.com/yum/
-    gpgcheck=0
-    enabled=1' | sed 's/^ \+//' | sudo tee /etc/yum.repos.d/ddev.repo >/dev/null
+    display="${LIMA_X11_DISPLAY:-:99}"
+    screen="${LIMA_X11_SCREEN:-1280x800x24}"
+    vnc_port="${LIMA_VNC_PORT:-5900}"
+    display_number="${display#:}"
+    display_number="${display_number%%.*}"
+    # Use a stable user-owned location so the system unit (which has no
+    # XDG_RUNTIME_DIR) and interactive shells share state and logs.
+    state_dir="${LIMA_X11_STATE_DIR:-/tmp/lima-x11-${UID}}/lima-x11-${display_number}"
 
-    dnf install ddev
-    mkcert -install
+    mkdir -p "$state_dir"
+    chmod 0700 "$state_dir"
 
+    running() {
+      local name="$1" pid_file="$state_dir/$1.pid" pid
+      [[ -r "$pid_file" ]] || return 1
+      read -r pid <"$pid_file"
+      [[ "$pid" =~ ^[0-9]+$ ]] && kill -0 "$pid" 2>/dev/null
+    }
 
-    command -v podman >/dev/null 2>&1 && test -e /etc/lima-podman && exit 0
-    dnf -y install --best podman && touch /etc/lima-podman
+    start_process() {
+      local name="$1"
+      shift
+      if running "$name"; then
+        return 0
+      fi
+      rm -f "$state_dir/$name.pid"
+      setsid "$@" </dev/null >"$state_dir/$name.log" 2>&1 &
+      echo "$!" >"$state_dir/$name.pid"
+    }
+
+    stop_process() {
+      local name="$1" pid_file="$state_dir/$1.pid" pid
+      [[ -r "$pid_file" ]] || return 0
+      read -r pid <"$pid_file"
+      if [[ "$pid" =~ ^[0-9]+$ ]] && kill -0 "$pid" 2>/dev/null; then
+        kill "$pid" 2>/dev/null || true
+        for _ in $(seq 1 30); do
+          kill -0 "$pid" 2>/dev/null || break
+          sleep 0.1
+        done
+        kill -KILL "$pid" 2>/dev/null || true
+      fi
+      rm -f "$pid_file"
+    }
+
+    status() {
+      local failed=0 name
+      printf 'DISPLAY=%s screen=%s VNC=127.0.0.1:%s\n' \
+        "$display" "$screen" "$vnc_port"
+      printf 'logs=%s\n' "$state_dir"
+      for name in Xvfb openbox x11vnc; do
+        if running "$name"; then
+          printf '%-8s running (pid %s)\n' \
+            "$name" "$(cat "$state_dir/$name.pid")"
+        else
+          printf '%-8s stopped\n' "$name"
+          failed=1
+        fi
+      done
+      return "$failed"
+    }
+
+    case "${1:-}" in
+      start)
+        start_process Xvfb Xvfb "$display" -screen 0 "$screen" -nolisten tcp
+        ready=false
+        for _ in $(seq 1 100); do
+          if DISPLAY="$display" xdpyinfo >/dev/null 2>&1; then
+            ready=true
+            break
+          fi
+          sleep 0.1
+        done
+        if [[ "$ready" != true ]]; then
+          echo "Xvfb did not become ready; see $state_dir/Xvfb.log" >&2
+          stop_process Xvfb
+          exit 1
+        fi
+        start_process openbox env DISPLAY="$display" openbox
+        start_process x11vnc x11vnc \
+          -display "$display" -localhost -forever -shared -nopw \
+          -rfbport "$vnc_port"
+        for _ in $(seq 1 50); do
+          if ss -ltn | grep -q "127.0.0.1:${vnc_port}"; then
+            status
+            exit 0
+          fi
+          sleep 0.1
+        done
+        echo "x11vnc did not listen; see $state_dir/x11vnc.log" >&2
+        exit 1
+        ;;
+      stop)
+        # Stop consumers before the X server. Never remove X lock/socket files
+        # manually while Xvfb is alive.
+        stop_process x11vnc
+        stop_process openbox
+        stop_process Xvfb
+        ;;
+      restart)
+        "$0" stop
+        "$0" start
+        ;;
+      status)
+        status
+        ;;
+      logs)
+        printf '%s\n' "$state_dir"
+        ;;
+      *)
+        echo "usage: lima-x11 {start|stop|restart|status|logs}" >&2
+        exit 2
+        ;;
+    esac
+    SCRIPT
+    chmod 0755 /usr/local/bin/lima-x11
+
+    # Bring up the direct-X11 inspection desktop at every VM boot. It runs as
+    # the unprivileged Lima user and exposes VNC only on guest loopback.
+    cat >/etc/systemd/system/lima-x11.service <<'UNIT'
+    [Unit]
+    Description=Lima virtual X11 desktop for GUI inspection
+    After=network.target
+
+    [Service]
+    Type=oneshot
+    User={{.User}}
+    Environment=LIMA_X11_DISPLAY=:99
+    Environment=LIMA_X11_SCREEN=1280x800x24
+    Environment=LIMA_VNC_PORT=5900
+    RemainAfterExit=yes
+    ExecStart=/usr/local/bin/lima-x11 start
+    ExecStop=/usr/local/bin/lima-x11 stop
+
+    [Install]
+    WantedBy=multi-user.target
+    UNIT
+    systemctl daemon-reload
+    systemctl enable --now lima-x11.service
 
 - mode: user
   script: |
     #!/bin/bash
     set -eux -o pipefail
-    sudo groupadd -f docker && sudo usermod -aG docker ${SUDO_USER:-$USER}
-    systemctl --user enable --now podman.socket
+    mkdir -p "$HOME/.config" "$HOME/.local/bin"
 
 probes:
 - script: |
     #!/bin/bash
     set -eux -o pipefail
-    if ! timeout 30s bash -c "until command -v podman >/dev/null 2>&1; do sleep 3; done"; then
-      echo >&2 "podman is not installed yet"
-      exit 1
-    fi
-  hint: See "/var/log/cloud-init-output.log" in the guest
+    command -v nix >/dev/null
+    command -v pi >/dev/null
+    command -v Xvfb >/dev/null
+    command -v x11vnc >/dev/null
+    command -v ffmpeg >/dev/null
+    command -v xdotool >/dev/null
+    command -v lima-x11 >/dev/null
+    systemctl is-active --quiet nix-daemon.socket
+    systemctl is-active --quiet lima-x11.service
+    DISPLAY=:99 xdpyinfo >/dev/null
+    ss -ltn | grep -q '127.0.0.1:5900'
+    nix --extra-experimental-features 'nix-command flakes' --version
+  hint: |-
+    Guest provisioning failed. Inspect /var/log/cloud-init-output.log and run:
+      systemctl status nix-daemon.socket
+      command -v nix pi Xvfb x11vnc ffmpeg xdotool lima-x11
+
 ssh:
   forwardX11: true
-  forwardX11Trusted: false  # Optional, set to true for trusted forwarding
-portForwards:
-- guestSocket: "/run/user/{{.UID}}/podman/podman.sock"
-  hostSocket: "{{.Dir}}/sock/podman.sock"
+  forwardX11Trusted: false
+
 message: |
-  To run `podman` on the host (assumes podman-remote is installed), run the following commands:
-  ------
-  podman system connection add lima-{{.Name}} "unix://{{.Dir}}/sock/podman.sock"
-  podman system connection default lima-{{.Name}}
-  podman{{if eq .HostOS "linux"}} --remote{{end}} run quay.io/podman/hello
-  ------
+  Jolt Android development VM {{.Name}} is ready.
+
+  Enter it:
+    limactl shell {{.Name}}
+
+  The host home is mounted at the same path. From this repository run:
+    nix develop
+    pi
+
+  The isolated GUI desktop starts automatically at boot. In the guest use:
+    export DISPLAY=:99
+    lima-x11 status
+
+  Lima should forward the guest VNC port automatically but if not, from the
+  host, tunnel its loopback-only VNC endpoint:
+    ssh -F ~/.lima/{{.Name}}/ssh.config -N -T \
+      -L 127.0.0.1:5900:127.0.0.1:5900 lima-{{.Name}}
+
+  Then point a VNC viewer at 127.0.0.1:5900. No VNC password is used because
+  x11vnc is guest-loopback-only and reachable only through Lima SSH.
+
+  Full lifecycle, VNC, screenshots, resource tuning, and troubleshooting:
+    docs/LIMA.md
