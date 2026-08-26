@@ -192,6 +192,7 @@ commands above as implemented.
 - `docs/ANDROID-CROSS-COMPILE.md` — pinned Android cross-build procedure
 - `REPORT.md` — final evidence-based feasibility assessment
 - [AGENTS.md](AGENTS.md) — coding-agent workflow and repository instructions
+- [SESSIONS.md](SESSIONS.md) — coding-agent / llm assistant session history
 
 Some listed result documents do not exist yet and will be created when their
 corresponding experiments begin.
@@ -207,3 +208,5 @@ contributor-facing documentation.
 
 Task state and dependency tracking use Beads; `docs/PLAN.md` remains the project
 specification rather than a mutable task list.
+
+Consider adding LLM assistant / coding agent sessions into [SESSIONS.md](SESSIONS.md).
