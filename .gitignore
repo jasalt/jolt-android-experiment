@@ -8,3 +8,9 @@
 *.db
 .beads-credential-key
 .beads/proxieddb/
+
+# Local Jolt, Clojure tooling, and language-server state.
+.jolt/
+.clj-kondo/
+.lsp/
+.nrepl-port

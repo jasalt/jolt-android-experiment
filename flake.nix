@@ -7,12 +7,62 @@
       url = "github:tadfisher/android-nixpkgs/stable";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    jolt = {
+      url = "git+https://github.com/jolt-lang/jolt.git?rev=8fcba79f8b33628af926f88032d93a1b31c24235&submodules=1";
+      flake = false;
+    };
   };
 
-  outputs = { self, nixpkgs, android, ... }:
+  outputs = { self, nixpkgs, android, jolt, ... }:
     let
       systems = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" ];
       forAllSystems = nixpkgs.lib.genAttrs systems;
+      mkJolt = pkgs:
+        let
+          version = jolt.rev or "dev";
+        in
+        pkgs.stdenv.mkDerivation {
+          pname = "jolt";
+          inherit version;
+          src = jolt;
+
+          strictDeps = true;
+          nativeBuildInputs = [
+            pkgs.chez
+            pkgs.makeWrapper
+            pkgs.pkg-config
+            pkgs.xxd
+          ];
+          buildInputs = [
+            pkgs.lz4
+            pkgs.zlib
+            pkgs.ncurses
+            pkgs.openssl
+          ] ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isLinux [ pkgs.libuuid ]
+            ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isDarwin [ pkgs.libiconv ];
+
+          JOLT_VERSION = version;
+          dontConfigure = true;
+
+          buildPhase = ''
+            runHook preBuild
+            scheme --script host/chez/build-jolt.ss release target/release/jolt
+            runHook postBuild
+          '';
+
+          installPhase = ''
+            runHook preInstall
+            install -Dm755 target/release/jolt "$out/bin/jolt"
+            runHook postInstall
+          '';
+
+          postFixup = ''
+            wrapProgram "$out/bin/jolt" \
+              --prefix PATH : "${pkgs.lib.makeBinPath [ pkgs.git pkgs.unzip ]}" \
+              --set-default JOLT_OPENSSL_LIBDIR "${pkgs.lib.makeLibraryPath [ pkgs.openssl ]}" \
+              --set-default SSL_CERT_FILE "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"
+          '';
+        };
     in {
       packages = forAllSystems (system:
         let
@@ -21,7 +71,9 @@
             config.allowUnfree = true;
           };
         in
-        pkgs.lib.optionalAttrs (system == "x86_64-linux") {
+        {
+          jolt = mkJolt pkgs;
+        } // pkgs.lib.optionalAttrs (system == "x86_64-linux") {
           android-sdk =
             let
               # cmdline-tools 23 added a native `android` CLI binary. At the
@@ -78,6 +130,7 @@
               pkgs.file
               pkgs.binutils
               pkgs.which
+              self.packages.${system}.jolt
             ] ++ pkgs.lib.optionals (system == "x86_64-linux") [ androidSdk ];
 
             shellHook = pkgs.lib.optionalString (system == "x86_64-linux") ''

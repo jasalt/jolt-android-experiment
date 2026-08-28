@@ -1,0 +1,12 @@
+(ns poc.main
+  (:require [clojure.edn :as edn]
+            [poc.reducer :as reducer]))
+
+(defn- parse-event [args]
+  (if (and (= 2 (count args)) (= "--event" (first args)))
+    (edn/read-string (second args))
+    (throw (ex-info "usage: cli --event '<EDN event map>'" {:args args}))))
+
+(defn -main [& args]
+  (let [[model effects] (reducer/step reducer/initial-state (parse-event args))]
+    (prn {:model model :effects effects})))

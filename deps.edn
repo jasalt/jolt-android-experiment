@@ -1,0 +1,4 @@
+{:paths ["src/shared" "src/cli"]
+ :aliases
+ {:test {:extra-paths ["test/shared" "test"]
+         :main-opts ["-m" "poc.test-runner"]}}}

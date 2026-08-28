@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Run portable unit and CLI fixture tests from the pinned Nix shell.
+set -euo pipefail
+
+repo_root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+cd "$repo_root"
+
+jolt -M:test
+
+actual=$(./scripts/cli --event '{:type :counter/inc}')
+expected='{:model {:counter 1, :events [], :platform nil}, :effects []}'
+if [[ "$actual" != "$expected" ]]; then
+  printf 'unexpected CLI output:\nexpected: %s\nactual:   %s\n' "$expected" "$actual" >&2
+  exit 1
+fi
+
+if ./scripts/cli --event '{not EDN' >/dev/null 2>&1; then
+  printf 'malformed EDN unexpectedly succeeded\n' >&2
+  exit 1
+fi

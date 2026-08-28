@@ -62,6 +62,25 @@
         "type": "github"
       }
     },
+    "jolt": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1787319081,
+        "narHash": "sha256-bN7gNxFJMjCbX34SeoZEn2lqFc5yJFgpiTgWJc6Nw+4=",
+        "ref": "refs/heads/main",
+        "rev": "8fcba79f8b33628af926f88032d93a1b31c24235",
+        "revCount": 2565,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/jolt-lang/jolt.git"
+      },
+      "original": {
+        "rev": "8fcba79f8b33628af926f88032d93a1b31c24235",
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/jolt-lang/jolt.git"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1787736819,
@@ -81,6 +100,7 @@
     "root": {
       "inputs": {
         "android": "android",
+        "jolt": "jolt",
         "nixpkgs": "nixpkgs"
       }
     },
