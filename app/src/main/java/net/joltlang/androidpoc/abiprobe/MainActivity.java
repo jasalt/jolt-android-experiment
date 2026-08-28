@@ -14,11 +14,11 @@ public final class MainActivity extends Activity {
     setContentView(result);
 
     runtime = new JoltRuntime();
-    runtime.stress(first -> {
-      result.setText("Jolt runtime stress = " + first);
-      // This main-thread callback can only enqueue work; it never calls JNI.
-      runtime.stress(repeated -> result.setText(
-          "Jolt runtime stress = " + first + "; repeat init = " + repeated));
+    runtime.dispatch("{:type :counter/inc}", valid -> {
+      result.setText("Jolt dispatch = " + valid);
+      // This UI-thread callback queues malformed input; it never enters JNI directly.
+      runtime.dispatch("not EDN", malformed -> result.setText(
+          "Jolt dispatch = " + valid + "; malformed = " + malformed));
     });
   }
 

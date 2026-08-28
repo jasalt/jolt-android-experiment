@@ -28,5 +28,6 @@ See [actual.txt](actual.txt).
 
 ## Classification
 
-See [requirements.md](requirements.md). No Jolt source patch is included: this
-experiment identifies the smallest missing generic capability first.
+See [requirements.md](requirements.md). The smallest resulting Jolt patch is
+kept in this experiment and applied only to a disposable pinned-source worktree
+by `scripts/jolt-android-library-build`; the pinned Jolt checkout is unchanged.
