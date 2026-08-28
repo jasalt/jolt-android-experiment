@@ -28,20 +28,23 @@ static void *wrong_thread_attempt(void *argument) {
 }
 
 JNIEXPORT jint JNICALL
-Java_net_joltlang_androidpoc_abiprobe_MainActivity_nativeJoltStress(
-    JNIEnv *environment, jclass clazz) {
+Java_net_joltlang_androidpoc_abiprobe_JoltRuntime_nativeJoltStress(
+    JNIEnv *environment, jobject runtime) {
   (void)environment;
-  (void)clazz;
+  (void)runtime;
 
   pthread_mutex_lock(&lifecycle_lock);
   if (lifecycle_started || lifecycle_finished) {
+    const bool owner = pthread_equal(pthread_self(), owner_thread);
     pthread_mutex_unlock(&lifecycle_lock);
-    __android_log_print(ANDROID_LOG_INFO, "jolt_probe", "repeat init rejected");
-    return -1;
+    __android_log_print(ANDROID_LOG_INFO, "jolt_probe",
+        owner ? "repeat init rejected" : "non-owner JNI entry rejected");
+    return owner ? -1 : -11;
   }
   lifecycle_started = true;
   owner_thread = pthread_self();
   pthread_mutex_unlock(&lifecycle_lock);
+  __android_log_print(ANDROID_LOG_INFO, "jolt_probe", "owner JNI thread recorded");
 
   void *library = dlopen("libjoltpoc.so", RTLD_NOW | RTLD_LOCAL);
   if (library == NULL) {

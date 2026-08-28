@@ -1,5 +1,6 @@
 plugins {
   id("com.android.application")
+  id("org.jetbrains.kotlin.android")
 }
 
 android {
@@ -34,5 +35,11 @@ android {
       path = file("src/main/cpp/CMakeLists.txt")
       version = "3.22.1"
     }
+  }
+}
+
+kotlin {
+  compilerOptions {
+    jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_1_8)
   }
 }

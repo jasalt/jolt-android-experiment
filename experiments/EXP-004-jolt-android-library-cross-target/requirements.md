@@ -1,14 +1,13 @@
-# Required changes classification
+# Cross-library requirements classification
 
 | Requirement | Evidence | Classification |
 | --- | --- | --- |
-| Permit `--target` with `--library` | Explicit guards in `jolt.main` and `build.ss` reject it. | **B — generic cross-compilation capability missing** |
-| Make the library branch run the spawned target-xpatch compile/boot path | `build-shared` has library stub generation but no target pack/xpatch inputs. | **B — generic cross-compilation capability missing** |
-| Select target compiler rather than literal host `cc` for shared link | `build-shared` hard-codes `cc`; cross binary path uses `bld-cc`. | **B — generic cross-compilation capability missing** |
-| Use target CSV, static compression archives, and target link flags in shared link | Cross binaries use `bld-csv-dir`/`bld-link-libs`; library branch is host-oriented. | **B — generic cross-compilation capability missing** |
-| Supply Android/Bionic target-pack link flags `-llz4 -lz -lm -ldl` | EXP-003 target Chez link failed with generic Linux `-lrt -lpthread`; Bionic build succeeded after removing them. | **C — Android-specific runtime/toolchain assumption** |
-| Keep Chez kernel PIC | Android JNI shared-object link rejected non-PIC AArch64 relocations; EXP-003 succeeded with `-fPIC`. | **D — Chez build configuration for Android** |
-| Package `petite.boot` and `scheme.boot` losslessly | Android asset copies in this shared workspace corrupted `scheme.boot`; symlink-backed Gradle assets preserved its SHA-256. | **F — packaging limitation** |
-| Preserve Jolt library thread-affinity contract once cross build works | Existing library stub calls `Sscheme_init`/`Sscheme_start`; Android callers need a dedicated runtime thread. | **C — Android integration design requirement** |
+| Permit `--target` with `--library` | Pinned Jolt rejects this combination in `jolt.main` and `build.ss`. | Generic cross-compilation capability missing |
+| Build the library through target xpatch/CSV/compiler paths | The original `build-shared` implementation is host-oriented. | Generic cross-compilation capability missing |
+| Link the Android target with target archives and Bionic flags | The Android target uses PIC Chez, static lz4/zlib, and `-llz4 -lz -lm -ldl`. | Android toolchain/runtime configuration |
+| Expose explicit heap compaction | EXP-005 adds the isolated `jolt_library_collect` wrapper around Chez `Scompact_heap`. | Experiment-only Jolt ABI extension |
+| Package generated library in ABI-specific APK layout | Gradle packages `native/jolt/android-arm64/arm64-v8a/libjoltpoc.so`. | Packaging configuration |
+| Serialize runtime entry | EXP-006 routes calls through `HandlerThread("JoltRuntime")`; the JNI bridge records/rejects non-owner entry. | Android integration design |
 
-No evidence currently attributes the cross-library guard to a Chez limitation.
+The stored patch is applied only in a temporary worktree by
+`scripts/jolt-android-library-build`; the pinned Jolt checkout is not modified.

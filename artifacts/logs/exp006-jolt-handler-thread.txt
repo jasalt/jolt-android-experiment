@@ -1,0 +1,18 @@
+Performing Streamed Install
+Success
+D/AndroidRuntime( 5677): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+I/AndroidRuntime( 5677): Using default boot image
+I/AndroidRuntime( 5677): Leaving lock profiling enabled
+D/AndroidRuntime( 5677): Calling main entry com.android.commands.monkey.Monkey
+I/AndroidRuntime( 5677): VM exiting with result code 0.
+D/nativeloader( 5729): Load /data/app/~~p7020uzftnbD7vxQnTWT8g==/net.joltlang.androidpoc.abiprobe-cSpBmxgubgX25DEpGqBtQQ==/base.apk!/lib/arm64-v8a/libjolt_probe.so using ns clns-7 from class loader (caller=/data/app/~~p7020uzftnbD7vxQnTWT8g==/net.joltlang.androidpoc.abiprobe-cSpBmxgubgX25DEpGqBtQQ==/base.apk!classes3.dex): ok
+I/JoltRuntime( 5729): entering JNI on JoltRuntime
+I/jolt_probe( 5729): owner JNI thread recorded
+W/JoltRuntime( 5729): type=1400 audit(0.0:186): avc:  denied  { getattr } for  path="/dev/pmsg0" dev="tmpfs" ino=773 scontext=u:r:untrusted_app:s0:c209,c256,c512,c768 tcontext=u:object_r:pmsg_device:s0 tclass=chr_file permissive=0 app=net.joltlang.androidpoc.abiprobe
+W/JoltRuntime( 5729): type=1400 audit(0.0:187): avc:  denied  { getattr } for  path="/dev/pmsg0" dev="tmpfs" ino=773 scontext=u:r:untrusted_app:s0:c209,c256,c512,c768 tcontext=u:object_r:pmsg_device:s0 tclass=chr_file permissive=0 app=net.joltlang.androidpoc.abiprobe
+W/JoltRuntime( 5729): type=1400 audit(0.0:188): avc:  denied  { getattr } for  path="/dev/pmsg0" dev="tmpfs" ino=773 scontext=u:r:untrusted_app:s0:c209,c256,c512,c768 tcontext=u:object_r:pmsg_device:s0 tclass=chr_file permissive=0 app=net.joltlang.androidpoc.abiprobe
+I/jolt_probe( 5729): wrong-thread Jolt access rejected before ABI call
+I/jolt_probe( 5729): one=42 calls=10000 allocation=100000 compact=ok again=42 wrong-thread=rejected shutdown=ok
+I/JoltRuntime( 5729): entering JNI on JoltRuntime
+I/jolt_probe( 5729): repeat init rejected
+Jolt runtime stress = 42; repeat init = -1
