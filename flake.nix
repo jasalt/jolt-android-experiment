@@ -130,6 +130,9 @@
               pkgs.file
               pkgs.binutils
               pkgs.which
+              pkgs.cacert
+              pkgs.chez
+              pkgs.ncurses
               self.packages.${system}.jolt
             ] ++ pkgs.lib.optionals (system == "x86_64-linux") [ androidSdk ];
 
@@ -140,6 +143,8 @@
               export ANDROID_AVD_HOME="$PWD/.android/avd"
               export GRADLE_USER_HOME="$PWD/.gradle"
               export JAVA_HOME=${pkgs.jdk21.home}
+              export SSL_CERT_FILE=${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt
+              export GIT_SSL_CAINFO="$SSL_CERT_FILE"
             '';
           };
         });

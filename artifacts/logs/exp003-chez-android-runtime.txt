@@ -1,0 +1,11 @@
+Performing Streamed Install
+Success
+Starting: Intent { cmp=net.joltlang.androidpoc.abiprobe/.MainActivity }
+Status: ok
+LaunchState: COLD
+Activity: net.joltlang.androidpoc.abiprobe/.MainActivity
+TotalTime: 1304
+WaitTime: 1317
+Complete
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?><hierarchy rotation="0"><node index="0" text="" resource-id="" class="android.widget.FrameLayout" package="net.joltlang.androidpoc.abiprobe" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[0,0][1080,2400]"><node index="0" text="" resource-id="" class="android.widget.LinearLayout" package="net.joltlang.androidpoc.abiprobe" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[0,0][1080,2400]"><node index="0" text="" resource-id="android:id/content" class="android.widget.FrameLayout" package="net.joltlang.androidpoc.abiprobe" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[0,0][1080,2400]"><node index="0" text="Chez (+ 40 2) = 42" resource-id="" class="android.widget.TextView" package="net.joltlang.androidpoc.abiprobe" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[0,0][1080,2400]" /></node></node></node></hierarchy>
+D/nativeloader( 4575): Load /data/app/~~Jxa88-Kua1bgGRI_I_qRpg==/net.joltlang.androidpoc.abiprobe-GkhS4QGtOqydWlRewt9HgA==/base.apk!/lib/arm64-v8a/libchez_probe.so using ns clns-7 from class loader (caller=/data/app/~~Jxa88-Kua1bgGRI_I_qRpg==/net.joltlang.androidpoc.abiprobe-GkhS4QGtOqydWlRewt9HgA==/base.apk!classes2.dex): ok

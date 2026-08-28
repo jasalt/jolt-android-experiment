@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+# Build and stage Chez v10.4.1 for the API-35 ARM64 Android JNI probe.
+# Run through the pinned shell:
+#   nix develop -c ./scripts/chez-cross-build
+set -euo pipefail
+
+repo_root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+chez_root="$repo_root/.cache/chezscheme-v10.4.1"
+stage="$repo_root/native/chez/android-arm64"
+expected_revision=e95a7efbafa2cf3bd5343ea542e6bc909a7ab2c4
+: "${ANDROID_NDK_ROOT:?run through nix develop}"
+toolchain="$ANDROID_NDK_ROOT/toolchains/llvm/prebuilt/linux-x86_64/bin"
+
+if [[ ! -d "$chez_root/.git" ]]; then
+  mkdir -p "$(dirname "$chez_root")"
+  git clone --depth 1 --branch v10.4.1 --recurse-submodules \
+    https://github.com/cisco/ChezScheme.git "$chez_root"
+fi
+[[ "$(git -C "$chez_root" rev-parse HEAD)" == "$expected_revision" ]] || {
+  printf 'unexpected Chez revision in %s\n' "$chez_root" >&2
+  exit 1
+}
+
+cd "$chez_root"
+./configure -m=ta6le --disable-x11
+make -j"$(nproc)"
+make bootquick XM=tarm64le
+rm -rf tarm64le
+./configure --cross --force -m=tarm64le --disable-auto-flags \
+  --disable-curses --disable-x11 --disable-iconv \
+  CFLAGS="-fPIC -O2" \
+  CC="$toolchain/aarch64-linux-android35-clang" \
+  AR="$toolchain/llvm-ar" RANLIB="$toolchain/llvm-ranlib" \
+  STRIP="$toolchain/llvm-strip" LIBS="-lm -ldl" CC_FOR_BUILD=gcc
+make -j"$(nproc)"
+
+rm -rf "$stage"
+mkdir -p "$stage/lz4/lib" "$stage/zlib"
+cp -L tarm64le/boot/tarm64le/{libkernel.a,petite.boot,scheme.boot,scheme.h,equates.h} "$stage/"
+cp tarm64le/lz4/lib/liblz4.a "$stage/lz4/lib/"
+cp tarm64le/zlib/libz.a "$stage/zlib/"
+
+inspect_dir=$(mktemp -d)
+( cd "$inspect_dir" && "$toolchain/llvm-ar" x "$stage/libkernel.a" scheme.o )
+"$toolchain/llvm-readelf" -h "$inspect_dir/scheme.o" | grep -E 'Class:|Machine:'
+rm -rf "$inspect_dir"
+"$toolchain/llvm-readelf" -d tarm64le/bin/tarm64le/scheme | grep NEEDED
+printf 'Staged Android ARM64 Chez artifacts in %s\n' "$stage"

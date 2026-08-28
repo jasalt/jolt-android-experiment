@@ -1,0 +1,24 @@
+# Observed result — 2026-08-28
+
+Pinned Chez `v10.4.1` host (`ta6le`) and target boots/xpatch (`tarm64le`) were
+built. The target kernel required `--disable-auto-flags`, `LIBS="-lm -ldl"`,
+and `-fPIC`: generic Linux `-lrt -lpthread` are unavailable on Bionic and a
+non-PIC kernel cannot link into a JNI shared library.
+
+`libkernel.a` member `scheme.o` is ELF64 AArch64. The target executable needs
+only `libm.so`, `libdl.so`, and `libc.so`.
+
+The API-35 x86_64 emulator installed and launched the ARM64-only JNI APK.
+Logcat recorded successful loading of `libchez_probe.so`; UI hierarchy recorded:
+
+```text
+Chez (+ 40 2) = 42
+```
+
+This proves standalone Chez initialization and a Scheme procedure call under Android ARM64 translation. It does not prove Jolt.
+
+
+The final APK packaged symlinks to the staged boot files so the APK asset
+`scheme.boot` SHA-256 matched the staged target boot exactly. A direct copied
+asset was observed to be stale in this shared workspace and was not used.
+Logcat recorded `libchez_probe.so ...: ok`; UI hierarchy recorded the result.
