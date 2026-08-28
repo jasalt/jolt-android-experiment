@@ -95,7 +95,9 @@ provision:
 
     display="${LIMA_X11_DISPLAY:-:99}"
     screen="${LIMA_X11_SCREEN:-1280x800x24}"
-    vnc_port="${LIMA_VNC_PORT:-5900}"
+    # Use a non-default VNC/X11 desktop port so this VM can coexist with
+    # another Lima instance whose desktop occupies port 5900.
+    vnc_port="${LIMA_VNC_PORT:-5901}"
     display_number="${display#:}"
     display_number="${display_number%%.*}"
     # Use a stable user-owned location so the system unit (which has no
@@ -222,7 +224,7 @@ provision:
     User={{.User}}
     Environment=LIMA_X11_DISPLAY=:99
     Environment=LIMA_X11_SCREEN=1280x800x24
-    Environment=LIMA_VNC_PORT=5900
+    Environment=LIMA_VNC_PORT=5901
     RemainAfterExit=yes
     ExecStart=/usr/local/bin/lima-x11 start
     ExecStop=/usr/local/bin/lima-x11 stop
@@ -270,7 +272,7 @@ probes:
     systemctl is-active --quiet nix-daemon.socket
     systemctl is-active --quiet lima-x11.service
     DISPLAY=:99 xdpyinfo >/dev/null
-    ss -ltn | grep -q '127.0.0.1:5900'
+    ss -ltn | grep -q '127.0.0.1:5901'
     nix --extra-experimental-features 'nix-command flakes' --version
   hint: |-
     Guest provisioning failed. Inspect /var/log/cloud-init-output.log and run:
@@ -279,6 +281,11 @@ probes:
       "$HOME/.local/bin/pi" --version
 
 # Remote display via VNC
+# Do not enable Lima's SSH X11 forwarding here. Lima derives the forwarded X11
+# listener from the host DISPLAY (typically TCP 6010 for DISPLAY=:0), so two
+# Lima instances can collide before the VM reaches running state. The isolated
+# Xvfb/Openbox desktop above is the stable GUI target and is exposed through
+# the separately assigned VNC port instead.
 ssh:
   forwardX11: false
   forwardX11Trusted: false
@@ -300,9 +307,9 @@ message: |
   Lima should forward the guest VNC port automatically but if not, from the
   host, tunnel its loopback-only VNC endpoint:
     ssh -F ~/.lima/{{.Name}}/ssh.config -N -T \
-      -L 127.0.0.1:5900:127.0.0.1:5900 lima-{{.Name}}
+      -L 127.0.0.1:5901:127.0.0.1:5901 lima-{{.Name}}
 
-  Then point a VNC viewer at 127.0.0.1:5900. No VNC password is used because
+  Then point a VNC viewer at 127.0.0.1:5901. No VNC password is used because
   x11vnc is guest-loopback-only and reachable only through Lima SSH.
 
   Full lifecycle, VNC, screenshots, resource tuning, and troubleshooting:
