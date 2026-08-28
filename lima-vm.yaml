@@ -85,10 +85,6 @@ provision:
     sshd -t
     systemctl restart sshd
 
-    # Pi runs outside the project flake as the coding harness. Project build
-    # tools must not be added here merely because an agent happens to need them.
-    npm install -g --ignore-scripts agent-browser @earendil-works/pi-coding-agent
-
     # A direct X11 desktop is simpler and more observable than nesting Weston:
     # Android emulator / GTK -> Xvfb -> FFmpeg or x11vnc -> SSH tunnel -> host.
     # x11vnc never listens beyond guest loopback; the SSH tunnel is the access
@@ -243,12 +239,29 @@ provision:
     set -eux -o pipefail
     mkdir -p "$HOME/.config" "$HOME/.local/bin"
 
+    # Pi is the user-facing coding harness, not a project dependency and not a
+    # system service. Keep its npm prefix and executable in the Lima user's
+    # home so `pi` works without root or a system-wide npm-prefix assumption.
+    node - <<'NODE'
+    const [major, minor] = process.versions.node.split('.').map(Number)
+    if (major < 22 || (major === 22 && minor < 19)) {
+      console.error(`Pi requires Node >=22.19; found ${process.version}`)
+      process.exit(1)
+    }
+    NODE
+    npm config set prefix '~/.local'
+    npm install --global --ignore-scripts \
+      agent-browser @earendil-works/pi-coding-agent
+    test -x "$HOME/.local/bin/pi"
+    "$HOME/.local/bin/pi" --version
+
 probes:
 - script: |
     #!/bin/bash
     set -eux -o pipefail
     command -v nix >/dev/null
-    command -v pi >/dev/null
+    test -x "$HOME/.local/bin/pi"
+    "$HOME/.local/bin/pi" --version
     command -v Xvfb >/dev/null
     command -v x11vnc >/dev/null
     command -v ffmpeg >/dev/null
@@ -262,10 +275,12 @@ probes:
   hint: |-
     Guest provisioning failed. Inspect /var/log/cloud-init-output.log and run:
       systemctl status nix-daemon.socket
-      command -v nix pi Xvfb x11vnc ffmpeg xdotool lima-x11
+      command -v nix Xvfb x11vnc ffmpeg xdotool lima-x11
+      "$HOME/.local/bin/pi" --version
 
+# Remote display via VNC
 ssh:
-  forwardX11: true
+  forwardX11: false
   forwardX11Trusted: false
 
 message: |

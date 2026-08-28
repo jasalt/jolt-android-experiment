@@ -119,7 +119,7 @@ Run these commands on the **host**, from the repository root:
 
 ```sh
 limactl validate ./lima-vm.yaml
-limactl start --name=jolt-android ./lima-vm.yaml
+limactl start -y --name=jolt-android --mount-only .:w ./lima-vm.yaml
 ```
 
 If the installed Lima does not provide `limactl validate`, creation itself still
