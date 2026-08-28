@@ -1,0 +1,97 @@
+INFO         | Android emulator version 37.2.6.0 (build_id 16138043) (CL:N/A)
+INFO         | Graphics backend: gfxstream
+INFO         | Found systemPath /nix/store/axk6qarhx7f2hhx9lyippjvn0x3y6d53-android-sdk-env/share/android-sdk/system-images/android-35/google_apis/x86_64/
+INFO         | Increasing RAM size to 2560MB
+INFO         | Guest GLES Driver: Auto (ext controls)
+WARNING      | Your AVD has been configured with an in-guest renderer, but the system image does not support guest rendering.Falling back to 'lavapipe' mode.
+INFO         | emuglConfig_init: vulkan_mode_selected:lavapipe gles_mode_selected:swangle
+INFO         | Checking system compatibility:
+INFO         |   Checking: hasSufficientDiskSpace
+INFO         |      Ok: Disk space requirements to run avd: `jolt_api_35_x86_64` are met
+INFO         |   Checking: hasSufficientHwGpu
+INFO         |      Ok: Hardware GPU compatibility checks are not required
+INFO         |   Checking: hasSufficientSystem
+INFO         |      Warning: Suggested minimum system RAM to run avd 'jolt_api_35_x86_64' is 4096 MiB (available: 3897 MiB)
+USER_WARNING | Suggested minimum system RAM to run avd 'jolt_api_35_x86_64' is 4096 MiB (available: 3897 MiB).
+WARNING      | File System is not ext4, disable QuickbootFileBacked feature
+WARNING      | x86_64 emulation may not work without hardware acceleration!
+INFO         | Storing crashdata in: /tmp/android-user/emu-crash-37.2.6.db, detection is enabled for process: 62785
+INFO         | Initializing gfxstream backend
+INFO         | startOpenglesRendererImpl: gpu info
+INFO         | 
+INFO         | initIcdPaths: ICD set to 'lavapipe', using Lavapipe ICD
+INFO         | Setting ICD filenames for the loader = /nix/store/1c4zwxyjwrsvrq3rgj3938n57jdh21ga-emulator-37.2.6/lib64/vulkan/lvp_icd.json
+INFO         | SharedLibrary::open for [/nix/store/1c4zwxyjwrsvrq3rgj3938n57jdh21ga-emulator-37.2.6/qemu/linux-x86_64/lib64/vulkan/libvulkan.so]
+INFO         | SharedLibrary::open for [/nix/store/1c4zwxyjwrsvrq3rgj3938n57jdh21ga-emulator-37.2.6/qemu/linux-x86_64/lib64/vulkan/libvulkan.so.1]
+INFO         | SharedLibrary::open for [/nix/store/1c4zwxyjwrsvrq3rgj3938n57jdh21ga-emulator-37.2.6/lib64/vulkan/libvulkan.so]
+INFO         | Added library: /nix/store/1c4zwxyjwrsvrq3rgj3938n57jdh21ga-emulator-37.2.6/lib64/vulkan/libvulkan.so
+INFO         | Selecting Vulkan device: llvmpipe (LLVM 21.0.0, 256 bits), Version: 1.4.318
+INFO         | Using Vulkan externalMemoryMode: OpaqueFd for VkEmulation
+INFO         | Format VK_FORMAT_G10X6_B10X6R10X6_2PLANE_422_UNORM_3PACK16 does not support YCbCr sampler conversion
+INFO         | SharedLibrary::open for [libX11]
+INFO         | SharedLibrary::open for [libX11-xcb]
+INFO         | Initializing VkEmulation features:
+INFO         |     glInteropSupported: false
+INFO         |     useDeferredCommands: true
+INFO         |     createResourceWithRequirements: true
+INFO         |     useVulkanComposition: false
+INFO         |     useVulkanNativeSwapchain: false
+INFO         |     enable guestRenderDoc: false
+INFO         |     ASTC LDR emulation mode: Gpu
+INFO         |     enable ETC2 emulation: true
+INFO         |     enable Ycbcr emulation: false
+INFO         |     guestVulkanOnly: false
+INFO         |     useDedicatedAllocations: false
+INFO         |     guestVulkanMaxApiVersion: 1.3.0
+INFO         |     enableProtectedMemoryEmulation: false
+INFO         | Graphics Adapter Vendor Google (Google Inc.)
+INFO         | Graphics Adapter Android Emulator OpenGL ES Translator (Google SwiftShader)
+INFO         | Graphics API Version OpenGL ES 3.0 (OpenGL ES 3.0 SwiftShader 4.0.0.1)
+INFO         | Graphics API Extensions GL_OES_EGL_sync GL_OES_EGL_image GL_OES_EGL_image_external GL_OES_depth24 GL_OES_depth32 GL_OES_element_index_uint GL_OES_texture_float GL_OES_texture_float_linear GL_OES_compressed_paletted_texture GL_OES_compressed_ETC1_RGB8_texture GL_OES_depth_texture GL_OES_texture_half_float GL_OES_texture_half_float_linear GL_OES_packed_depth_stencil GL_OES_vertex_half_float GL_OES_standard_derivatives GL_OES_texture_npot GL_OES_rgb8_rgba8 GL_EXT_color_buffer_float GL_EXT_color_buffer_half_float GL_EXT_texture_format_BGRA8888 GL_APPLE_texture_format_BGRA8888 
+INFO         | Graphics Device Extensions N/A
+INFO         | Disabling sparse binding feature support
+ERROR        | Setting read-only feature 'GLAsyncSwap' to '0'
+INFO         | Feature 'GLAsyncSwap' (50) is overridden to 'disabled'
+INFO         | Sending adb public key [QAAAAPdQfuA5jwpN29Muwli+tdPGAJF9/KlX/s62jhy3wNaA/GT/2bj2ZE+FfpyXgS/PSyYeKfYEga3Nusi3Prx3ihd0Jn5esNudYPmI4mWsMLa0rh8n1PMZbLxlyzHUlg3Vt0fvxsDPSMtLh3fzccXeR1IC7ZgndM2Djp2Hj0rX3AP+ps9eA/fkyB88B0WLTlsdFkjVdNxL7KljJWxs0T9/BUE+5BdQWXVm7YDDtdZx/qCbbbYpVt4sbykpftuWsrw6XQHdLK2Z7tFj6pPZoQ/1c7NXdsWfG+lV1zkOnNV268ASXm+WgXdutXnLQ9RWUSthkQiW1Olsy+pVAfY5ozrD2y9L6lfqccabNCnI78pEKLHp8c133LaCk3glJqQ32MZwND14AjhW9yElIxAG5ZpatfD87HipuEz5oxqsZz6XbgXEdFWkJkWcXQFReLXNwkpSUFbaiiYUvCQ8QPKl1OHUZ1NGN0IiNaTZ6yZmqlvHjiFuSR8gpnPLfTaKaE8ZaEEdGXhqe3Nb8Jwu5rlCMs07TpMarr+PY5GlV+/xvidfYFjy/oYGGJ7vlMOzuajMnVHHoFUUn1fjRuiOiBMW3de8oqTpffEQOGpv5YBr0ivVCBWQbJibJeRLJHbQyIvDTLEtUZh4R+YHJ09jeJ4waRDYrua7NktTrsgrVE/p+cWVl8xhCa91uwEAAQA= user@lima-default]
+INFO         | Userspace boot properties:
+INFO         |   androidboot.boot_devices=pci0000:00/0000:00:03.0 pci0000:00/0000:00:06.0
+INFO         |   androidboot.dalvik.vm.heapsize=576m
+INFO         |   androidboot.debug.hwui.renderer=skiagl
+INFO         |   androidboot.debug.sf.nobootanimation=1
+INFO         |   androidboot.hardware=ranchu
+INFO         |   androidboot.hardware.gltransport=pipe
+INFO         |   androidboot.hardware.vulkan=ranchu
+INFO         |   androidboot.logcat=*:V
+INFO         |   androidboot.opengles.version=196608
+INFO         |   androidboot.qemu=1
+INFO         |   androidboot.qemu.adb.pubkey=QAAAAPdQfuA5jwpN29Muwli+tdPGAJF9/KlX/s62jhy3wNaA/GT/2bj2ZE+FfpyXgS/PSyYeKfYEga3Nusi3Prx3ihd0Jn5esNudYPmI4mWsMLa0rh8n1PMZbLxlyzHUlg3Vt0fvxsDPSMtLh3fzccXeR1IC7ZgndM2Djp2Hj0rX3AP+ps9eA/fkyB88B0WLTlsdFkjVdNxL7KljJWxs0T9/BUE+5BdQWXVm7YDDtdZx/qCbbbYpVt4sbykpftuWsrw6XQHdLK2Z7tFj6pPZoQ/1c7NXdsWfG+lV1zkOnNV268ASXm+WgXdutXnLQ9RWUSthkQiW1Olsy+pVAfY5ozrD2y9L6lfqccabNCnI78pEKLHp8c133LaCk3glJqQ32MZwND14AjhW9yElIxAG5ZpatfD87HipuEz5oxqsZz6XbgXEdFWkJkWcXQFReLXNwkpSUFbaiiYUvCQ8QPKl1OHUZ1NGN0IiNaTZ6yZmqlvHjiFuSR8gpnPLfTaKaE8ZaEEdGXhqe3Nb8Jwu5rlCMs07TpMarr+PY5GlV+/xvidfYFjy/oYGGJ7vlMOzuajMnVHHoFUUn1fjRuiOiBMW3de8oqTpffEQOGpv5YBr0ivVCBWQbJibJeRLJHbQyIvDTLEtUZh4R+YHJ09jeJ4waRDYrua7NktTrsgrVE/p+cWVl8xhCa91uwEAAQA= user@lima-default
+INFO         |   androidboot.qemu.avd_name=jolt_api_35_x86_64
+INFO         |   androidboot.qemu.camera_hq_edge_processing=0
+INFO         |   androidboot.qemu.camera_protocol_ver=1
+INFO         |   androidboot.qemu.cpuvulkan.version=4206592
+INFO         |   androidboot.qemu.gltransport.drawFlushInterval=800
+INFO         |   androidboot.qemu.gltransport.name=pipe
+INFO         |   androidboot.qemu.hwcodec.avcdec=2
+INFO         |   androidboot.qemu.hwcodec.hevcdec=2
+INFO         |   androidboot.qemu.hwcodec.vpxdec=2
+INFO         |   androidboot.qemu.settings.system.screen_off_timeout=2147483647
+INFO         |   androidboot.qemu.skin=1080x2400
+INFO         |   androidboot.qemu.virtiowifi=1
+INFO         |   androidboot.qemu.vsync=60
+INFO         |   androidboot.serialno=EMULATOR37X2X6X0
+INFO         |   androidboot.vbmeta.digest=b3271ba499104f4631ae3723913d5c12574e01715fce5b82d60beed097ead264
+INFO         |   androidboot.vbmeta.hash_alg=sha256
+INFO         |   androidboot.vbmeta.size=6720
+INFO         |   androidboot.veritymode=enforcing
+TCG doesn't support requested feature: CPUID.01H:ECX.avx [bit 28]
+TCG doesn't support requested feature: CPUID.01H:ECX.f16c [bit 29]
+TCG doesn't support requested feature: CPUID.01H:ECX.avx [bit 28]
+TCG doesn't support requested feature: CPUID.01H:ECX.f16c [bit 29]
+WARNING: cannnot unmap ptr 0x7fffa7e01000 as it is in the protected range from 0x7fff07e00000 to 0x7fffa8000000
+INFO         | Monitoring duration of emulator setup.
+INFO         | Activated packet streamer for bluetooth emulation
+INFO         | Successfully initialized netsim WiFi
+INFO         | Setting display: 0 configuration to: 1080x2400, dpi: 420x420 
+INFO         | setDisplayActiveConfig: id:0, 1080x2400
+INFO         | emulatorSetupEnvironment: Environment scene is not required
+USER_INFO    | Emulator is performing a full startup. This may take upto two minutes, or more.

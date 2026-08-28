@@ -1,0 +1,2 @@
+# Raw emulator output is evidence. Preserve its byte-level whitespace.
+artifacts/logs/*.log whitespace=-trailing-space

@@ -1,0 +1,103 @@
+#!/usr/bin/env bash
+# Create (once) and start the pinned API 35 AVD.
+# Usage: nix develop -c ./scripts/emulator-start {gui|headless|software}
+set -euo pipefail
+
+mode=${1:-headless}
+case "$mode" in
+  gui|headless|software) ;;
+  *)
+    printf 'usage: %s {gui|headless|software}\n' "$0" >&2
+    exit 2
+    ;;
+esac
+
+repo_root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+: "${ANDROID_HOME:?run through nix develop so ANDROID_HOME is set}"
+: "${ANDROID_AVD_HOME:?run through nix develop so ANDROID_AVD_HOME is set}"
+
+avd_name=${JOLT_ANDROID_AVD_NAME:-jolt_api_35_x86_64}
+port=${JOLT_ANDROID_EMULATOR_PORT:-5554}
+serial="emulator-$port"
+system_image='system-images;android-35;google_apis;x86_64'
+device=${JOLT_ANDROID_AVD_DEVICE:-pixel_6}
+log_dir="$repo_root/artifacts/logs"
+report_dir="$repo_root/artifacts/reports"
+log_file="$log_dir/$avd_name.log"
+report_file="$report_dir/emulator-$avd_name.txt"
+
+mkdir -p "$ANDROID_AVD_HOME" "$log_dir" "$report_dir"
+export ANDROID_EMULATOR_HOME="$ANDROID_AVD_HOME"
+export ANDROID_USER_HOME="$repo_root/.android"
+
+if adb -s "$serial" get-state >/dev/null 2>&1; then
+  printf '%s is already running\n' "$serial"
+else
+  if [[ ! -f "$ANDROID_AVD_HOME/$avd_name.ini" ]]; then
+    printf 'Creating AVD %s with %s\n' "$avd_name" "$system_image"
+    printf 'no\n' | avdmanager create avd --force \
+      --name "$avd_name" \
+      --package "$system_image" \
+      --device "$device" \
+      --path "$ANDROID_AVD_HOME/$avd_name.avd"
+  fi
+
+  emulator_args=(
+    "@$avd_name"
+    -port "$port"
+    -no-snapshot
+    -no-snapshot-save
+    -no-boot-anim
+    -noaudio
+    -no-metrics
+    -gpu off
+    -memory "${JOLT_ANDROID_EMULATOR_MEMORY_MB:-1024}"
+  )
+  case "$mode" in
+    gui)
+      : "${DISPLAY:?GUI mode requires DISPLAY; use headless or software otherwise}"
+      emulator_args+=(-accel auto)
+      ;;
+    headless)
+      emulator_args+=(-no-window -accel auto)
+      ;;
+    software)
+      emulator_args+=(-no-window -accel off)
+      ;;
+  esac
+
+  printf 'Starting %s (%s); log: %s\n' "$avd_name" "$mode" "$log_file"
+  nohup emulator "${emulator_args[@]}" >"$log_file" 2>&1 &
+fi
+
+adb -s "$serial" wait-for-device
+for _ in $(seq 1 180); do
+  if [[ "$(adb -s "$serial" shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')" == 1 ]]; then
+    break
+  fi
+  sleep 1
+done
+
+if [[ "$(adb -s "$serial" shell getprop sys.boot_completed | tr -d '\r')" != 1 ]]; then
+  printf 'Emulator did not boot within 180 seconds; see %s\n' "$log_file" >&2
+  exit 1
+fi
+
+{
+  printf '# API 35 emulator report\n\n'
+  printf 'Generated UTC: '
+  date --utc --iso-8601=seconds
+  printf 'Mode: %s\n' "$mode"
+  printf 'AVD: %s\n' "$avd_name"
+  printf 'Serial: %s\n\n' "$serial"
+  printf '## Acceleration\n\n'
+  emulator -accel-check
+  printf '\n## Device\n\n'
+  adb -s "$serial" shell getprop ro.build.version.sdk
+  adb -s "$serial" shell getprop ro.product.cpu.abi
+  adb -s "$serial" shell getprop ro.product.cpu.abilist
+  adb -s "$serial" shell getprop ro.kernel.qemu
+  adb -s "$serial" shell getprop ro.build.version.release
+} >"$report_file" 2>&1
+
+printf 'Booted %s; wrote %s\n' "$serial" "$report_file"
