@@ -20,6 +20,10 @@
     :platform/info
     [(assoc state :platform (:value event)) []]
 
+    :platform/copy-counter
+    [state [{:type :platform/clipboard
+             :text (str "Jolt counter: " (:counter state))}]]
+
     :lifecycle/create
     [(assoc state :lifecycle :created) []]
 
