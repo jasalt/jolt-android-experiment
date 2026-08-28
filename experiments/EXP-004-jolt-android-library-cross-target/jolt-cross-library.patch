@@ -1,5 +1,5 @@
 diff --git a/host/chez/build.ss b/host/chez/build.ss
-index 73b49642..87b8b70c 100644
+index 73b49642..36842cd2 100644
 --- a/host/chez/build.ss
 +++ b/host/chez/build.ss
 @@ -1387,9 +1387,10 @@
@@ -15,7 +15,17 @@ index 73b49642..87b8b70c 100644
             (when (> (string-length (bld-native-link-flags natives)) 0)
               (error 'jolt-build
                 "cross build (--target) does not support :jolt/native archives yet (they need per-target-arch archives)"))
-@@ -1794,6 +1795,7 @@
+@@ -1772,7 +1773,8 @@
+     "  Sbuild_heap(0, 0);\n"
+     "  Sforeign_symbol(\"jolt_set_lookup_addr\", (void*)jolt_set_lookup_addr);\n"
+     "  return Sscheme_start(argc, (const char**)argv); }\n"
+-    "void jolt_library_shutdown(void) { Sscheme_deinit(); }\n"))
++    "void jolt_library_shutdown(void) { Sscheme_deinit(); }\n"
++    "void jolt_library_collect(void) { Scompact_heap(); }\n"))
+__JOLT_PATCH_CONTEXT_BLANK__
+ ;; The library scheme-start tail BODY: publish the export table to the embedder,
+ ;; then return 0 so Sscheme_start returns to jolt_library_init's caller. The guard
+@@ -1794,6 +1796,7 @@
        (put-string p
          (string-append
            "(import (chezscheme))\n"
@@ -23,7 +33,7 @@ index 73b49642..87b8b70c 100644
            (bld-chez-param-forms mode)
            "(compile-file " (ei-str-lit flat-ss) " " (ei-str-lit flat-so) ")\n"
            "(make-boot-file " (ei-str-lit boot) " '()\n  "
-@@ -1812,10 +1814,10 @@
+@@ -1812,10 +1815,10 @@
        (close-port p))
      (bld-clear-output! out-path)
      (bld-system (string-append
@@ -36,7 +46,7 @@ index 73b49642..87b8b70c 100644
            (string-append "-dynamiclib -install_name '@rpath/" (bld-basename out-path) "' ")
            "-shared ")
        "-I'" (bld-csv-dir) "' '" lc "' '" (bld-csv-dir) "/libkernel.a' "
-@@ -1838,9 +1840,10 @@
+@@ -1838,9 +1841,10 @@
                      natives embed-dirs ext-roots (jolt-truthy? direct-link?) (jolt-truthy? tree-shake?) #f))
      jolt-nil))
  (def-var! "jolt.host" "build-library"
@@ -70,5 +80,5 @@ index 06ab698b..d505e89e 100644
 -          (jolt.host/build-library entry out mode natives embed-dirs project-paths direct-link? tree-shake?)
 +          (jolt.host/build-library entry out mode natives embed-dirs project-paths direct-link? tree-shake? target target-pack)
            (jolt.host/build-binary entry out mode natives embed-dirs project-paths direct-link? tree-shake? target target-pack))))))
-
+__JOLT_PATCH_CONTEXT_BLANK__
  (defn- nrepl [more]

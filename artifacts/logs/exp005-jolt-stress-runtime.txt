@@ -1,0 +1,24 @@
+Performing Streamed Install
+Success
+---first---
+D/AndroidRuntime( 5285): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+I/AndroidRuntime( 5285): Using default boot image
+I/AndroidRuntime( 5285): Leaving lock profiling enabled
+D/AndroidRuntime( 5285): Calling main entry com.android.commands.monkey.Monkey
+I/AndroidRuntime( 5285): VM exiting with result code 0.
+D/nativeloader( 5332): Load /data/app/~~DY43V5LO3Fa7aWCDQJOrsw==/net.joltlang.androidpoc.abiprobe-ziyHnl2EUnehFYMxr-91hg==/base.apk!/lib/arm64-v8a/libjolt_probe.so using ns clns-7 from class loader (caller=/data/app/~~DY43V5LO3Fa7aWCDQJOrsw==/net.joltlang.androidpoc.abiprobe-ziyHnl2EUnehFYMxr-91hg==/base.apk!classes2.dex): ok
+I/jolt_probe( 5332): wrong-thread Jolt access rejected before ABI call
+I/jolt_probe( 5332): one=42 calls=10000 allocation=100000 compact=ok again=42 wrong-thread=rejected shutdown=ok
+I/jolt_probe( 5332): repeat init rejected
+Jolt stress = 42; repeat init = -1
+---relaunch---
+D/AndroidRuntime( 5397): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+I/AndroidRuntime( 5397): Using default boot image
+I/AndroidRuntime( 5397): Leaving lock profiling enabled
+D/AndroidRuntime( 5397): Calling main entry com.android.commands.monkey.Monkey
+I/AndroidRuntime( 5397): VM exiting with result code 0.
+D/nativeloader( 5409): Load /data/app/~~DY43V5LO3Fa7aWCDQJOrsw==/net.joltlang.androidpoc.abiprobe-ziyHnl2EUnehFYMxr-91hg==/base.apk!/lib/arm64-v8a/libjolt_probe.so using ns clns-7 from class loader (caller=/data/app/~~DY43V5LO3Fa7aWCDQJOrsw==/net.joltlang.androidpoc.abiprobe-ziyHnl2EUnehFYMxr-91hg==/base.apk!classes2.dex): ok
+I/jolt_probe( 5409): wrong-thread Jolt access rejected before ABI call
+I/jolt_probe( 5409): one=42 calls=10000 allocation=100000 compact=ok again=42 wrong-thread=rejected shutdown=ok
+I/jolt_probe( 5409): repeat init rejected
+Jolt stress = 42; repeat init = -1

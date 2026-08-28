@@ -33,7 +33,10 @@ git -C "$jolt_source" worktree add --detach "$work/jolt" "$revision" >/dev/null
 git -C "$work/jolt" submodule update --init --recursive
 (
   cd "$work/jolt"
-  git apply "$patch"
+  # The stored patch uses a marker for blank unified-diff context lines so the
+  # project-wide whitespace gate can remain strict; restore it only in /tmp.
+  sed 's/^__JOLT_PATCH_CONTEXT_BLANK__$/ /' "$patch" > "$work/jolt-cross-library.patch"
+  git apply "$work/jolt-cross-library.patch"
 )
 CHEZ_SRC="$chez_source" "$work/jolt/tools/cross-compile/make-pack.sh" tarm64le "$pack"
 # Android/Bionic has neither librt nor libpthread; EXP-003 established this
@@ -54,4 +57,4 @@ JOLT_TARGET_LINK_LIBS="-L$pack/lib -llz4 -lz -lm -ldl" \
 install -Dm755 "$work/libjoltpoc.so" "$output"
 file "$output"
 readelf -d "$output" | grep NEEDED
-nm -D --defined-only "$output" | grep -E 'jolt_library_(init|lookup|shutdown)'
+nm -D --defined-only "$output" | grep -E 'jolt_library_(init|lookup|collect|shutdown)'
