@@ -18,6 +18,7 @@ repo_root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
 
 avd_name=${JOLT_ANDROID_AVD_NAME:-jolt_api_35_x86_64}
 port=${JOLT_ANDROID_EMULATOR_PORT:-5554}
+gpu=${JOLT_ANDROID_EMULATOR_GPU:-angle}
 serial="emulator-$port"
 system_image='system-images;android-35;google_apis;x86_64'
 device=${JOLT_ANDROID_AVD_DEVICE:-pixel_6}
@@ -50,7 +51,7 @@ else
     -no-boot-anim
     -noaudio
     -no-metrics
-    -gpu off
+    -gpu "$gpu"
     -memory "${JOLT_ANDROID_EMULATOR_MEMORY_MB:-1024}"
   )
   case "$mode" in
@@ -66,7 +67,7 @@ else
       ;;
   esac
 
-  printf 'Starting %s (%s); log: %s\n' "$avd_name" "$mode" "$log_file"
+  printf 'Starting %s (%s, gpu=%s); log: %s\n' "$avd_name" "$mode" "$gpu" "$log_file"
   nohup emulator "${emulator_args[@]}" >"$log_file" 2>&1 &
 fi
 
@@ -88,6 +89,7 @@ fi
   printf 'Generated UTC: '
   date --utc --iso-8601=seconds
   printf 'Mode: %s\n' "$mode"
+  printf 'GPU: %s\n' "$gpu"
   printf 'AVD: %s\n' "$avd_name"
   printf 'Serial: %s\n\n' "$serial"
   printf '## Acceleration\n\n'

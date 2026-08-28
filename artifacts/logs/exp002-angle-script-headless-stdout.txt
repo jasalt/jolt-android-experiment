@@ -1,0 +1,4 @@
+warning: Git tree '/home/user/dev/jail/jolt/jolt-android' is dirty
+evaluation warning: stdenv.isLinux is deprecated, use stdenv.hostPlatform.isLinux instead
+Starting jolt_api_35_x86_64 (headless, gpu=angle); log: /home/user/dev/jail/jolt/jolt-android/artifacts/logs/jolt_api_35_x86_64.log
+Booted emulator-5554; wrote /home/user/dev/jail/jolt/jolt-android/artifacts/reports/emulator-jolt_api_35_x86_64.txt

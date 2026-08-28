@@ -1,0 +1,10 @@
+warning: Git tree '/home/user/dev/jail/jolt/jolt-android' is dirty
+evaluation warning: stdenv.isLinux is deprecated, use stdenv.hostPlatform.isLinux instead
+started emulator pid=23361 gpu=angle @ 15:45:03Z
+RESULT: BOOTED with gpu=angle
+35
+x86_64
+--- gpu/unmap/segv markers in log ---
+2:INFO         | Graphics backend: gfxstream
+18:INFO         | Initializing gfxstream backend
+85:WARNING: cannnot unmap ptr 0x7fffc2a01000 as it is in the protected range from 0x7fff22a00000 to 0x7fffc2c00000

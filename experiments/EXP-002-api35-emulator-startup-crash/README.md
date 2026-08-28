@@ -103,14 +103,15 @@ GiB to 16 GiB **did not change the outcome**. The crash lands during emulator
 startup graphics init (`gfxstream` → `lavapipe`/`swangle` fallback,
 `enableProtectedMemoryEmulation: false`), before Android boots.
 
-**Disambiguation:** the suspected layer is the **Android Emulator 37.2.6
-gfxstream graphics-transport backend** in this Fedora 44 / kernel 6.19
-environment, **not** the Lima VM resource/provisioning state. A follow-up
-`-gpu swiftshader` probe (PID 22423, core 176.7M) crashes identically with
-`Graphics backend: gfxstream` still selected (only the Vulkan ICD changed from
-lavapipe to SwiftShader), so the fault is independent of CPU acceleration
-(KVM/TCG), the Vulkan ICD, and guest RAM (3.8 vs 16 GiB). Full evidence:
-[rerun-16gib-2026-08-28.md](rerun-16gib-2026-08-28.md).
+**Resolution:** the protected-range warning is not itself fatal. GDB inspection
+of all three crash cores identifies the same invalid control transfer from the
+bundled `gles_swiftshader/libGLESv2.so` worker thread; this occurs with KVM,
+TCG, and explicit SwiftShader selection. The `-gpu angle` configuration boots
+successfully under KVM on the same VM, emulator build, and AVD, while emitting
+the same warning. `scripts/emulator-start` now defaults to ANGLE and exposes
+`JOLT_ANDROID_EMULATOR_GPU` only for deliberate renderer experiments.
 
-This is an observed, reproduced platform blocker, not evidence of an
-Android-native-ABI, Chez, or Jolt limitation.
+The reproducible SwiftShader-renderer failure remains a candidate upstream
+emulator issue, but API-35 emulator work is unblocked by ANGLE. This is not
+an Android-native-ABI, Chez, or Jolt limitation. Full evidence:
+[rerun-16gib-2026-08-28.md](rerun-16gib-2026-08-28.md).
