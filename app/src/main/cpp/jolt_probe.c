@@ -11,6 +11,7 @@ typedef int (*jolt_init_fn)(int, char **);
 typedef void *(*jolt_lookup_fn)(const char *);
 typedef void (*jolt_shutdown_fn)(void);
 typedef int (*poc_dispatch_counter_fn)(const char *);
+typedef int (*poc_lifecycle_code_fn)(void);
 
 static pthread_mutex_t lifecycle_lock = PTHREAD_MUTEX_INITIALIZER;
 static pthread_t owner_thread;
@@ -18,14 +19,27 @@ static bool lifecycle_started;
 static bool lifecycle_finished;
 static jolt_shutdown_fn shutdown_runtime;
 static poc_dispatch_counter_fn dispatch_counter;
+static poc_lifecycle_code_fn lifecycle_code;
 
 static jstring result_string(JNIEnv *environment, const char *text) {
   return (*environment)->NewStringUTF(environment, text);
 }
 
+static const char *lifecycle_name(int code) {
+  switch (code) {
+    case 1: return ":created";
+    case 2: return ":started";
+    case 3: return ":resumed";
+    default: return "nil";
+  }
+}
+
 static bool valid_event(const char *event) {
   return strcmp(event, "{:type :counter/inc}") == 0 ||
-      strcmp(event, "{:type :counter/dec}") == 0;
+      strcmp(event, "{:type :counter/dec}") == 0 ||
+      strcmp(event, "{:type :lifecycle/create}") == 0 ||
+      strcmp(event, "{:type :lifecycle/start}") == 0 ||
+      strcmp(event, "{:type :lifecycle/resume}") == 0;
 }
 
 static const char *ensure_session(void) {
@@ -52,7 +66,8 @@ static const char *ensure_session(void) {
     return "{:error :initialization}";
   }
   dispatch_counter = (poc_dispatch_counter_fn)lookup("poc_dispatch_counter");
-  if (dispatch_counter == NULL) {
+  lifecycle_code = (poc_lifecycle_code_fn)lookup("poc_lifecycle_code");
+  if (dispatch_counter == NULL || lifecycle_code == NULL) {
     shutdown_runtime();
     return "{:error :exports}";
   }
@@ -80,10 +95,12 @@ Java_net_joltlang_androidpoc_abiprobe_JoltRuntime_nativeJoltDispatch(
   }
 
   const int counter = dispatch_counter(event);
+  const int lifecycle = lifecycle_code();
   (*environment)->ReleaseStringUTFChars(environment, event_edn, event);
-  char output[96];
+  char output[128];
   const int written = snprintf(output, sizeof output,
-      "{:model {:counter %d, :events [], :platform nil}, :effects []}", counter);
+      "{:model {:counter %d, :events [], :platform nil, :lifecycle %s}, :effects []}", counter,
+      lifecycle_name(lifecycle));
   if (written < 0 || written >= (int)sizeof output) return result_string(environment, "{:error :output-too-large}");
   __android_log_print(ANDROID_LOG_INFO, "jolt_probe", "dispatch counter=%d", counter);
   return result_string(environment, output);

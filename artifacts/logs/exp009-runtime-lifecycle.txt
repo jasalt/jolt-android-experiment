@@ -1,0 +1,19 @@
+Performing Streamed Install
+Success
+D/AndroidRuntime( 6554): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+I/AndroidRuntime( 6554): Using default boot image
+I/AndroidRuntime( 6554): Leaving lock profiling enabled
+D/AndroidRuntime( 6554): Calling main entry com.android.commands.monkey.Monkey
+I/AndroidRuntime( 6554): VM exiting with result code 0.
+D/nativeloader( 6592): Load /data/app/~~MeTbjYEi-j463HJAgFBwsQ==/net.joltlang.androidpoc.abiprobe-Kub3uNnCqtg8iYOzxx5Yuw==/base.apk!/lib/arm64-v8a/libjolt_probe.so using ns clns-7 from class loader (caller=/data/app/~~MeTbjYEi-j463HJAgFBwsQ==/net.joltlang.androidpoc.abiprobe-Kub3uNnCqtg8iYOzxx5Yuw==/base.apk!classes3.dex): ok
+I/JoltRuntime( 6592): entering JNI on JoltRuntime
+I/jolt_probe( 6592): owner JNI session initialized
+I/jolt_probe( 6592): dispatch counter=0
+I/JoltRuntime( 6592): entering JNI on JoltRuntime
+I/jolt_probe( 6592): dispatch counter=0
+I/JoltRuntime( 6592): entering JNI on JoltRuntime
+I/jolt_probe( 6592): dispatch counter=0
+W/JoltRuntime( 6592): type=1400 audit(0.0:245): avc:  denied  { getattr } for  path="/dev/pmsg0" dev="tmpfs" ino=773 scontext=u:r:untrusted_app:s0:c209,c256,c512,c768 tcontext=u:object_r:pmsg_device:s0 tclass=chr_file permissive=0 app=net.joltlang.androidpoc.abiprobe
+W/JoltRuntime( 6592): type=1400 audit(0.0:246): avc:  denied  { getattr } for  path="/dev/pmsg0" dev="tmpfs" ino=773 scontext=u:r:untrusted_app:s0:c209,c256,c512,c768 tcontext=u:object_r:pmsg_device:s0 tclass=chr_file permissive=0 app=net.joltlang.androidpoc.abiprobe
+W/JoltRuntime( 6592): type=1400 audit(0.0:247): avc:  denied  { getattr } for  path="/dev/pmsg0" dev="tmpfs" ino=773 scontext=u:r:untrusted_app:s0:c209,c256,c512,c768 tcontext=u:object_r:pmsg_device:s0 tclass=chr_file permissive=0 app=net.joltlang.androidpoc.abiprobe
+Runtime: initialized&#10;Process ABI: x86_64&#10;PID: 6592&#10;Jolt thread: HandlerThread(JoltRuntime)&#10;Lifecycle model: {:model {:counter 0, :events [], :platform nil, :lifecycle :resumed}, :effects []}" resource-id="" class="android.widget.TextView" package="net.joltlang.androidpoc.abiprobe" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[0,0][1080,2400]" /></node></node></node></hierarchy>

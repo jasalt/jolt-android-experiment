@@ -17,6 +17,14 @@
     (reset! app-state model)
     (:counter model)))
 
+(defn lifecycle-code []
+  (case (:lifecycle @app-state)
+    :created 1
+    :started 2
+    :resumed 3
+    0))
+
 (ffi/export! "poc_answer" answer [] :int)
 (ffi/export! "poc_allocate" allocate [:int] :int)
 (ffi/export! "poc_dispatch_counter" dispatch-counter [:string] :int)
+(ffi/export! "poc_lifecycle_code" lifecycle-code [] :int)
