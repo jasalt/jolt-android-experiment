@@ -240,6 +240,20 @@ provision:
     #!/bin/bash
     set -eux -o pipefail
     mkdir -p "$HOME/.config" "$HOME/.local/bin"
+    export PATH="$HOME/.local/bin:$PATH"
+    grep -qxF 'export PATH="$HOME/.local/bin:$PATH"' "$HOME/.bashrc" 2>/dev/null || \
+      printf '%s\n' 'export PATH="$HOME/.local/bin:$PATH"' >>"$HOME/.bashrc"
+
+    # Beads is the durable project task tracker. Install the official release
+    # binaries for this guest architecture; both installers prefer ~/.local/bin
+    # for an unprivileged user and fall back to a verified source build only if
+    # a release asset is unavailable.
+    curl -fsSL https://raw.githubusercontent.com/gastownhall/beads/main/scripts/install.sh | bash
+    curl -fsSL https://raw.githubusercontent.com/Dicklesworthstone/beads_viewer/main/install.sh | bash
+    command -v bd
+    command -v bv
+    bd version
+    bv --version
 
     # Pi is the user-facing coding harness, not a project dependency and not a
     # system service. Keep its npm prefix and executable in the Lima user's
@@ -269,6 +283,8 @@ probes:
     command -v ffmpeg >/dev/null
     command -v xdotool >/dev/null
     command -v lima-x11 >/dev/null
+    command -v bd >/dev/null
+    command -v bv >/dev/null
     systemctl is-active --quiet nix-daemon.socket
     systemctl is-active --quiet lima-x11.service
     DISPLAY=:99 xdpyinfo >/dev/null
