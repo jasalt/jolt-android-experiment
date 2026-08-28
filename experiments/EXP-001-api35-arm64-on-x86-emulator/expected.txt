@@ -1,0 +1,1 @@
+The pinned NDK produces an ELF 64-bit LSB shared object for AArch64 with a global `poc_answer` symbol. The next experiment step packages only that library in an API 35 application and tests Android's ARM64 translation on the x86_64 emulator.

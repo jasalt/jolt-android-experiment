@@ -1,0 +1,28 @@
+## Native artifact — observed 2026-08-28
+
+```text
+/home/user/dev/jail/jolt/jolt-android/artifacts/abi-probe/libabi_probe.so: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, for Android 35, built by NDK r29 (14206865), not stripped
+Machine:                           AArch64
+4: 00000000000045a0     8 FUNC    GLOBAL DEFAULT   12 poc_answer
+```
+
+The pinned NDK can therefore produce the required minimal Android ARM64 shared
+object. This does not test Android loading or translation.
+
+## APK packaging — blocked 2026-08-28
+
+The initial minimal Gradle application build did not reach Android compilation:
+
+```text
+$ nix develop -c gradle :app:assembleDebug
+Plugin [id: 'com.android.application', version: '8.8.2', apply: false] was not found
+could not resolve plugin artifact
+'com.android.application:com.android.application.gradle.plugin:8.8.2'
+Searched in the following repositories:
+  Gradle Central Plugin Repository
+```
+
+`settings.gradle.kts` declares `google()`, `mavenCentral()`, and
+`gradlePluginPortal()` in `pluginManagement`, but Gradle's diagnostic reports
+only the Plugin Portal. APK contents, install, load, and invocation remain
+unobserved until the distinct AGP-provisioning blocker is resolved.

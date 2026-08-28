@@ -14,3 +14,6 @@
 .clj-kondo/
 .lsp/
 .nrepl-port
+
+# Generated ARM64 ABI probe output.
+artifacts/abi-probe/
