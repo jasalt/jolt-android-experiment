@@ -129,6 +129,7 @@
               pkgs.jq
               pkgs.file
               pkgs.binutils
+              pkgs.xxd
               pkgs.which
               pkgs.cacert
               pkgs.chez

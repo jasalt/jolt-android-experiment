@@ -1,0 +1,7 @@
+Performing Streamed Install
+Success
+D/nativeloader( 5172): Load /data/app/~~dE_M-a_ggsfUyYGj6yBbKQ==/net.joltlang.androidpoc.abiprobe-QUtp2Vc70MTc-WTjIsMA5A==/base.apk!/lib/arm64-v8a/libjolt_probe.so using ns clns-7 from class loader (caller=/data/app/~~dE_M-a_ggsfUyYGj6yBbKQ==/net.joltlang.androidpoc.abiprobe-QUtp2Vc70MTc-WTjIsMA5A==/base.apk!classes2.dex): ok
+I/jolt_probe( 5172): poc_answer() = 42
+Jolt answer() = 42
+     5144  01-01-1981 01:01   lib/arm64-v8a/libjolt_probe.so
+ 20083232  01-01-1981 01:01   lib/arm64-v8a/libjoltpoc.so

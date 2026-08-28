@@ -4,6 +4,7 @@ project(chez_probe C)
 set(CHEZ_ROOT "${CMAKE_CURRENT_LIST_DIR}/../../../../native/chez/android-arm64")
 
 add_library(chez_probe SHARED chez_probe.c)
+add_library(jolt_probe SHARED jolt_probe.c)
 target_include_directories(chez_probe PRIVATE "${CHEZ_ROOT}")
 target_link_libraries(chez_probe PRIVATE
   "${CHEZ_ROOT}/libkernel.a"
@@ -12,3 +13,4 @@ target_link_libraries(chez_probe PRIVATE
   m
   dl
   log)
+target_link_libraries(jolt_probe PRIVATE dl log)

@@ -25,6 +25,10 @@ android {
     }
   }
 
+  sourceSets {
+    getByName("main").jniLibs.srcDir("../native/jolt/android-arm64")
+  }
+
   externalNativeBuild {
     cmake {
       path = file("src/main/cpp/CMakeLists.txt")
