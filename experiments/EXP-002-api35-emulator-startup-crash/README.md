@@ -104,9 +104,12 @@ startup graphics init (`gfxstream` → `lavapipe`/`swangle` fallback,
 `enableProtectedMemoryEmulation: false`), before Android boots.
 
 **Disambiguation:** the suspected layer is the **Android Emulator 37.2.6
-runtime** in this Fedora 44 / kernel 6.19 environment (gfxstream/lavapipe/
-swangle graphics init colliding with QEMU protected-memory unmap), **not** the
-Lima VM resource/provisioning state. Full evidence:
+gfxstream graphics-transport backend** in this Fedora 44 / kernel 6.19
+environment, **not** the Lima VM resource/provisioning state. A follow-up
+`-gpu swiftshader` probe (PID 22423, core 176.7M) crashes identically with
+`Graphics backend: gfxstream` still selected (only the Vulkan ICD changed from
+lavapipe to SwiftShader), so the fault is independent of CPU acceleration
+(KVM/TCG), the Vulkan ICD, and guest RAM (3.8 vs 16 GiB). Full evidence:
 [rerun-16gib-2026-08-28.md](rerun-16gib-2026-08-28.md).
 
 This is an observed, reproduced platform blocker, not evidence of an
