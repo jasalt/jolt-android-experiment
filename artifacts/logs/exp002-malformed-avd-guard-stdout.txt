@@ -1,0 +1,3 @@
+warning: Git tree '/home/user/dev/jail/jolt/jolt-android' is dirty
+evaluation warning: stdenv.isLinux is deprecated, use stdenv.hostPlatform.isLinux instead
+AVD jolt_api_35_x86_64_clean is not a valid x86_64 configuration; recreate it under /home/user/dev/jail/jolt/jolt-android/.android/avd

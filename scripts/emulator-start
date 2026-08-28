@@ -31,9 +31,11 @@ mkdir -p "$ANDROID_AVD_HOME" "$log_dir" "$report_dir"
 export ANDROID_EMULATOR_HOME="$ANDROID_AVD_HOME"
 export ANDROID_USER_HOME="$repo_root/.android"
 
+emulator_pid=''
 if adb -s "$serial" get-state >/dev/null 2>&1; then
   printf '%s is already running\n' "$serial"
 else
+  avd_config="$ANDROID_AVD_HOME/$avd_name.avd/config.ini"
   if [[ ! -f "$ANDROID_AVD_HOME/$avd_name.ini" ]]; then
     printf 'Creating AVD %s with %s\n' "$avd_name" "$system_image"
     printf 'no\n' | avdmanager create avd --force \
@@ -41,6 +43,12 @@ else
       --package "$system_image" \
       --device "$device" \
       --path "$ANDROID_AVD_HOME/$avd_name.avd"
+  fi
+  if ! grep -aFxq 'abi.type=x86_64' "$avd_config" || \
+     ! grep -aFxq 'hw.cpu.arch=x86_64' "$avd_config"; then
+    printf 'AVD %s is not a valid x86_64 configuration; recreate it under %s\n' \
+      "$avd_name" "$ANDROID_AVD_HOME" >&2
+    exit 1
   fi
 
   emulator_args=(
@@ -69,17 +77,23 @@ else
 
   printf 'Starting %s (%s, gpu=%s); log: %s\n' "$avd_name" "$mode" "$gpu" "$log_file"
   nohup emulator "${emulator_args[@]}" >"$log_file" 2>&1 &
+  emulator_pid=$!
 fi
 
-adb -s "$serial" wait-for-device
+booted=0
 for _ in $(seq 1 180); do
   if [[ "$(adb -s "$serial" shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')" == 1 ]]; then
+    booted=1
     break
+  fi
+  if [[ -n "$emulator_pid" ]] && ! kill -0 "$emulator_pid" 2>/dev/null; then
+    printf 'Emulator exited before boot; see %s\n' "$log_file" >&2
+    exit 1
   fi
   sleep 1
 done
 
-if [[ "$(adb -s "$serial" shell getprop sys.boot_completed | tr -d '\r')" != 1 ]]; then
+if [[ "$booted" != 1 ]]; then
   printf 'Emulator did not boot within 180 seconds; see %s\n' "$log_file" >&2
   exit 1
 fi
