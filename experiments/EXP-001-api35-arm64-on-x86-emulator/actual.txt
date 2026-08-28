@@ -9,20 +9,43 @@ Machine:                           AArch64
 The pinned NDK can therefore produce the required minimal Android ARM64 shared
 object. This does not test Android loading or translation.
 
-## APK packaging — blocked 2026-08-28
+## APK packaging — observed 2026-08-28
 
-The initial minimal Gradle application build did not reach Android compilation:
+The initial Gradle invocation occurred while `app/build.gradle.kts` was empty
+due to an interrupted file write and is not evidence of a repository-resolution
+problem. With the complete project configuration, AGP `8.8.2` resolved through
+`google()`. AGP initially requested immutable NDK 27; setting
+`ndkVersion = "29.0.14206865"` selected the pinned NDK r29 instead.
+
+From an empty project Gradle cache:
 
 ```text
 $ nix develop -c gradle :app:assembleDebug
-Plugin [id: 'com.android.application', version: '8.8.2', apply: false] was not found
-could not resolve plugin artifact
-'com.android.application:com.android.application.gradle.plugin:8.8.2'
-Searched in the following repositories:
-  Gradle Central Plugin Repository
+BUILD SUCCESSFUL
+35 actionable tasks: 35 executed
+$ unzip -l app/build/outputs/apk/debug/app-debug.apk
+4248 lib/arm64-v8a/libabi_probe.so
 ```
 
-`settings.gradle.kts` declares `google()`, `mavenCentral()`, and
-`gradlePluginPortal()` in `pluginManagement`, but Gradle's diagnostic reports
-only the Plugin Portal. APK contents, install, load, and invocation remain
-unobserved until the distinct AGP-provisioning blocker is resolved.
+The APK has only the intended ARM64 native library. Install, load, and
+`poc_answer() = 42` remain to be observed on the API 35 x86_64 emulator.
+
+## Translation execution — observed 2026-08-28
+
+The API 35 x86_64 emulator reported primary ABI `x86_64` and ABI list
+`x86_64,arm64-v8a`. The ARM64-only APK installed and its activity launched
+successfully. Logcat recorded:
+
+```text
+Load .../base.apk!/lib/arm64-v8a/libabi_probe.so ...: ok
+```
+
+The active UI hierarchy contained exactly:
+
+```text
+text="poc_answer() = 42"
+```
+
+Therefore Android translated and executed the minimal ARM64 JNI library in an
+API 35 x86_64 emulator process. This proves the ABI-translation prerequisite
+only; it does not prove Chez or Jolt compatibility.
