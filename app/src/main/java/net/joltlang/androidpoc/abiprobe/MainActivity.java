@@ -14,12 +14,13 @@ public final class MainActivity extends Activity {
     setContentView(result);
 
     runtime = new JoltRuntime();
-    runtime.dispatch("{:type :counter/inc}", valid -> {
-      result.setText("Jolt dispatch = " + valid);
-      // This UI-thread callback queues malformed input; it never enters JNI directly.
-      runtime.dispatch("not EDN", malformed -> result.setText(
-          "Jolt dispatch = " + valid + "; malformed = " + malformed));
-    });
+    runtime.dispatch("{:type :counter/inc}", increment ->
+        runtime.dispatch("{:type :counter/dec}", decrement ->
+            runtime.dispatch("not EDN", malformed -> {
+              result.setText("Jolt dispatches = " + increment + " then " + decrement
+                  + "; malformed = " + malformed);
+              runtime.close();
+            })));
   }
 
   @Override

@@ -20,10 +20,14 @@ class JoltRuntime {
   }
 
   fun close() {
-    thread.quitSafely()
+    handler.post {
+      nativeJoltShutdown()
+      thread.quitSafely()
+    }
   }
 
   private external fun nativeJoltDispatch(event: String): String
+  private external fun nativeJoltShutdown()
 
   private companion object {
     const val TAG = "JoltRuntime"

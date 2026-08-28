@@ -1,0 +1,20 @@
+Performing Streamed Install
+Success
+D/AndroidRuntime( 6337): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+I/AndroidRuntime( 6337): Using default boot image
+I/AndroidRuntime( 6337): Leaving lock profiling enabled
+D/AndroidRuntime( 6337): Calling main entry com.android.commands.monkey.Monkey
+I/AndroidRuntime( 6337): VM exiting with result code 0.
+D/nativeloader( 6386): Load /data/app/~~Vlj30PvliCPmXZzxPV5KSw==/net.joltlang.androidpoc.abiprobe-5o0f2giaM8jqaXQGyK2cfQ==/base.apk!/lib/arm64-v8a/libjolt_probe.so using ns clns-7 from class loader (caller=/data/app/~~Vlj30PvliCPmXZzxPV5KSw==/net.joltlang.androidpoc.abiprobe-5o0f2giaM8jqaXQGyK2cfQ==/base.apk!classes3.dex): ok
+I/JoltRuntime( 6386): entering JNI on JoltRuntime
+I/jolt_probe( 6386): owner JNI session initialized
+I/jolt_probe( 6386): dispatch counter=1
+I/JoltRuntime( 6386): entering JNI on JoltRuntime
+I/jolt_probe( 6386): dispatch counter=0
+I/JoltRuntime( 6386): entering JNI on JoltRuntime
+I/jolt_probe( 6386): malformed event rejected
+W/JoltRuntime( 6386): type=1400 audit(0.0:233): avc:  denied  { getattr } for  path="/dev/pmsg0" dev="tmpfs" ino=773 scontext=u:r:untrusted_app:s0:c209,c256,c512,c768 tcontext=u:object_r:pmsg_device:s0 tclass=chr_file permissive=0 app=net.joltlang.androidpoc.abiprobe
+I/jolt_probe( 6386): owner JNI session shutdown
+W/JoltRuntime( 6386): type=1400 audit(0.0:234): avc:  denied  { getattr } for  path="/dev/pmsg0" dev="tmpfs" ino=773 scontext=u:r:untrusted_app:s0:c209,c256,c512,c768 tcontext=u:object_r:pmsg_device:s0 tclass=chr_file permissive=0 app=net.joltlang.androidpoc.abiprobe
+W/JoltRuntime( 6386): type=1400 audit(0.0:235): avc:  denied  { getattr } for  path="/dev/pmsg0" dev="tmpfs" ino=773 scontext=u:r:untrusted_app:s0:c209,c256,c512,c768 tcontext=u:object_r:pmsg_device:s0 tclass=chr_file permissive=0 app=net.joltlang.androidpoc.abiprobe
+Jolt dispatches = {:model {:counter 1, :events [], :platform nil}, :effects []} then {:model {:counter 0, :events [], :platform nil}, :effects []}; malformed = {:error :invalid-event}" resource-id="" class="android.widget.TextView" package="net.joltlang.androidpoc.abiprobe" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[0,0][1080,2400]" /></node></node></node></hierarchy>
