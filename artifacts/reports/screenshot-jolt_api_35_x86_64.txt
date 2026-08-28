@@ -1,0 +1,21 @@
+# Emulator screenshot report
+
+Generated UTC: 2026-08-28T16:33:31+00:00
+AVD: jolt_api_35_x86_64
+Serial: emulator-5554
+
+## Device
+
+adb state: device
+boot completed: 1
+boot animation: stopped
+SDK: 35
+primary ABI: x86_64
+ABI list: x86_64,arm64-v8a
+
+## PNG
+
+Path: /home/user/dev/jail/jolt/jolt-android/artifacts/screenshots/jolt_api_35_x86_64.png
+Bytes: 1018233
+Signature: 89504e470d0a1a0a
+Dimensions: 1080x2400

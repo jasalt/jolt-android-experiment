@@ -1,0 +1,89 @@
+#!/usr/bin/env bash
+# Capture a validated PNG and matching state report from the running pinned AVD.
+# Usage: nix develop -c ./scripts/screenshot
+set -euo pipefail
+
+repo_root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+: "${ANDROID_HOME:?run through nix develop so ANDROID_HOME is set}"
+
+avd_name=${JOLT_ANDROID_AVD_NAME:-jolt_api_35_x86_64}
+port=${JOLT_ANDROID_EMULATOR_PORT:-5554}
+serial="emulator-$port"
+screenshot_dir="$repo_root/artifacts/screenshots"
+report_dir="$repo_root/artifacts/reports"
+screenshot_file=${JOLT_ANDROID_SCREENSHOT_FILE:-"$screenshot_dir/$avd_name.png"}
+report_file=${JOLT_ANDROID_SCREENSHOT_REPORT_FILE:-"$report_dir/screenshot-$avd_name.txt"}
+
+mkdir -p "$(dirname -- "$screenshot_file")" "$(dirname -- "$report_file")"
+
+if [[ "$(adb -s "$serial" get-state 2>/dev/null)" != device ]]; then
+  printf '%s is not an adb device; start it with ./scripts/emulator-start first\n' \
+    "$serial" >&2
+  exit 1
+fi
+if [[ "$(adb -s "$serial" shell getprop sys.boot_completed | tr -d '\r')" != 1 ]]; then
+  printf '%s has not completed boot\n' "$serial" >&2
+  exit 1
+fi
+boot_animation=''
+for _ in $(seq 1 60); do
+  boot_animation=$(adb -s "$serial" shell getprop init.svc.bootanim | tr -d '\r')
+  if [[ "$boot_animation" == stopped ]]; then
+    break
+  fi
+  sleep 1
+done
+if [[ "$boot_animation" != stopped ]]; then
+  printf '%s boot animation did not stop within 60 seconds\n' "$serial" >&2
+  exit 1
+fi
+
+temporary_file=$(mktemp "${screenshot_file}.tmp.XXXXXX")
+cleanup() {
+  rm -f "$temporary_file"
+}
+trap cleanup EXIT
+adb -s "$serial" exec-out screencap -p >"$temporary_file"
+
+if [[ ! -s "$temporary_file" ]]; then
+  printf 'Screenshot capture produced an empty file\n' >&2
+  exit 1
+fi
+signature=$(od -An -tx1 -N8 "$temporary_file" | tr -d '[:space:]')
+if [[ "$signature" != 89504e470d0a1a0a ]]; then
+  printf 'Screenshot capture is not a PNG (signature: %s)\n' "$signature" >&2
+  exit 1
+fi
+read -r width_1 width_2 width_3 width_4 height_1 height_2 height_3 height_4 \
+  <<<"$(od -An -tu1 -j16 -N8 "$temporary_file")"
+width=$((width_1 * 16777216 + width_2 * 65536 + width_3 * 256 + width_4))
+height=$((height_1 * 16777216 + height_2 * 65536 + height_3 * 256 + height_4))
+if (( width == 0 || height == 0 )); then
+  printf 'Screenshot PNG has invalid dimensions: %sx%s\n' "$width" "$height" >&2
+  exit 1
+fi
+
+mv -f "$temporary_file" "$screenshot_file"
+trap - EXIT
+
+captured_at=$(date --utc --iso-8601=seconds)
+adb_state=$(adb -s "$serial" get-state)
+boot_completed=$(adb -s "$serial" shell getprop sys.boot_completed | tr -d '\r')
+sdk=$(adb -s "$serial" shell getprop ro.build.version.sdk | tr -d '\r')
+primary_abi=$(adb -s "$serial" shell getprop ro.product.cpu.abi | tr -d '\r')
+abi_list=$(adb -s "$serial" shell getprop ro.product.cpu.abilist | tr -d '\r')
+report_temporary_file=$(mktemp "${report_file}.tmp.XXXXXX")
+printf '# Emulator screenshot report\n\nGenerated UTC: %s\nAVD: %s\nSerial: %s\n\n## Device\n\nadb state: %s\nboot completed: %s\nboot animation: %s\nSDK: %s\nprimary ABI: %s\nABI list: %s\n\n## PNG\n\nPath: %s\nBytes: %s\nSignature: %s\nDimensions: %sx%s\n' \
+  "$captured_at" "$avd_name" "$serial" "$adb_state" "$boot_completed" \
+  "$boot_animation" "$sdk" "$primary_abi" "$abi_list" "$screenshot_file" \
+  "$(wc -c <"$screenshot_file")" "$signature" "$width" "$height" \
+  >"$report_temporary_file"
+if ! LC_ALL=C tr -d '\000' <"$report_temporary_file" | cmp -s "$report_temporary_file" -; then
+  rm -f "$report_temporary_file"
+  printf 'Screenshot report contains NUL bytes\n' >&2
+  exit 1
+fi
+mv -f "$report_temporary_file" "$report_file"
+
+printf 'Captured %s (%sx%s); wrote %s\n' \
+  "$screenshot_file" "$width" "$height" "$report_file"
