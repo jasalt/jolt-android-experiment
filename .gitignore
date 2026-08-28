@@ -1,4 +1,8 @@
 
+# Local Android and Gradle state (created by the development shell).
+.android/
+.gradle/
+
 # Beads / Dolt files (added by bd init)
 .dolt/
 *.db

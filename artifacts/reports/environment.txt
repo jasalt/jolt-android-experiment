@@ -1,0 +1,91 @@
+# Jolt Android PoC environment report
+
+Generated UTC: 2026-08-28T10:10:17+00:00
+Repository: /home/user/dev/jail/jolt/jolt-android
+
+## Host
+
+Linux lima-default 6.19.10-300.fc44.x86_64 #1 SMP PREEMPT_DYNAMIC Wed Mar 25 18:23:49 UTC 2026 x86_64 GNU/Linux
+Fedora release 44 (Forty Four)
+DISPLAY=<unset>
+WAYLAND_DISPLAY=<unset>
+crw-rw-rw- 1 root kvm 10, 232 Aug 27 21:36 /dev/kvm
+kvm_amd nested=1
+
+## Nix and tool paths
+
+nix (Nix) 2.34.8
+ANDROID_HOME=/nix/store/axk6qarhx7f2hhx9lyippjvn0x3y6d53-android-sdk-env/share/android-sdk
+ANDROID_NDK_ROOT=/nix/store/axk6qarhx7f2hhx9lyippjvn0x3y6d53-android-sdk-env/share/android-sdk/ndk/29.0.14206865
+JAVA_HOME=/nix/store/ij5q131fzyqw8wh76y9nrj5jl45zviqw-openjdk-21.0.12+8/lib/openjdk
+adb=/nix/store/axk6qarhx7f2hhx9lyippjvn0x3y6d53-android-sdk-env/bin/adb
+emulator=/nix/store/axk6qarhx7f2hhx9lyippjvn0x3y6d53-android-sdk-env/bin/emulator
+avdmanager=/nix/store/axk6qarhx7f2hhx9lyippjvn0x3y6d53-android-sdk-env/bin/avdmanager
+java=/nix/store/ij5q131fzyqw8wh76y9nrj5jl45zviqw-openjdk-21.0.12+8/bin/java
+cmake=/nix/store/908kvhj55s5z7laavf4pddxrxl62rrgl-cmake-4.3.4/bin/cmake
+ninja=/nix/store/6ji6bq0si2j8ibdrxqgcmh1cw0wmdiyk-ninja-1.13.2/bin/ninja
+clang=/nix/store/w021fbcg4z6vxihnp6gb6vijyifl051f-clang-wrapper-21.1.8/bin/clang
+readelf=/nix/store/w021fbcg4z6vxihnp6gb6vijyifl051f-clang-wrapper-21.1.8/bin/readelf
+file=/nix/store/ykrpgmrrdm7w22dykziy6l61ic6i1d3w-file-5.48/bin/file
+
+## Tool versions
+
+Android Debug Bridge version 1.0.41
+Version 37.0.1-15733141
+Installed as /nix/store/c6njl8g7x9040ylikj40q7v7jcgqivvm-platform-tools-37.0.1/adb
+Running on Linux 6.19.10-300.fc44.x86_64 (x86_64)
+Android emulator version 37.2.6.0 (build_id 16138043) (CL:N/A)
+Copyright (C) 2006-2024 The Android Open Source Project and many others.
+This program is a derivative of the QEMU CPU emulator (www.qemu.org).
+
+  This software is licensed under the terms of the GNU General Public
+  License version 2, as published by the Free Software Foundation, and
+  may be copied, distributed, and modified under those terms.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+
+Usage:
+      avdmanager [global options] [action] [action options]
+      Global options:
+  -s --silent     : Silent mode, shows errors only.
+  -v --verbose    : Verbose mode, shows errors, warnings and all messages.
+     --clear-cache: Clear the SDK Manager repository manifest cache.
+  -h --help       : Help on a specific command.
+
+Valid actions are composed of a verb and an optional direct object:
+-   list              : Lists existing targets or virtual devices.
+-   list avd          : Lists existing Android Virtual Devices.
+-   list target       : Lists existing targets.
+-   list device       : Lists existing devices.
+- create avd          : Creates a new Android Virtual Device.
+-   move avd          : Moves or renames an Android Virtual Device.
+- delete avd          : Deletes an Android Virtual Device.
+Pkg.Revision=23.0
+Pkg.Path=cmdline-tools;23.0
+Pkg.Desc=Android SDK Command-line Tools
+openjdk version "21.0.12" 2026-07-21
+OpenJDK Runtime Environment (build 21.0.12+8-nixos)
+OpenJDK 64-Bit Server VM (build 21.0.12+8-nixos, mixed mode, sharing)
+cmake version 4.3.4
+
+CMake suite maintained and supported by Kitware (kitware.com/cmake).
+1.13.2
+clang version 21.1.8
+Target: x86_64-unknown-linux-gnu
+Thread model: posix
+InstalledDir: /nix/store/603yaax3l2jmc0hfv6g3hgjr1qk5jfxk-clang-21.1.8/bin
+Pkg.Desc = Android NDK
+Pkg.Revision = 29.0.14206865
+Pkg.BaseRevision = 29.0.14206865
+Pkg.ReleaseName = r29
+
+## Emulator acceleration
+
+accel:
+0
+KVM (version 12) is installed and usable.
+accel

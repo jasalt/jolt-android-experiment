@@ -1,0 +1,12 @@
+$ nix develop -c ./scripts/bootstrap
+...
+error: Cannot build '/nix/store/3w3bg2gn6viwwzn7va00j2j0akji5c1n-android-sdk-env.drv'.
+Reason: builder failed with exit code 127.
+Last log lines:
+> '/nix/store/sfxp0jk86kj57zgk0yj0lmab9n8b4zr1-android-sdk-env/bin/sdkmanager' -> '../share/android-sdk/cmdline-tools/latest/bin/sdkmanager'
+> WARNING: The SDK Manager CLI tool (sdkmanager) is deprecated. Android CLI will be used instead.
+> The 'android' binary can also be found in the cmdline-tools directory, and 'android sdk' is the replacement for 'sdkmanager'.
+> To learn more about the Android CLI and how to use it, see the documentation (https://d.android.com/tools/agents/android-cli)
+>
+> Warning: Flag --verbose is no longer supported. Ignoring.
+> /nix/store/sfxp0jk86kj57zgk0yj0lmab9n8b4zr1-android-sdk-env/share/android-sdk/cmdline-tools/latest/bin/android: line 22: /nix/store/sfxp0jk86kj57zgk0yj0lmab9n8b4zr1-android-sdk-env/share/android-sdk/cmdline-tools/latest/bin/.android-wrapped: cannot execute: required file not found

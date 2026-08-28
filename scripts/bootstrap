@@ -1,0 +1,83 @@
+#!/usr/bin/env bash
+# Record exactly what the pinned development environment exposes. Run via:
+#   nix develop -c ./scripts/bootstrap
+set -euo pipefail
+
+repo_root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+report_dir="$repo_root/artifacts/reports"
+report="$report_dir/environment.txt"
+mkdir -p "$report_dir"
+
+require_command() {
+  command -v "$1" >/dev/null || {
+    printf 'missing required command: %s\n' "$1" >&2
+    exit 1
+  }
+}
+
+for command in adb emulator avdmanager java cmake ninja clang readelf file; do
+  require_command "$command"
+done
+
+: "${ANDROID_HOME:?run through nix develop so ANDROID_HOME is set}"
+: "${ANDROID_NDK_ROOT:?run through nix develop so ANDROID_NDK_ROOT is set}"
+
+{
+  printf '# Jolt Android PoC environment report\n\n'
+  printf 'Generated UTC: '
+  date --utc --iso-8601=seconds
+  printf 'Repository: %s\n\n' "$repo_root"
+
+  printf '## Host\n\n'
+  uname -a
+  if [[ -r /etc/fedora-release ]]; then
+    cat /etc/fedora-release
+  fi
+  printf 'DISPLAY=%s\n' "${DISPLAY-<unset>}"
+  printf 'WAYLAND_DISPLAY=%s\n' "${WAYLAND_DISPLAY-<unset>}"
+  if [[ -r /dev/kvm ]]; then
+    ls -l /dev/kvm
+  else
+    printf '/dev/kvm unavailable\n'
+  fi
+  if [[ -r /sys/module/kvm_intel/parameters/nested ]]; then
+    printf 'kvm_intel nested='
+    cat /sys/module/kvm_intel/parameters/nested
+  elif [[ -r /sys/module/kvm_amd/parameters/nested ]]; then
+    printf 'kvm_amd nested='
+    cat /sys/module/kvm_amd/parameters/nested
+  fi
+
+  printf '\n## Nix and tool paths\n\n'
+  nix --version
+  printf 'ANDROID_HOME=%s\n' "$ANDROID_HOME"
+  printf 'ANDROID_NDK_ROOT=%s\n' "$ANDROID_NDK_ROOT"
+  printf 'JAVA_HOME=%s\n' "${JAVA_HOME-<unset>}"
+  for command in adb emulator avdmanager java cmake ninja clang readelf file; do
+    printf '%s=%s\n' "$command" "$(command -v "$command")"
+  done
+
+  printf '\n## Tool versions\n\n'
+  adb version
+  emulator -version
+  avdmanager --help || true
+  if [[ -r "$ANDROID_HOME/cmdline-tools/latest/source.properties" ]]; then
+    cat "$ANDROID_HOME/cmdline-tools/latest/source.properties"
+  else
+    printf 'Command-line tools source.properties unavailable\n'
+  fi
+  java -version
+  cmake --version
+  ninja --version
+  clang --version
+  if [[ -r "$ANDROID_NDK_ROOT/source.properties" ]]; then
+    cat "$ANDROID_NDK_ROOT/source.properties"
+  else
+    printf 'NDK source.properties unavailable\n'
+  fi
+
+  printf '\n## Emulator acceleration\n\n'
+  emulator -accel-check
+} >"$report" 2>&1
+
+printf 'Wrote %s\n' "$report"
