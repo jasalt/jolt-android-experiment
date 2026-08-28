@@ -11,10 +11,11 @@ INFO         |      Ok: Disk space requirements to run avd: `jolt_api_35_x86_64`
 INFO         |   Checking: hasSufficientHwGpu
 INFO         |      Ok: Hardware GPU compatibility checks are not required
 INFO         |   Checking: hasSufficientSystem
-INFO         |      Ok: System requirements to run avd: `jolt_api_35_x86_64` are met
+INFO         |      Warning: Suggested minimum system RAM to run avd 'jolt_api_35_x86_64' is 4096 MiB (available: 3897 MiB)
+USER_WARNING | Suggested minimum system RAM to run avd 'jolt_api_35_x86_64' is 4096 MiB (available: 3897 MiB).
 WARNING      | File System is not ext4, disable QuickbootFileBacked feature
 WARNING      | x86_64 emulation may not work without hardware acceleration!
-INFO         | Storing crashdata in: /tmp/android-user/emu-crash-37.2.6.db, detection is enabled for process: 20601
+INFO         | Storing crashdata in: /tmp/android-user/emu-crash-37.2.6.db, detection is enabled for process: 62785
 INFO         | Initializing gfxstream backend
 INFO         | startOpenglesRendererImpl: gpu info
 INFO         | 
@@ -51,7 +52,7 @@ INFO         | Graphics Device Extensions N/A
 INFO         | Disabling sparse binding feature support
 ERROR        | Setting read-only feature 'GLAsyncSwap' to '0'
 INFO         | Feature 'GLAsyncSwap' (50) is overridden to 'disabled'
-INFO         | Sending adb public key [QAAAAPdQfuA5jwpN29Muwli+tdPGAJF9/KlX/s62jhy3wNaA/GT/2bj2ZE+FfpyXgS/PSyYeKfYEga3Nusi3Prx3ihd0Jn5esNudYPmI4mWsMLa0rh8n1PMZbLxlyzHUlg3Vt0fvxsDPSMtLh3fzccXeR1IC7ZgndM2Djp2Hj0rX3AP+ps9eA/fkyB88B0WLTlsdFkjVdNxL7KljJWxs0T9/BUE+5BdQWXVm7YDDtdZx/qCbbbYpVt4sbykpftuWsrw6XQHdLK2Z7tFj6pPZoQ/1c7NXdsWfG+lV1zkOnNV268ASXm+WgXdutXnLQ9RWUSthkQiW1Olsy+pVAfY5ozrD2y9L6lfqccabNCnI78pEKLHp8c133LaCk3glJqQ32MZwND14AjhW9yElIxAG5ZpatfD87HipuEz5oxqsZz6XbgXEdFWkJkWcXQFReLXNwkpSUFbaiiYUvCQ8QPKl1OHUZ1NGN0IiNaTZ6yZmqlvHjiFuSR8gpnPLfTaKaE8ZaEEdGXhqe3Nb8Jwu5rlCMs07TpMarr+PY5GlV+/xvidfYFjy/oYGGJ7vlMOzuajMnVHHoFUUn1fjRuiOiBMW3de8oqTpffEQOGpv5YBr0ivVCBWQbJibJeRLJHbQyIvDTLEtUZh4R+YHJ09jeJ4waRDYrua7NktTrsgrVE/p+cWVl8xhCa91uwEAAQA= user@lima-jolt-android]
+INFO         | Sending adb public key [QAAAAPdQfuA5jwpN29Muwli+tdPGAJF9/KlX/s62jhy3wNaA/GT/2bj2ZE+FfpyXgS/PSyYeKfYEga3Nusi3Prx3ihd0Jn5esNudYPmI4mWsMLa0rh8n1PMZbLxlyzHUlg3Vt0fvxsDPSMtLh3fzccXeR1IC7ZgndM2Djp2Hj0rX3AP+ps9eA/fkyB88B0WLTlsdFkjVdNxL7KljJWxs0T9/BUE+5BdQWXVm7YDDtdZx/qCbbbYpVt4sbykpftuWsrw6XQHdLK2Z7tFj6pPZoQ/1c7NXdsWfG+lV1zkOnNV268ASXm+WgXdutXnLQ9RWUSthkQiW1Olsy+pVAfY5ozrD2y9L6lfqccabNCnI78pEKLHp8c133LaCk3glJqQ32MZwND14AjhW9yElIxAG5ZpatfD87HipuEz5oxqsZz6XbgXEdFWkJkWcXQFReLXNwkpSUFbaiiYUvCQ8QPKl1OHUZ1NGN0IiNaTZ6yZmqlvHjiFuSR8gpnPLfTaKaE8ZaEEdGXhqe3Nb8Jwu5rlCMs07TpMarr+PY5GlV+/xvidfYFjy/oYGGJ7vlMOzuajMnVHHoFUUn1fjRuiOiBMW3de8oqTpffEQOGpv5YBr0ivVCBWQbJibJeRLJHbQyIvDTLEtUZh4R+YHJ09jeJ4waRDYrua7NktTrsgrVE/p+cWVl8xhCa91uwEAAQA= user@lima-default]
 INFO         | Userspace boot properties:
 INFO         |   androidboot.boot_devices=pci0000:00/0000:00:03.0 pci0000:00/0000:00:06.0
 INFO         |   androidboot.dalvik.vm.heapsize=576m
@@ -63,7 +64,7 @@ INFO         |   androidboot.hardware.vulkan=ranchu
 INFO         |   androidboot.logcat=*:V
 INFO         |   androidboot.opengles.version=196608
 INFO         |   androidboot.qemu=1
-INFO         |   androidboot.qemu.adb.pubkey=QAAAAPdQfuA5jwpN29Muwli+tdPGAJF9/KlX/s62jhy3wNaA/GT/2bj2ZE+FfpyXgS/PSyYeKfYEga3Nusi3Prx3ihd0Jn5esNudYPmI4mWsMLa0rh8n1PMZbLxlyzHUlg3Vt0fvxsDPSMtLh3fzccXeR1IC7ZgndM2Djp2Hj0rX3AP+ps9eA/fkyB88B0WLTlsdFkjVdNxL7KljJWxs0T9/BUE+5BdQWXVm7YDDtdZx/qCbbbYpVt4sbykpftuWsrw6XQHdLK2Z7tFj6pPZoQ/1c7NXdsWfG+lV1zkOnNV268ASXm+WgXdutXnLQ9RWUSthkQiW1Olsy+pVAfY5ozrD2y9L6lfqccabNCnI78pEKLHp8c133LaCk3glJqQ32MZwND14AjhW9yElIxAG5ZpatfD87HipuEz5oxqsZz6XbgXEdFWkJkWcXQFReLXNwkpSUFbaiiYUvCQ8QPKl1OHUZ1NGN0IiNaTZ6yZmqlvHjiFuSR8gpnPLfTaKaE8ZaEEdGXhqe3Nb8Jwu5rlCMs07TpMarr+PY5GlV+/xvidfYFjy/oYGGJ7vlMOzuajMnVHHoFUUn1fjRuiOiBMW3de8oqTpffEQOGpv5YBr0ivVCBWQbJibJeRLJHbQyIvDTLEtUZh4R+YHJ09jeJ4waRDYrua7NktTrsgrVE/p+cWVl8xhCa91uwEAAQA= user@lima-jolt-android
+INFO         |   androidboot.qemu.adb.pubkey=QAAAAPdQfuA5jwpN29Muwli+tdPGAJF9/KlX/s62jhy3wNaA/GT/2bj2ZE+FfpyXgS/PSyYeKfYEga3Nusi3Prx3ihd0Jn5esNudYPmI4mWsMLa0rh8n1PMZbLxlyzHUlg3Vt0fvxsDPSMtLh3fzccXeR1IC7ZgndM2Djp2Hj0rX3AP+ps9eA/fkyB88B0WLTlsdFkjVdNxL7KljJWxs0T9/BUE+5BdQWXVm7YDDtdZx/qCbbbYpVt4sbykpftuWsrw6XQHdLK2Z7tFj6pPZoQ/1c7NXdsWfG+lV1zkOnNV268ASXm+WgXdutXnLQ9RWUSthkQiW1Olsy+pVAfY5ozrD2y9L6lfqccabNCnI78pEKLHp8c133LaCk3glJqQ32MZwND14AjhW9yElIxAG5ZpatfD87HipuEz5oxqsZz6XbgXEdFWkJkWcXQFReLXNwkpSUFbaiiYUvCQ8QPKl1OHUZ1NGN0IiNaTZ6yZmqlvHjiFuSR8gpnPLfTaKaE8ZaEEdGXhqe3Nb8Jwu5rlCMs07TpMarr+PY5GlV+/xvidfYFjy/oYGGJ7vlMOzuajMnVHHoFUUn1fjRuiOiBMW3de8oqTpffEQOGpv5YBr0ivVCBWQbJibJeRLJHbQyIvDTLEtUZh4R+YHJ09jeJ4waRDYrua7NktTrsgrVE/p+cWVl8xhCa91uwEAAQA= user@lima-default
 INFO         |   androidboot.qemu.avd_name=jolt_api_35_x86_64
 INFO         |   androidboot.qemu.camera_hq_edge_processing=0
 INFO         |   androidboot.qemu.camera_protocol_ver=1
@@ -86,7 +87,7 @@ TCG doesn't support requested feature: CPUID.01H:ECX.avx [bit 28]
 TCG doesn't support requested feature: CPUID.01H:ECX.f16c [bit 29]
 TCG doesn't support requested feature: CPUID.01H:ECX.avx [bit 28]
 TCG doesn't support requested feature: CPUID.01H:ECX.f16c [bit 29]
-WARNING: cannnot unmap ptr 0x7fffa3e01000 as it is in the protected range from 0x7fff03e00000 to 0x7fffa4000000
+WARNING: cannnot unmap ptr 0x7fffa7e01000 as it is in the protected range from 0x7fff07e00000 to 0x7fffa8000000
 INFO         | Monitoring duration of emulator setup.
 INFO         | Activated packet streamer for bluetooth emulation
 INFO         | Successfully initialized netsim WiFi

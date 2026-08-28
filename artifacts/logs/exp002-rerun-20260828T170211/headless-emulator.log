@@ -13,8 +13,7 @@ INFO         |      Ok: Hardware GPU compatibility checks are not required
 INFO         |   Checking: hasSufficientSystem
 INFO         |      Ok: System requirements to run avd: `jolt_api_35_x86_64` are met
 WARNING      | File System is not ext4, disable QuickbootFileBacked feature
-WARNING      | x86_64 emulation may not work without hardware acceleration!
-INFO         | Storing crashdata in: /tmp/android-user/emu-crash-37.2.6.db, detection is enabled for process: 20601
+INFO         | Storing crashdata in: /tmp/android-user/emu-crash-37.2.6.db, detection is enabled for process: 19672
 INFO         | Initializing gfxstream backend
 INFO         | startOpenglesRendererImpl: gpu info
 INFO         | 
@@ -82,11 +81,7 @@ INFO         |   androidboot.vbmeta.digest=b3271ba499104f4631ae3723913d5c12574e0
 INFO         |   androidboot.vbmeta.hash_alg=sha256
 INFO         |   androidboot.vbmeta.size=6720
 INFO         |   androidboot.veritymode=enforcing
-TCG doesn't support requested feature: CPUID.01H:ECX.avx [bit 28]
-TCG doesn't support requested feature: CPUID.01H:ECX.f16c [bit 29]
-TCG doesn't support requested feature: CPUID.01H:ECX.avx [bit 28]
-TCG doesn't support requested feature: CPUID.01H:ECX.f16c [bit 29]
-WARNING: cannnot unmap ptr 0x7fffa3e01000 as it is in the protected range from 0x7fff03e00000 to 0x7fffa4000000
+WARNING: cannnot unmap ptr 0x7fffcb801000 as it is in the protected range from 0x7fff2b800000 to 0x7fffcba00000
 INFO         | Monitoring duration of emulator setup.
 INFO         | Activated packet streamer for bluetooth emulation
 INFO         | Successfully initialized netsim WiFi

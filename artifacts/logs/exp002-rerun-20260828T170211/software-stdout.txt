@@ -1,0 +1,6 @@
+warning: Git tree '/home/user/dev/jail/jolt/jolt-android' is dirty
+evaluation warning: stdenv.isLinux is deprecated, use stdenv.hostPlatform.isLinux instead
+Starting jolt_api_35_x86_64 (software); log: /home/user/dev/jail/jolt/jolt-android/artifacts/logs/jolt_api_35_x86_64.log
+/home/user/dev/jail/jolt/jolt-android/scripts/emulator-start: line 76: 20601 Segmentation fault         (core dumped) nohup emulator "${emulator_args[@]}" > "$log_file" 2>&1
+adb: device 'emulator-5554' not found
+Emulator did not boot within 180 seconds; see /home/user/dev/jail/jolt/jolt-android/artifacts/logs/jolt_api_35_x86_64.log

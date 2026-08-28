@@ -77,3 +77,37 @@ Chez, or Jolt limitation.
 
 Uncertain. Collect a symbolized QEMU backtrace after reproducing on a VM that
 matches the repository's documented 16 GiB environment.
+
+## Rerun 2026-08-28 — documented 16 GiB guest
+
+The Lima VM was recreated to the documented `lima-vm.yaml` (16 GiB memory,
+active `lima-x11` on `:99`). The original reproduction was repeated verbatim:
+
+```sh
+nix develop -c ./scripts/emulator-start headless   # KVM (-accel auto)
+nix develop -c ./scripts/emulator-start software   # TCG (-accel off)
+```
+
+**Result: the crash reproduces identically.** Both modes end in `SIGSEGV` from
+`qemu-system-x86_64-headless` (PIDs 19672 headless, 20601 software; cores
+retained by systemd), and both emit the same protected-range unmap warning seen
+in the 3.8 GiB run:
+
+```text
+WARNING: cannnot unmap ptr 0x7fffcb801000 as it is in the protected range from 0x7fff2b800000 to 0x7fffcba00000
+```
+
+The guest now reports 15.6 GiB (`MemTotal: 16357676 kB`) and `lima-x11` is up,
+yet `adb` never reaches `sys.boot_completed=1`. Increasing guest RAM from 3.8
+GiB to 16 GiB **did not change the outcome**. The crash lands during emulator
+startup graphics init (`gfxstream` → `lavapipe`/`swangle` fallback,
+`enableProtectedMemoryEmulation: false`), before Android boots.
+
+**Disambiguation:** the suspected layer is the **Android Emulator 37.2.6
+runtime** in this Fedora 44 / kernel 6.19 environment (gfxstream/lavapipe/
+swangle graphics init colliding with QEMU protected-memory unmap), **not** the
+Lima VM resource/provisioning state. Full evidence:
+[rerun-16gib-2026-08-28.md](rerun-16gib-2026-08-28.md).
+
+This is an observed, reproduced platform blocker, not evidence of an
+Android-native-ABI, Chez, or Jolt limitation.
