@@ -59,7 +59,8 @@ provision:
       tmux fd-find ripgrep jq socat nmap-ncat \
       npm chromium kitty-terminfo \
       xorg-x11-server-Xvfb openbox x11vnc ffmpeg-free xdotool \
-      xdpyinfo xprop glx-utils mesa-dri-drivers mesa-libGL
+      xdpyinfo xprop glx-utils mesa-dri-drivers mesa-libGL\
+      policycoreutils-python-utils
 
     # Nix is the project dependency boundary. Fedora's package sets up the
     # build users and systemd daemon without running an unpinned curl installer.
@@ -72,6 +73,18 @@ provision:
     if ! grep -q '^sandbox[[:space:]]*=' /etc/nix/nix.conf; then
       printf '%s\n' 'sandbox = true' >>/etc/nix/nix.conf
     fi
+
+    # Fedora's Nix package leaves the daemon socket below a default_t path.
+    # systemd (init_t) cannot create that socket under SELinux enforcing mode
+    # unless its intended runtime-file label is registered first.
+    nix_socket=/nix/var/nix/daemon-socket/socket
+    if ! semanage fcontext -a -t var_run_t "$nix_socket" 2>/dev/null; then
+      semanage fcontext -m -t var_run_t "$nix_socket"
+    fi
+    if [[ -e "$nix_socket" ]]; then
+      restorecon -v "$nix_socket"
+    fi
+
     systemctl enable --now nix-daemon.socket
 
     # Optional host-display forwarding is useful for quick checks. The stable
