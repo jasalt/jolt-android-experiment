@@ -37,6 +37,7 @@ static const char *lifecycle_name(int code) {
 static bool valid_event(const char *event) {
   return strcmp(event, "{:type :counter/inc}") == 0 ||
       strcmp(event, "{:type :counter/dec}") == 0 ||
+      strcmp(event, "{:type :counter/reset}") == 0 ||
       strcmp(event, "{:type :lifecycle/create}") == 0 ||
       strcmp(event, "{:type :lifecycle/start}") == 0 ||
       strcmp(event, "{:type :lifecycle/resume}") == 0;
