@@ -1,7 +1,8 @@
 
-(process:126751): Gtk-WARNING **: 08:16:36.728: Locale not supported by C library.
+(process:161535): Gtk-WARNING **: 11:45:30.378: Locale not supported by C library.
 	Using the fallback 'C' locale.
 
-(jolt:126751): Gdk-WARNING **: 08:16:36.734: Cannot get portal org.freedesktop.host.portal.Registry version: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.freedesktop.portal.Desktop': startup job failed
+(jolt:161535): Gdk-WARNING **: 11:45:30.383: Cannot get portal org.freedesktop.host.portal.Registry version: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.freedesktop.portal.Desktop': startup job failed
 
-(jolt:126751): Gdk-WARNING **: 08:16:36.740: Cannot get portal org.freedesktop.portal.Inhibit version: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.freedesktop.portal.Desktop': startup job failed
+(jolt:161535): Gdk-WARNING **: 11:45:30.391: Cannot get portal org.freedesktop.portal.Inhibit version: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.freedesktop.portal.Desktop': startup job failed
+Gtk-Message: 11:45:31.593: GtkDialog mapped without a transient parent. This is discouraged.

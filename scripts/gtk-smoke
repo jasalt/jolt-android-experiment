@@ -93,4 +93,13 @@ done
 xdotool windowactivate --sync "$window"
 capture exp021-gtk-restored.png
 
+# The bottom row invokes adapter-owned native GTK operations.  Their portable
+# event/effect data is rendered above the controls, so retain a visual artifact
+# after each operation; the process must remain live after gtk_show_uri returns.
+click "$((X + 70))" "$((Y + HEIGHT - 35))" # Copy counter
+capture exp021-gtk-clipboard.png
+click "$((X + 190))" "$((Y + HEIGHT - 35))" # Open Jolt site
+kill -0 "$app_pid"
+capture exp021-gtk-open-uri.png
+
 printf 'GTK reference interaction screenshots written to artifacts/screenshots/exp021-gtk-*.png\n'

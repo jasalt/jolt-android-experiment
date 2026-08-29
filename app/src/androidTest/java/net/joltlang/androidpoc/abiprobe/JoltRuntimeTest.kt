@@ -1,6 +1,7 @@
 package net.joltlang.androidpoc.abiprobe
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 import org.junit.Assert.assertEquals
@@ -24,6 +25,20 @@ class JoltRuntimeTest {
     runtime.eval(source) { value -> result = value; done.countDown() }
     assertTrue("eval timed out", done.await(20, TimeUnit.SECONDS))
     return result
+  }
+
+  @Test fun sharedCanonicalFixtureCorpus() {
+    val runtime = JoltRuntime()
+    try {
+      val lines = InstrumentationRegistry.getInstrumentation().context.assets
+        .open("fixtures.tsv").bufferedReader().readLines()
+      lines.filter { it.isNotBlank() && !it.startsWith("#") }.forEach { line ->
+        val fields = line.split("\t", limit = 3)
+        assertEquals("fixture ${fields[0]}", fields[2], dispatch(runtime, fields[1]))
+      }
+    } finally {
+      runtime.close()
+    }
   }
 
   @Test fun queuedEntryWrongThreadRejectionAndRecovery() {

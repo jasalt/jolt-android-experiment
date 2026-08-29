@@ -1,0 +1,5 @@
+# id<TAB>canonical event EDN<TAB>canonical response EDN
+increment	{:type :counter/inc}	{:model {:counter 1, :events [], :platform nil, :lifecycle nil, :worker nil, :notification-permission nil}, :effects [{:type :storage/write, :key "counter", :value 1}]}
+decrement	{:type :counter/dec}	{:model {:counter 0, :events [], :platform nil, :lifecycle nil, :worker nil, :notification-permission nil}, :effects [{:type :storage/write, :key "counter", :value 0}]}
+malformed	{	{:error {:type :wire/malformed, :message "invalid EDN event"}}
+restore	{:type :storage/restore, :value 7}	{:model {:counter 7, :events [], :platform nil, :lifecycle nil, :worker nil, :notification-permission nil}, :effects []}

@@ -20,12 +20,12 @@ FFI resolution.
 
 The reproducible command in `commands.sh` checked out the exact upstream
 `glimmer-gtk` revision `ce79d45698d36ccf496397bb85974e3cce6abfd8` into a
-temporary directory. Its results were:
+temporary directory. The current project portable suite and the live GTK smoke
+were rerun on this host after adding the Linux adapter effects:
 
 ```text
-Ran 6 tests. 24 assertions passed, 0 failures, 0 errors.
-:smoke :result :pass :render-count 2
-Ran 7 tests. 16 assertions passed, 0 failures, 0 errors.
+Ran 10 tests. 29 assertions passed, 0 failures, 0 errors.
+GTK reference interaction screenshots written to artifacts/screenshots/exp021-gtk-*.png
 ```
 
 The GTK smoke emitted warnings about the C locale and unavailable desktop portal
@@ -48,11 +48,21 @@ Effects: [{:type :storage/write, :key "counter", :value 1}]
 The GTK adapter executes that `:storage/write` effect through a host-side EDN
 file and then relaunches the app. `exp021-gtk-restored.png` shows that the
 persisted `Counter: 1` was restored into the shared model after the restart.
-It intentionally has no GTK widget, Android object, or native pointer in the
-reducer state. Clipboard and other platform effects remain unimplemented.
+It advertises `{:platform :linux, :capabilities #{:clipboard :persistence
+:open-uri}}` as portable data. The adapter invokes GTK's
+`gdk_clipboard_set_text` for `:platform/clipboard` and `gtk_show_uri` for
+`:platform/open-uri`; `exp021-gtk-clipboard.png` and
+`exp021-gtk-open-uri.png` retain the corresponding reducer effect data after
+real GTK button interaction. The latter capture also records the minimal Xvfb
+desktop's exact limitation: GTK displayed **Could not show link — Operation not
+supported**, because no desktop portal/browser handler is installed. The
+Jolt/GTK process remained live after the call. This is an observed headless
+host integration limitation, not evidence that the URI opened.
 
-The result is native x86_64 Linux evidence only and does not satisfy the
-independent native ARM64 Linux-host requirement in `jolt-android-jkb.2`.
+It intentionally has no GTK widget, Android object, or native pointer in the
+reducer state. The result is native x86_64 Linux evidence only and does not
+satisfy the independent native ARM64 Linux-host requirement in
+`jolt-android-jkb.2`.
 
 ## Visual evidence
 
@@ -75,3 +85,11 @@ independent native ARM64 Linux-host requirement in `jolt-android-jkb.2`.
 ### Restored state
 
 ![GTK reference app after restart restored from persistence: Counter 1](../../artifacts/screenshots/exp021-gtk-restored.png)
+
+### Clipboard effect
+
+![GTK adapter after Copy counter invoked the clipboard effect](../../artifacts/screenshots/exp021-gtk-clipboard.png)
+
+### URI effect boundary
+
+![GTK adapter after Open Jolt site invoked gtk_show_uri; Xvfb has no URI handler](../../artifacts/screenshots/exp021-gtk-open-uri.png)

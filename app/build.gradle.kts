@@ -36,6 +36,8 @@ android {
 
   sourceSets {
     getByName("main").jniLibs.srcDir("../native/jolt/android-arm64")
+    // The instrumentation APK reads the exact corpus used by CLI and GTK.
+    getByName("androidTest").assets.srcDir("../test/conformance")
   }
 
   externalNativeBuild {

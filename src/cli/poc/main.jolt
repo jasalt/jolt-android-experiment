@@ -1,12 +1,27 @@
 (ns poc.main
-  (:require [poc.reducer :as reducer]
+  (:require [poc.conformance :as conformance]
+            [poc.reducer :as reducer]
             [poc.wire :as wire]))
 
+(defn wire-dispatcher []
+  (let [state (atom reducer/initial-state)]
+    (fn [event-wire]
+      (let [decoded (wire/decode-event event-wire)]
+        (if-let [event (:ok decoded)]
+          (let [[model effects] (reducer/step @state event)]
+            (reset! state model)
+            (wire/encode-response {:model model :effects effects}))
+          (wire/encode-response decoded))))))
+
 (defn -main [& args]
-  (if (and (= 2 (count args)) (= "--event" (first args)))
-    (let [decoded (wire/decode-event (second args))]
-      (if-let [event (:ok decoded)]
-        (let [[model effects] (reducer/step reducer/initial-state event)]
-          (println (wire/encode-response {:model model :effects effects})))
-        (println (wire/encode-response decoded))))
-    (throw (ex-info "usage: cli --event '<EDN event map>'" {:args args}))))
+  (let [dispatch! (wire-dispatcher)]
+    (cond
+      (and (= 2 (count args)) (= "--event" (first args)))
+      (println (dispatch! (second args)))
+
+      (= ["--conformance"] args)
+      (do (println (pr-str (conformance/verify! dispatch!))) nil)
+
+      :else
+      (throw (ex-info "usage: cli --event '<EDN event map>' | --conformance"
+                      {:args args})))))

@@ -9,7 +9,11 @@
             [glimmer.ratom :refer [atom]]
             [glimmer.core :as ui]
             [glimmer-gtk.core]
-            [poc.reducer :as reducer]))
+            [jolt.ffi :as ffi]
+            [poc.conformance :as conformance]
+            [poc.contracts :as contracts]
+            [poc.reducer :as reducer]
+            [poc.wire :as wire]))
 
 (defn storage-file []
   (or (System/getenv "POC_GTK_STATE_FILE") "target/gtk-counter.edn"))
@@ -19,21 +23,54 @@
     (assoc reducer/initial-state :counter (edn/read-string (slurp (storage-file))))
     (catch :default _ reducer/initial-state)))
 
-(def app-state (atom (restore-state)))
+;; These narrow FFI bindings deliberately remain in the Linux adapter.  The
+;; shared contracts namespace uses only EDN data and never receives GTK values.
+(ffi/defcfn gdk-display-get-default "gdk_display_get_default" [] :pointer)
+(ffi/defcfn gdk-display-get-clipboard "gdk_display_get_clipboard" [:pointer] :pointer)
+(ffi/defcfn gdk-clipboard-set-text "gdk_clipboard_set_text" [:pointer :string] :void)
+(ffi/defcfn gtk-show-uri "gtk_show_uri" [:pointer :string :uint] :void)
+
+(def app-state
+  (atom (assoc (restore-state)
+               :platform (contracts/platform-description :linux))))
+
+(defn copy-to-clipboard! [text]
+  (let [display (gdk-display-get-default)]
+    (when (not= display ffi/null)
+      (gdk-clipboard-set-text (gdk-display-get-clipboard display) text))))
+
+(defn open-uri! [uri]
+  ;; A nil parent makes this host operation independent of widget/domain state.
+  ;; GTK owns any resulting portal/browser UI.
+  (gtk-show-uri ffi/null uri 0))
+
+(defn execute-effect! [{:keys [type key value text uri]}]
+  (case type
+    :storage/write (when (= key "counter") (spit (storage-file) (pr-str value)))
+    :platform/clipboard (copy-to-clipboard! text)
+    :platform/open-uri (open-uri! uri)
+    nil))
 
 (defn execute-effects! [effects]
-  (doseq [{:keys [type key value]} effects]
-    (case type
-      :storage/write (when (= key "counter") (spit (storage-file) (pr-str value)))
-      nil)))
+  (doseq [effect effects]
+    (execute-effect! effect)))
 
 (defn dispatch! [event]
-  (let [[model effects] (reducer/step @app-state event)]
+  ;; :last-effects is adapter render metadata, not domain state. Never feed it
+  ;; into the next reducer step or serialize it across the portable boundary.
+  (let [[model effects] (reducer/step (dissoc @app-state :last-effects) event)]
     ;; GTK only executes portable effects and renders returned data. It never
     ;; passes native widgets into the shared reducer or stores domain state in a
     ;; GTK object.
     (execute-effects! effects)
-    (reset! app-state (assoc model :last-effects effects))))
+    (reset! app-state (assoc model :last-effects effects))
+    (wire/encode-response {:model model :effects effects})))
+
+(defn dispatch-wire! [event-wire]
+  (let [decoded (wire/decode-event event-wire)]
+    (if-let [event (:ok decoded)]
+      (dispatch! event)
+      (wire/encode-response decoded))))
 
 (defn- platform-label [platform]
   (if platform (pr-str platform) "Linux x86_64"))
@@ -55,8 +92,16 @@
      [:label {:label "Shared state log:"}]
      [:label {:label (str "Lifecycle: " (:lifecycle model))}]
      [:label {:label (str "Worker: " (:worker model))}]
-     [:label {:label (str "Effects: " (pr-str (:last-effects model)))}]]))
+     [:label {:label (str "Effects: " (pr-str (:last-effects model)))}]
+     [:hbox {:spacing 8}
+      [:button {:label "Copy counter"
+                :on-click #(dispatch! {:type :platform/copy-counter})}]
+      [:button {:label "Open Jolt site"
+                :on-click #(dispatch! {:type :platform/open-url})}]]]))
 
-(defn -main [& _]
-  (ui/run app :title "Jolt Mobile PoC" :width 460 :height 300
-          :app-id "net.joltlang.androidpoc.gtk"))
+(defn -main [& args]
+  (if (= ["--conformance"] args)
+    (do (reset! app-state reducer/initial-state)
+        (println (pr-str (conformance/verify! dispatch-wire!))))
+    (ui/run app :title "Jolt Mobile PoC" :width 460 :height 300
+            :app-id "net.joltlang.androidpoc.gtk")))

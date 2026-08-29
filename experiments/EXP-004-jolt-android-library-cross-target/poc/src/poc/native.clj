@@ -1,7 +1,8 @@
 (ns poc.native
   (:require [clojure.edn :as edn]
             [jolt.ffi :as ffi]
-            [poc.reducer :as reducer]))
+            [poc.reducer :as reducer]
+            [poc.wire :as wire]))
 
 (def app-state (atom reducer/initial-state))
 
@@ -10,6 +11,17 @@
 (defn allocate [n]
   (loop [i 0 values []]
     (if (= i n) (count values) (recur (+ i 1) (conj values i)))))
+
+(defn dispatch [event-edn]
+  ;; Keep decoding, state evolution, and response serialization identical to
+  ;; the CLI.  :string copies the completed EDN into the C ABI, so JNI never
+  ;; owns a pointer into Jolt-managed memory.
+  (let [decoded (wire/decode-event event-edn)]
+    (if-let [event (:ok decoded)]
+      (let [[model effects] (reducer/step @app-state event)]
+        (reset! app-state model)
+        (wire/encode-response {:model model :effects effects}))
+      (wire/encode-response decoded))))
 
 (defn dispatch-counter [event-edn]
   (let [event (edn/read-string event-edn)
@@ -61,6 +73,9 @@
 
 (ffi/export! "poc_answer" answer [] :int)
 (ffi/export! "poc_allocate" allocate [:int] :int)
+(ffi/export! "poc_dispatch" dispatch [:string] :string)
+;; Retained for EXP-004's integer ABI probe; Android production dispatch now
+;; enters `poc_dispatch` and receives the shared canonical EDN response.
 (ffi/export! "poc_dispatch_counter" dispatch-counter [:string] :int)
 (ffi/export! "poc_lifecycle_code" lifecycle-code [] :int)
 (ffi/export! "poc_effect_code" effect-code [:string] :int)

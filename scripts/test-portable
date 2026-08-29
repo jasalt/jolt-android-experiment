@@ -6,6 +6,7 @@ repo_root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
 cd "$repo_root"
 
 jolt -M:test
+./scripts/cli --conformance >/dev/null
 
 actual=$(./scripts/cli --event '{:type :counter/inc}')
 expected='{:model {:counter 1, :events [], :platform nil, :lifecycle nil, :worker nil, :notification-permission nil}, :effects [{:type :storage/write, :key "counter", :value 1}]}'
