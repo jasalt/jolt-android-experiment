@@ -50,8 +50,10 @@ back through `JoltRuntime`.
 
 ## Explicitly not demonstrated
 
-- Native aarch64 Linux/macOS portable CLI or nREPL execution.
-- GTK/Glimmer reference host.
+- GTK/Glimmer reference host. Native Apple Silicon macOS validation of the
+  portable CLI fixtures and normal Jolt nREPL is recorded separately in
+  [EXP-017](../experiments/EXP-017-native-arm64-portable-cli); it is
+  portable-host evidence, not native Android execution or GTK support.
 - Compose UI; the demonstrated shell is a minimal native Android View layout.
 - Android notification posting, URL intents, or generalized permissions.
 - General Android debug evaluation, caller-supplied source/result transport, a
