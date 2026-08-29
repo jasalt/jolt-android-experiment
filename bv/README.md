@@ -2,7 +2,7 @@
 
 ## 📊 Executive Summary
 
-**107** total issues | **65%** complete | **7** ready to work | **3** blocked
+**107** total issues | **71%** complete | **7** ready to work | **3** blocked
 
 ## 🚧 Critical Bottlenecks
 
@@ -11,10 +11,10 @@ These issues are blocking the most downstream work. Clearing them has outsized i
 | Issue | Title | Unblocks | Status |
 |-------|-------|----------|--------|
 | `jolt-android-lfu.1` | Raylib first-frame feasibility | **3** issues | Ready |
-| `jolt-android-lfu.1.3` | Reproduce the pinned raylib-jlt deskt... | **2** issues | Blocked by 1 |
 | `jolt-android-jkb.2` | Provision native Linux GTK validation... | **1** issues | Ready |
-| `jolt-android-lfu.1.1` | Pin Raylib references and establish t... | **1** issues | Ready |
-| `jolt-android-lfu.1.2` | Add reproducible Raylib tooling to th... | **1** issues | Blocked by 1 |
+| `jolt-android-lfu.1.7` | Build a no-op Jolt library for the Ra... | **1** issues | Ready |
+| `jolt-android-lfu.1.9` | Establish a viable Jolt-to-Raylib sym... | **1** issues | Blocked by 2 |
+| `jolt-android-lfu.3` | Raylib validation and feasibility ass... | **1** issues | Blocked by 1 |
 
 ## 📈 Graph Analysis
 
@@ -28,14 +28,14 @@ Low-effort items that clear the path forward:
 
 - **jolt-android-lfu.1**: Raylib first-frame feasibility (unblocks 3)
   - *Unblocks 3 items, high priority*
-- **jolt-android-lfu.1.1**: Pin Raylib references and establish the independent track (unblocks 1)
+- **jolt-android-lfu.1.7**: Build a no-op Jolt library for the Raylib Android host (unblocks 1)
   - *Unblocks 1 items, high priority*
-- **jolt-android-lfu.1.2**: Add reproducible Raylib tooling to the Nix shells (unblocks 1)
+- **jolt-android-lfu.1.9**: Establish a viable Jolt-to-Raylib symbol topology (unblocks 1)
   - *Unblocks 1 items, high priority*
-- **jolt-android-lfu.1.4**: Build a plain C Raylib Android 15 ARM64 NativeActivity (unblocks 1)
-  - *Unblocks 1 items, high priority*
-- **jolt-android-lfu.1.5**: Validate plain Raylib ARM64 rendering under emulator translation (unblocks 1)
-  - *Unblocks 1 items, high priority*
+- **jolt-android-jkb.2**: Provision native Linux GTK validation host (unblocks 1)
+  - *Unblocks 1 items*
+- **jolt-android-lfu.3**: Raylib validation and feasibility assessment (unblocks 1)
+  - *Unblocks 1 items*
 
 ## 📋 Status Summary
 
@@ -45,5 +45,5 @@ Low-effort items that clear the path forward:
 
 ---
 
-*Generated Aug 29, 2026 at 4:26 PM UTC by [bv](https://github.com/Dicklesworthstone/beads_viewer)*
+*Generated Aug 29, 2026 at 7:10 PM UTC by [bv](https://github.com/Dicklesworthstone/beads_viewer)*
 
