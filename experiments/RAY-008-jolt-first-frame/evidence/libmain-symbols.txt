@@ -1,0 +1,2 @@
+0000000000032928 T ANativeActivity_onCreate
+000000000004b750 T android_main

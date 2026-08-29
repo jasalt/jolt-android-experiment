@@ -1,0 +1,1 @@
+/home/user/dev/jail/jolt/jolt-android/experiments/RAY-008-jolt-first-frame/evidence/first-frame.png PNG 1080x2400 1080x2400+0+0 8-bit sRGB 17163B 0.000u 0:00.003

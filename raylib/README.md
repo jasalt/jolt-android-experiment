@@ -83,9 +83,10 @@ Raylib section.
 
 The current explicit commands are `scripts/raylib-build-android` for the
 Raylib-only baseline, `scripts/raylib-jolt-android-library-build` for the
-managed library, and `scripts/raylib-jolt-bootstrap-build` for the packaged
-bootstrap probe. Do not use host-installed Android Studio, SDK, NDK, or a
-floating upstream checkout.
+managed library, `scripts/raylib-jolt-bootstrap-build` for the packaged
+bootstrap probe, and `scripts/raylib-topology-build-android` plus
+`scripts/raylib-first-frame-build-android` for the topology/frame gates. Do not
+use host-installed Android Studio, SDK, NDK, or a floating upstream checkout.
 
 ## Evidence conventions
 

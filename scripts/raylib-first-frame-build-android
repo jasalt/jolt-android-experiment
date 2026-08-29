@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Assemble the independent fixed Jolt-rendered Raylib frame probe.
+set -euo pipefail
+
+root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+cd "$root"
+
+: "${ANDROID_HOME:?run through nix develop so Android tools are pinned}"
+: "${JOLT_SOURCE:?set to a clean checkout at the pinned Jolt revision}"
+: "${RAYLIB_SOURCE:?run through nix develop so Raylib is pinned}"
+
+./scripts/raylib-jolt-frame-build
+stage="$root/raylib/frame-android/src/main/jniLibs/arm64-v8a"
+rm -rf "$root/raylib/frame-android/src/main/jniLibs"
+mkdir -p "$stage"
+cp "$root/native/jolt/android-arm64/arm64-v8a/libjoltraylib-frame.so" \
+  "$stage/libjoltraylib-frame.so"
+
+gradle --no-daemon :raylib-frame-android:assembleDebug
+apk="$root/raylib/frame-android/build/outputs/apk/debug/raylib-frame-android-debug.apk"
+test -s "$apk" || {
+  printf 'expected first-frame APK was not produced: %s\n' "$apk" >&2
+  exit 1
+}
+printf 'Built %s\n' "$apk"

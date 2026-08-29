@@ -1,0 +1,7 @@
+Starting: Intent { cmp=net.joltlang.raylibframeprobe/android.app.NativeActivity }
+Status: ok
+LaunchState: COLD
+Activity: net.joltlang.raylibframeprobe/android.app.NativeActivity
+TotalTime: 2854
+WaitTime: 2902
+Complete

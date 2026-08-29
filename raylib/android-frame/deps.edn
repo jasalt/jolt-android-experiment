@@ -1,0 +1,6 @@
+{:paths ["src"]
+ ;; Cross compilation cannot load libmain.so on the host. Android loads the
+ ;; current NativeActivity image before this managed library is initialized.
+ :jolt/native [{:name "Raylib main image"
+                :linux ["libmain.so"]
+                :optional true}]}

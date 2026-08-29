@@ -1,0 +1,11 @@
+08-30 00:02:19.405 20822 20822 I berberis: Initialized Berberis (aarch64), version 0.2.3
+08-30 00:02:19.800 20822 20867 I jolt_raylib_first_frame: enter main thread=20867
+08-30 00:02:19.807 20822 20867 I jolt_raylib_first_frame: dlopen ok thread=20867 owner=20867
+08-30 00:02:22.041 20822 20867 I jolt_raylib_first_frame: jolt_library_init result=0 thread=20867 owner=20867
+08-30 00:02:22.042 20822 20867 I jolt_raylib_first_frame: jolt_lookup raylib_first_frame=ok thread=20867 owner=20867
+08-30 00:02:22.044 20822 20867 I raylib  : PLATFORM: ANDROID: Initialized successfully
+08-30 00:02:22.334 20822 20867 I raylib  : GL: OpenGL device information:
+08-30 00:02:22.345 20822 20867 I raylib  :     > Renderer: Android Emulator OpenGL ES Translator (ANGLE (Mesa, Vulkan 1.4.318 (llvmpipe (LLVM 21.0.0 256 bits) (0x00000000)), llvmpipe-25.2.4))
+08-30 00:02:26.598 20822 20867 I jolt_raylib_first_frame: raylib_first_frame result=120 thread=20867 owner=20867
+08-30 00:02:26.599 20822 20867 I jolt_raylib_first_frame: jolt_library_shutdown thread=20867 owner=20867
+08-30 00:02:26.601 20822 20867 I jolt_raylib_first_frame: first-frame bootstrap complete thread=20867 owner=20867

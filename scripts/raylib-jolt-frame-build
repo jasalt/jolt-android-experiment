@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+# Build and stage the Jolt library for the fixed first-frame probe.
+set -euo pipefail
+
+root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+jolt_source="${JOLT_SOURCE:?set JOLT_SOURCE to a checkout at the pinned Jolt revision}"
+chez_source="$root/.cache/chezscheme-v10.4.1"
+revision="ae5c5a6d5be263a883e9b4b53f255b8c0b493d3e"
+fixture="$root/raylib/android-frame"
+output="$root/native/jolt/android-arm64/arm64-v8a/libjoltraylib-frame.so"
+
+[[ "$(git -C "$jolt_source" rev-parse HEAD)" == "$revision" ]] || {
+  echo "JOLT_SOURCE must be at $revision" >&2
+  exit 1
+}
+[[ -x "$chez_source/ta6le/bin/ta6le/scheme" ]] || {
+  echo "missing pinned Chez host compiler: $chez_source" >&2
+  exit 1
+}
+ndk_clang="$(find "${ANDROID_NDK_ROOT:?run inside nix develop}/toolchains/llvm/prebuilt" \
+  -name aarch64-linux-android35-clang -print -quit)"
+[[ -x "$ndk_clang" ]] || {
+  echo "missing Android API-35 AArch64 compiler" >&2
+  exit 1
+}
+
+work=$(mktemp -d)
+pack="$work/tarm64le-pack"
+trap 'git -C "$jolt_source" worktree remove --force "$work/jolt" 2>/dev/null || true; rm -rf "$work"' EXIT
+
+git -C "$jolt_source" worktree add --detach "$work/jolt" "$revision" >/dev/null
+git -C "$work/jolt" submodule update --init --recursive
+CHEZ_SRC="$chez_source" "$work/jolt/tools/cross-compile/make-pack.sh" tarm64le "$pack"
+printf '%s\n' '-llz4 -lz -lm -ldl' > "$pack/link-libs"
+
+mkdir -p "$(dirname "$output")"
+JOLT_PWD="$fixture" \
+JOLT_CHEZ="$chez_source/ta6le/bin/ta6le/scheme" \
+JOLT_CHEZ_CSV="$chez_source/ta6le/boot/ta6le" \
+SCHEMEHEAPDIRS="$chez_source/ta6le/boot/ta6le" \
+JOLT_TARGET_CC="$ndk_clang" \
+JOLT_TARGET_LINK_LIBS="-L$pack/lib -llz4 -lz -lm -ldl" \
+"$work/jolt/bin/jolt" build --library -m poc.raylib.frame \
+  -o "$work/libjoltraylib-frame.so" --target tarm64le --target-pack "$pack"
+
+install -Dm755 "$work/libjoltraylib-frame.so" "$output"
+file "$output"
+readelf -d "$output" | grep -F 'Shared library: [libc.so]'
+for symbol in jolt_library_init jolt_lookup jolt_library_shutdown; do
+  nm -D --defined-only "$output" | grep -q " $symbol$" || {
+    echo "missing export: $symbol" >&2
+    exit 1
+  }
+done
+printf 'Built Raylib first-frame Jolt library: %s\n' "$output"
