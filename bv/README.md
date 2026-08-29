@@ -2,7 +2,7 @@
 
 ## 📊 Executive Summary
 
-**107** total issues | **71%** complete | **7** ready to work | **3** blocked
+**107** total issues | **74%** complete | **6** ready to work | **3** blocked
 
 ## 🚧 Critical Bottlenecks
 
@@ -12,8 +12,7 @@ These issues are blocking the most downstream work. Clearing them has outsized i
 |-------|-------|----------|--------|
 | `jolt-android-lfu.1` | Raylib first-frame feasibility | **3** issues | Ready |
 | `jolt-android-jkb.2` | Provision native Linux GTK validation... | **1** issues | Ready |
-| `jolt-android-lfu.1.7` | Build a no-op Jolt library for the Ra... | **1** issues | Ready |
-| `jolt-android-lfu.1.9` | Establish a viable Jolt-to-Raylib sym... | **1** issues | Blocked by 2 |
+| `jolt-android-lfu.1.9` | Establish a viable Jolt-to-Raylib sym... | **1** issues | Ready |
 | `jolt-android-lfu.3` | Raylib validation and feasibility ass... | **1** issues | Blocked by 1 |
 
 ## 📈 Graph Analysis
@@ -28,14 +27,14 @@ Low-effort items that clear the path forward:
 
 - **jolt-android-lfu.1**: Raylib first-frame feasibility (unblocks 3)
   - *Unblocks 3 items, high priority*
-- **jolt-android-lfu.1.7**: Build a no-op Jolt library for the Raylib Android host (unblocks 1)
-  - *Unblocks 1 items, high priority*
 - **jolt-android-lfu.1.9**: Establish a viable Jolt-to-Raylib symbol topology (unblocks 1)
   - *Unblocks 1 items, high priority*
 - **jolt-android-jkb.2**: Provision native Linux GTK validation host (unblocks 1)
   - *Unblocks 1 items*
 - **jolt-android-lfu.3**: Raylib validation and feasibility assessment (unblocks 1)
   - *Unblocks 1 items*
+- **jolt-android-1fz**: Environment and emulator bootstrap
+  - *Low complexity, high priority*
 
 ## 📋 Status Summary
 
@@ -45,5 +44,5 @@ Low-effort items that clear the path forward:
 
 ---
 
-*Generated Aug 29, 2026 at 7:21 PM UTC by [bv](https://github.com/Dicklesworthstone/beads_viewer)*
+*Generated Aug 29, 2026 at 8:22 PM UTC by [bv](https://github.com/Dicklesworthstone/beads_viewer)*
 
