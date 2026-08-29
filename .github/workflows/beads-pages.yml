@@ -4,8 +4,8 @@ on:
   push:
     branches: [master]
     paths:
-      - '.beads/issues.jsonl'
-      - '.github/workflows/beads-pages.yml'
+      - ".beads/issues.jsonl"
+      - ".github/workflows/beads-pages.yml"
   workflow_dispatch:
 
 permissions:
