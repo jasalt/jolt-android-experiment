@@ -2,7 +2,7 @@
 
 ## 📊 Executive Summary
 
-**74** total issues | **89%** complete | **7** ready to work | **2** blocked
+**74** total issues | **95%** complete | **3** ready to work | **3** blocked
 
 ## 🚧 Critical Bottlenecks
 
@@ -26,12 +26,10 @@ Low-effort items that clear the path forward:
   - *Unblocks 1 items*
 - **jolt-android-1fz**: Environment and emulator bootstrap
   - *Low complexity, high priority*
-- **jolt-android-csj**: Complete portable contracts and cross-host conformance
-  - *Low complexity, high priority*
-- **jolt-android-ono**: Finish automated validation and final Level 5/6 evidence
-  - *Low complexity, high priority*
-- **jolt-android-ono.8**: Refresh architecture, gotchas, and final graded feasibility report
-  - *Low complexity, high priority*
+- **jolt-android-1fz.7**: Boot and validate the API 35 ARM64 Android app on a native ARM64 host
+  - *Low complexity*
+- **jolt-android-csj.4**: Validate portable CLI/nREPL and GTK on native aarch64-linux
+  - *Low complexity*
 
 ## 📋 Status Summary
 
