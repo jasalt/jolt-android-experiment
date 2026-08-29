@@ -1,7 +1,7 @@
 (ns poc.reducer
   (:require [poc.contracts :as contracts]))
 
-(def initial-state
+(def ^{:clj-kondo/ignore [:clojure-lsp/unused-public-var]} initial-state
   {:counter 0
    :events []
    :platform nil
@@ -9,7 +9,7 @@
    :worker nil
    :notification-permission nil})
 
-(defn view-model
+(defn ^{:clj-kondo/ignore [:clojure-lsp/unused-public-var]} view-model
   "Derived portable render data; hosts own widget construction."
   [state]
   {:counter (:counter state)
@@ -19,7 +19,7 @@
    :notification-permission (:notification-permission state)
    :platform (:platform state)})
 
-(defn step [state event]
+(defn ^{:clj-kondo/ignore [:clojure-lsp/unused-public-var]} step [state event]
   (case (:type event)
     :counter/inc
     (let [model (update state :counter inc)]
