@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# Capture the required semantic/layout showcase states from the Compose shell.
+set -euo pipefail
+root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+: "${ANDROID_HOME:?run through nix develop so ANDROID_HOME is set}"
+serial="emulator-${JOLT_ANDROID_EMULATOR_PORT:-5554}"
+pkg=${JOLT_ANDROID_PACKAGE:-net.joltlang.androidpoc.abiprobe}
+[[ "$(adb -s "$serial" get-state 2>/dev/null)" == device ]] || { echo 'AVD unavailable' >&2; exit 1; }
+mkdir -p "$root/artifacts/screenshots" "$root/artifacts/layouts"
+adb -s "$serial" shell am force-stop "$pkg"
+adb -s "$serial" shell am start -W -n "$pkg/.MainActivity" >/dev/null
+sleep 2
+capture() {
+  local name=$1
+  adb -s "$serial" shell uiautomator dump "/sdcard/$name.xml" >/dev/null
+  adb -s "$serial" exec-out cat "/sdcard/$name.xml" > "$root/artifacts/layouts/$name.xml"
+  grep -F 'android.widget.TextView' "$root/artifacts/layouts/$name.xml" >/dev/null
+  adb -s "$serial" exec-out screencap -p > "$root/artifacts/screenshots/$name.png"
+  file "$root/artifacts/screenshots/$name.png" | grep -F 'PNG image data' >/dev/null
+}
+capture 01-runtime
+# Bottom navigation centers are stable for the fixed 1080px API-35 AVD.
+for item in 02-counter-mutated 03-lifecycle 04-platform-effects 05-permission-before 06-persistence-restored 07-worker 08-platform-effects; do
+  case "$item" in
+    02-counter-mutated) x=225; y=2230;;
+    03-lifecycle) x=380; y=2230;;
+    04-platform-effects|08-platform-effects) x=540; y=2230;;
+    05-permission-before) x=700; y=2230;;
+    06-persistence-restored) x=850; y=2230;;
+    07-worker) x=1010; y=2230;;
+  esac
+  adb -s "$serial" shell input tap "$x" "$y"
+  sleep 1
+  capture "$item"
+done
+printf 'Captured eight showcase screenshots and matching layouts\n'
