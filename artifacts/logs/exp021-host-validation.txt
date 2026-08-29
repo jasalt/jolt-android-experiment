@@ -1,0 +1,16 @@
+kernel: Linux lima-jolt-android 6.19.10-300.fc44.x86_64 #1 SMP PREEMPT_DYNAMIC Wed Mar 25 18:23:49 UTC 2026 x86_64 GNU/Linux
+machine: x86_64
+Nix: nix (Nix) 2.34.8
+Jolt: jolt 8fcba79f8b33628af926f88032d93a1b31c24235
+GTK4: 4.22.4
+GLib: 2.88.3
+display: :99
+LD_LIBRARY_PATH: /nix/store/a3hr0l5skscvbkcr7kz3nhi4linz1p71-glib-2.88.3/lib:/nix/store/4j905cjgk8idkzg4szhyryzjx2q1b6br-gtk4-4.22.4/lib
+ce79d45698d36ccf496397bb85974e3cce6abfd8
+
+Ran 6 tests. 24 assertions passed, 0 failures, 0 errors.
+----
+tests: 6 assertions: 24 passed / 0 failed
+:smoke :result :pass :render-count 2
+
+Ran 7 tests. 16 assertions passed, 0 failures, 0 errors.

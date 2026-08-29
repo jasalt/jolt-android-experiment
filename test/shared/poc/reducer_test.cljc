@@ -37,6 +37,19 @@
   (is (= [(assoc base-model :notification-permission :denied) []]
          (sut/step sut/initial-state {:type :permission/result-denied}))))
 
+(deftest reducer-state-remains-portable-data
+  (let [[model effects] (sut/step sut/initial-state {:type :counter/inc})]
+    (is (= :storage/write (:type (first effects))))
+    (is (= {:counter 1
+            :events []
+            :platform nil
+            :lifecycle nil
+            :worker nil
+            :notification-permission nil}
+           model))
+    (is (= [{:type :storage/write :key "counter" :value 1}]
+           effects))))
+
 (deftest lifecycle-and-worker-events
   (is (= [(assoc base-model :lifecycle :created) []]
          (sut/step sut/initial-state {:type :lifecycle/create})))

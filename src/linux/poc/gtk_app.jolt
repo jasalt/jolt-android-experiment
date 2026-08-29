@@ -1,0 +1,62 @@
+(ns poc.gtk-app
+  "Linux GTK4 reference host for the portable reducer.
+
+  The only mutable host state is a Glimmer reactive cell containing the model
+  returned by poc.reducer/step. GTK widgets render that data and translate user
+  interaction into portable events; the reducer neither sees GTK pointers nor
+  executes GTK effects."
+  (:require [clojure.edn :as edn]
+            [glimmer.ratom :refer [atom]]
+            [glimmer.core :as ui]
+            [glimmer-gtk.core]
+            [poc.reducer :as reducer]))
+
+(defn storage-file []
+  (or (System/getenv "POC_GTK_STATE_FILE") "target/gtk-counter.edn"))
+
+(defn restore-state []
+  (try
+    (assoc reducer/initial-state :counter (edn/read-string (slurp (storage-file))))
+    (catch :default _ reducer/initial-state)))
+
+(def app-state (atom (restore-state)))
+
+(defn execute-effects! [effects]
+  (doseq [{:keys [type key value]} effects]
+    (case type
+      :storage/write (when (= key "counter") (spit (storage-file) (pr-str value)))
+      nil)))
+
+(defn dispatch! [event]
+  (let [[model effects] (reducer/step @app-state event)]
+    ;; GTK only executes portable effects and renders returned data. It never
+    ;; passes native widgets into the shared reducer or stores domain state in a
+    ;; GTK object.
+    (execute-effects! effects)
+    (reset! app-state (assoc model :last-effects effects))))
+
+(defn- platform-label [platform]
+  (if platform (pr-str platform) "Linux x86_64"))
+
+(defn app []
+  (let [model @app-state]
+    [:vbox {:spacing 12 :margin 18}
+     [:label {:markup [:span {:weight "bold" :size "x-large"}
+                       "Jolt Mobile PoC"]}]
+     [:label {:label (str "Platform: " (platform-label (:platform model)))}]
+     [:label {:label "Runtime: Jolt / Chez"}]
+     [:separator {}]
+     [:label {:label (str "Counter: " (:counter model))}]
+     [:hbox {:spacing 8}
+      [:button {:label "−" :on-click #(dispatch! {:type :counter/dec})}]
+      [:button {:label "+" :on-click #(dispatch! {:type :counter/inc})}]
+      [:button {:label "Reset" :on-click #(dispatch! {:type :counter/reset})}]]
+     [:separator {}]
+     [:label {:label "Shared state log:"}]
+     [:label {:label (str "Lifecycle: " (:lifecycle model))}]
+     [:label {:label (str "Worker: " (:worker model))}]
+     [:label {:label (str "Effects: " (pr-str (:last-effects model)))}]]))
+
+(defn -main [& _]
+  (ui/run app :title "Jolt Mobile PoC" :width 460 :height 300
+          :app-id "net.joltlang.androidpoc.gtk"))

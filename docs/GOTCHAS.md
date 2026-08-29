@@ -15,6 +15,11 @@ Each item is an observed constraint with an evidence reference.
 - **Jolt cross shared libraries require an isolated patch.** Pinned Jolt rejects
   `--target` combined with `--library`; [EXP-004](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-004-jolt-android-library-cross-target) applies the reduced patch only
   in a disposable worktree.
+- **Jolt FFI needs Nix library paths for GTK.** Glimmer GTK declares Linux
+  library names such as `libglib-2.0.so.0`, but Nix keeps GTK/GLib outside the
+  system loader paths. The Linux development shell must export its GTK/GLib
+  `LD_LIBRARY_PATH`; this is validated on x86_64 Linux in
+  [EXP-021](../experiments/EXP-021-x86-64-linux-gtk-host).
 - **Never retain Jolt-managed string pointers in JNI.** The Android bridge uses
   primitive Jolt exports and formats bounded caller-owned result buffers
   ([EXP-007](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-007-android-edn-dispatch)).

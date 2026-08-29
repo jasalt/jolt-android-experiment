@@ -120,6 +120,7 @@
             then self.packages.${system}.android-sdk
             else null;
           androidSdkRoot = "${androidSdk}/share/android-sdk";
+          gtkLibraryPath = pkgs.lib.makeLibraryPath [ pkgs.glib pkgs.gtk4 ];
         in {
           default = pkgs.mkShell {
             packages = [
@@ -141,7 +142,11 @@
               pkgs.chez
               pkgs.ncurses
               self.packages.${system}.jolt
-            ] ++ pkgs.lib.optionals androidSupported [ androidSdk ];
+            ] ++ pkgs.lib.optionals androidSupported [ androidSdk ]
+              ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isLinux [
+                pkgs.gtk4
+                pkgs.glib
+              ];
 
             shellHook = pkgs.lib.optionalString androidSupported ''
               export ANDROID_HOME=${androidSdkRoot}
@@ -152,6 +157,10 @@
               export JAVA_HOME=${pkgs.jdk21.home}
               export SSL_CERT_FILE=${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt
               export GIT_SSL_CAINFO="$SSL_CERT_FILE"
+            '' + pkgs.lib.optionalString pkgs.stdenv.hostPlatform.isLinux ''
+              # Jolt FFI resolves the glimmer-gtk native library names with
+              # dlopen. Nix keeps them outside the system loader paths.
+              export LD_LIBRARY_PATH=${gtkLibraryPath}''${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
             '';
           };
         });

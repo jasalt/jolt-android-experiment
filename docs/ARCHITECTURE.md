@@ -48,12 +48,20 @@ permission state. It emits data-only effects for:
 Android adapters execute those effects with platform APIs and queue result events
 back through `JoltRuntime`.
 
+## Observed Linux GTK reference boundary
+
+- On native x86_64 Linux, Glimmer/GTK4 renders the shared reducer model and
+  converts GTK counter controls into reducer events. Its `:storage/write` effect
+  is executed by a host-side EDN persistence adapter and a fresh GTK process
+  restores the resulting counter. [EXP-021](../experiments/EXP-021-x86-64-linux-gtk-host)
+  retains the exact smoke tests, screenshots, and platform boundary.
+- This is native x86_64 Linux GTK evidence only. It is not native ARM64 Linux,
+  Android, or macOS GTK support. Native Apple Silicon macOS validation of the
+  portable CLI fixtures and normal Jolt nREPL is separately recorded in
+  [EXP-017](../experiments/EXP-017-native-arm64-portable-cli).
+
 ## Explicitly not demonstrated
 
-- GTK/Glimmer reference host. Native Apple Silicon macOS validation of the
-  portable CLI fixtures and normal Jolt nREPL is recorded separately in
-  [EXP-017](../experiments/EXP-017-native-arm64-portable-cli); it is
-  portable-host evidence, not native Android execution or GTK support.
 - Compose UI; the demonstrated shell is a minimal native Android View layout.
 - Android notification posting, URL intents, or generalized permissions.
 - General Android debug evaluation, caller-supplied source/result transport, a

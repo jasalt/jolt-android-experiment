@@ -62,9 +62,20 @@ not evidence that this export was absent; a diagnostic rerun corrected that
 attribution. No caller-supplied evaluation, Android nREPL, remote evaluation,
 CIDER, error-recovery path, or redefinition is implemented.
 
+### Linux GTK reference host
+
+The native x86_64 Fedora Lima host runs the pinned Glimmer/GTK4 backend against
+the same portable reducer. Its live GTK reactivity smoke passed, and the
+reference app rendered counter state, accepted GTK increment/decrement/reset
+events, persisted the reducer's `:storage/write` effect through a host-side EDN
+file, and restored state in a fresh process. The exact environment, tests,
+screenshots, and scope boundary are in
+[EXP-021](experiments/EXP-021-x86-64-linux-gtk-host). This is not native ARM64
+Linux, Android, or macOS GTK evidence.
+
 ### Unimplemented
 
-- GTK/Glimmer reference application.
+- Native ARM64 Linux GTK reference host.
 - Compose UI; the observed Android shell uses native Android Views.
 - Android notification posting, URL/intent effects, generalized permissions,
   and additional platform capabilities.
@@ -89,6 +100,7 @@ CIDER, error-recovery path, or redefinition is implemented.
 | Bounded fixed debug eval | [EXP-015](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-015-android-fixed-debug-eval) |
 | Native Apple Silicon portable CLI/nREPL | [EXP-017](experiments/EXP-017-native-arm64-portable-cli) |
 | Native Apple Silicon Android Nix build | [EXP-019](experiments/EXP-019-native-darwin-android-nix-build) |
+| Linux x86_64 Glimmer/GTK4 reference host | [EXP-021](experiments/EXP-021-x86-64-linux-gtk-host) |
 
 ## Reproducible validation baseline
 

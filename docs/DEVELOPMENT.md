@@ -42,3 +42,19 @@ the observed machine could not boot it because it had 8.7 GiB free while the
 emulator required 12 GiB for userdata. Do not substitute another SDK or claim
 emulator validation until it boots on the host. See
 [EXP-019](../experiments/EXP-019-native-darwin-android-nix-build).
+
+## Linux GTK reference host
+
+The default shell supplies GTK4 and GLib on Linux, including the Nix library
+path required for Jolt's `dlopen`-based Glimmer GTK FFI. Start the reference
+application on an available X11 display:
+
+```sh
+DISPLAY=:99 nix --extra-experimental-features 'nix-command flakes' develop -c \
+  ./scripts/gtk-run
+```
+
+The current Fedora x86_64 Lima guest runs the project host and the pinned
+upstream Glimmer GTK reactivity smoke; see
+[EXP-021](../experiments/EXP-021-x86-64-linux-gtk-host). That is Linux x86_64
+reference-host evidence, not native ARM64 Linux, Android, or macOS GTK support.

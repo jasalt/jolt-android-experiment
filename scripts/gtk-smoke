@@ -1,0 +1,96 @@
+#!/usr/bin/env bash
+# Exercise the GTK reference app in the managed Linux X11 desktop.
+# Run through the pinned shell:
+#   nix develop -c ./scripts/gtk-smoke
+set -euo pipefail
+
+repo_root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+cd "$repo_root"
+: "${DISPLAY:?set DISPLAY to the GTK X11 display (the Lima desktop uses :99)}"
+
+mkdir -p artifacts/screenshots artifacts/logs target
+state_file="$repo_root/target/exp021-gtk-counter.edn"
+rm -f "$state_file"
+POC_GTK_STATE_FILE="$state_file" ./scripts/gtk-run >artifacts/logs/exp021-gtk-reference.log 2>&1 &
+app_pid=$!
+cleanup() {
+  kill "$app_pid" 2>/dev/null || true
+  wait "$app_pid" 2>/dev/null || true
+}
+trap cleanup EXIT
+
+window=
+for _ in $(seq 1 60); do
+  window=$(xdotool search --onlyvisible --name '^Jolt Mobile PoC$' 2>/dev/null | tail -1 || true)
+  [[ -n "$window" ]] && break
+  kill -0 "$app_pid" 2>/dev/null || {
+    cat artifacts/logs/exp021-gtk-reference.log >&2
+    exit 1
+  }
+  sleep 0.5
+done
+[[ -n "$window" ]] || { printf 'GTK reference window did not appear\n' >&2; exit 1; }
+
+# Derive screen coordinates from the live window rather than assuming its X11
+# placement. The app keeps the stable visual button arrangement below.
+eval "$(xdotool getwindowgeometry --shell "$window")"
+click() { xdotool mousemove "$1" "$2" click 1; sleep 0.5; }
+capture() {
+  ffmpeg -hide_banner -loglevel error -y -f x11grab -video_size 1280x800 \
+    -i "${DISPLAY}.0" -frames:v 1 "artifacts/screenshots/$1"
+}
+
+xdotool windowactivate --sync "$window"
+capture exp021-gtk-initial.png
+click "$((X + 101))" "$((Y + 180))" # +: Counter 1
+click "$((X + 101))" "$((Y + 180))" # +: Counter 2
+capture exp021-gtk-incremented.png
+click "$((X + 43))" "$((Y + 180))"  # -: Counter 1
+capture exp021-gtk-decremented.png
+click "$((X + 170))" "$((Y + 180))" # reset: Counter 0
+capture exp021-gtk-reset.png
+[[ "$(cat "$state_file")" == "0" ]] || {
+  printf 'expected persisted counter 0, got %s\n' "$(cat "$state_file")" >&2
+  exit 1
+}
+
+# Re-launch using the same host-side persistence adapter to demonstrate restore.
+cleanup
+trap - EXIT
+POC_GTK_STATE_FILE="$state_file" ./scripts/gtk-run >artifacts/logs/exp021-gtk-restore.log 2>&1 &
+app_pid=$!
+trap cleanup EXIT
+window=
+for _ in $(seq 1 60); do
+  window=$(xdotool search --onlyvisible --name '^Jolt Mobile PoC$' 2>/dev/null | tail -1 || true)
+  [[ -n "$window" ]] && break
+  kill -0 "$app_pid" 2>/dev/null || {
+    cat artifacts/logs/exp021-gtk-restore.log >&2
+    exit 1
+  }
+  sleep 0.5
+done
+[[ -n "$window" ]] || { printf 'GTK reference restore window did not appear\n' >&2; exit 1; }
+eval "$(xdotool getwindowgeometry --shell "$window")"
+xdotool windowactivate --sync "$window"
+click "$((X + 101))" "$((Y + 180))" # Counter 1 and persist it.
+cleanup
+trap - EXIT
+POC_GTK_STATE_FILE="$state_file" ./scripts/gtk-run >artifacts/logs/exp021-gtk-restore.log 2>&1 &
+app_pid=$!
+trap cleanup EXIT
+window=
+for _ in $(seq 1 60); do
+  window=$(xdotool search --onlyvisible --name '^Jolt Mobile PoC$' 2>/dev/null | tail -1 || true)
+  [[ -n "$window" ]] && break
+  kill -0 "$app_pid" 2>/dev/null || {
+    cat artifacts/logs/exp021-gtk-restore.log >&2
+    exit 1
+  }
+  sleep 0.5
+done
+[[ -n "$window" ]] || { printf 'GTK restored-state window did not appear\n' >&2; exit 1; }
+xdotool windowactivate --sync "$window"
+capture exp021-gtk-restored.png
+
+printf 'GTK reference interaction screenshots written to artifacts/screenshots/exp021-gtk-*.png\n'

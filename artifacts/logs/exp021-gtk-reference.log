@@ -1,0 +1,7 @@
+
+(process:126581): Gtk-WARNING **: 08:16:31.707: Locale not supported by C library.
+	Using the fallback 'C' locale.
+
+(jolt:126581): Gdk-WARNING **: 08:16:31.712: Cannot get portal org.freedesktop.host.portal.Registry version: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.freedesktop.portal.Desktop': startup job failed
+
+(jolt:126581): Gdk-WARNING **: 08:16:31.719: Cannot get portal org.freedesktop.portal.Inhibit version: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.freedesktop.portal.Desktop': startup job failed
