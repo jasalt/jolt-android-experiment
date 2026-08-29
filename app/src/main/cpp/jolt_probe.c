@@ -37,13 +37,16 @@ static const char *lifecycle_name(int code) {
 }
 
 static bool valid_event(const char *event) {
+  int restored_counter;
+  char trailing;
   return strcmp(event, "{:type :counter/inc}") == 0 ||
       strcmp(event, "{:type :counter/dec}") == 0 ||
       strcmp(event, "{:type :counter/reset}") == 0 ||
       strcmp(event, "{:type :platform/copy-counter}") == 0 ||
       strcmp(event, "{:type :lifecycle/create}") == 0 ||
       strcmp(event, "{:type :lifecycle/start}") == 0 ||
-      strcmp(event, "{:type :lifecycle/resume}") == 0;
+      strcmp(event, "{:type :lifecycle/resume}") == 0 ||
+      sscanf(event, "{:type :storage/restore :value %d}%c", &restored_counter, &trailing) == 1;
 }
 
 static const char *ensure_session(void) {
@@ -103,14 +106,18 @@ Java_net_joltlang_androidpoc_abiprobe_JoltRuntime_nativeJoltDispatch(
   const int lifecycle = lifecycle_code();
   const int effect = effect_code(event);
   (*environment)->ReleaseStringUTFChars(environment, event_edn, event);
-  char output[160];
+  char output[192];
   const int written = effect == 1
       ? snprintf(output, sizeof output,
           "{:model {:counter %d, :events [], :platform nil, :lifecycle %s}, :effects [{:type :platform/clipboard, :text \"Jolt counter: %d\"}]}",
           counter, lifecycle_name(lifecycle), counter)
-      : snprintf(output, sizeof output,
-          "{:model {:counter %d, :events [], :platform nil, :lifecycle %s}, :effects []}",
-          counter, lifecycle_name(lifecycle));
+      : effect == 2
+          ? snprintf(output, sizeof output,
+              "{:model {:counter %d, :events [], :platform nil, :lifecycle %s}, :effects [{:type :storage/write, :key \"counter\", :value %d}]}",
+              counter, lifecycle_name(lifecycle), counter)
+          : snprintf(output, sizeof output,
+              "{:model {:counter %d, :events [], :platform nil, :lifecycle %s}, :effects []}",
+              counter, lifecycle_name(lifecycle));
   if (written < 0 || written >= (int)sizeof output) return result_string(environment, "{:error :output-too-large}");
   __android_log_print(ANDROID_LOG_INFO, "jolt_probe", "dispatch counter=%d", counter);
   return result_string(environment, output);

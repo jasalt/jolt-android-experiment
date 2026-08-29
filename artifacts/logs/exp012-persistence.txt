@@ -1,0 +1,31 @@
+---initial---
+Jolt model: {:model {:counter 0, :events [], :platform nil, :lifecycle :resumed}, :effects []}
+---written---
+Jolt model: {:model {:counter 1, :events [], :platform nil, :lifecycle :resumed}, :effects [{:type :storage/write, :key
+Storage written: 1
+---relaunch---
+Jolt model: {:model {:counter 1, :events [], :platform nil, :lifecycle :resumed}, :effects []}
+Storage restored: 1
+D/AndroidRuntime( 9497): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+I/AndroidRuntime( 9497): Using default boot image
+I/AndroidRuntime( 9497): Leaving lock profiling enabled
+D/AndroidRuntime( 9497): Calling main entry com.android.commands.monkey.Monkey
+I/AndroidRuntime( 9497): VM exiting with result code 0.
+D/nativeloader( 9510): Load /data/app/~~L67A5xOR_nD65JStiwqfNw==/net.joltlang.androidpoc.abiprobe-BFt5XH6JFO6Ksgo5XvSZcA==/base.apk!/lib/arm64-v8a/libjolt_probe.so using ns clns-7 from class loader (caller=/data/app/~~L67A5xOR_nD65JStiwqfNw==/net.joltlang.androidpoc.abiprobe-BFt5XH6JFO6Ksgo5XvSZcA==/base.apk!classes3.dex): ok
+I/JoltRuntime( 9510): entering JNI on JoltRuntime
+I/jolt_probe( 9510): owner JNI session initialized
+I/jolt_probe( 9510): dispatch counter=0
+I/JoltRuntime( 9510): entering JNI on JoltRuntime
+W/JoltRuntime( 9510): type=1400 audit(0.0:374): avc:  denied  { getattr } for  path="/dev/pmsg0" dev="tmpfs" ino=773 scontext=u:r:untrusted_app:s0:c209,c256,c512,c768 tcontext=u:object_r:pmsg_device:s0 tclass=chr_file permissive=0 app=net.joltlang.androidpoc.abiprobe
+I/jolt_probe( 9510): dispatch counter=1
+I/JoltRuntime( 9510): entering JNI on JoltRuntime
+I/jolt_probe( 9510): dispatch counter=1
+I/JoltRuntime( 9510): entering JNI on JoltRuntime
+I/jolt_probe( 9510): dispatch counter=1
+W/JoltRuntime( 9510): type=1400 audit(0.0:375): avc:  denied  { getattr } for  path="/dev/pmsg0" dev="tmpfs" ino=773 scontext=u:r:untrusted_app:s0:c209,c256,c512,c768 tcontext=u:object_r:pmsg_device:s0 tclass=chr_file permissive=0 app=net.joltlang.androidpoc.abiprobe
+W/JoltRuntime( 9510): type=1400 audit(0.0:376): avc:  denied  { getattr } for  path="/dev/pmsg0" dev="tmpfs" ino=773 scontext=u:r:untrusted_app:s0:c209,c256,c512,c768 tcontext=u:object_r:pmsg_device:s0 tclass=chr_file permissive=0 app=net.joltlang.androidpoc.abiprobe
+D/AndroidRuntime( 9537): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+I/AndroidRuntime( 9537): Using default boot image
+I/AndroidRuntime( 9537): Leaving lock profiling enabled
+D/AndroidRuntime( 9537): Calling main entry com.android.commands.uiautomator.Launcher
+D/AndroidRuntime( 9537): Shutting down VM

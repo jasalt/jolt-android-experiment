@@ -7,6 +7,7 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Process;
+import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -17,6 +18,7 @@ public final class MainActivity extends Activity {
   private TextView lifecycle;
   private TextView model;
   private TextView effect;
+  private SharedPreferences preferences;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -35,8 +37,16 @@ public final class MainActivity extends Activity {
     layout.addView(button("Copy counter", "{:type :platform/copy-counter}"));
     setContentView(layout);
 
+    preferences = getSharedPreferences("jolt-poc", MODE_PRIVATE);
     runtime = new JoltRuntime();
     runtime.dispatch("{:type :lifecycle/create}", ignored -> { });
+    if (preferences.contains("counter")) {
+      int saved = preferences.getInt("counter", 0);
+      runtime.dispatch("{:type :storage/restore :value " + saved + "}", result -> {
+        model.setText("Jolt model: " + result);
+        effect.setText("Storage restored: " + saved);
+      });
+    }
   }
 
   private Button button(String label, String event) {
@@ -55,6 +65,10 @@ public final class MainActivity extends Activity {
         clipboard.setPrimaryClip(ClipData.newPlainText("Jolt counter", text));
         CharSequence copied = clipboard.getPrimaryClip().getItemAt(0).getText();
         effect.setText("Clipboard effect: " + copied);
+      } else if (result.contains(":storage/write")) {
+        int counter = Integer.parseInt(counterFrom(result));
+        preferences.edit().putInt("counter", counter).commit();
+        effect.setText("Storage written: " + counter);
       }
     });
   }

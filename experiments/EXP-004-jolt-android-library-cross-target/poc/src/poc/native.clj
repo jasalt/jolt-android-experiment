@@ -27,7 +27,10 @@
 (defn effect-code [event-edn]
   (let [event (edn/read-string event-edn)
         [_ effects] (reducer/step @app-state event)]
-    (if (= :platform/clipboard (:type (first effects))) 1 0)))
+    (case (:type (first effects))
+      :platform/clipboard 1
+      :storage/write 2
+      0)))
 
 (ffi/export! "poc_answer" answer [] :int)
 (ffi/export! "poc_allocate" allocate [:int] :int)

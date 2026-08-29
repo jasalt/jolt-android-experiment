@@ -3,13 +3,20 @@
             [poc.reducer :as sut]))
 
 (deftest counter-events
-  (testing "increment, decrement, and reset preserve the no-effect contract"
-    (is (= [{:counter 1 :events [] :platform nil :lifecycle nil} []]
+  (testing "counter changes emit declarative persistence effects"
+    (is (= [{:counter 1 :events [] :platform nil :lifecycle nil}
+            [{:type :storage/write :key "counter" :value 1}]]
            (sut/step sut/initial-state {:type :counter/inc})))
-    (is (= [{:counter -1 :events [] :platform nil :lifecycle nil} []]
+    (is (= [{:counter -1 :events [] :platform nil :lifecycle nil}
+            [{:type :storage/write :key "counter" :value -1}]]
            (sut/step sut/initial-state {:type :counter/dec})))
-    (is (= [{:counter 0 :events [] :platform nil :lifecycle nil} []]
+    (is (= [{:counter 0 :events [] :platform nil :lifecycle nil}
+            [{:type :storage/write :key "counter" :value 0}]]
            (sut/step (assoc sut/initial-state :counter 9) {:type :counter/reset})))))
+
+(deftest storage-restoration
+  (is (= [{:counter 7 :events [] :platform nil :lifecycle nil} []]
+         (sut/step sut/initial-state {:type :storage/restore :value 7}))))
 
 (deftest platform-info-event
   (is (= [{:counter 0 :events [] :platform {:name "CLI"} :lifecycle nil} []]
