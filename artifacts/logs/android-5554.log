@@ -1,0 +1,28 @@
+--------- beginning of main
+08-29 13:19:28.083  6631  6631 I oidpoc.abiprobe: Late-enabling -Xcheck:jni
+08-29 13:19:28.109  6631  6631 I oidpoc.abiprobe: Using CollectorTypeCMC GC.
+08-29 13:19:28.110  6631  6631 W oidpoc.abiprobe: Unexpected CPU variant for x86: x86_64.
+08-29 13:19:28.110  6631  6631 W oidpoc.abiprobe: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, default
+08-29 13:19:28.138  6631  6631 I berberis: Initialized Berberis (aarch64), version 0.2.3
+08-29 13:19:28.231  6631  6631 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+08-29 13:19:28.372  6631  6631 W ziparchive: Unable to open '/data/app/~~RG9CHGSxNdMEMRHzbBhziA==/net.joltlang.androidpoc.abiprobe-mIIJIX1Tf0XOFC0Lm8KNoQ==/base.dm': No such file or directory
+08-29 13:19:28.377  6631  6631 W ziparchive: Unable to open '/data/app/~~RG9CHGSxNdMEMRHzbBhziA==/net.joltlang.androidpoc.abiprobe-mIIJIX1Tf0XOFC0Lm8KNoQ==/base.dm': No such file or directory
+08-29 13:19:28.623  6631  6631 D nativeloader: Configuring clns-7 for other apk /data/app/~~RG9CHGSxNdMEMRHzbBhziA==/net.joltlang.androidpoc.abiprobe-mIIJIX1Tf0XOFC0Lm8KNoQ==/base.apk. target_sdk_version=35, uses_libraries=, library_path=/data/app/~~RG9CHGSxNdMEMRHzbBhziA==/net.joltlang.androidpoc.abiprobe-mIIJIX1Tf0XOFC0Lm8KNoQ==/lib/arm64:/data/app/~~RG9CHGSxNdMEMRHzbBhziA==/net.joltlang.androidpoc.abiprobe-mIIJIX1Tf0XOFC0Lm8KNoQ==/base.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand:/data/user/0/net.joltlang.androidpoc.abiprobe
+08-29 13:19:28.635  6631  6631 D CompatChangeReporter: Compat change id reported: 202956589; UID 10209; state: ENABLED
+08-29 13:19:28.643  6631  6631 V GraphicsEnvironment: Currently set values for:
+08-29 13:19:28.643  6631  6631 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+08-29 13:19:28.644  6631  6631 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+08-29 13:19:28.644  6631  6631 V GraphicsEnvironment: Global.Settings values are invalid: number of packages: 0, number of values: 0
+08-29 13:19:28.644  6631  6631 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+08-29 13:19:28.662  6631  6631 D CompatChangeReporter: Compat change id reported: 279646685; UID 10209; state: ENABLED
+08-29 13:19:28.781  6631  6631 D nativeloader: Load /data/app/~~RG9CHGSxNdMEMRHzbBhziA==/net.joltlang.androidpoc.abiprobe-mIIJIX1Tf0XOFC0Lm8KNoQ==/base.apk!/lib/arm64-v8a/libjolt_probe.so using ns clns-7 from class loader (caller=/data/app/~~RG9CHGSxNdMEMRHzbBhziA==/net.joltlang.androidpoc.abiprobe-mIIJIX1Tf0XOFC0Lm8KNoQ==/base.apk!classes3.dex): ok
+08-29 13:19:28.782  6631  6631 D TrafficStats: tagSocket(100) with statsTag=0xffffffff, statsUid=-1
+08-29 13:19:28.798  6631  6631 D CompatChangeReporter: Compat change id reported: 309578419; UID 10209; state: ENABLED
+08-29 13:19:28.820  6631  6689 I JoltRuntime: entering JNI on JoltRuntime
+08-29 13:19:28.843  6631  6631 W HWUI    : Unknown dataspace 0
+08-29 13:19:29.184  6631  6686 I EGL_emulation: Opening libGLESv1_CM_emulation.so
+08-29 13:19:29.185  6631  6686 I EGL_emulation: Opening libGLESv2_emulation.so
+08-29 13:19:29.224  6631  6686 W HWUI    : Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
+08-29 13:19:29.229  6631  6686 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+08-29 13:19:29.252  6631  6686 I Gralloc4: mapper 4.x is not supported
+08-29 13:19:30.332  6631  6643 I oidpoc.abiprobe: Compiler allocated 5174KB to compile void android.view.ViewRootImpl.performTraversals()

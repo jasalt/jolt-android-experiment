@@ -1,27 +1,28 @@
 # Jolt Android PoC environment report
 
-Generated UTC: 2026-08-28T10:10:17+00:00
+Generated UTC: 2026-08-29T08:36:36+00:00
 Repository: /home/user/dev/jail/jolt/jolt-android
 
 ## Host
 
-Linux lima-default 6.19.10-300.fc44.x86_64 #1 SMP PREEMPT_DYNAMIC Wed Mar 25 18:23:49 UTC 2026 x86_64 GNU/Linux
+Linux lima-jolt-android 6.19.10-300.fc44.x86_64 #1 SMP PREEMPT_DYNAMIC Wed Mar 25 18:23:49 UTC 2026 x86_64 GNU/Linux
 Fedora release 44 (Forty Four)
 DISPLAY=<unset>
 WAYLAND_DISPLAY=<unset>
-crw-rw-rw- 1 root kvm 10, 232 Aug 27 21:36 /dev/kvm
+crw-rw-rw- 1 root kvm 10, 232 Aug 28 19:31 /dev/kvm
 kvm_amd nested=1
 
 ## Nix and tool paths
 
 nix (Nix) 2.34.8
-ANDROID_HOME=/nix/store/axk6qarhx7f2hhx9lyippjvn0x3y6d53-android-sdk-env/share/android-sdk
-ANDROID_NDK_ROOT=/nix/store/axk6qarhx7f2hhx9lyippjvn0x3y6d53-android-sdk-env/share/android-sdk/ndk/29.0.14206865
+ANDROID_HOME=/nix/store/zbc8wn43d7yb9f9ci8v80z1mw6ljpsqn-android-sdk-env/share/android-sdk
+ANDROID_NDK_ROOT=/nix/store/zbc8wn43d7yb9f9ci8v80z1mw6ljpsqn-android-sdk-env/share/android-sdk/ndk/29.0.14206865
 JAVA_HOME=/nix/store/ij5q131fzyqw8wh76y9nrj5jl45zviqw-openjdk-21.0.12+8/lib/openjdk
-adb=/nix/store/axk6qarhx7f2hhx9lyippjvn0x3y6d53-android-sdk-env/bin/adb
-emulator=/nix/store/axk6qarhx7f2hhx9lyippjvn0x3y6d53-android-sdk-env/bin/emulator
-avdmanager=/nix/store/axk6qarhx7f2hhx9lyippjvn0x3y6d53-android-sdk-env/bin/avdmanager
+adb=/nix/store/zbc8wn43d7yb9f9ci8v80z1mw6ljpsqn-android-sdk-env/bin/adb
+emulator=/nix/store/zbc8wn43d7yb9f9ci8v80z1mw6ljpsqn-android-sdk-env/bin/emulator
+avdmanager=/nix/store/zbc8wn43d7yb9f9ci8v80z1mw6ljpsqn-android-sdk-env/bin/avdmanager
 java=/nix/store/ij5q131fzyqw8wh76y9nrj5jl45zviqw-openjdk-21.0.12+8/bin/java
+gradle=/nix/store/58dmv6x2p68hlhipxc7fbhjdvcplcvkx-gradle-8.14.4/bin/gradle
 cmake=/nix/store/908kvhj55s5z7laavf4pddxrxl62rrgl-cmake-4.3.4/bin/cmake
 ninja=/nix/store/6ji6bq0si2j8ibdrxqgcmh1cw0wmdiyk-ninja-1.13.2/bin/ninja
 clang=/nix/store/w021fbcg4z6vxihnp6gb6vijyifl051f-clang-wrapper-21.1.8/bin/clang
@@ -70,6 +71,23 @@ Pkg.Desc=Android SDK Command-line Tools
 openjdk version "21.0.12" 2026-07-21
 OpenJDK Runtime Environment (build 21.0.12+8-nixos)
 OpenJDK 64-Bit Server VM (build 21.0.12+8-nixos, mixed mode, sharing)
+
+------------------------------------------------------------
+Gradle 8.14.4
+------------------------------------------------------------
+
+Build time:    2026-01-23 16:30:23 UTC
+Revision:      ad5ff774b4b0e9a8a0cf1a14ca70d7230003c3ad
+
+Kotlin:        2.0.21
+Groovy:        3.0.25
+Ant:           Apache Ant(TM) version 1.10.15 compiled on August 25 2024
+Launcher JVM:  21.0.12 (Oracle Corporation 21.0.12+8-nixos)
+Daemon JVM:    /nix/store/ij5q131fzyqw8wh76y9nrj5jl45zviqw-openjdk-21.0.12+8/lib/openjdk (no JDK specified, using current Java home)
+OS:            Linux 6.19.10-300.fc44.x86_64 amd64
+
+jolt 8fcba79f8b33628af926f88032d93a1b31c24235
+10.4.1
 cmake version 4.3.4
 
 CMake suite maintained and supported by Kitware (kitware.com/cmake).

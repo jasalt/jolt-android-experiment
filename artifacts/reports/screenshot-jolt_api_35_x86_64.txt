@@ -1,6 +1,6 @@
 # Emulator screenshot report
 
-Generated UTC: 2026-08-28T16:33:31+00:00
+Generated UTC: 2026-08-29T09:33:39+00:00
 AVD: jolt_api_35_x86_64
 Serial: emulator-5554
 
@@ -16,6 +16,6 @@ ABI list: x86_64,arm64-v8a
 ## PNG
 
 Path: /home/user/dev/jail/jolt/jolt-android/artifacts/screenshots/jolt_api_35_x86_64.png
-Bytes: 1018233
+Bytes: 90299
 Signature: 89504e470d0a1a0a
 Dimensions: 1080x2400

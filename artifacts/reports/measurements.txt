@@ -1,0 +1,32 @@
+# Jolt Android PoC measurements
+UTC: 2026-08-29T10:30:33Z
+Host: x86_64 Linux
+Device SDK: 35
+Device ABI: x86_64
+
+## APK
+debug APK bytes: 68086080
+
+## Cold-start timings (5 am start -W runs, milliseconds)
+TotalTime: 1165
+WaitTime: 1205
+TotalTime: 1413
+WaitTime: 1414
+TotalTime: 1473
+WaitTime: 1476
+TotalTime: 1269
+WaitTime: 1277
+TotalTime: 1307
+WaitTime: 1310
+
+## Native process memory after launch
+  Native Heap    12705    12680        0       84    13672    23412    17124     1771
+         Native Heap:    12680                          13672
+
+## Source LOC (wc -l; generated/build output excluded)
+shared Jolt LOC: 153
+Android Jolt LOC: 0
+Kotlin/Java LOC: 216
+JNI/C LOC: 264
+GTK Jolt LOC: 62
+CLI Jolt LOC: 12
