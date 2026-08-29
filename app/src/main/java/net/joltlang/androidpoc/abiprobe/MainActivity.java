@@ -7,11 +7,14 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Process;
+import android.util.Log;
 import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public final class MainActivity extends Activity {
   private JoltRuntime runtime;
@@ -19,6 +22,7 @@ public final class MainActivity extends Activity {
   private TextView model;
   private TextView effect;
   private SharedPreferences preferences;
+  private ExecutorService worker;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -38,8 +42,16 @@ public final class MainActivity extends Activity {
     setContentView(layout);
 
     preferences = getSharedPreferences("jolt-poc", MODE_PRIVATE);
+    worker = Executors.newSingleThreadExecutor(runnable -> new Thread(runnable, "AndroidWorker"));
     runtime = new JoltRuntime();
     runtime.dispatch("{:type :lifecycle/create}", ignored -> { });
+    worker.execute(() -> {
+      Log.i("AndroidWorker", "callback on " + Thread.currentThread().getName());
+      runtime.dispatch("{:type :worker/completed}", result -> {
+        effect.setText("Worker callback: " + result);
+        Log.i("AndroidWorker", "completion returned on " + Thread.currentThread().getName());
+      });
+    });
     if (preferences.contains("counter")) {
       int saved = preferences.getInt("counter", 0);
       runtime.dispatch("{:type :storage/restore :value " + saved + "}", result -> {
@@ -101,6 +113,7 @@ public final class MainActivity extends Activity {
 
   @Override
   protected void onDestroy() {
+    if (worker != null) worker.shutdown();
     if (runtime != null) runtime.close();
     super.onDestroy();
   }

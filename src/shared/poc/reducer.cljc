@@ -4,7 +4,8 @@
   {:counter 0
    :events []
    :platform nil
-   :lifecycle nil})
+   :lifecycle nil
+   :worker nil})
 
 (defn step [state event]
   (case (:type event)
@@ -25,6 +26,9 @@
 
     :platform/info
     [(assoc state :platform (:value event)) []]
+
+    :worker/completed
+    [(assoc state :worker :completed) []]
 
     :platform/copy-counter
     [state [{:type :platform/clipboard

@@ -32,8 +32,12 @@
       :storage/write 2
       0)))
 
+(defn worker-code []
+  (if (= :completed (:worker @app-state)) 1 0))
+
 (ffi/export! "poc_answer" answer [] :int)
 (ffi/export! "poc_allocate" allocate [:int] :int)
 (ffi/export! "poc_dispatch_counter" dispatch-counter [:string] :int)
 (ffi/export! "poc_lifecycle_code" lifecycle-code [] :int)
 (ffi/export! "poc_effect_code" effect-code [:string] :int)
+(ffi/export! "poc_worker_code" worker-code [] :int)

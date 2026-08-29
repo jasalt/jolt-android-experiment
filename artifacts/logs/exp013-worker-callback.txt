@@ -1,0 +1,22 @@
+D/AndroidRuntime( 9658): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+I/AndroidRuntime( 9658): Using default boot image
+I/AndroidRuntime( 9658): Leaving lock profiling enabled
+D/AndroidRuntime( 9658): Calling main entry com.android.commands.monkey.Monkey
+I/AndroidRuntime( 9658): VM exiting with result code 0.
+D/nativeloader( 9669): Load /data/app/~~r9p6heZLWE337Qy8N1Pn0A==/net.joltlang.androidpoc.abiprobe-wIVshWGmafay1dY49vIGEw==/base.apk!/lib/arm64-v8a/libjolt_probe.so using ns clns-7 from class loader (caller=/data/app/~~r9p6heZLWE337Qy8N1Pn0A==/net.joltlang.androidpoc.abiprobe-wIVshWGmafay1dY49vIGEw==/base.apk!classes3.dex): ok
+I/AndroidWorker( 9669): callback on AndroidWorker
+I/JoltRuntime( 9669): entering JNI on JoltRuntime
+I/jolt_probe( 9669): owner JNI session initialized
+I/jolt_probe( 9669): dispatch counter=0
+I/JoltRuntime( 9669): entering JNI on JoltRuntime
+I/jolt_probe( 9669): dispatch counter=0
+I/JoltRuntime( 9669): entering JNI on JoltRuntime
+I/jolt_probe( 9669): dispatch counter=0
+I/JoltRuntime( 9669): entering JNI on JoltRuntime
+I/jolt_probe( 9669): dispatch counter=0
+W/JoltRuntime( 9669): type=1400 audit(0.0:386): avc:  denied  { getattr } for  path="/dev/pmsg0" dev="tmpfs" ino=773 scontext=u:r:untrusted_app:s0:c209,c256,c512,c768 tcontext=u:object_r:pmsg_device:s0 tclass=chr_file permissive=0 app=net.joltlang.androidpoc.abiprobe
+I/AndroidWorker( 9669): completion returned on main
+W/JoltRuntime( 9669): type=1400 audit(0.0:387): avc:  denied  { getattr } for  path="/dev/pmsg0" dev="tmpfs" ino=773 scontext=u:r:untrusted_app:s0:c209,c256,c512,c768 tcontext=u:object_r:pmsg_device:s0 tclass=chr_file permissive=0 app=net.joltlang.androidpoc.abiprobe
+W/JoltRuntime( 9669): type=1400 audit(0.0:388): avc:  denied  { getattr } for  path="/dev/pmsg0" dev="tmpfs" ino=773 scontext=u:r:untrusted_app:s0:c209,c256,c512,c768 tcontext=u:object_r:pmsg_device:s0 tclass=chr_file permissive=0 app=net.joltlang.androidpoc.abiprobe
+Jolt model: {:model {:counter 0, :events [], :platform nil, :lifecycle :resumed, :worker :completed}, :effects []}
+Worker callback: {:model {:counter 0, :events [], :platform nil, :lifecycle :created, :worker :completed}, :effects []}
