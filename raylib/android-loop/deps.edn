@@ -1,0 +1,4 @@
+{:paths ["src"]
+ :jolt/native [{:name "Raylib main image"
+                :linux ["libmain.so"]
+                :optional true}]}

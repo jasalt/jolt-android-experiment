@@ -1,0 +1,12 @@
+Frame-time text rendered by Jolt and visually inspected in the ADB screenshots:
+
+milestone     frame  elapsed_ms  frame_us  target_fps
+30s           1040   35199       33335     30
+post-resume   1243   43219       33335     30
+5m            8997   301059      33759     30
+15m           27003  902513      33335     30
+
+The final C/Jolt log reports 27078 frames after the 905-second bounded run.
+Native-heap and TOTAL memory snapshots accompany every milestone. Values are
+reported from screenshots/meminfo captured by commands.sh; no OCR assertion is
+made by the harness.

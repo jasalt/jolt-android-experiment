@@ -26,3 +26,4 @@ target/
 raylib/jolt-android/src/main/jniLibs/
 raylib/topology-android/src/main/jniLibs/
 raylib/frame-android/src/main/jniLibs/
+raylib/loop-android/src/main/jniLibs/

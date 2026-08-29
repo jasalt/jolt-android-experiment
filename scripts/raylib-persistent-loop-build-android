@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Assemble the independent Jolt-owned persistent-loop probe.
+set -euo pipefail
+
+root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+cd "$root"
+
+: "${ANDROID_HOME:?run through nix develop so Android tools are pinned}"
+: "${JOLT_SOURCE:?set to a clean checkout at the pinned Jolt revision}"
+: "${RAYLIB_SOURCE:?run through nix develop so Raylib is pinned}"
+
+./scripts/raylib-jolt-loop-build
+stage="$root/raylib/loop-android/src/main/jniLibs/arm64-v8a"
+rm -rf "$root/raylib/loop-android/src/main/jniLibs"
+mkdir -p "$stage"
+cp "$root/native/jolt/android-arm64/arm64-v8a/libjoltraylib-loop.so" \
+  "$stage/libjoltraylib-loop.so"
+
+gradle --no-daemon :raylib-loop-android:assembleDebug
+apk="$root/raylib/loop-android/build/outputs/apk/debug/raylib-loop-android-debug.apk"
+test -s "$apk" || {
+  printf 'expected persistent-loop APK was not produced: %s\n' "$apk" >&2
+  exit 1
+}
+printf 'Built %s\n' "$apk"

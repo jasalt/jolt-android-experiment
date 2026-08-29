@@ -1,0 +1,2 @@
+package: name='net.joltlang.raylibloopprobe' versionCode='1' versionName='0.1' platformBuildVersionName='15' platformBuildVersionCode='35' compileSdkVersion='35' compileSdkVersionCodename='15'
+launchable-activity: name='android.app.NativeActivity'  label='' icon=''

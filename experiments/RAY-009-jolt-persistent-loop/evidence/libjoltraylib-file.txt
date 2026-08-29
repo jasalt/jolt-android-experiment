@@ -1,0 +1,1 @@
+/tmp/nix-shell.Bug3r4/tmp.h3ncd52KDV/libjoltraylib-loop.so: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, for Android 35, built by NDK r29 (14206865), stripped
