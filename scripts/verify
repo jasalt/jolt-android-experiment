@@ -1,0 +1,72 @@
+#!/usr/bin/env bash
+# Run supported verification tiers from the pinned Nix development shell.
+# Usage: JOLT_SOURCE=/path/to/pinned-jolt nix develop -c ./scripts/verify
+set -euo pipefail
+
+root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+cd "$root"
+: "${ANDROID_HOME:?run through nix develop so ANDROID_HOME is set}"
+: "${ANDROID_NDK_ROOT:?run through nix develop so ANDROID_NDK_ROOT is set}"
+: "${JOLT_SOURCE:?set JOLT_SOURCE to a checkout at the revision required by scripts/jolt-android-library-build}"
+
+log_dir="$root/artifacts/logs/verify"
+summary="$root/artifacts/reports/verify-summary.txt"
+mkdir -p "$log_dir" "$(dirname -- "$summary")"
+
+run() {
+  local name=$1
+  shift
+  printf '\n==> %s\n' "$name" | tee "$log_dir/$name.log"
+  "$@" 2>&1 | tee -a "$log_dir/$name.log"
+}
+
+run bootstrap ./scripts/bootstrap
+run portable ./scripts/test-portable
+
+if [[ "$(uname -s)" == Linux && -n "${DISPLAY:-}" ]] && command -v xdotool >/dev/null && command -v ffmpeg >/dev/null; then
+  run gtk-conformance ./scripts/gtk-run --conformance
+  run gtk-smoke ./scripts/gtk-smoke
+else
+  printf 'SKIP gtk: requires Linux DISPLAY, xdotool, and ffmpeg\n' | tee "$log_dir/gtk-skip.log"
+fi
+
+# EXP-022 records that a host-native library harness cannot link against this
+# host's non-PIC Chez kernel. Do not mask that known architecture boundary as a
+# successful tier; Android static ABI and instrumentation remain the supported
+# validation paths on this x86_64 host.
+printf 'SKIP host-native-library: EXP-022 non-PIC Chez kernel boundary\n' | tee "$log_dir/host-native-library-skip.log"
+
+run android-library-build ./scripts/jolt-android-library-build
+run android-library-abi ./scripts/test-android-library
+run android-apk ./scripts/android-build
+
+serial="emulator-${JOLT_ANDROID_EMULATOR_PORT:-5554}"
+if [[ "$(adb -s "$serial" get-state 2>/dev/null || true)" != device ]]; then
+  run emulator ./scripts/emulator-start headless
+fi
+# AndroidX Test Orchestrator can remove the target package after its test APK;
+# install the demo only after instrumentation before lifecycle/UI interactions.
+run android-instrumentation gradle --no-daemon :app:connectedDebugAndroidTest
+run android-install-launch ./scripts/android-run
+run android-lifecycle ./scripts/android-lifecycle-smoke
+run android-showcase ./scripts/android-showcase
+run android-measure ./scripts/measure
+run android-logcat adb -s "$serial" logcat -d -v threadtime
+
+# Inspect only this invocation's retained logs. Historical experiments may
+# intentionally preserve old crash markers and must not make a clean rerun fail.
+if grep -REq 'FATAL EXCEPTION|SIGABRT|signal 6' "$log_dir"; then
+  printf 'crash marker found in current verification logs\n' >&2
+  exit 1
+fi
+
+{
+  printf '# Verification summary\n\n'
+  printf 'Generated UTC: '; date -u '+%Y-%m-%dT%H:%M:%SZ'
+  printf 'Host: '; uname -srm
+  printf 'JOLT_SOURCE: %s\n' "$JOLT_SOURCE"
+  printf 'Logs: artifacts/logs/verify/\n'
+  printf 'Android serial: %s\n' "$serial"
+  printf 'Result: PASS (GTK may be explicitly skipped on unsupported hosts; host-native library is explicitly skipped per EXP-022).\n'
+} >"$summary"
+printf 'Verification passed; wrote %s\n' "$summary"

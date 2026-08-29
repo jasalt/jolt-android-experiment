@@ -11,7 +11,8 @@ nix --extra-experimental-features 'nix-command flakes' develop -c ./scripts/cli 
 
 The CLI accepts exactly `--event <EDN map>` and writes one canonical EDN result
 with `:model` and `:effects`. Invalid CLI arguments or invalid EDN fail with a
-nonzero exit status.
+nonzero exit status. Run `./scripts/cli --conformance` to execute the shared
+canonical fixture corpus.
 
 Use Jolt's normal nREPL workflow for interactive portable-core development:
 
@@ -58,3 +59,21 @@ The current Fedora x86_64 Lima guest runs the project host and the pinned
 upstream Glimmer GTK reactivity smoke; see
 [EXP-021](../experiments/EXP-021-x86-64-linux-gtk-host). That is Linux x86_64
 reference-host evidence, not native ARM64 Linux, Android, or macOS GTK support.
+
+## Clean-room verification
+
+From a clean generated state, use the pinned shell and a Jolt checkout at the
+revision required by `scripts/jolt-android-library-build`:
+
+```sh
+nix --extra-experimental-features 'nix-command flakes' develop -c ./scripts/bootstrap
+JOLT_SOURCE=/path/to/pinned-jolt \
+  nix --extra-experimental-features 'nix-command flakes' develop -c ./scripts/verify
+```
+
+`verify` is fail-fast and retains one log per tier under
+`artifacts/logs/verify/`. It rebuilds the Android library/APK, starts an API-35
+emulator only when needed, runs instrumentation/lifecycle/showcase/measurement
+tiers, and writes `artifacts/reports/verify-summary.txt`. GTK is explicitly
+skipped when its Linux X11 prerequisites are unavailable; the host-native C ABI
+harness is explicitly skipped on the known EXP-022 non-PIC kernel boundary.

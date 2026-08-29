@@ -29,3 +29,16 @@ The successful run used the current x86_64 Lima guest and API-35 x86_64
 emulator. The ARM64 library therefore remains translation evidence, not native
 ARM64-host evidence. `JOLT_SOURCE` is an explicit clean-room prerequisite; the
 repository does not claim a clone-free source archive.
+
+## Automated rerun — 2026-08-29
+
+`scripts/verify` now composes this clean-room sequence from the pinned Nix
+shell. With `JOLT_SOURCE` at Jolt PR #778's merged revision, it passed portable
+fixtures, Android cross-library rebuild/static ABI verification, APK assembly,
+API-35 emulator instrumentation, install/launch, lifecycle recreation,
+showcase captures, measurements, and a fresh logcat crash-marker scan. It
+retained per-tier logs under `artifacts/logs/verify/` and wrote
+`artifacts/reports/verify-summary.txt`. GTK was explicitly skipped because this
+non-display shell had no `DISPLAY`; the known non-PIC host library boundary was
+explicitly skipped per EXP-022. Neither skip is reported as a pass for that
+host-specific tier.
