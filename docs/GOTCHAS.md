@@ -3,8 +3,9 @@
 Each item is an observed constraint with an evidence reference.
 
 - **Do not infer native ARM64 portability from this emulator.** API 35 x86_64
-  emulator translates the ARM64 library ([EXP-001](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-001-api35-arm64-on-x86-emulator)), but `jolt-android-a4e.2`
-  remains blocked until a native ARM64 host runs portable CLI/nREPL fixtures.
+ emulator translates the ARM64 library ([EXP-001](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-001-api35-arm64-on-x86-emulator)), but `jolt-android-a4e.2`
+  required a separate native host run. Native Apple Silicon portable CLI/nREPL
+  evidence is recorded in [EXP-017](../experiments/EXP-017-native-arm64-portable-cli).
 - **Use ANGLE for the deterministic API 35 AVD.** SwiftShader/off paths crashed
   under the tested emulator version; `scripts/emulator-start` defaults to ANGLE
   ([EXP-002](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-002-api35-emulator-startup-crash)).

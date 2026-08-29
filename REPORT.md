@@ -41,13 +41,13 @@ single platform adapter thread—is viable for a constrained Android proof of
 concept. It is not evidence that Jolt is a drop-in replacement for JVM Clojure
 on Android, nor that this is a production-ready mobile runtime.
 
-### Blocked
+### Portable-host evidence
 
-Native ARM64 portable-host validation is still blocked. The current environment
-is an x86_64 Lima guest; emulation/cross-compilation does not satisfy
-`jolt-android-a4e.2`. A native aarch64 Linux guest or Apple Silicon macOS host
-must run the portable CLI fixtures and normal Jolt nREPL before multiplatform
-portable-host support is claimed.
+Native Apple Silicon macOS ran the pinned `aarch64-darwin` Jolt shell without
+GTK. The portable suite passed six tests and 13 assertions, its valid and
+malformed CLI fixtures behaved as specified, and a loopback Jolt nREPL server
+evaluated the reducer increment event ([EXP-017](experiments/EXP-017-native-arm64-portable-cli)).
+This is native host evidence, not Android ARM64 execution evidence.
 
 Android has one narrower debug-evaluation result: a disposable fixed
 `load-string` export resolved through `jolt_lookup` and returned `42` on the
@@ -58,8 +58,7 @@ CIDER, error-recovery path, or redefinition is implemented.
 
 ### Unimplemented
 
-- GTK/Glimmer reference application; it remains blocked by native ARM64 portable
-  validation in the dependency graph.
+- GTK/Glimmer reference application.
 - Compose UI; the observed Android shell uses native Android Views.
 - Android notification posting, URL/intent effects, generalized permissions,
   and additional platform capabilities.
@@ -82,16 +81,16 @@ CIDER, error-recovery path, or redefinition is implemented.
 | Persistence restore | [EXP-012](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-012-android-persistence) |
 | Permission round trip | [EXP-014](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-014-android-notification-permission) |
 | Bounded fixed debug eval | [EXP-015](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-015-android-fixed-debug-eval) |
+| Native Apple Silicon portable CLI/nREPL | [EXP-017](experiments/EXP-017-native-arm64-portable-cli) |
 
 ## Reproducible validation baseline
 
 ```sh
-nix develop -c ./scripts/test-portable
-nix develop -c env JOLT_SOURCE=../jolt scripts/jolt-android-library-build
-nix develop -c gradle --no-daemon :app:assembleDebug
+nix --extra-experimental-features 'nix-command flakes' develop -c ./scripts/test-portable
+nix --extra-experimental-features 'nix-command flakes' develop -c env JOLT_SOURCE=../jolt scripts/jolt-android-library-build
+nix --extra-experimental-features 'nix-command flakes' develop -c gradle --no-daemon :app:assembleDebug
 ```
 
 Install and interact with the deterministic API 35 AVD using the command
 sequences stored in each experiment. Run `nix flake check --all-systems --no-build`
-for Nix output evaluation. These commands do not replace the outstanding native
-ARM64-host validation.
+for Nix output evaluation.

@@ -11,18 +11,19 @@ The potential benefit is a small native Clojure-oriented core that can be reused
 
 ## Status
 
-**Android feasibility demonstrated under translation; native ARM64 host
-validation remains blocked.** The repository now reproducibly cross-builds
+**Android feasibility demonstrated under translation; native Apple Silicon
+portable-core validation passes.** The repository now reproducibly cross-builds
 Chez and a reduced Jolt managed library for Android `arm64-v8a`, loads it in an
 API 35 x86_64 emulator through Android's ARM64 translation path, confines calls
 to one Kotlin runtime thread, and demonstrates shared state, lifecycle events,
 clipboard effects, persistence restore, notification permission round trip, and
 a worker callback. See [REPORT.md](REPORT.md) for evidence boundaries.
 
-This does **not** prove native ARM64 Linux/macOS portable-host support:
-`jolt-android-a4e.2` requires a native ARM64 host run and remains externally
-blocked. GTK/Glimmer, Compose, notification posting, intents, and Android nREPL
-remain unimplemented. [EXP-015](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-015-android-fixed-debug-eval)
+Native Apple Silicon macOS now runs the portable CLI fixtures and normal Jolt
+nREPL without GTK ([EXP-017](experiments/EXP-017-native-arm64-portable-cli)).
+This does not prove native ARM64 Android execution. GTK/Glimmer, Compose,
+notification posting, intents, and Android nREPL remain unimplemented.
+[EXP-015](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-015-android-fixed-debug-eval)
 demonstrates one bounded, fixed Android `load-string` call; it is not a
 caller-supplied eval or nREPL result.
 
@@ -174,9 +175,9 @@ in [docs/LIMA.md](docs/LIMA.md).
 The current reproducible baseline is:
 
 ```sh
-nix develop -c ./scripts/test-portable
-nix develop -c env JOLT_SOURCE=../jolt scripts/jolt-android-library-build
-nix develop -c gradle --no-daemon :app:assembleDebug
+nix --extra-experimental-features 'nix-command flakes' develop -c ./scripts/test-portable
+nix --extra-experimental-features 'nix-command flakes' develop -c env JOLT_SOURCE=../jolt scripts/jolt-android-library-build
+nix --extra-experimental-features 'nix-command flakes' develop -c gradle --no-daemon :app:assembleDebug
 ```
 
 The Android build is exercised through the deterministic API 35 AVD and the
