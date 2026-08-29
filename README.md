@@ -12,7 +12,7 @@ The potential benefit is a small native Clojure-oriented core that can be reused
 ## Status
 
 **Android feasibility demonstrated under translation; native Apple Silicon
-portable-core validation passes.** The repository now reproducibly cross-builds
+portable-core and Android build validation pass.** The repository now reproducibly cross-builds
 Chez and a reduced Jolt managed library for Android `arm64-v8a`, loads it in an
 API 35 x86_64 emulator through Android's ARM64 translation path, confines calls
 to one Kotlin runtime thread, and demonstrates shared state, lifecycle events,
@@ -20,8 +20,11 @@ clipboard effects, persistence restore, notification permission round trip, and
 a worker callback. See [REPORT.md](REPORT.md) for evidence boundaries.
 
 Native Apple Silicon macOS now runs the portable CLI fixtures and normal Jolt
-nREPL without GTK ([EXP-017](experiments/EXP-017-native-arm64-portable-cli)).
-This does not prove native ARM64 Android execution. GTK/Glimmer, Compose,
+nREPL without GTK ([EXP-017](experiments/EXP-017-native-arm64-portable-cli))
+and builds the Android debug APK through the Nix-provided SDK/NDK
+([EXP-019](experiments/EXP-019-native-darwin-android-nix-build)). This does not
+prove native ARM64 Android execution or a successful macOS emulator boot.
+GTK/Glimmer, Compose,
 notification posting, intents, and Android nREPL remain unimplemented.
 [EXP-015](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-015-android-fixed-debug-eval)
 demonstrates one bounded, fixed Android `load-string` call; it is not a
@@ -50,8 +53,8 @@ framework. The PoC investigates whether it can:
   debug-eval path;
 - run meaningful shared `.cljc` domain code in Android, Linux GTK4, and a
   non-GUI CLI/REPL reference host;
-- let Apple Silicon macOS developers work on the portable core locally with
-  Nix, without requiring Linux or GTK;
+- let Apple Silicon macOS developers work on the portable core and assemble the
+  Android APK locally with Nix, without requiring Linux, GTK, or Android Studio;
 - determine whether an API-35 x86_64 emulator can execute the ARM64 library, and
   document practical fallbacks if not.
 
@@ -167,10 +170,11 @@ must support native `x86_64-linux`, `aarch64-linux`, and `aarch64-darwin` hosts.
 It is intended to provide Jolt/Chez sources and tools, JDK/Gradle, Android API
 35 SDK and emulator components, the NDK toolchain, CMake/Ninja, GTK4 where
 applicable, and diagnostic tools without relying on Android Studio's mutable SDK
-manager. Android and GTK tool availability is platform-specific and must be
-reported explicitly rather than assumed on macOS. Apple Silicon developers can
-use the portable-core shell directly or the native `aarch64` Lima VM described
-in [docs/LIMA.md](docs/LIMA.md).
+ manager. The Android SDK/NDK build workflow is available on `x86_64-linux` and
+ `aarch64-darwin`; GTK remains Linux-only. Emulator operation is platform- and
+ host-resource-specific and must be reported from an actual run. Apple Silicon
+ developers can use the native shell directly or the native `aarch64` Lima VM
+ described in [docs/LIMA.md](docs/LIMA.md).
 
 The current reproducible baseline is:
 
@@ -216,6 +220,13 @@ tests, and documentation rather than assuming JVM Clojure behavior. Keep changes
 small and reproducible, preserve exact commands and logs for platform failures,
 and distinguish proposed, observed, inferred, and blocked behavior in
 contributor-facing documentation.
+
+Apple Silicon collaborators use the pinned `aarch64-darwin` Nix shell for the
+portable workflow and Android APK assembly. Run the commands in
+[docs/DEVELOPMENT.md](docs/DEVELOPMENT.md); do not add a host-installed Android
+SDK or Android Studio path. GTK remains Linux-only. The macOS emulator image and
+acceleration are available, but its boot still requires sufficient local disk
+space; see [EXP-019](experiments/EXP-019-native-darwin-android-nix-build).
 
 Task state and dependency tracking use Beads; `docs/PLAN.md` remains the project
 specification rather than a mutable task list. Beads uses the existing project

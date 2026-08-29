@@ -79,17 +79,27 @@ safe in-place operation.
 
 ## Apple Silicon macOS development
 
-The preferred macOS workflow for the portable core is direct native Nix:
+The preferred macOS workflow is direct native Nix:
 
 ```sh
-nix develop
-./scripts/cli --event '{:type :counter/inc}'
-jolt nrepl-server
+nix --extra-experimental-features 'nix-command flakes' develop -c ./scripts/cli --event '{:type :counter/inc}'
+nix --extra-experimental-features 'nix-command flakes' develop -c jolt nrepl-server
+nix --extra-experimental-features 'nix-command flakes' develop -c gradle --no-daemon :app:assembleDebug
+nix --extra-experimental-features 'nix-command flakes' develop -c ./scripts/emulator-start headless
 ```
 
-The flake must support `aarch64-darwin` for this shell. GTK and the Linux
-Android-emulator configuration are not prerequisites and must not be pulled into
-the macOS portable-core shell.
+The `aarch64-darwin` shell provides an immutable API 35 SDK, NDK r29, `adb`,
+the emulator, and the API 35 Google APIs ARM64 image. The Android debug APK
+build passed with these Nix paths on native Apple Silicon; no host-installed SDK
+was used. The pinned NDK exposes `darwin-x86_64` host tools, which executed
+successfully in the observed environment. GTK remains Linux-only.
+
+`scripts/emulator-start` selects the ARM64 image and a `host` GPU on Apple
+Silicon. Hypervisor.Framework acceleration was detected, but emulator boot was
+not established on the observed host because its AVD userdata partition needed
+12 GiB while only 8.7 GiB was free. Ensure sufficient local free space before
+claiming an emulator workflow works. See
+[EXP-019](../experiments/EXP-019-native-darwin-android-nix-build).
 
 If a Linux environment is needed—for example, to match CI shell behavior—start
 this same template on an Apple Silicon Mac. With `arch` unset, Lima chooses an

@@ -22,9 +22,12 @@ test -r /dev/kvm && ls -l /dev/kvm
 In a Lima VM, `sudo` is generally available. In Jai, access is restricted. The
 Fedora host compositor is Wayland, although an Xwayland `DISPLAY` may be
 available for graphical emulator and GTK work. Apple Silicon macOS developers
-use the portable CLI/REPL path directly through Nix or in a native ARM64 Lima
-VM; they must not be required to install or use GTK. Never encode machine-local paths or manually
-installed SDK components into the project.
+use the native `aarch64-darwin` Nix shell for portable CLI/REPL work and Android
+APK assembly; it supplies the project SDK/NDK, `adb`, and emulator without
+Android Studio or host-installed SDK components. GTK remains Linux-only. The
+macOS emulator must be validated on each host: package availability and
+acceleration do not overcome a local disk-space shortage. Never encode
+machine-local paths or manually installed SDK components into the project.
 
 Follow the environment contract described in [README.md](README.md). Verify
 version claims in `docs/PLAN.md` against pinned/current upstream sources—the plan is

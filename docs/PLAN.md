@@ -26,7 +26,7 @@ Chez itself currently lists Android ARMv7/AArch64 as supported, while Jolt alrea
 
 # 2. Non-negotiable development rules
 
-The primary Android integration environment is Fedora 44 x86_64 with an X11 display. Portable-core development must also be supported on native Apple Silicon macOS through Nix or a native-architecture Lima VM; do not require Linux/GTK for CLI, tests, or nREPL.
+The primary Android integration environment is Fedora 44 x86_64 with an X11 display. Native Apple Silicon macOS must support portable-core and Android SDK/NDK build development through Nix; do not require Linux or GTK for CLI, tests, nREPL, or APK assembly. GTK remains Linux-only, and macOS emulator operation must be demonstrated separately rather than assumed.
 
 Use this workflow for every non-trivial feature:
 
@@ -235,7 +235,7 @@ Use `.cljc` for code that is intended to remain portable. Jolt deliberately supp
 
 Use Nix flakes as the default dependency boundary.
 
-`android-nixpkgs` is a reasonable Linux Android-tooling base because it supports `x86_64-linux`, packages Google's SDK repository, and provides immutable Android SDK compositions. ([GitHub][6]) The flake must separately expose a portable-core shell on `x86_64-linux`, `aarch64-linux`, and `aarch64-darwin`; do not imply that Android emulator or GTK packages are available on all three.
+`android-nixpkgs` packages Google's SDK repository and provides immutable Android SDK compositions on `x86_64-linux` and `aarch64-darwin`. ([GitHub][6]) The flake must expose the Android SDK/NDK build shell on both systems and a portable-core shell on `aarch64-linux`; GTK remains Linux-only. Do not imply that an emulator has booted until it is observed on that host.
 
 Pin everything through `flake.lock`.
 
@@ -251,6 +251,7 @@ Android build-tools 35
 Android platform-tools
 Android emulator
 Android API 35 google_apis x86_64 image (Linux Android shell)
+Android API 35 google_apis ARM64 image (Apple Silicon macOS shell)
 Android NDK
 CMake
 Ninja
@@ -270,7 +271,7 @@ Prefer the current supported stable NDK rather than arbitrary latest. As of Augu
 
 Do not rely on Android Studio's mutable SDK manager for the build.
 
-Android Studio itself can be installed for debugging/inspection, but the Linux Android shell must make:
+Android Studio itself can be installed for debugging/inspection, but the Linux and Apple Silicon macOS Android shells must make:
 
 ```text
 nix develop
@@ -279,7 +280,7 @@ adb ...
 emulator ...
 ```
 
-sufficient for normal operation. On macOS, the portable-core shell must make `jolt`, the CLI, tests, and nREPL available without Android Studio, Linux, or GTK.
+sufficient for normal operation. On macOS, the same Nix shell must make `jolt`, the CLI, tests, nREPL, Android APK assembly, and Android tooling available without Android Studio, Linux, or GTK.
 
 ### Required environment diagnostic
 

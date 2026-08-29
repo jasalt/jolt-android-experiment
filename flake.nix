@@ -70,24 +70,26 @@
             inherit system;
             config.allowUnfree = true;
           };
+          androidSupported = builtins.elem system [ "x86_64-linux" "aarch64-darwin" ];
         in
         {
           jolt = mkJolt pkgs;
-        } // pkgs.lib.optionalAttrs (system == "x86_64-linux") {
+        } // pkgs.lib.optionalAttrs androidSupported {
           android-sdk =
             let
-              # cmdline-tools 23 added a native `android` CLI binary. At the
-              # pinned android-nixpkgs revision it retains the host ELF
-              # interpreter, which cannot run in a Nix sandbox while the SDK
-              # composition calls `sdkmanager --list`. Patch only that binary
-              # until android-nixpkgs incorporates an upstream fix.
-              cmdlineTools = android.packages.${system}.cmdline-tools-latest.overrideAttrs (old: {
+              # cmdline-tools 23's Linux `android` binary retains the host ELF
+              # interpreter at this pinned revision. Patch it only on Linux;
+              # the native Darwin binary requires no ELF fixup.
+              linuxCmdlineTools = android.packages.${system}.cmdline-tools-latest.overrideAttrs (old: {
                 postFixup = (old.postFixup or "") + ''
                   ${pkgs.patchelf}/bin/patchelf \
                     --set-interpreter ${pkgs.stdenv.cc.bintools.dynamicLinker} \
                     "$out/bin/android"
                 '';
               });
+              cmdlineTools = if pkgs.stdenv.hostPlatform.isLinux
+                then linuxCmdlineTools
+                else android.packages.${system}.cmdline-tools-latest;
             in
             (import ./nix/android-sdk.nix {
               inherit pkgs;
@@ -98,9 +100,12 @@
               platform-tools
               platforms-android-35
               emulator
-              system-images-android-35-google-apis-x86-64
               ndk-29-0-14206865
               cmake-3-22-1
+            ] ++ pkgs.lib.optionals (system == "x86_64-linux") [
+              system-images-android-35-google-apis-x86-64
+            ] ++ pkgs.lib.optionals (system == "aarch64-darwin") [
+              system-images-android-35-google-apis-arm64-v8a
             ]);
         });
 
@@ -110,7 +115,8 @@
             inherit system;
             config.allowUnfree = true;
           };
-          androidSdk = if system == "x86_64-linux"
+          androidSupported = builtins.elem system [ "x86_64-linux" "aarch64-darwin" ];
+          androidSdk = if androidSupported
             then self.packages.${system}.android-sdk
             else null;
           androidSdkRoot = "${androidSdk}/share/android-sdk";
@@ -135,9 +141,9 @@
               pkgs.chez
               pkgs.ncurses
               self.packages.${system}.jolt
-            ] ++ pkgs.lib.optionals (system == "x86_64-linux") [ androidSdk ];
+            ] ++ pkgs.lib.optionals androidSupported [ androidSdk ];
 
-            shellHook = pkgs.lib.optionalString (system == "x86_64-linux") ''
+            shellHook = pkgs.lib.optionalString androidSupported ''
               export ANDROID_HOME=${androidSdkRoot}
               export ANDROID_SDK_ROOT="$ANDROID_HOME"
               export ANDROID_NDK_ROOT="$ANDROID_HOME/ndk/29.0.14206865"

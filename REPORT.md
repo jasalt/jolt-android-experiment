@@ -49,6 +49,12 @@ malformed CLI fixtures behaved as specified, and a loopback Jolt nREPL server
 evaluated the reducer increment event ([EXP-017](experiments/EXP-017-native-arm64-portable-cli)).
 This is native host evidence, not Android ARM64 execution evidence.
 
+Native Apple Silicon macOS also built `:app:assembleDebug` with the pinned Nix
+SDK/NDK, producing the ARM64 Android libraries in the debug APK. Its API 35
+ARM64 AVD was created and Hypervisor.Framework acceleration was available, but
+the emulator could not boot with only 8.7 GiB free where its userdata partition
+required 12 GiB ([EXP-019](experiments/EXP-019-native-darwin-android-nix-build)).
+
 Android has one narrower debug-evaluation result: a disposable fixed
 `load-string` export resolved through `jolt_lookup` and returned `42` on the
 Jolt runtime thread ([EXP-015](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-015-android-fixed-debug-eval)). The initial aggregate export-check failure was
@@ -82,6 +88,7 @@ CIDER, error-recovery path, or redefinition is implemented.
 | Permission round trip | [EXP-014](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-014-android-notification-permission) |
 | Bounded fixed debug eval | [EXP-015](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-015-android-fixed-debug-eval) |
 | Native Apple Silicon portable CLI/nREPL | [EXP-017](experiments/EXP-017-native-arm64-portable-cli) |
+| Native Apple Silicon Android Nix build | [EXP-019](experiments/EXP-019-native-darwin-android-nix-build) |
 
 ## Reproducible validation baseline
 

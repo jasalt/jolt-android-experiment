@@ -61,13 +61,17 @@ This protocol applies when ending a Beads implementation workflow. It is subordi
 
 ## Build & Test
 
-_Add your build and test commands here_
-
 ```bash
-# Example:
-# npm install
-# npm test
+nix --extra-experimental-features 'nix-command flakes' flake check --all-systems --no-build
+nix --extra-experimental-features 'nix-command flakes' develop -c ./scripts/test-portable
+nix --extra-experimental-features 'nix-command flakes' develop -c gradle --no-daemon :app:assembleDebug
 ```
+
+On native Apple Silicon macOS, the pinned `aarch64-darwin` shell provides the
+Android SDK/NDK, `adb`, and emulator; do not use Android Studio or a
+host-installed SDK. GTK remains Linux-only. A successful APK build does not
+prove the macOS emulator booted: validate its disk-space requirement on the
+actual host and preserve evidence in `experiments/`.
 
 ## Architecture Overview
 
