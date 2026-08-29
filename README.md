@@ -11,17 +11,25 @@ The potential benefit is a small native Clojure-oriented core that can be reused
 
 ## Status
 
-**Planning and environment preparation.** The architecture has been selected,
-but Android execution has not yet been demonstrated. In particular, this
-repository does not yet prove that Jolt/Chez can be cross-compiled for Android,
-loaded safely, or executed through an Android emulator's ARM64 translation
-facility.
+**Android feasibility demonstrated under translation; native ARM64 host
+validation remains blocked.** The repository now reproducibly cross-builds
+Chez and a reduced Jolt managed library for Android `arm64-v8a`, loads it in an
+API 35 x86_64 emulator through Android's ARM64 translation path, confines calls
+to one Kotlin runtime thread, and demonstrates shared state, lifecycle events,
+clipboard effects, persistence restore, notification permission round trip, and
+a worker callback. See [REPORT.md](REPORT.md) for evidence boundaries.
+
+This does **not** prove native ARM64 Linux/macOS portable-host support:
+`jolt-android-a4e.2` requires a native ARM64 host run and remains externally
+blocked. GTK/Glimmer, Compose, notification posting, intents, and Android nREPL
+remain unimplemented. EXP-015 records a reduced Android fixed-eval export
+limitation; it is not a general `load-string` or nREPL result.
 
 The project reports graded outcomes, including reproducible blockers. See
-[docs/PLAN.md](docs/PLAN.md) for the complete research plan and success levels. Do not
-interpret proposed architecture as experimental evidence; results will be
-recorded in `experiments/`, `docs/ARCHITECTURE.md`, and `REPORT.md` as work
-progresses.
+[docs/PLAN.md](docs/PLAN.md) for the complete research plan and success levels.
+Do not interpret design intent as experimental evidence; observed architecture,
+traps, and assessment are recorded in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md),
+[docs/GOTCHAS.md](docs/GOTCHAS.md), `experiments/`, and [REPORT.md](REPORT.md).
 
 ## Goals
 
@@ -162,20 +170,17 @@ reported explicitly rather than assumed on macOS. Apple Silicon developers can
 use the portable-core shell directly or the native `aarch64` Lima VM described
 in [docs/LIMA.md](docs/LIMA.md).
 
-The repository is currently not bootstrapped, so there is no working quick start
-yet. Once available, the expected clean workflow is:
+The current reproducible baseline is:
 
 ```sh
-nix develop
-./scripts/bootstrap
-./scripts/verify
+nix develop -c ./scripts/test-portable
+nix develop -c env JOLT_SOURCE=../jolt scripts/jolt-android-library-build
+nix develop -c gradle --no-daemon :app:assembleDebug
 ```
 
-`scripts/bootstrap` will record exact tool versions and host capabilities.
-`scripts/verify` will eventually run shared and native tests, build both hosts,
-exercise an emulator, collect logs, and capture UI evidence. Until those scripts
-exist, follow the phased instructions in [docs/PLAN.md](docs/PLAN.md) and do not treat the
-commands above as implemented.
+The Android build is exercised through the deterministic API 35 AVD and the
+command sequences stored with each experiment. `scripts/bootstrap` and
+`scripts/verify` remain future automation; do not treat them as implemented.
 
 ## Repository documentation
 
