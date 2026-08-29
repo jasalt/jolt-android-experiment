@@ -1,0 +1,44 @@
+Preparing worktree (detached HEAD ae5c5a6d)
+Cloning into '/tmp/nix-shell.nWnRQb/tmp.wHlxeA9wLN/jolt/vendor/clojure-test-suite'...
+Cloning into '/tmp/nix-shell.nWnRQb/tmp.wHlxeA9wLN/jolt/vendor/fs'...
+Cloning into '/tmp/nix-shell.nWnRQb/tmp.wHlxeA9wLN/jolt/vendor/grenadine'...
+Cloning into '/tmp/nix-shell.nWnRQb/tmp.wHlxeA9wLN/jolt/vendor/irregex'...
+Cloning into '/tmp/nix-shell.nWnRQb/tmp.wHlxeA9wLN/jolt/vendor/process'...
+Cloning into '/tmp/nix-shell.nWnRQb/tmp.wHlxeA9wLN/jolt/vendor/sci'...
+Submodule path 'vendor/clojure-test-suite': checked out '489b6743e8421687ef96cec557830acf258d1886'
+Submodule path 'vendor/fs': checked out '5b273b8a943a622593fbc85fca6761c5a39d6d66'
+Submodule path 'vendor/grenadine': checked out '77992327c0b220c186ece61d74f7eb570978a6f5'
+Submodule path 'vendor/irregex': checked out 'c948a704fc732914a243c1643bfe359913d11c7b'
+Submodule path 'vendor/process': checked out '7d881f3a3ec6d273cf014c8172dea037abb31da3'
+Submodule path 'vendor/sci': checked out '32d62a5136ad3dc148588752f5bcc4cc30b14752'
+wrote target pack: /tmp/nix-shell.nWnRQb/tmp.wHlxeA9wLN/tarm64le-pack
+  jolt build -m <ns> -o <out> --target tarm64le --target-pack /tmp/nix-shell.nWnRQb/tmp.wHlxeA9wLN/tarm64le-pack
+jolt build: compiling poc.raylib.host (release mode, shared library)
+loading tarm64le cross compiler
+compiling /tmp/nix-shell.nWnRQb/tmp.wHlxeA9wLN/libjoltraylib.so.build/flat.ss with output to /tmp/nix-shell.nWnRQb/tmp.wHlxeA9wLN/libjoltraylib.so.build/flat.so
+jolt build: wrote /tmp/nix-shell.nWnRQb/tmp.wHlxeA9wLN/libjoltraylib.so
+/home/user/dev/jail/jolt/jolt-android/native/jolt/android-arm64/arm64-v8a/libjoltraylib.so: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, for Android 35, built by NDK r29 (14206865), not stripped
+ 0x0000000000000001 (NEEDED)             Shared library: [libc.so]
+Built isolated Raylib Jolt library: /home/user/dev/jail/jolt/jolt-android/native/jolt/android-arm64/arm64-v8a/libjoltraylib.so
+Preparing worktree (detached HEAD ae5c5a6d)
+Cloning into '/tmp/nix-shell.nWnRQb/tmp.z7vqHo1ZlC/jolt/vendor/clojure-test-suite'...
+Cloning into '/tmp/nix-shell.nWnRQb/tmp.z7vqHo1ZlC/jolt/vendor/fs'...
+Cloning into '/tmp/nix-shell.nWnRQb/tmp.z7vqHo1ZlC/jolt/vendor/grenadine'...
+Cloning into '/tmp/nix-shell.nWnRQb/tmp.z7vqHo1ZlC/jolt/vendor/irregex'...
+Cloning into '/tmp/nix-shell.nWnRQb/tmp.z7vqHo1ZlC/jolt/vendor/process'...
+Cloning into '/tmp/nix-shell.nWnRQb/tmp.z7vqHo1ZlC/jolt/vendor/sci'...
+Submodule path 'vendor/clojure-test-suite': checked out '489b6743e8421687ef96cec557830acf258d1886'
+Submodule path 'vendor/fs': checked out '5b273b8a943a622593fbc85fca6761c5a39d6d66'
+Submodule path 'vendor/grenadine': checked out '77992327c0b220c186ece61d74f7eb570978a6f5'
+Submodule path 'vendor/irregex': checked out 'c948a704fc732914a243c1643bfe359913d11c7b'
+Submodule path 'vendor/process': checked out '7d881f3a3ec6d273cf014c8172dea037abb31da3'
+Submodule path 'vendor/sci': checked out '32d62a5136ad3dc148588752f5bcc4cc30b14752'
+wrote target pack: /tmp/nix-shell.nWnRQb/tmp.z7vqHo1ZlC/tarm64le-pack
+  jolt build -m <ns> -o <out> --target tarm64le --target-pack /tmp/nix-shell.nWnRQb/tmp.z7vqHo1ZlC/tarm64le-pack
+jolt build: compiling poc.raylib.host (release mode, shared library)
+loading tarm64le cross compiler
+compiling /tmp/nix-shell.nWnRQb/tmp.z7vqHo1ZlC/libjoltraylib.so.build/flat.ss with output to /tmp/nix-shell.nWnRQb/tmp.z7vqHo1ZlC/libjoltraylib.so.build/flat.so
+jolt build: wrote /tmp/nix-shell.nWnRQb/tmp.z7vqHo1ZlC/libjoltraylib.so
+/home/user/dev/jail/jolt/jolt-android/native/jolt/android-arm64/arm64-v8a/libjoltraylib.so: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, for Android 35, built by NDK r29 (14206865), not stripped
+ 0x0000000000000001 (NEEDED)             Shared library: [libc.so]
+Built isolated Raylib Jolt library: /home/user/dev/jail/jolt/jolt-android/native/jolt/android-arm64/arm64-v8a/libjoltraylib.so

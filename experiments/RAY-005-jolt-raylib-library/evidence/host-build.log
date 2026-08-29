@@ -1,0 +1,3 @@
+jolt build: compiling poc.raylib.host (release mode, shared library)
+compiling /tmp/nix-shell.nWnRQb/tmp.3OAEQbipnw/libjoltraylib-host.so.build/flat.ss with output to /tmp/nix-shell.nWnRQb/tmp.3OAEQbipnw/libjoltraylib-host.so.build/flat.so
+jolt build: wrote /tmp/nix-shell.nWnRQb/tmp.3OAEQbipnw/libjoltraylib-host.so

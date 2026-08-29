@@ -1,0 +1,1 @@
+/home/user/dev/jail/jolt/jolt-android/native/jolt/android-arm64/arm64-v8a/libjoltraylib.so: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, for Android 35, built by NDK r29 (14206865), not stripped

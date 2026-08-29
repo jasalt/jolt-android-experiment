@@ -1,0 +1,2 @@
+ 0x0000000000000001 (NEEDED)             Shared library: [libc.so]
+Validated Android ARM64 library static ABI: /home/user/dev/jail/jolt/jolt-android/native/jolt/android-arm64/arm64-v8a/libjoltpoc.so

@@ -1,0 +1,2 @@
+first:  21e498013eab3f4067f8f9a22ab7e399b4f41851a80319382e5b72e99dc688f4  /home/user/dev/jail/jolt/jolt-android/native/jolt/android-arm64/arm64-v8a/libjoltraylib.so
+second: f3b565adeb7305c5074d0fc99d7b96154c977ac726f51f8b470cf670d13c4a6a  /home/user/dev/jail/jolt/jolt-android/native/jolt/android-arm64/arm64-v8a/libjoltraylib.so
