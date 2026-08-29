@@ -1,0 +1,3 @@
+;; defcfn macros establish C ABI vars; use the upstream-compatible hook so
+;; static arity checks remain useful without false unresolved-symbol noise.
+{:hooks {:analyze-call {jolt.ffi/defcfn hooks.jolt-ffi/defcfn}}}
