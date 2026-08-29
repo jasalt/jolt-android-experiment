@@ -1,0 +1,14 @@
+--------- beginning of main
+I/JoltRuntime(11569): entering JNI on JoltRuntime
+I/jolt_probe(11569): fixed debug eval result=42
+I/jolt_probe(11569): owner JNI session initialized
+I/jolt_probe(11569): dispatch counter=0
+I/JoltRuntime(11569): entering JNI on JoltRuntime
+I/jolt_probe(11569): dispatch counter=0
+I/JoltRuntime(11569): entering JNI on JoltRuntime
+I/jolt_probe(11569): dispatch counter=0
+I/JoltRuntime(11569): entering JNI on JoltRuntime
+I/jolt_probe(11569): dispatch counter=0
+W/JoltRuntime(11569): type=1400 audit(0.0:469): avc:  denied  { getattr } for  path="/dev/pmsg0" dev="tmpfs" ino=773 scontext=u:r:untrusted_app:s0:c209,c256,c512,c768 tcontext=u:object_r:pmsg_device:s0 tclass=chr_file permissive=0 app=net.joltlang.androidpoc.abiprobe
+W/JoltRuntime(11569): type=1400 audit(0.0:470): avc:  denied  { getattr } for  path="/dev/pmsg0" dev="tmpfs" ino=773 scontext=u:r:untrusted_app:s0:c209,c256,c512,c768 tcontext=u:object_r:pmsg_device:s0 tclass=chr_file permissive=0 app=net.joltlang.androidpoc.abiprobe
+W/JoltRuntime(11569): type=1400 audit(0.0:471): avc:  denied  { getattr } for  path="/dev/pmsg0" dev="tmpfs" ino=773 scontext=u:r:untrusted_app:s0:c209,c256,c512,c768 tcontext=u:object_r:pmsg_device:s0 tclass=chr_file permissive=0 app=net.joltlang.androidpoc.abiprobe

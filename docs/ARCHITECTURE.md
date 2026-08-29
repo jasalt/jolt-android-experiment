@@ -54,5 +54,6 @@ back through `JoltRuntime`.
 - GTK/Glimmer reference host.
 - Compose UI; the demonstrated shell is a minimal native Android View layout.
 - Android notification posting, URL intents, or generalized permissions.
-- General Android debug evaluation, a socket server, Android nREPL, CIDER, or
-  code redefinition. EXP-015 records a fixed `load-string` export limitation.
+- General Android debug evaluation, caller-supplied source/result transport, a
+  socket server, Android nREPL, CIDER, or code redefinition. EXP-015 proves only
+  one fixed `load-string` call returning a primitive value.

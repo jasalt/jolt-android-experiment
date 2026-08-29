@@ -22,8 +22,8 @@ a worker callback. See [REPORT.md](REPORT.md) for evidence boundaries.
 This does **not** prove native ARM64 Linux/macOS portable-host support:
 `jolt-android-a4e.2` requires a native ARM64 host run and remains externally
 blocked. GTK/Glimmer, Compose, notification posting, intents, and Android nREPL
-remain unimplemented. EXP-015 records a reduced Android fixed-eval export
-limitation; it is not a general `load-string` or nREPL result.
+remain unimplemented. EXP-015 demonstrates one bounded, fixed Android
+`load-string` call; it is not a caller-supplied eval or nREPL result.
 
 The project reports graded outcomes, including reproducible blockers. See
 [docs/PLAN.md](docs/PLAN.md) for the complete research plan and success levels.

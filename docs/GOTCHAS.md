@@ -25,7 +25,9 @@ Each item is an observed constraint with an evidence reference.
   EXP-008.
 - **The emulator lacks a usable `cmd clipboard get`.** Clipboard verification
   uses Android app read-back plus the observed system overlay (EXP-011).
-- **Android debug evaluation is blocked at export publishing.** Adding the
-  fixed `load-string` export left it absent from `jolt_lookup`; later queued
-  work reached Chez `S_abnormal_exit`/SIGABRT. This does not prove that
-  `load-string` itself fails, and no Android nREPL is claimed (EXP-015).
+- **An aggregate export-check failure does not identify the missing export.**
+  EXP-015 initially attributed `{:error :exports}` to its new fixed-eval export,
+  but the bridge had checked all pointers at once. Per-export diagnostics on a
+  rerun resolved the fixed export and `load-string` returned `42`. Keep failed
+  initialization terminal so queued work cannot enter a shut-down Chez runtime.
+  This remains a bounded call, not Android nREPL (EXP-015).

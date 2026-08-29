@@ -23,7 +23,13 @@ was added.
 
 ## Result
 
-The library built but did not publish `poc_debug_eval_fixed` through
-`jolt_lookup`. See [actual.txt](actual.txt) and
-[`artifacts/logs/exp015-fixed-debug-eval-failure.txt`](../../artifacts/logs/exp015-fixed-debug-eval-failure.txt).
-The disposable experiment sources were restored after preserving the failure.
+A diagnostic rerun published every expected export and called the fixed
+`load-string` function on `HandlerThread("JoltRuntime")`, returning `42`. See
+[actual.txt](actual.txt) and
+[`artifacts/logs/exp015-fixed-debug-eval-rerun.txt`](../../artifacts/logs/exp015-fixed-debug-eval-rerun.txt).
+
+The first run's aggregate `{:error :exports}` did not identify which lookup had
+failed, so commit `6a39331` incorrectly attributed it to
+`poc_debug_eval_fixed`. The original failure log remains preserved, but is not
+evidence of an eval or export-publishing limitation. Disposable sources and
+artifacts were restored after the successful rerun.

@@ -49,12 +49,12 @@ is an x86_64 Lima guest; emulation/cross-compilation does not satisfy
 must run the portable CLI fixtures and normal Jolt nREPL before multiplatform
 portable-host support is claimed.
 
-Android debug evaluation is also blocked at a narrower boundary: a disposable
-fixed `load-string` export was not published through `jolt_lookup`, and leaving
-subsequent queued work after that failed initialization reached Chez
-`S_abnormal_exit`/SIGABRT (EXP-015). This is not a claim that `load-string`
-itself fails, and no Android nREPL, remote evaluation, CIDER, or redefinition is
-implemented.
+Android has one narrower debug-evaluation result: a disposable fixed
+`load-string` export resolved through `jolt_lookup` and returned `42` on the
+Jolt runtime thread (EXP-015). The initial aggregate export-check failure was
+not evidence that this export was absent; a diagnostic rerun corrected that
+attribution. No caller-supplied evaluation, Android nREPL, remote evaluation,
+CIDER, error-recovery path, or redefinition is implemented.
 
 ### Unimplemented
 
@@ -81,7 +81,7 @@ implemented.
 | Clipboard effect | EXP-011 |
 | Persistence restore | EXP-012 |
 | Permission round trip | EXP-014 |
-| Debug-eval limitation | EXP-015 |
+| Bounded fixed debug eval | EXP-015 |
 
 ## Reproducible validation baseline
 
