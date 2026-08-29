@@ -1,0 +1,21 @@
+{:format 1
+ :purpose "Immutable source baselines for the independent Jolt/Raylib research host."
+ :jolt {:source "flake.lock inputs.jolt.locked"
+        :revision "ae5c5a6d5be263a883e9b4b53f255b8c0b493d3e"}
+ :raylib {:url "https://github.com/raysan5/raylib.git"
+          :revision "9f3cadf1e618f125bd9b282c7759f8cb26ce17fc"
+          :license "zlib"
+          :version-floor "6.0"}
+ :raylib-jlt {:url "https://github.com/jlt-commons/raylib-jlt.git"
+              :revision "15c4c6d5757c5c592983166626fd32341c6fc45e"
+              :license "zlib"
+              :requires {:jolt "0.7.23"
+                         :raylib "6.0"}}
+ :raygui-jlt {:url "https://github.com/jlt-commons/raygui-jlt.git"
+              :revision "cdab5f97e1cd97e9ea4b7776b1dc0bd161ad4720"
+              :license "zlib"
+              :activation "R7 stretch work only; not a first-frame dependency"}
+ :raymob {:url "https://github.com/Bigfoot71/RayMob.git"
+          :revision "6ff85822872391f399c80771981d8ce25e0a4cfd"
+          :license "MIT (repository also includes raylib zlib license text)"
+          :activation "Reference individual Android techniques only after a reduced core-Raylib need"}}

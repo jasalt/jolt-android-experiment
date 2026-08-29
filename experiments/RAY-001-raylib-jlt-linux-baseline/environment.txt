@@ -1,0 +1,8 @@
+jolt=jolt ae5c5a6d5be263a883e9b4b53f255b8c0b493d3e
+raylib-package=6.0.0
+raylib-header=#define RAYLIB_VERSION  "6.1-dev"
+raylib-source=/nix/store/qy50wvw3i66pvphvyngvn1nspr69292z-raylib-source-9f3cadf
+raylib-jlt-source=/nix/store/2qqalk40cjqjgp8mk6w125ybymamb32n-raylib-jlt-source-15c4c6d
+display=OpenGL renderer string: llvmpipe (LLVM 22.1.8, 256 bits)
+host=Linux 6.19.10-300.fc44.x86_64 x86_64 GNU/Linux
+xvfb=Xvfb :99 -screen 0 1280x800x24 -nolisten tcp

@@ -1,0 +1,9 @@
+Performing Streamed Install
+Success
+Starting: Intent { cmp=net.joltlang.raylibprobe/android.app.NativeActivity }
+Status: ok
+LaunchState: COLD
+Activity: net.joltlang.raylibprobe/android.app.NativeActivity
+TotalTime: 890
+WaitTime: 934
+Complete

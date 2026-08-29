@@ -1,0 +1,49 @@
+/nix/store/w3234xdkxcrnlsfn57nybi3qf80x2hvm-jolt-ae5c5a6d5be263a883e9b4b53f255b8c0b493d3e/bin/jolt: /lib64/libncursesw.so.6: no version information available (required by /nix/store/w3234xdkxcrnlsfn57nybi3qf80x2hvm-jolt-ae5c5a6d5be263a883e9b4b53f255b8c0b493d3e/bin/jolt)
+INFO: Initializing raylib 6.1-dev
+INFO: Platform backend: DESKTOP (GLFW)
+INFO: Supported raylib modules:
+INFO:     > rcore:..... loaded (mandatory)
+INFO:     > rlgl:...... loaded (mandatory)
+INFO:     > rshapes:... loaded (optional)
+INFO:     > rtextures:. loaded (optional)
+INFO:     > rtext:..... loaded (optional)
+INFO:     > rmodels:... loaded (optional)
+INFO:     > raudio:.... loaded (optional)
+INFO: DISPLAY: Device initialized successfully 
+INFO:     > Display size: 1280 x 800
+INFO:     > Screen size:  800 x 450
+INFO:     > Render size:  800 x 450
+INFO:     > Viewport offsets: 0, 0
+INFO: GLAD: OpenGL extensions loaded successfully
+INFO: GL: Supported extensions count: 233
+INFO: GL: OpenGL device information:
+INFO:     > Vendor:   Mesa
+INFO:     > Renderer: llvmpipe (LLVM 22.1.8, 256 bits)
+INFO:     > Version:  4.6 (Core Profile) Mesa 26.1.8
+INFO:     > GLSL:     4.60
+INFO: GL: VAO extension detected, VAO functions loaded successfully
+INFO: GL: NPOT textures extension detected, full NPOT textures supported
+INFO: GL: DXT compressed textures supported
+INFO: GL: ETC2/EAC compressed textures supported
+INFO: PLATFORM: DESKTOP (GLFW - X11): Initialized successfully
+INFO: TEXTURE: [ID 1] Texture loaded successfully (1x1 | R8G8B8A8 | 1 mipmaps)
+INFO: TEXTURE: [ID 1] Default texture loaded successfully
+INFO: SHADER: [ID 1] Vertex shader compiled successfully
+INFO: SHADER: [ID 2] Fragment shader compiled successfully
+INFO: SHADER: [ID 3] Program shader loaded successfully
+INFO: SHADER: [ID 3] Default shader loaded successfully
+INFO: RLGL: Render batch vertex buffers loaded successfully in RAM (CPU)
+INFO: RLGL: Render batch vertex buffers loaded successfully in VRAM (GPU)
+INFO: RLGL: Default OpenGL state initialized successfully
+INFO: TEXTURE: [ID 2] Texture loaded successfully (128x128 | GRAY_ALPHA | 1 mipmaps)
+INFO: FONT: Default font loaded successfully (224 glyphs)
+INFO: SYSTEM: Working Directory: /tmp/raylib-jlt-linux-baseline-rerun/source
+INFO: TIMER: Target time per frame: 16.667 milliseconds
+INFO: FILEIO: [/tmp/raylib-jlt-linux-baseline-rerun/source/camera2d.png] File saved successfully
+INFO: FILEIO: [/tmp/raylib-jlt-linux-baseline-rerun/source/camera2d.png] Image exported successfully
+INFO: SYSTEM: [/tmp/raylib-jlt-linux-baseline-rerun/source/camera2d.png] Screenshot taken successfully
+[net.b12n.raylib-jlt] SHOT camera2d.png
+INFO: TEXTURE: [ID 2] Unloaded texture data from VRAM (GPU)
+INFO: SHADER: [ID 3] Default shader unloaded successfully
+INFO: TEXTURE: [ID 1] Default texture unloaded successfully
+INFO: Window closed successfully

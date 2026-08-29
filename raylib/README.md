@@ -1,0 +1,91 @@
+# Jolt + Raylib alternate host
+
+This directory is an **independent research host** for running a Jolt-owned
+Raylib application loop on Linux and Android NativeActivity. It is not part of
+the primary Compose/JNI PoC in [`../app`](../app), and its results must not
+alter the primary PoC's evidence claims in [`../REPORT.md`](../REPORT.md).
+
+## Scope and boundary
+
+The alternate host may reuse only infrastructure whose behavior is genuinely
+shared: the pinned Jolt and Chez source, Nix API-35 SDK/NDK toolchain, Android
+ARM64 translation emulator, APK inspection, logcat, and screenshot helpers.
+It must not modify or depend on the primary host's Kotlin `JoltRuntime`,
+Compose UI, EDN-over-JNI dispatch, lifecycle/effect adapters, or `:app`
+module. `scripts/verify` also remains the primary-host verifier; a future
+Raylib task supplies a separate `scripts/raylib-verify`.
+
+This task deliberately creates no Android module, window, rendering code,
+Raylib dependency in the repository root, or copied upstream binding suite.
+The next feasibility tasks first reproduce the desktop binding baseline and a
+plain-C Android NativeActivity before integrating Jolt.
+
+## Immutable upstream baselines
+
+[`pins.edn`](pins.edn) is the source-of-truth manifest for this track. It pins
+all external source by full revision rather than a moving branch:
+
+| Project | Revision | License | Role |
+| --- | --- | --- | --- |
+| [Jolt](https://github.com/jolt-lang/jolt) | `ae5c5a6d5be263a883e9b4b53f255b8c0b493d3e` | project license; locked in [`../flake.lock`](../flake.lock) | Jolt/Chez application runtime |
+| [raylib](https://github.com/raysan5/raylib) | `9f3cadf1e618f125bd9b282c7759f8cb26ce17fc` | zlib | native graphics/platform backend |
+| [raylib-jlt](https://github.com/jlt-commons/raylib-jlt) | `15c4c6d5757c5c592983166626fd32341c6fc45e` | zlib | primary Jolt FFI binding reference |
+| [raygui-jlt](https://github.com/jlt-commons/raygui-jlt) | `cdab5f97e1cd97e9ea4b7776b1dc0bd161ad4720` | zlib | R7-only immediate-mode UI reference |
+| [RayMob](https://github.com/Bigfoot71/RayMob) | `6ff85822872391f399c80771981d8ce25e0a4cfd` | MIT; includes raylib zlib notice | optional Android technique reference |
+
+The raylib-jlt README at its pinned revision requires Jolt **0.7.23+** and a
+system Raylib **6.0+** shared library. Its pinned `deps.edn` declares desktop
+Darwin/Linux library names only. Therefore it is a desktop baseline and binding
+source reference, not proof of Android loading or a dependency to add directly
+to this manifest.
+
+Raygui and RayMob are recorded now for reproducibility but are not active
+first-frame dependencies. Their implementation work is conditional on the
+separate R6/R7 decisions recorded in `docs/RAYLIB-PLAN.md`.
+
+## Confirmed Raylib Android entry contract
+
+The source pinned above is authoritative. In
+`src/platforms/rcore_android.c`, lines 317–331, Raylib declares
+`extern int main(int argc, char *argv[])`; `android_main(struct android_app *)`
+stores `platform.app`, invokes `main(1, (char *[]) { "raylib", NULL })`, and
+then calls `ANativeActivity_finish`. It does **not** expose the plan's
+illustrative `android_run` seam. The future plain-C NativeActivity and Jolt
+bootstrap must implement the pinned `main(int, char **)` contract (or record a
+new pin and re-audit it), not invent a different entry point.
+
+The same Android backend documents a further build concern: APK asset `fopen`
+wrapping requires `-Wl,--wrap=fopen` on the final shared-library link, rather
+than only when Raylib is archived. This remains an unproven future asset-build
+requirement, recorded in [`../docs/RAYLIB-GOTCHAS.md`](../docs/RAYLIB-GOTCHAS.md).
+
+## Minimal local manifest check
+
+This `deps.edn` is intentionally dependency-free at this phase. It validates
+that the independent manifest parses without making a Raylib build claim:
+
+```sh
+(
+  cd raylib
+  nix --extra-experimental-features 'nix-command flakes' develop -c jolt -M:check
+)
+```
+
+The pinned flake exposes `.#raylib` (the Linux desktop shared library) and
+`.#raylib-source` (the same immutable source for future Android builds). The default shell sets
+`RAYLIB_SOURCE`, `RAYLIB_VERSION`, and `RAYLIB_LIBRARY_PATH`, includes the
+library in its dynamic loader path, and supplies ImageMagick for later image
+inspection. `scripts/bootstrap` reports those values, the header version,
+pkg-config library facts, and the API-35 ARM64 compiler path in a separate
+Raylib section.
+
+Later tasks create explicit Linux/Android build commands. Do not use
+host-installed Android Studio, SDK, NDK, or a floating upstream checkout.
+
+## Evidence conventions
+
+New Raylib work stores reduced experiments below `../experiments/RAY-*/` and
+runtime artifacts below `../artifacts/raylib/`. Follow the repository experiment
+format and distinguish observed behavior from proposed design. A failure in
+this alternate host is a valid result but never reduces the demonstrated
+Compose/JNI outcome.

@@ -1,6 +1,6 @@
 # Jolt Android PoC environment report
 
-Generated UTC: 2026-08-29T08:36:36+00:00
+Generated UTC: 2026-08-29T18:05:13+00:00
 Repository: /home/user/dev/jail/jolt/jolt-android
 
 ## Host
@@ -9,7 +9,7 @@ Linux lima-jolt-android 6.19.10-300.fc44.x86_64 #1 SMP PREEMPT_DYNAMIC Wed Mar 2
 Fedora release 44 (Forty Four)
 DISPLAY=<unset>
 WAYLAND_DISPLAY=<unset>
-crw-rw-rw- 1 root kvm 10, 232 Aug 28 19:31 /dev/kvm
+crw-rw-rw- 1 root kvm 10, 232 Aug 29 11:39 /dev/kvm
 kvm_amd nested=1
 
 ## Nix and tool paths
@@ -28,6 +28,7 @@ ninja=/nix/store/6ji6bq0si2j8ibdrxqgcmh1cw0wmdiyk-ninja-1.13.2/bin/ninja
 clang=/nix/store/w021fbcg4z6vxihnp6gb6vijyifl051f-clang-wrapper-21.1.8/bin/clang
 readelf=/nix/store/w021fbcg4z6vxihnp6gb6vijyifl051f-clang-wrapper-21.1.8/bin/readelf
 file=/nix/store/ykrpgmrrdm7w22dykziy6l61ic6i1d3w-file-5.48/bin/file
+pkg-config=/nix/store/7fx93fz9c809w8yjxb0934zw6xcjis58-pkg-config-wrapper-0.29.2/bin/pkg-config
 
 ## Tool versions
 
@@ -86,7 +87,7 @@ Launcher JVM:  21.0.12 (Oracle Corporation 21.0.12+8-nixos)
 Daemon JVM:    /nix/store/ij5q131fzyqw8wh76y9nrj5jl45zviqw-openjdk-21.0.12+8/lib/openjdk (no JDK specified, using current Java home)
 OS:            Linux 6.19.10-300.fc44.x86_64 amd64
 
-jolt 8fcba79f8b33628af926f88032d93a1b31c24235
+jolt ae5c5a6d5be263a883e9b4b53f255b8c0b493d3e
 10.4.1
 cmake version 4.3.4
 
@@ -100,6 +101,16 @@ Pkg.Desc = Android NDK
 Pkg.Revision = 29.0.14206865
 Pkg.BaseRevision = 29.0.14206865
 Pkg.ReleaseName = r29
+
+## Raylib alternate-host tooling
+
+RAYLIB_SOURCE=/nix/store/qy50wvw3i66pvphvyngvn1nspr69292z-raylib-source-9f3cadf
+RAYLIB_VERSION=6.1-dev-9f3cadf
+RAYLIB_LIBRARY_PATH=/nix/store/s00w8hm28imaxd9gihkarbnydf1gad14-raylib-6.1-dev-9f3cadf/lib
+#define RAYLIB_VERSION  "6.1-dev"
+pkg-config raylib version=6.0.0
+pkg-config raylib library path=/nix/store/s00w8hm28imaxd9gihkarbnydf1gad14-raylib-6.1-dev-9f3cadf/lib
+aarch64-linux-android35-clang=/nix/store/zbc8wn43d7yb9f9ci8v80z1mw6ljpsqn-android-sdk-env/share/android-sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android35-clang
 
 ## Emulator acceleration
 

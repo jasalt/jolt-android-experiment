@@ -16,3 +16,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "jolt-android-poc"
 include(":app")
+include(":raylib-android")
+project(":raylib-android").projectDir = file("raylib/android")

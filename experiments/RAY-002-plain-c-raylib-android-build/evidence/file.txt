@@ -1,0 +1,1 @@
+/tmp/raylib-plain-c-android/libmain.so: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, for Android 35, built by NDK r29 (14206865), BuildID[sha1]=f9cdfe416915224eec1faffa3ff890443ca13566, stripped

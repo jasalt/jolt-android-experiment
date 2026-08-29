@@ -97,11 +97,47 @@
         "type": "github"
       }
     },
+    "raylib": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1787999961,
+        "narHash": "sha256-Ap0qpmOiYj+X2j1X9xFmjFy0gnamBms8XsiKrJlRp0A=",
+        "ref": "refs/heads/master",
+        "rev": "9f3cadf1e618f125bd9b282c7759f8cb26ce17fc",
+        "revCount": 10122,
+        "type": "git",
+        "url": "https://github.com/raysan5/raylib.git"
+      },
+      "original": {
+        "rev": "9f3cadf1e618f125bd9b282c7759f8cb26ce17fc",
+        "type": "git",
+        "url": "https://github.com/raysan5/raylib.git"
+      }
+    },
+    "raylib-jlt": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1788001875,
+        "narHash": "sha256-TmQmPrVGvLvuG6p+/reBePJ5sXCROGiZeT4Pfy+ntIE=",
+        "ref": "refs/heads/main",
+        "rev": "15c4c6d5757c5c592983166626fd32341c6fc45e",
+        "revCount": 109,
+        "type": "git",
+        "url": "https://github.com/jlt-commons/raylib-jlt.git"
+      },
+      "original": {
+        "rev": "15c4c6d5757c5c592983166626fd32341c6fc45e",
+        "type": "git",
+        "url": "https://github.com/jlt-commons/raylib-jlt.git"
+      }
+    },
     "root": {
       "inputs": {
         "android": "android",
         "jolt": "jolt",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "raylib": "raylib",
+        "raylib-jlt": "raylib-jlt"
       }
     },
     "systems": {

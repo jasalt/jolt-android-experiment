@@ -1,0 +1,10 @@
+Archive:  raylib/android/build/outputs/apk/debug/raylib-android-debug.apk
+  Length      Date    Time    Name
+---------  ---------- -----   ----
+       56  01-01-1981 01:01   META-INF/com/android/build/gradle/app-metadata.properties
+      580  01-01-1981 01:01   classes.dex
+  1072080  01-01-1981 01:01   lib/arm64-v8a/libmain.so
+     2344  01-01-1981 01:01   AndroidManifest.xml
+       40  01-01-1981 01:01   resources.arsc
+---------                     -------
+  1075100                     5 files

@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# Install and launch the independent plain-C Raylib NativeActivity.
+set -euo pipefail
+
+repo_root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+: "${ANDROID_HOME:?run through nix develop so ANDROID_HOME is set}"
+
+serial="emulator-${JOLT_ANDROID_EMULATOR_PORT:-5554}"
+package=net.joltlang.raylibprobe
+activity=android.app.NativeActivity
+apk="$repo_root/raylib/android/build/outputs/apk/debug/raylib-android-debug.apk"
+
+test -s "$apk" || {
+  printf 'APK missing: %s; run scripts/raylib-build-android\n' "$apk" >&2
+  exit 1
+}
+[[ "$(adb -s "$serial" get-state 2>/dev/null)" == device ]] || {
+  printf 'AVD unavailable: %s\n' "$serial" >&2
+  exit 1
+}
+
+adb -s "$serial" install -r "$apk"
+adb -s "$serial" shell am force-stop "$package"
+adb -s "$serial" shell am start -W -n "$package/$activity"

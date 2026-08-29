@@ -1,0 +1,1 @@
+/home/user/dev/jail/jolt/jolt-android/experiments/RAY-003-plain-raylib-arm64-translation/evidence/post-resume.png PNG 1080x2400 1080x2400+0+0 8-bit sRGB 16627B 0.010u 0:00.001

@@ -1,0 +1,7 @@
+{:paths ["src" "test"]
+
+ ;; The production bindings are deliberately not copied or forked here. The
+ ;; immutable upstream source pins for this alternate host are in pins.edn and
+ ;; flake.lock; later tasks decide the smallest Android-compatible adapter.
+ :aliases
+ {:check {:main-opts ["-e" "(println \"Raylib host dependency manifest parsed\")"]}}}

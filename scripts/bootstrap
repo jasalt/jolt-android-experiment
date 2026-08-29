@@ -15,7 +15,7 @@ require_command() {
   }
 }
 
-for command in adb emulator avdmanager java gradle cmake ninja clang readelf file; do
+for command in adb emulator avdmanager java gradle cmake ninja clang readelf file pkg-config; do
   require_command "$command"
 done
 
@@ -53,7 +53,7 @@ done
   printf 'ANDROID_HOME=%s\n' "$ANDROID_HOME"
   printf 'ANDROID_NDK_ROOT=%s\n' "$ANDROID_NDK_ROOT"
   printf 'JAVA_HOME=%s\n' "${JAVA_HOME-<unset>}"
-  for command in adb emulator avdmanager java gradle cmake ninja clang readelf file; do
+  for command in adb emulator avdmanager java gradle cmake ninja clang readelf file pkg-config; do
     printf '%s=%s\n' "$command" "$(command -v "$command")"
   done
 
@@ -77,6 +77,30 @@ done
     cat "$ANDROID_NDK_ROOT/source.properties"
   else
     printf 'NDK source.properties unavailable\n'
+  fi
+
+  printf '\n## Raylib alternate-host tooling\n\n'
+  printf 'RAYLIB_SOURCE=%s\n' "${RAYLIB_SOURCE-<unset>}"
+  printf 'RAYLIB_VERSION=%s\n' "${RAYLIB_VERSION-<unset>}"
+  printf 'RAYLIB_LIBRARY_PATH=%s\n' "${RAYLIB_LIBRARY_PATH-<unset>}"
+  if [[ -n "${RAYLIB_SOURCE-}" && -r "$RAYLIB_SOURCE/src/raylib.h" ]]; then
+    grep '^#define RAYLIB_VERSION ' "$RAYLIB_SOURCE/src/raylib.h"
+  else
+    printf 'Pinned Raylib source header unavailable\n'
+  fi
+  if pkg-config --exists raylib; then
+    printf 'pkg-config raylib version='
+    pkg-config --modversion raylib
+    printf 'pkg-config raylib library path='
+    pkg-config --variable=libdir raylib
+  else
+    printf 'pkg-config raylib unavailable\n'
+  fi
+  if [[ -x "$ANDROID_NDK_ROOT/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android35-clang" ]]; then
+    printf 'aarch64-linux-android35-clang=%s\n' \
+      "$ANDROID_NDK_ROOT/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android35-clang"
+  else
+    printf 'aarch64-linux-android35-clang unavailable on this host\n'
   fi
 
   printf '\n## Emulator acceleration\n\n'

@@ -11,12 +11,39 @@
       url = "git+https://github.com/jolt-lang/jolt.git?rev=ae5c5a6d5be263a883e9b4b53f255b8c0b493d3e&submodules=1";
       flake = false;
     };
+    # The separate Raylib host consumes this exact upstream source. Keep it
+    # independent from :app and from nixpkgs' moving raylib package revision.
+    raylib = {
+      url = "git+https://github.com/raysan5/raylib.git?rev=9f3cadf1e618f125bd9b282c7759f8cb26ce17fc";
+      flake = false;
+    };
+    raylib-jlt = {
+      url = "git+https://github.com/jlt-commons/raylib-jlt.git?rev=15c4c6d5757c5c592983166626fd32341c6fc45e";
+      flake = false;
+    };
   };
 
-  outputs = { self, nixpkgs, android, jolt, ... }:
+  outputs = { self, nixpkgs, android, jolt, raylib, raylib-jlt, ... }:
     let
       systems = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" ];
       forAllSystems = nixpkgs.lib.genAttrs systems;
+      mkRaylib = pkgs:
+        pkgs.raylib.overrideAttrs (old: {
+          pname = "raylib";
+          version = "6.1-dev-9f3cadf";
+          src = raylib;
+          # The desktop baseline task selects a few focused upstream examples.
+          # Building raylib's entire example tree is neither required for the
+          # runtime package nor reliable across every Nix linker combination.
+          cmakeFlags = (old.cmakeFlags or [ ]) ++ [ "-DBUILD_EXAMPLES=OFF" ];
+          # raylib-jlt's pinned Linux declaration loads libraylib.so.6. The
+          # pinned upstream 6.1-dev CMake metadata installs .600 plus the
+          # unversioned development symlink, so provide the compatible runtime
+          # soname alias without changing the library binary or its rpath.
+          postFixup = (old.postFixup or "") + ''
+            ln -s libraylib.so.600 "$out/lib/libraylib.so.6"
+          '';
+        });
       mkJolt = pkgs:
         let
           version = jolt.rev or "dev";
@@ -74,6 +101,16 @@
         in
         {
           jolt = mkJolt pkgs;
+          raylib = mkRaylib pkgs;
+          # Source is an explicit package so Android build scripts can use the
+          # same locked source as the Linux desktop library without a mutable
+          # checkout or an Android Studio component.
+          raylib-source = pkgs.runCommand "raylib-source-9f3cadf" { } ''
+            ln -s ${raylib} "$out"
+          '';
+          raylib-jlt-source = pkgs.runCommand "raylib-jlt-source-15c4c6d" { } ''
+            ln -s ${raylib-jlt} "$out"
+          '';
         } // pkgs.lib.optionalAttrs androidSupported {
           android-sdk =
             let
@@ -120,7 +157,11 @@
             then self.packages.${system}.android-sdk
             else null;
           androidSdkRoot = "${androidSdk}/share/android-sdk";
-          gtkLibraryPath = pkgs.lib.makeLibraryPath [ pkgs.glib pkgs.gtk4 ];
+          runtimeLibraryPath = pkgs.lib.makeLibraryPath [
+            pkgs.glib
+            pkgs.gtk4
+            self.packages.${system}.raylib
+          ];
         in {
           default = pkgs.mkShell {
             packages = [
@@ -142,6 +183,11 @@
               pkgs.chez
               pkgs.ncurses
               self.packages.${system}.jolt
+              self.packages.${system}.raylib
+              pkgs.imagemagick
+              pkgs.mesa
+            ] ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isLinux [
+              pkgs.xorg.xorgserver
             ] ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isLinux [ pkgs.libuuid ] ++ pkgs.lib.optionals androidSupported [ androidSdk ]
               ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isLinux [
                 pkgs.gtk4
@@ -157,10 +203,17 @@
               export JAVA_HOME=${pkgs.jdk21.home}
               export SSL_CERT_FILE=${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt
               export GIT_SSL_CAINFO="$SSL_CERT_FILE"
+              export RAYLIB_SOURCE=${self.packages.${system}.raylib-source}
+              export RAYLIB_JLT_SOURCE=${self.packages.${system}.raylib-jlt-source}
+              export RAYLIB_VERSION=6.1-dev-9f3cadf
+              export RAYLIB_LIBRARY_PATH=${self.packages.${system}.raylib}/lib
+              # GLFW/Raylib uses GLVND. Point it at the Nix Mesa DRI drivers
+              # rather than assuming host Mesa is compatible with Nix GLVND.
+              export LIBGL_DRIVERS_PATH=${pkgs.mesa}/lib/dri
             '' + pkgs.lib.optionalString pkgs.stdenv.hostPlatform.isLinux ''
               # Jolt FFI resolves the glimmer-gtk native library names with
               # dlopen. Nix keeps them outside the system loader paths.
-              export LD_LIBRARY_PATH=${gtkLibraryPath}''${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
+              export LD_LIBRARY_PATH=${runtimeLibraryPath}''${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
             '';
           };
         });

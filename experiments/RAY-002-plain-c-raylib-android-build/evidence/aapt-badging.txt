@@ -1,0 +1,15 @@
+package: name='net.joltlang.raylibprobe' versionCode='1' versionName='0.1' platformBuildVersionName='15' platformBuildVersionCode='35' compileSdkVersion='35' compileSdkVersionCodename='15'
+sdkVersion:'35'
+targetSdkVersion:'35'
+application: label='' icon=''
+application-debuggable
+launchable-activity: name='android.app.NativeActivity'  label='' icon=''
+feature-group: label=''
+  uses-feature: name='android.hardware.faketouch'
+  uses-implied-feature: name='android.hardware.faketouch' reason='default feature for all apps'
+main
+supports-screens: 'small' 'normal' 'large' 'xlarge'
+supports-any-density: 'true'
+locales:
+densities:
+native-code: 'arm64-v8a'

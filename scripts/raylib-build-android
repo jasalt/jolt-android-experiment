@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# Assemble only the independent plain-C Raylib NativeActivity APK.
+set -euo pipefail
+
+repo_root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+cd "$repo_root"
+
+: "${ANDROID_HOME:?run through nix develop so ANDROID_HOME is set}"
+: "${ANDROID_NDK_ROOT:?run through nix develop so ANDROID_NDK_ROOT is set}"
+: "${RAYLIB_SOURCE:?run through nix develop so RAYLIB_SOURCE is set}"
+
+command -v gradle >/dev/null || {
+  printf 'missing gradle; run through nix develop\n' >&2
+  exit 1
+}
+test -r "$RAYLIB_SOURCE/src/platforms/rcore_android.c" || {
+  printf 'pinned Raylib Android source is unavailable: %s\n' "$RAYLIB_SOURCE" >&2
+  exit 1
+}
+
+gradle --no-daemon :raylib-android:assembleDebug
+apk="$repo_root/raylib/android/build/outputs/apk/debug/raylib-android-debug.apk"
+test -s "$apk" || {
+  printf 'expected Raylib APK was not produced: %s\n' "$apk" >&2
+  exit 1
+}
+printf 'Built %s\n' "$apk"
