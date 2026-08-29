@@ -53,3 +53,25 @@ reducer state. Clipboard and other platform effects remain unimplemented.
 
 The result is native x86_64 Linux evidence only and does not satisfy the
 independent native ARM64 Linux-host requirement in `jolt-android-jkb.2`.
+
+## Visual evidence
+
+### Initial state
+
+![GTK reference app initial state: Counter 0](../../artifacts/screenshots/exp021-gtk-initial.png)
+
+### Incremented state
+
+![GTK reference app after two increments: Counter 2](../../artifacts/screenshots/exp021-gtk-incremented.png)
+
+### Decremented state
+
+![GTK reference app after decrement: Counter 1](../../artifacts/screenshots/exp021-gtk-decremented.png)
+
+### Reset state
+
+![GTK reference app after reset: Counter 0](../../artifacts/screenshots/exp021-gtk-reset.png)
+
+### Restored state
+
+![GTK reference app after restart restored from persistence: Counter 1](../../artifacts/screenshots/exp021-gtk-restored.png)

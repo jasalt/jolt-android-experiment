@@ -52,6 +52,18 @@ reset. It executes the reducer's `:storage/write` effect through a host-side EDN
 file, and a fresh launch restored the persisted counter. Screenshots and launch
 logs are retained under `artifacts/`.
 
+## Visual evidence
+
+![GTK reference app initial state: Counter 0](../../artifacts/screenshots/exp021-gtk-initial.png)
+
+![GTK reference app after two increments: Counter 2](../../artifacts/screenshots/exp021-gtk-incremented.png)
+
+![GTK reference app after decrement: Counter 1](../../artifacts/screenshots/exp021-gtk-decremented.png)
+
+![GTK reference app after reset: Counter 0](../../artifacts/screenshots/exp021-gtk-reset.png)
+
+![GTK reference app after restart restored from persistence: Counter 1](../../artifacts/screenshots/exp021-gtk-restored.png)
+
 ## Boundary
 
 This proves the current native `x86_64-linux` GTK reference environment. It
