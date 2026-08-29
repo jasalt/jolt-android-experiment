@@ -12,16 +12,18 @@ adb -s "$serial" shell am force-stop "$pkg"
 adb -s "$serial" shell am start -W -n "$activity" >/dev/null
 sleep 2
 for i in 1 2 3; do
-  adb -s "$serial" shell am broadcast -a android.intent.action.SCREEN_OFF >/dev/null || true
-  adb -s "$serial" shell am broadcast -a android.intent.action.SCREEN_ON >/dev/null || true
+  adb -s "$serial" shell input keyevent 26
+  sleep 1
+  adb -s "$serial" shell input keyevent 26
+  sleep 1
   adb -s "$serial" shell am force-stop "$pkg"
   adb -s "$serial" shell am start -W -n "$activity" >/dev/null
   sleep 1
 done
 adb -s "$serial" shell uiautomator dump /sdcard/jolt-lifecycle.xml >/dev/null
 adb -s "$serial" exec-out cat /sdcard/jolt-lifecycle.xml > "$root/artifacts/layouts/lifecycle.xml"
-grep -F 'Android version:' "$root/artifacts/layouts/lifecycle.xml" >/dev/null
-grep -F 'SDK level: 35' "$root/artifacts/layouts/lifecycle.xml" >/dev/null
+grep -F 'initialized=true' "$root/artifacts/layouts/lifecycle.xml" >/dev/null
+grep -F ':lifecycle :resumed' "$root/artifacts/layouts/lifecycle.xml" >/dev/null
 adb -s "$serial" logcat -d -v threadtime > "$root/artifacts/logs/lifecycle.log"
 if grep -Eq 'FATAL EXCEPTION|SIGABRT|signal 6' "$root/artifacts/logs/lifecycle.log"; then exit 1; fi
 printf 'Lifecycle smoke passed; layout and log written under artifacts/\n'
