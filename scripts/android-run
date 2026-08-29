@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Install and launch the debug application on the deterministic running AVD.
+set -euo pipefail
+repo_root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+: "${ANDROID_HOME:?run through nix develop so ANDROID_HOME is set}"
+port=${JOLT_ANDROID_EMULATOR_PORT:-5554}; serial="emulator-$port"
+package=${JOLT_ANDROID_PACKAGE:-net.joltlang.androidpoc.abiprobe}
+activity=${JOLT_ANDROID_ACTIVITY:-.MainActivity}
+apk=${JOLT_ANDROID_APK:-"$repo_root/app/build/outputs/apk/debug/app-debug.apk"}
+[[ -s "$apk" ]] || { echo "APK missing: $apk; run scripts/android-build" >&2; exit 1; }
+[[ "$(adb -s "$serial" get-state 2>/dev/null)" == device ]] || { echo "AVD unavailable: $serial" >&2; exit 1; }
+adb -s "$serial" install -r "$apk"
+adb -s "$serial" shell am force-stop "$package"
+adb -s "$serial" shell am start -W -n "$package/$activity"

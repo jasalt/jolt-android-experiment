@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Collect logcat for the demo package without masking adb failures.
+set -euo pipefail
+repo_root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+: "${ANDROID_HOME:?run through nix develop so ANDROID_HOME is set}"
+port=${JOLT_ANDROID_EMULATOR_PORT:-5554}; serial="emulator-$port"
+package=${JOLT_ANDROID_PACKAGE:-net.joltlang.androidpoc.abiprobe}
+out=${JOLT_ANDROID_LOG_FILE:-"$repo_root/artifacts/logs/android-$port.log"}
+mkdir -p "$(dirname -- "$out")"
+[[ "$(adb -s "$serial" get-state 2>/dev/null)" == device ]] || { echo "AVD unavailable: $serial" >&2; exit 1; }
+pid=$(adb -s "$serial" shell pidof "$package" | tr -d '\r')
+if [[ -n "$pid" ]]; then adb -s "$serial" logcat -d --pid="$pid" -v threadtime >"$out"; else adb -s "$serial" logcat -d -v threadtime >"$out"; fi
+printf 'Wrote %s\n' "$out"

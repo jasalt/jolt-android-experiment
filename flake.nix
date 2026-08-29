@@ -142,7 +142,7 @@
               pkgs.chez
               pkgs.ncurses
               self.packages.${system}.jolt
-            ] ++ pkgs.lib.optionals androidSupported [ androidSdk ]
+            ] ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isLinux [ pkgs.libuuid ] ++ pkgs.lib.optionals androidSupported [ androidSdk ]
               ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isLinux [
                 pkgs.gtk4
                 pkgs.glib

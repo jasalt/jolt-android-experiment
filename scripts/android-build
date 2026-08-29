@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Assemble the debug APK using only tools supplied by the active Nix shell.
+set -euo pipefail
+repo_root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+cd "$repo_root"
+: "${ANDROID_HOME:?run through nix develop so ANDROID_HOME is set}"
+: "${ANDROID_NDK_ROOT:?run through nix develop so ANDROID_NDK_ROOT is set}"
+command -v gradle >/dev/null || { echo 'missing gradle; run through nix develop' >&2; exit 1; }
+gradle --no-daemon :app:assembleDebug
+apk="$repo_root/app/build/outputs/apk/debug/app-debug.apk"
+[[ -s "$apk" ]] || { echo "expected APK was not produced: $apk" >&2; exit 1; }
+printf 'Built %s\n' "$apk"

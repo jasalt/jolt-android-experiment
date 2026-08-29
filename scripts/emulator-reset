@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Stop, wipe, and restart the deterministic API-35 AVD.
+set -euo pipefail
+repo_root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+: "${ANDROID_AVD_HOME:?run through nix develop so ANDROID_AVD_HOME is set}"
+port=${JOLT_ANDROID_EMULATOR_PORT:-5554}
+serial="emulator-$port"
+avd_name=${JOLT_ANDROID_AVD_NAME:-jolt_api_35_x86_64}
+mode=${1:-headless}
+adb -s "$serial" emu kill >/dev/null 2>&1 || true
+for _ in $(seq 1 30); do adb -s "$serial" get-state >/dev/null 2>&1 || break; sleep 1; done
+JOLT_ANDROID_EMULATOR_WIPE_DATA=1 exec "$repo_root/scripts/emulator-start" "$mode"

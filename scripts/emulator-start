@@ -81,6 +81,9 @@ else
     -gpu "$gpu"
     -memory "${JOLT_ANDROID_EMULATOR_MEMORY_MB:-1024}"
   )
+  if [[ "${JOLT_ANDROID_EMULATOR_WIPE_DATA:-0}" == 1 ]]; then
+    emulator_args+=(-wipe-data)
+  fi
   case "$mode" in
     gui)
       : "${DISPLAY:?GUI mode requires DISPLAY; use headless or software otherwise}"

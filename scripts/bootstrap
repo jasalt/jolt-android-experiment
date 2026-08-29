@@ -15,7 +15,7 @@ require_command() {
   }
 }
 
-for command in adb emulator avdmanager java cmake ninja clang readelf file; do
+for command in adb emulator avdmanager java gradle cmake ninja clang readelf file; do
   require_command "$command"
 done
 
@@ -53,7 +53,7 @@ done
   printf 'ANDROID_HOME=%s\n' "$ANDROID_HOME"
   printf 'ANDROID_NDK_ROOT=%s\n' "$ANDROID_NDK_ROOT"
   printf 'JAVA_HOME=%s\n' "${JAVA_HOME-<unset>}"
-  for command in adb emulator avdmanager java cmake ninja clang readelf file; do
+  for command in adb emulator avdmanager java gradle cmake ninja clang readelf file; do
     printf '%s=%s\n' "$command" "$(command -v "$command")"
   done
 
@@ -67,6 +67,9 @@ done
     printf 'Command-line tools source.properties unavailable\n'
   fi
   java -version
+  gradle --version
+  if command -v jolt >/dev/null; then jolt --version || jolt -e '(println "Jolt available")'; else printf 'jolt unavailable\n'; fi
+  if command -v scheme >/dev/null; then scheme --version; else printf 'scheme unavailable\n'; fi
   cmake --version
   ninja --version
   clang --version
