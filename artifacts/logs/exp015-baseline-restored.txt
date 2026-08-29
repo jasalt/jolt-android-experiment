@@ -1,0 +1,2 @@
+I/jolt_probe(11011): owner JNI session initialized
+Runtime: initialized

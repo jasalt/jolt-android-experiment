@@ -1,0 +1,37 @@
+# Observed 2026-08-29
+
+The pinned Jolt source includes `host/chez/compile-eval.ss`, which binds
+`clojure.core/load-string`, so a bounded export was tested rather than assuming
+the library omitted the compile spine.
+
+The isolated Android library rebuilt successfully with the fixed export in the
+fixture. On app launch the ordinary library load succeeded, but the bridge
+reported:
+
+```text
+I/jolt_probe: {:error :exports}
+```
+
+`jolt_lookup("poc_debug_eval_fixed")` was null. The app then had already queued
+lifecycle work; Chez reached `S_abnormal_exit` and the process aborted:
+
+```text
+Fatal signal 6 (SIGABRT) in JoltRuntime
+S_abnormal_exit
+S_error_reset
+```
+
+The failure occurred before calling `debug-eval-fixed`, so this experiment does
+**not** prove that `load-string` fails on Android. It proves that adding this
+runtime-eval export prevents the expected export from being published in the
+current Android library image, and leaving later work queued after that failed
+initialization reaches Chez’s abort handler.
+
+The fixed-eval additions and rebuilt artifact were restored to the previously
+proven non-eval baseline after capturing the log. A clean rebuilt baseline APK
+then logged `owner JNI session initialized`, rendered `Runtime: initialized`,
+and passed the portable suite (6 tests / 13 assertions). See
+[`artifacts/logs/exp015-baseline-restored.txt`](../../artifacts/logs/exp015-baseline-restored.txt).
+
+No network listener, arbitrary form input, redefinition, Android REPL, or
+nREPL/CIDER support was attempted.

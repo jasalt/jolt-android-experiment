@@ -1,0 +1,51 @@
+D/nativeloader(10916): Load /data/app/~~yZTBDr9DdtVRnwjcBgiIOQ==/net.joltlang.androidpoc.abiprobe-__l1IvCaDr0odTfLiUHmOg==/base.apk!/lib/arm64-v8a/libjolt_probe.so using ns clns-7 from class loader (caller=/data/app/~~yZTBDr9DdtVRnwjcBgiIOQ==/net.joltlang.androidpoc.abiprobe-__l1IvCaDr0odTfLiUHmOg==/base.apk!classes3.dex): ok
+I/JoltRuntime(10916): entering JNI on JoltRuntime
+I/jolt_probe(10916): {:error :exports}
+I/JoltRuntime(10916): entering JNI on JoltRuntime
+F/libc    (10916): Fatal signal 6 (SIGABRT), code -1 (SI_QUEUE) in tid 10937 (JoltRuntime), pid 10916 (oidpoc.abiprobe)
+W/JoltRuntime(10916): type=1400 audit(0.0:431): avc:  denied  { getattr } for  path="/dev/pmsg0" dev="tmpfs" ino=773 scontext=u:r:untrusted_app:s0:c209,c256,c512,c768 tcontext=u:object_r:pmsg_device:s0 tclass=chr_file permissive=0 app=net.joltlang.androidpoc.abiprobe
+W/JoltRuntime(10916): type=1400 audit(0.0:432): avc:  denied  { getattr } for  path="/dev/pmsg0" dev="tmpfs" ino=773 scontext=u:r:untrusted_app:s0:c209,c256,c512,c768 tcontext=u:object_r:pmsg_device:s0 tclass=chr_file permissive=0 app=net.joltlang.androidpoc.abiprobe
+W/JoltRuntime(10916): type=1400 audit(0.0:433): avc:  denied  { getattr } for  path="/dev/pmsg0" dev="tmpfs" ino=773 scontext=u:r:untrusted_app:s0:c209,c256,c512,c768 tcontext=u:object_r:pmsg_device:s0 tclass=chr_file permissive=0 app=net.joltlang.androidpoc.abiprobe
+F/DEBUG   (10948): *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+F/DEBUG   (10948): Build fingerprint: 'google/sdk_gphone64_x86_64/emu64xa:15/AE3A.240806.043/12960925:userdebug/dev-keys'
+F/DEBUG   (10948): Revision: '0'
+F/DEBUG   (10948): ABI: 'x86_64'
+F/DEBUG   (10948): Guest architecture: 'arm64'
+F/DEBUG   (10948): Timestamp: 2026-08-29 06:18:49.506692273+0300
+F/DEBUG   (10948): Process uptime: 4s
+F/DEBUG   (10948): Cmdline: net.joltlang.androidpoc.abiprobe
+F/DEBUG   (10948): pid: 10916, tid: 10937, name: JoltRuntime  >>> net.joltlang.androidpoc.abiprobe <<<
+F/DEBUG   (10948): uid: 10209
+F/DEBUG   (10948): signal 6 (SIGABRT), code -1 (SI_QUEUE), fault addr --------
+F/DEBUG   (10948):     rax 0000000000000000  rbx 00007a4b4583d000  rcx 00007a4b2d946f58  rdx 0000000000000006
+F/DEBUG   (10948):     r8  0000000000000010  r9  0000000000000010  r10 00007a480026fc60  r11 0000000000000206
+F/DEBUG   (10948):     r12 0000000000000019  r13 0000000000ed8cc8  r14 00007a4b4583c020  r15 00007a4800488bc0
+F/DEBUG   (10948):     rdi 0000000000002aa4  rsi 0000000000002ab9
+F/DEBUG   (10948):     rbp 0000000000ed8c01  rsp 00007a4b436ce178  rip 00007a4b2d946f58
+F/DEBUG   (10948): 3 total frames
+F/DEBUG   (10948): backtrace:
+F/DEBUG   (10948):       #00 pc 0000000000081f58  /apex/com.android.runtime/lib64/bionic/libc.so (syscall+24) (BuildId: eb58b4d427279994f00c0e1818477e4f)
+F/DEBUG   (10948):       #01 pc 00000000002d15ee  /system/lib64/libndk_translation.so (ndk_translation::RunKernelSyscall(berberis::ThreadState*)+78) (BuildId: 3bdce8491a367d18e6b73dc5f0f90ffa)
+F/DEBUG   (10948):       #02 pc 0000000000218c44  /memfd:exec (deleted)
+F/DEBUG   (10948):     x0  0000000000002aa4  x1  0000000000002ab9  x2  0000000000000006  x3  00007a480026fc60
+F/DEBUG   (10948):     x4  0000000000000010  x5  0000000000000010  x6  0000000000000010  x7  7f7f7f7f7f7f7f7f
+F/DEBUG   (10948):     x8  00000000000000f0  x9  00007a4800eb5638  x10 ffffff80ffffffdf  x11 0000000000000001
+F/DEBUG   (10948):     x12 00007a480026f860  x13 0000000000000012  x14 0000000000000000  x15 0000000000000000
+F/DEBUG   (10948):     x16 00007a4800f57110  x17 00007a4800f336f0  x18 00007a477b2a8000  x19 0000000000002aa4
+F/DEBUG   (10948):     x20 0000000000002ab9  x21 00000000ffffffff  x22 0000000000000005  x23 0000000000000000
+F/DEBUG   (10948):     x24 0000000000000000  x25 0000000000000000  x26 0000000000000000  x27 0000000000000000
+F/DEBUG   (10948):     x28 0000000000000000  x29 00007a480026fce0  lr  00007a4800ed8c9c  sp  00007a480026fc40
+F/DEBUG   (10948):     pc  00007a4800ed8cc8  pst 0000000000000000
+F/DEBUG   (10948):
+F/DEBUG   (10948): 8 total frames
+F/DEBUG   (10948): backtrace:
+F/DEBUG   (10948):       #00 pc 0000000000048cc8  /system/lib64/arm64/libc.so (abort+164) (BuildId: efae7ea66b8bcde3ced1065517425e18)
+F/DEBUG   (10948):       #01 pc 00000000000b6d68  /data/app/~~yZTBDr9DdtVRnwjcBgiIOQ==/net.joltlang.androidpoc.abiprobe-__l1IvCaDr0odTfLiUHmOg==/base.apk (offset 0x328000)
+F/DEBUG   (10948):       #02 pc 00000000000a3f9c  /data/app/~~yZTBDr9DdtVRnwjcBgiIOQ==/net.joltlang.androidpoc.abiprobe-__l1IvCaDr0odTfLiUHmOg==/base.apk (offset 0x328000) (S_abnormal_exit+20)
+F/DEBUG   (10948):       #03 pc 00000000000a3128  /data/app/~~yZTBDr9DdtVRnwjcBgiIOQ==/net.joltlang.androidpoc.abiprobe-__l1IvCaDr0odTfLiUHmOg==/base.apk (offset 0x328000)
+F/DEBUG   (10948):       #04 pc 00000000000a307c  /data/app/~~yZTBDr9DdtVRnwjcBgiIOQ==/net.joltlang.androidpoc.abiprobe-__l1IvCaDr0odTfLiUHmOg==/base.apk (offset 0x328000) (S_error_reset+208)
+F/DEBUG   (10948):       #05 pc 00000000000a3e54  /data/app/~~yZTBDr9DdtVRnwjcBgiIOQ==/net.joltlang.androidpoc.abiprobe-__l1IvCaDr0odTfLiUHmOg==/base.apk (offset 0x328000)
+F/DEBUG   (10948):       #06 pc 0000000000004018  /system/lib64/arm64/libnative_bridge_vdso.so (BuildId: c7eb2dae1deb0f51d28b7a1c3619dca4)
+F/DEBUG   (10948):       #07 pc 00000000000002d0  /data/app/~~yZTBDr9DdtVRnwjcBgiIOQ==/net.joltlang.androidpoc.abiprobe-__l1IvCaDr0odTfLiUHmOg==/base.apk (offset 0x325000)
+F/DEBUG   (10948): 1 total frames
+F/DEBUG   (10948): backtrace:
