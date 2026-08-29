@@ -1,12 +1,19 @@
 plugins {
   id("com.android.application")
   id("org.jetbrains.kotlin.android")
+  id("org.jetbrains.kotlin.plugin.compose")
 }
+
+val junitVersion = "4.13.2"
 
 android {
   namespace = "net.joltlang.androidpoc.abiprobe"
   compileSdk = 35
   ndkVersion = "29.0.14206865"
+
+  buildFeatures {
+    buildConfig = true
+  }
 
   defaultConfig {
     applicationId = "net.joltlang.androidpoc.abiprobe"
@@ -14,6 +21,7 @@ android {
     targetSdk = 35
     versionCode = 1
     versionName = "1.0"
+    testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
     externalNativeBuild {
       cmake {
@@ -36,6 +44,23 @@ android {
       version = "3.22.1"
     }
   }
+
+  testOptions {
+    execution = "ANDROIDX_TEST_ORCHESTRATOR"
+  }
+}
+
+dependencies {
+  implementation(platform("androidx.compose:compose-bom:2024.12.01"))
+  implementation("androidx.activity:activity-compose:1.10.0")
+  implementation("androidx.compose.material3:material3")
+  implementation("androidx.compose.ui:ui")
+  implementation("androidx.compose.ui:ui-tooling-preview")
+  debugImplementation("androidx.compose.ui:ui-tooling")
+  testImplementation("junit:junit:$junitVersion")
+  androidTestImplementation("androidx.test.ext:junit:1.2.1")
+  androidTestImplementation("androidx.test:runner:1.6.2")
+  androidTestUtil("androidx.test:orchestrator:1.5.1")
 }
 
 kotlin {
