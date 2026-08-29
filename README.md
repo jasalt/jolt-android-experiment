@@ -35,6 +35,9 @@ caller-supplied eval or nREPL result.
 
 The project reports graded outcomes, including reproducible blockers. See
 [docs/PLAN.md](docs/PLAN.md) for the complete research plan and success levels.
+
+[Task management](https://jasalt.github.io/jolt-android-experiment/bv/)
+
 Do not interpret design intent as experimental evidence; observed architecture,
 traps, and assessment are recorded in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md),
 [docs/GOTCHAS.md](docs/GOTCHAS.md), `experiments/`, and [REPORT.md](REPORT.md).

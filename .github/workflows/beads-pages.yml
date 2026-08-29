@@ -1,0 +1,44 @@
+name: Publish Beads task dashboard
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - '.beads/issues.jsonl'
+      - '.github/workflows/beads-pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install pinned Beads Viewer
+        env:
+          BV_VERSION: v0.22.0
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 3 \
+            "https://github.com/Dicklesworthstone/beads_viewer/releases/download/${BV_VERSION}/bv_linux_amd64.tar.gz" \
+            --output /tmp/bv.tar.gz
+          tar -xzf /tmp/bv.tar.gz -C /tmp
+          install -m 0755 /tmp/bv /usr/local/bin/bv
+          bv --version
+
+      - name: Export static dashboard
+        run: bv --export-pages html-output
+
+      - name: Publish dashboard under /bv/
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages
+          folder: html-output
+          target-folder: bv
+          clean: false
+          single-commit: false
