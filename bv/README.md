@@ -4,23 +4,6 @@
 
 **74** total issues | **84%** complete | **8** ready to work | **1** blocked
 
-## 🎯 Top Priorities
-
-The graph analysis identified these as the highest-impact items to work on:
-
-### 1. Extend GTK adapter to shared capability and platform-effect parity
-**ID:** `jolt-android-jkb.5` | **Impact Score:** 0.17 | **Unblocks:** 1 issues
-
-**Why this matters:**
-- 🔓 Unblocks 1 item(s): jolt-android-csj.3
-- ✅ Currently unclaimed - available for work
-
-### 2. Provision native Linux GTK validation host
-**ID:** `jolt-android-jkb.2` | **Impact Score:** 0.12
-
-**Why this matters:**
-- ✅ Currently unclaimed - available for work
-
 ## 🚧 Critical Bottlenecks
 
 These issues are blocking the most downstream work. Clearing them has outsized impact:
@@ -60,5 +43,5 @@ Low-effort items that clear the path forward:
 
 ---
 
-*Generated Aug 29, 2026 at 11:23 AM UTC by [bv](https://github.com/Dicklesworthstone/beads_viewer)*
+*Generated Aug 29, 2026 at 11:31 AM UTC by [bv](https://github.com/Dicklesworthstone/beads_viewer)*
 
