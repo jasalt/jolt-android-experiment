@@ -22,8 +22,9 @@ a worker callback. See [REPORT.md](REPORT.md) for evidence boundaries.
 This does **not** prove native ARM64 Linux/macOS portable-host support:
 `jolt-android-a4e.2` requires a native ARM64 host run and remains externally
 blocked. GTK/Glimmer, Compose, notification posting, intents, and Android nREPL
-remain unimplemented. EXP-015 demonstrates one bounded, fixed Android
-`load-string` call; it is not a caller-supplied eval or nREPL result.
+remain unimplemented. [EXP-015](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-015-android-fixed-debug-eval)
+demonstrates one bounded, fixed Android `load-string` call; it is not a
+caller-supplied eval or nREPL result.
 
 The project reports graded outcomes, including reproducible blockers. See
 [docs/PLAN.md](docs/PLAN.md) for the complete research plan and success levels.
@@ -204,7 +205,7 @@ corresponding experiments begin.
 
 ## Other related projects
 
-- Apple UIKit support on macOS https://github.com/jolt-lang/examples/tree/main/todomvc-uikit
+- Apple UIKit support on macOS <https://github.com/jolt-lang/examples/tree/main/todomvc-uikit>
 
 ## Contributing
 

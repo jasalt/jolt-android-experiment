@@ -55,5 +55,5 @@ back through `JoltRuntime`.
 - Compose UI; the demonstrated shell is a minimal native Android View layout.
 - Android notification posting, URL intents, or generalized permissions.
 - General Android debug evaluation, caller-supplied source/result transport, a
-  socket server, Android nREPL, CIDER, or code redefinition. EXP-015 proves only
-  one fixed `load-string` call returning a primitive value.
+  socket server, Android nREPL, CIDER, or code redefinition. [EXP-015](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-015-android-fixed-debug-eval)
+  proves only one fixed `load-string` call returning a primitive value.

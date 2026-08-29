@@ -17,18 +17,18 @@ The PoC demonstrates a persistent Jolt/Chez ARM64 managed library embedded in
 an Android application through a Kotlin/JNI boundary:
 
 1. Chez ARM64 target artifacts initialize and evaluate Scheme independently
-   (EXP-003).
+   ([EXP-003](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-003-chez-android-jni)).
 2. A reduced Jolt cross-library patch builds an Android-35 AArch64 `.so` with
    Bionic dependencies only; it initializes, resolves exports, and executes
-   them in the app (EXP-004).
+   them in the app ([EXP-004](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-004-jolt-android-library-cross-target)).
 3. The bridge survives 10,000 calls, allocation, explicit compaction, shutdown,
-   and process relaunch under the tested emulator configuration (EXP-005).
+   and process relaunch under the tested emulator configuration ([EXP-005](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-005-jolt-android-lifecycle-stress)).
 4. Android calls are confined to `HandlerThread("JoltRuntime")`; UI, lifecycle,
    permission, and worker callbacks queue data rather than entering JNI/Jolt
-   directly (EXP-006, EXP-009, EXP-013, EXP-014).
+   directly ([EXP-006](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-006-android-jolt-handler-thread), [EXP-009](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-009-android-runtime-lifecycle), [EXP-013](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-013-android-worker-callback), [EXP-014](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-014-android-notification-permission)).
 5. Shared reducer events drive Jolt-owned counter/lifecycle state, clipboard
    effects, integer persistence and fresh-process restoration, and notification
-   permission request/result state (EXP-007 through EXP-014).
+   permission request/result state ([EXP-007](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-007-android-edn-dispatch) through [EXP-014](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-014-android-notification-permission)).
 
 The source commits and evidence artifacts are intended to make every statement
 above reproducible through the referenced experiment documents, Nix shell,
@@ -51,7 +51,7 @@ portable-host support is claimed.
 
 Android has one narrower debug-evaluation result: a disposable fixed
 `load-string` export resolved through `jolt_lookup` and returned `42` on the
-Jolt runtime thread (EXP-015). The initial aggregate export-check failure was
+Jolt runtime thread ([EXP-015](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-015-android-fixed-debug-eval)). The initial aggregate export-check failure was
 not evidence that this export was absent; a diagnostic rerun corrected that
 attribution. No caller-supplied evaluation, Android nREPL, remote evaluation,
 CIDER, error-recovery path, or redefinition is implemented.
@@ -69,19 +69,19 @@ CIDER, error-recovery path, or redefinition is implemented.
 
 | Area | Primary evidence |
 | --- | --- |
-| Emulator startup and screenshots | EXP-002; `artifacts/screenshots/` |
-| ARM64 translation loader probe | EXP-001 |
-| Standalone Chez Android JNI | EXP-003 |
-| Jolt cross-library construction | EXP-004 |
-| Lifecycle/GC stress | EXP-005 and EXP-008 |
-| Thread confinement | EXP-006 and EXP-013 |
-| Data ownership and dispatch | EXP-007 |
-| Runtime/lifecycle UI | EXP-009 |
-| Counter controls | EXP-010 |
-| Clipboard effect | EXP-011 |
-| Persistence restore | EXP-012 |
-| Permission round trip | EXP-014 |
-| Bounded fixed debug eval | EXP-015 |
+| Emulator startup and screenshots | [EXP-002](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-002-api35-emulator-startup-crash); `artifacts/screenshots/` |
+| ARM64 translation loader probe | [EXP-001](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-001-api35-arm64-on-x86-emulator) |
+| Standalone Chez Android JNI | [EXP-003](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-003-chez-android-jni) |
+| Jolt cross-library construction | [EXP-004](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-004-jolt-android-library-cross-target) |
+| Lifecycle/GC stress | [EXP-005](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-005-jolt-android-lifecycle-stress) and [EXP-008](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-008-android-jolt-session) |
+| Thread confinement | [EXP-006](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-006-android-jolt-handler-thread) and [EXP-013](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-013-android-worker-callback) |
+| Data ownership and dispatch | [EXP-007](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-007-android-edn-dispatch) |
+| Runtime/lifecycle UI | [EXP-009](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-009-android-runtime-lifecycle) |
+| Counter controls | [EXP-010](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-010-android-counter-controls) |
+| Clipboard effect | [EXP-011](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-011-android-clipboard-effect) |
+| Persistence restore | [EXP-012](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-012-android-persistence) |
+| Permission round trip | [EXP-014](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-014-android-notification-permission) |
+| Bounded fixed debug eval | [EXP-015](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-015-android-fixed-debug-eval) |
 
 ## Reproducible validation baseline
 
