@@ -42,3 +42,25 @@ jobs:
           target-folder: bv
           clean: false
           single-commit: false
+
+      - name: Create repository redirect at site root
+        run: |
+          set -euo pipefail
+          mkdir -p site-root
+          cat > site-root/index.html <<'EOF'
+          <!doctype html>
+          <meta charset="utf-8">
+          <meta http-equiv="refresh" content="0; url=https://github.com/jasalt/jolt-android-experiment">
+          <title>Jolt Android PoC</title>
+          <p>Redirecting to the <a href="https://github.com/jasalt/jolt-android-experiment">GitHub repository</a>…</p>
+          <script>location.replace('https://github.com/jasalt/jolt-android-experiment');</script>
+          EOF
+
+      - name: Publish repository redirect at site root
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages
+          folder: site-root
+          clean: false
+          single-commit: false
