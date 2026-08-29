@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Build and execute the portable Jolt C-ABI harness on the host architecture.
+set -euo pipefail
+root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+: "${JOLT_SOURCE:?set JOLT_SOURCE to a host-runnable pinned Jolt checkout}"
+jolt_source=$(CDPATH= cd -- "$JOLT_SOURCE" && pwd)
+work=$(mktemp -d)
+trap 'rm -rf "$work"' EXIT
+(
+  cd "$root/experiments/EXP-004-jolt-android-library-cross-target/poc"
+  JOLT_TARGET_LINK_LIBS="-llz4 -lz -lncurses -ltinfo -ldl -lm -lpthread -luuid -lrt" \
+    "$jolt_source/bin/jolt" build --library -m poc.native -o "$work/libjoltpoc.so"
+)
+cc -std=c17 -Wall -Wextra -Werror "$root/native/jolt-library-harness.c" -ldl -o "$work/harness"
+"$work/harness" "$work/libjoltpoc.so"

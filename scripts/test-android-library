@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Tier-3 static ABI gate for the Android-only ARM64 Jolt library.
+set -euo pipefail
+root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+lib="$root/native/jolt/android-arm64/arm64-v8a/libjoltpoc.so"
+[[ -s "$lib" ]] || { echo "missing $lib; run scripts/jolt-android-library-build" >&2; exit 1; }
+file "$lib" | grep -Eq 'ELF 64-bit.*ARM aarch64.*Android'
+readelf -d "$lib" | grep -F 'Shared library: [libc.so]'
+for symbol in jolt_library_init jolt_lookup jolt_library_shutdown; do
+  nm -D --defined-only "$lib" | grep -q " $symbol$" || { echo "missing export: $symbol" >&2; exit 1; }
+done
+# This host is x86_64. It intentionally does not execute an AArch64 ELF; Android
+# instrumentation is the runtime harness and this verifies packaging ABI seams.
+printf 'Validated Android ARM64 library static ABI: %s\n' "$lib"

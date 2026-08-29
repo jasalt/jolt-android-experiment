@@ -31,6 +31,10 @@
       :platform/clipboard 1
       :storage/write 2
       :permission/request 3
+      :platform/vibrate 4
+      :platform/open-uri 5
+      :platform/read-info 6
+      :notification/show 7
       0)))
 
 (defn worker-code []
@@ -42,6 +46,19 @@
     :denied 2
     0))
 
+(defn debug-eval [source]
+  ;; This debug-only function is serialized by JoltRuntime. `:string` causes
+  ;; Jolt's export layer to copy the result to C rather than exposing managed
+  ;; memory. Results/errors are bounded before the JNI bridge creates a String.
+  (try
+    (let [result (pr-str (load-string source))]
+      (if (> (count result) 65536)
+        "{:error {:type :eval/result-too-large}}"
+        (str "{:ok " result "}")))
+    (catch :default error
+      (str "{:error {:type :eval/failed :message "
+           (pr-str (str error)) "}}"))))
+
 (ffi/export! "poc_answer" answer [] :int)
 (ffi/export! "poc_allocate" allocate [:int] :int)
 (ffi/export! "poc_dispatch_counter" dispatch-counter [:string] :int)
@@ -49,3 +66,4 @@
 (ffi/export! "poc_effect_code" effect-code [:string] :int)
 (ffi/export! "poc_worker_code" worker-code [] :int)
 (ffi/export! "poc_permission_code" permission-code [] :int)
+(ffi/export! "poc_debug_eval" debug-eval [:string] :string)

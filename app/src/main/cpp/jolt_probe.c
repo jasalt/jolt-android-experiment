@@ -15,6 +15,7 @@ typedef int (*poc_lifecycle_code_fn)(void);
 typedef int (*poc_effect_code_fn)(const char *);
 typedef int (*poc_worker_code_fn)(void);
 typedef int (*poc_permission_code_fn)(void);
+typedef const char *(*poc_debug_eval_fn)(const char *);
 
 static pthread_mutex_t lifecycle_lock = PTHREAD_MUTEX_INITIALIZER;
 static pthread_t owner_thread;
@@ -26,6 +27,7 @@ static poc_lifecycle_code_fn lifecycle_code;
 static poc_effect_code_fn effect_code;
 static poc_worker_code_fn worker_code;
 static poc_permission_code_fn permission_code;
+static poc_debug_eval_fn debug_eval;
 
 static jstring result_string(JNIEnv *environment, const char *text) {
   return (*environment)->NewStringUTF(environment, text);
@@ -36,6 +38,8 @@ static const char *lifecycle_name(int code) {
     case 1: return ":created";
     case 2: return ":started";
     case 3: return ":resumed";
+    case 4: return ":paused";
+    case 5: return ":stopped";
     default: return "nil";
   }
 }
@@ -55,9 +59,15 @@ static bool valid_event(const char *event) {
       strcmp(event, "{:type :counter/dec}") == 0 ||
       strcmp(event, "{:type :counter/reset}") == 0 ||
       strcmp(event, "{:type :platform/copy-counter}") == 0 ||
+      strcmp(event, "{:type :platform/vibrate}") == 0 ||
+      strcmp(event, "{:type :platform/open-url}") == 0 ||
+      strcmp(event, "{:type :platform/read-info}") == 0 ||
+      strcmp(event, "{:type :platform/notify-counter}") == 0 ||
       strcmp(event, "{:type :lifecycle/create}") == 0 ||
       strcmp(event, "{:type :lifecycle/start}") == 0 ||
       strcmp(event, "{:type :lifecycle/resume}") == 0 ||
+      strcmp(event, "{:type :lifecycle/pause}") == 0 ||
+      strcmp(event, "{:type :lifecycle/stop}") == 0 ||
       strcmp(event, "{:type :worker/completed}") == 0 ||
       strcmp(event, "{:type :permission/request-notifications}") == 0 ||
       strcmp(event, "{:type :permission/result-granted}") == 0 ||
@@ -93,7 +103,8 @@ static const char *ensure_session(void) {
   effect_code = (poc_effect_code_fn)lookup("poc_effect_code");
   worker_code = (poc_worker_code_fn)lookup("poc_worker_code");
   permission_code = (poc_permission_code_fn)lookup("poc_permission_code");
-  if (dispatch_counter == NULL || lifecycle_code == NULL || effect_code == NULL || worker_code == NULL || permission_code == NULL) {
+  debug_eval = (poc_debug_eval_fn)lookup("poc_debug_eval");
+  if (dispatch_counter == NULL || lifecycle_code == NULL || effect_code == NULL || worker_code == NULL || permission_code == NULL || debug_eval == NULL) {
     shutdown_runtime();
     return "{:error :exports}";
   }
@@ -139,12 +150,56 @@ Java_net_joltlang_androidpoc_abiprobe_JoltRuntime_nativeJoltDispatch(
               ? snprintf(output, sizeof output,
                   "{:model {:counter %d, :events [], :platform nil, :lifecycle %s, :worker %s, :notification-permission %s}, :effects [{:type :permission/request, :permission :notifications}]}",
                   counter, lifecycle_name(lifecycle), worker ? ":completed" : "nil", permission_name(permission))
-              : snprintf(output, sizeof output,
-                  "{:model {:counter %d, :events [], :platform nil, :lifecycle %s, :worker %s, :notification-permission %s}, :effects []}",
-                  counter, lifecycle_name(lifecycle), worker ? ":completed" : "nil", permission_name(permission));
+              : effect == 4
+                  ? snprintf(output, sizeof output,
+                      "{:model {:counter %d}, :effects [{:type :platform/vibrate, :duration-ms 50}]}", counter)
+                  : effect == 5
+                      ? snprintf(output, sizeof output,
+                          "{:model {:counter %d}, :effects [{:type :platform/open-uri, :uri \"https://jolt-lang.net\"}]}", counter)
+                      : effect == 6
+                          ? snprintf(output, sizeof output,
+                              "{:model {:counter %d}, :effects [{:type :platform/read-info}]}", counter)
+                          : effect == 7
+                              ? snprintf(output, sizeof output,
+                                  "{:model {:counter %d}, :effects [{:type :notification/show, :title \"Jolt\", :body \"Counter: %d\"}]}", counter, counter)
+                              : snprintf(output, sizeof output,
+                              "{:model {:counter %d, :events [], :platform nil, :lifecycle %s, :worker %s, :notification-permission %s}, :effects []}",
+                              counter, lifecycle_name(lifecycle), worker ? ":completed" : "nil", permission_name(permission));
   if (written < 0 || written >= (int)sizeof output) return result_string(environment, "{:error :output-too-large}");
   __android_log_print(ANDROID_LOG_INFO, "jolt_probe", "dispatch counter=%d", counter);
   return result_string(environment, output);
+}
+
+JNIEXPORT jstring JNICALL
+Java_net_joltlang_androidpoc_abiprobe_JoltRuntime_nativeWrongThreadProbe(
+    JNIEnv *environment, jobject runtime) {
+  (void)runtime;
+  const char *error = ensure_session();
+  // Test-only probe: this must return :wrong-thread after the runtime thread
+  // initialized the library, rather than entering any Jolt export.
+  return result_string(environment, error == NULL ? "{:error :unexpected-owner}" : error);
+}
+
+JNIEXPORT jstring JNICALL
+Java_net_joltlang_androidpoc_abiprobe_JoltRuntime_nativeJoltEval(
+    JNIEnv *environment, jobject runtime, jstring source) {
+  (void)runtime;
+  const char *input = (*environment)->GetStringUTFChars(environment, source, NULL);
+  if (input == NULL) return result_string(environment, "{:error {:type :eval/invalid-input}}");
+  if (strlen(input) > 65536) {
+    (*environment)->ReleaseStringUTFChars(environment, source, input);
+    return result_string(environment, "{:error {:type :eval/input-too-large}}");
+  }
+  const char *session_error = ensure_session();
+  if (session_error != NULL) {
+    (*environment)->ReleaseStringUTFChars(environment, source, input);
+    return result_string(environment, session_error);
+  }
+  const char *result = debug_eval(input);
+  (*environment)->ReleaseStringUTFChars(environment, source, input);
+  if (result == NULL) return result_string(environment, "{:error {:type :eval/no-result}}");
+  // :string exports copy into the C ABI. JNI copies again into a Java String.
+  return result_string(environment, result);
 }
 
 JNIEXPORT void JNICALL
