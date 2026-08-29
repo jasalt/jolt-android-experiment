@@ -1,6 +1,8 @@
 (ns poc.reducer-test
   (:require [clojure.test :refer [deftest is testing]]
-            [poc.reducer :as sut]))
+            [poc.contracts :as contracts]
+            [poc.reducer :as sut]
+            [poc.wire :as wire]))
 
 (def base-model
   {:counter 0 :events [] :platform nil :lifecycle nil :worker nil
@@ -37,6 +39,22 @@
   (is (= [(assoc base-model :notification-permission :denied) []]
          (sut/step sut/initial-state {:type :permission/result-denied}))))
 
+(deftest portable-capability-contract
+  (is (= #{:clipboard :persistence :open-uri :notifications :vibration}
+         (contracts/capabilities :android)))
+  (is (contracts/permitted-effect? :linux {:type :platform/clipboard}))
+  (is (not (contracts/permitted-effect? :cli {:type :platform/clipboard})))
+  (is (= [(assoc base-model :platform (contracts/platform-description :cli))
+          [{:type :platform/open-uri :uri "https://example.org"}]]
+         (sut/step (assoc sut/initial-state :platform (contracts/platform-description :cli))
+                   {:type :platform/request-effect
+                    :effect {:type :platform/open-uri :uri "https://example.org"}})))
+  (is (= [(assoc base-model :platform (contracts/platform-description :cli)
+                         :last-unsupported-effect :platform/clipboard) []]
+         (sut/step (assoc sut/initial-state :platform (contracts/platform-description :cli))
+                   {:type :platform/request-effect
+                    :effect {:type :platform/clipboard :text "x"}}))))
+
 (deftest reducer-state-remains-portable-data
   (let [[model effects] (sut/step sut/initial-state {:type :counter/inc})]
     (is (= :storage/write (:type (first effects))))
@@ -50,11 +68,31 @@
     (is (= [{:type :storage/write :key "counter" :value 1}]
            effects))))
 
+(deftest canonical-wire-contract
+  (is (= {:ok {:type :counter/inc}}
+         (wire/decode-event "{:type :counter/inc}")))
+  (is (= :wire/malformed (get-in (wire/decode-event "{") [:error :type])))
+  (is (= :wire/invalid (get-in (wire/decode-event "[]") [:error :type])))
+  (let [text "Suomi 😀 é"
+        encoded (wire/encode-response {:model {:text text} :effects []})]
+    (is (= {:ok {:model {:text text} :effects []}} (wire/decode-response encoded))))
+  (is (= :wire/too-large
+         (get-in (wire/decode-event (apply str (repeat (+ wire/max-input-bytes 1) "a"))) [:error :type]))))
+
+(deftest derived-view-model
+  (is (= {:counter 3 :event-count 0 :lifecycle :resumed :worker nil
+          :notification-permission nil :platform nil}
+         (sut/view-model (assoc sut/initial-state :counter 3 :lifecycle :resumed)))))
+
 (deftest lifecycle-and-worker-events
   (is (= [(assoc base-model :lifecycle :created) []]
          (sut/step sut/initial-state {:type :lifecycle/create})))
   (is (= [(assoc base-model :lifecycle :resumed) []]
          (sut/step sut/initial-state {:type :lifecycle/resume})))
+  (is (= [(assoc base-model :lifecycle :paused) []]
+         (sut/step sut/initial-state {:type :lifecycle/pause})))
+  (is (= [(assoc base-model :lifecycle :stopped) []]
+         (sut/step sut/initial-state {:type :lifecycle/stop})))
   (is (= [(assoc base-model :worker :completed) []]
          (sut/step sut/initial-state {:type :worker/completed})))
   (is (= [sut/initial-state []]

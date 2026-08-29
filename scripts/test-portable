@@ -14,7 +14,8 @@ if [[ "$actual" != "$expected" ]]; then
   exit 1
 fi
 
-if ./scripts/cli --event '{not EDN' >/dev/null 2>&1; then
-  printf 'malformed EDN unexpectedly succeeded\n' >&2
+malformed=$(./scripts/cli --event '{not EDN')
+if [[ "$malformed" != *":wire/malformed"* ]]; then
+  printf 'malformed EDN did not return canonical wire error: %s\n' "$malformed" >&2
   exit 1
 fi

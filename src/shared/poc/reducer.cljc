@@ -1,4 +1,5 @@
-(ns poc.reducer)
+(ns poc.reducer
+  (:require [poc.contracts :as contracts]))
 
 (def initial-state
   {:counter 0
@@ -7,6 +8,16 @@
    :lifecycle nil
    :worker nil
    :notification-permission nil})
+
+(defn view-model
+  "Derived portable render data; hosts own widget construction."
+  [state]
+  {:counter (:counter state)
+   :event-count (count (:events state))
+   :lifecycle (:lifecycle state)
+   :worker (:worker state)
+   :notification-permission (:notification-permission state)
+   :platform (:platform state)})
 
 (defn step [state event]
   (case (:type event)
@@ -34,6 +45,9 @@
     :permission/request-notifications
     [state [{:type :permission/request :permission :notifications}]]
 
+    :platform/notify-counter
+    [state [{:type :notification/show :title "Jolt" :body (str "Counter: " (:counter state))}]]
+
     :permission/result-granted
     [(assoc state :notification-permission :granted) []]
 
@@ -44,6 +58,22 @@
     [state [{:type :platform/clipboard
              :text (str "Jolt counter: " (:counter state))}]]
 
+    :platform/vibrate
+    [state [{:type :platform/vibrate :duration-ms 50}]]
+
+    :platform/open-url
+    [state [{:type :platform/open-uri :uri "https://jolt-lang.net"}]]
+
+    :platform/read-info
+    [state [{:type :platform/read-info}]]
+
+    :platform/request-effect
+    (let [effect (:effect event)
+          platform (get-in state [:platform :platform])]
+      (if (contracts/permitted-effect? platform effect)
+        [state [effect]]
+        [(assoc state :last-unsupported-effect (:type effect)) []]))
+
     :lifecycle/create
     [(assoc state :lifecycle :created) []]
 
@@ -52,5 +82,11 @@
 
     :lifecycle/resume
     [(assoc state :lifecycle :resumed) []]
+
+    :lifecycle/pause
+    [(assoc state :lifecycle :paused) []]
+
+    :lifecycle/stop
+    [(assoc state :lifecycle :stopped) []]
 
     [state []]))
