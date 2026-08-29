@@ -1,7 +1,7 @@
 {
   "counts": {
     "total": 107,
-    "open": 27,
+    "open": 26,
     "closed": 76,
     "blocked": 3,
     "actionable": 7,
@@ -10,8 +10,8 @@
     "by_status": {
       "blocked": 3,
       "closed": 76,
-      "in_progress": 1,
-      "open": 27
+      "in_progress": 2,
+      "open": 26
     },
     "by_type": {
       "bug": 4,
