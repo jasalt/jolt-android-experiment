@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": "1.0.0",
-    "generated_at": "2026-08-29T12:43:03.880415289Z",
+    "generated_at": "2026-08-29T12:45:43.141350384Z",
     "phase2_ready": true,
     "issue_count": 74,
     "compute_time_ms": 0
@@ -9,101 +9,50 @@
   "status": {
     "PageRank": {
       "state": "computed",
-      "ms": 0.122783
+      "ms": 0.098303
     },
     "Betweenness": {
       "state": "computed",
-      "ms": 0.527554
+      "ms": 0.628946
     },
     "Eigenvector": {
       "state": "computed",
-      "ms": 0.036645
+      "ms": 0.046076
     },
     "HITS": {
       "state": "computed",
-      "ms": 0.056634
+      "ms": 0.058991
     },
     "Critical": {
       "state": "computed",
-      "ms": 0.045408
+      "ms": 0.075741
     },
     "Cycles": {
       "state": "computed",
-      "ms": 0.023405
+      "ms": 0.024425
     },
     "KCore": {
       "state": "computed",
-      "ms": 0.037756
+      "ms": 0.045545
     },
     "Articulation": {
       "state": "computed"
     },
     "Slack": {
       "state": "computed",
-      "ms": 0.011567
+      "ms": 0.019055
     }
   },
   "quick_ref": {
-    "open_count": 6,
+    "open_count": 5,
     "actionable_count": 7,
     "blocked_count": 2,
     "in_progress_count": 1,
-    "not_closed_count": 9,
-    "not_actionable_count": 2,
+    "not_closed_count": 8,
+    "not_actionable_count": 1,
     "top_picks": []
   },
   "recommendations": [
-    {
-      "id": "jolt-android-ono.6",
-      "title": "Implement scripts/verify clean-room orchestration",
-      "type": "feature",
-      "status": "open",
-      "assignee": "hard",
-      "priority": 1,
-      "labels": [
-        "clean-room",
-        "plan-gap",
-        "validation"
-      ],
-      "score": 0.1961617772320447,
-      "breakdown": {
-        "pagerank": 0.0247465009659691,
-        "betweenness": 0.026253687315634225,
-        "blocker_ratio": 0.021666666666666667,
-        "staleness": 3.063351714699074e-7,
-        "priority_boost": 0.07500000000000001,
-        "time_to_impact": 0.04025,
-        "urgency": 0.0012371555000418588,
-        "risk": 0.006330127018922194,
-        "pagerank_norm": 0.11248409529985955,
-        "betweenness_norm": 0.1312684365781711,
-        "blocker_ratio_norm": 0.16666666666666666,
-        "staleness_norm": 0.000006126703429398148,
-        "priority_boost_norm": 0.75,
-        "time_to_impact_norm": 0.40249999999999997,
-        "urgency_norm": 0.012371555000418588,
-        "risk_norm": 0.06330127018922194,
-        "time_to_impact_explanation": "On dependency chain (depth 2), median estimate 60m",
-        "risk_explanation": "Low risk - stable dependency structure",
-        "risk_signals": {
-          "fan_variance": 0.14433756729740643,
-          "activity_churn": 0,
-          "cross_repo_risk": 0,
-          "status_risk": 0.1,
-          "composite_risk": 0.06330127018922194,
-          "explanation": "Low risk - stable dependency structure"
-        }
-      },
-      "action": "Contact hard if you want to help",
-      "reasons": [
-        "🔓 Unblocks 1 item(s): jolt-android-ono.8",
-        "👤 Claimed by hard",
-        "🚨 High priority (P1) - prioritize this work"
-      ],
-      "unblocks_ids": [
-        "jolt-android-ono.8"
-      ]
-    },
     {
       "id": "jolt-android-jkb.2",
       "title": "Provision native Linux GTK validation host",
@@ -112,23 +61,23 @@
       "assignee": "easy",
       "priority": 2,
       "labels": null,
-      "score": 0.15940789426476235,
+      "score": 0.15942135862303652,
       "breakdown": {
         "pagerank": 0.0247465009659691,
         "betweenness": 0,
         "blocker_ratio": 0.021666666666666667,
-        "staleness": 0.00007578858825788968,
+        "staleness": 0.00007886075135771605,
         "priority_boost": 0.05,
         "time_to_impact": 0.04025,
-        "urgency": 0.0015056252670620663,
+        "urgency": 0.0015183935254612204,
         "risk": 0.013999999999999999,
         "pagerank_norm": 0.11248409529985955,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0.16666666666666666,
-        "staleness_norm": 0.0015157717651577934,
+        "staleness_norm": 0.001577215027154321,
         "priority_boost_norm": 0.5,
         "time_to_impact_norm": 0.40249999999999997,
-        "urgency_norm": 0.015056252670620662,
+        "urgency_norm": 0.015183935254612202,
         "risk_norm": 0.13999999999999999,
         "time_to_impact_explanation": "On dependency chain (depth 2), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -162,23 +111,23 @@
         "plan-gap",
         "shared"
       ],
-      "score": 0.10960222192287289,
+      "score": 0.10961574551652006,
       "breakdown": {
         "pagerank": 0.017365984584944084,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 0.00008686111912208719,
+        "staleness": 0.00008993328222191358,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.03325,
-        "urgency": 0.0012409447934313258,
+        "urgency": 0.001253782740504661,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.07893629356792765,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.0017372223824417437,
+        "staleness_norm": 0.0017986656444382717,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.012409447934313256,
+        "urgency_norm": 0.012537827405046609,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -208,23 +157,23 @@
         "plan-gap",
         "validation"
       ],
-      "score": 0.1096001601701368,
+      "score": 0.10961368434116724,
       "breakdown": {
         "pagerank": 0.017365984584944084,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 0.00008701544010974153,
+        "staleness": 0.0000900876032095679,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.03325,
-        "urgency": 0.0012383648809894511,
+        "urgency": 0.001251203507337212,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.07893629356792765,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.0017403088021948304,
+        "staleness_norm": 0.001801752064191358,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.01238364880989451,
+        "urgency_norm": 0.012512035073372119,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -255,23 +204,23 @@
         "plan-gap",
         "validation"
       ],
-      "score": 0.10315179913984954,
+      "score": 0.10953632926876102,
       "breakdown": {
         "pagerank": 0.017365984584944084,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 0.00008709260060356868,
+        "staleness": 7.743316046296297e-7,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.03325,
-        "urgency": 0.001236671739264278,
+        "urgency": 0.0012495108114054189,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.07893629356792765,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.0017418520120713735,
+        "staleness_norm": 0.000015486632092592593,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.012366717392642779,
+        "urgency_norm": 0.012495108114054188,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -284,14 +233,10 @@
           "explanation": "Low risk - stable dependency structure"
         }
       },
-      "action": "Work on jolt-android-ono.6 first to unblock this",
+      "action": "Contact medium if you want to help",
       "reasons": [
         "👤 Claimed by medium",
-        "⏳ Blocked by jolt-android-ono.6 - complete that first",
         "🚨 High priority (P1) - prioritize this work"
-      ],
-      "blocked_by": [
-        "jolt-android-ono.6"
       ]
     },
     {
@@ -302,32 +247,32 @@
       "assignee": "hard",
       "priority": 1,
       "labels": null,
-      "score": 0.10263787899836557,
+      "score": 0.1026348585099338,
       "breakdown": {
         "pagerank": 0.017365984584944084,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 0.00008705402035665509,
+        "staleness": 0.0000901261834564815,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.03325,
-        "urgency": 0.007475428339149709,
-        "risk": 0.013447074481786093,
+        "urgency": 0.007486624786619523,
+        "risk": 0.013428490887742476,
         "pagerank_norm": 0.07893629356792765,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.0017410804071331016,
+        "staleness_norm": 0.0018025236691296298,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.07475428339149709,
-        "risk_norm": 0.13447074481786092,
+        "urgency_norm": 0.07486624786619522,
+        "risk_norm": 0.13428490887742475,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
         "risk_signals": {
           "fan_variance": 0,
-          "activity_churn": 0.3815691493928698,
+          "activity_churn": 0.3809496962580825,
           "cross_repo_risk": 0,
           "status_risk": 0.1,
-          "composite_risk": 0.13447074481786092,
+          "composite_risk": 0.13428490887742475,
           "explanation": "Low risk - stable dependency structure"
         }
       },
@@ -349,23 +294,23 @@
         "arm64",
         "plan-gap"
       ],
-      "score": 0.0985484960561116,
+      "score": 0.09856202067824399,
       "breakdown": {
         "pagerank": 0.017365984584944084,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 0.00008707331048011189,
+        "staleness": 0.00009014547357993827,
         "priority_boost": 0.05,
         "time_to_impact": 0.03325,
-        "urgency": 0.0012363492294129863,
+        "urgency": 0.0012491883864689025,
         "risk": 0.013999999999999999,
         "pagerank_norm": 0.07893629356792765,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.0017414662096022376,
+        "staleness_norm": 0.0018029094715987654,
         "priority_boost_norm": 0.5,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.012363492294129863,
+        "urgency_norm": 0.012491883864689024,
         "risk_norm": 0.13999999999999999,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -392,23 +337,23 @@
       "assignee": "hard",
       "priority": 2,
       "labels": null,
-      "score": 0.09207564319305961,
+      "score": 0.09208818644235849,
       "breakdown": {
         "pagerank": 0.017365984584944084,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 0.00008689969936900078,
+        "staleness": 0.00008997186246882717,
         "priority_boost": 0.05,
         "time_to_impact": 0.03325,
-        "urgency": 0.005621401825168815,
+        "urgency": 0.005633086425950018,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.07893629356792765,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.0017379939873800154,
+        "staleness_norm": 0.0017994372493765434,
         "priority_boost_norm": 0.5,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.05621401825168815,
+        "urgency_norm": 0.05633086425950018,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -438,23 +383,23 @@
         "plan-gap",
         "shared"
       ],
-      "score": 0.08714602997967681,
+      "score": 0.08715876046247348,
       "breakdown": {
         "pagerank": 0.017365984584944084,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 0.00008697685986282793,
+        "staleness": 0.00009004902296265433,
         "priority_boost": 0.05,
         "time_to_impact": 0.03325,
-        "urgency": 0.0012295760297890979,
+        "urgency": 0.0012424169701851118,
         "risk": 0.007000000000000001,
         "pagerank_norm": 0.07893629356792765,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.0017395371972565585,
+        "staleness_norm": 0.0018009804592530865,
         "priority_boost_norm": 0.5,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.012295760297890979,
+        "urgency_norm": 0.012424169701851118,
         "risk_norm": 0.07,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -478,15 +423,6 @@
     }
   ],
   "quick_wins": [
-    {
-      "id": "jolt-android-ono.6",
-      "title": "Implement scripts/verify clean-room orchestration",
-      "score": 0.9,
-      "reason": "Unblocks 1 items, high priority",
-      "unblocks_ids": [
-        "jolt-android-ono.8"
-      ]
-    },
     {
       "id": "jolt-android-jkb.2",
       "title": "Provision native Linux GTK validation host",
@@ -513,6 +449,12 @@
       "title": "Finish automated validation and final Level 5/6 evidence",
       "score": 0.5,
       "reason": "Low complexity, high priority"
+    },
+    {
+      "id": "jolt-android-ono.8",
+      "title": "Refresh architecture, gotchas, and final graded feasibility report",
+      "score": 0.5,
+      "reason": "Low complexity, high priority"
     }
   ],
   "blockers_to_clear": [
@@ -524,31 +466,22 @@
         "jolt-android-csj.4"
       ],
       "actionable": true
-    },
-    {
-      "id": "jolt-android-ono.6",
-      "title": "Implement scripts/verify clean-room orchestration",
-      "unblocks_count": 1,
-      "unblocks_ids": [
-        "jolt-android-ono.8"
-      ],
-      "actionable": true
     }
   ],
   "project_health": {
     "counts": {
       "total": 74,
-      "open": 6,
-      "closed": 65,
+      "open": 5,
+      "closed": 66,
       "blocked": 2,
       "actionable": 7,
-      "not_closed": 9,
-      "dependency_blocked": 2,
+      "not_closed": 8,
+      "dependency_blocked": 1,
       "by_status": {
         "blocked": 2,
-        "closed": 65,
+        "closed": 66,
         "in_progress": 1,
-        "open": 6
+        "open": 5
       },
       "by_type": {
         "bug": 4,
@@ -570,13 +503,13 @@
       "phase2_ready": true
     },
     "velocity": {
-      "closed_last_7_days": 65,
-      "closed_last_30_days": 65,
-      "avg_days_to_close": 0.12582015669515667,
+      "closed_last_7_days": 66,
+      "closed_last_30_days": 66,
+      "avg_days_to_close": 0.12656863776655444,
       "weekly": [
         {
           "week_start": "2026-08-24T00:00:00Z",
-          "closed": 65
+          "closed": 66
         },
         {
           "week_start": "2026-08-17T00:00:00Z",
