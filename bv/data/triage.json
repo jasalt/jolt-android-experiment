@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": "1.0.0",
-    "generated_at": "2026-08-29T12:20:08.671527239Z",
+    "generated_at": "2026-08-29T12:20:27.116435144Z",
     "phase2_ready": true,
     "issue_count": 74,
     "compute_time_ms": 0
@@ -9,101 +9,50 @@
   "status": {
     "PageRank": {
       "state": "computed",
-      "ms": 0.082394
+      "ms": 0.102746
     },
     "Betweenness": {
       "state": "computed",
-      "ms": 0.648082
+      "ms": 0.484192
     },
     "Eigenvector": {
       "state": "computed",
-      "ms": 0.044864
+      "ms": 0.040532
     },
     "HITS": {
       "state": "computed",
-      "ms": 0.08043
+      "ms": 0.049971
     },
     "Critical": {
       "state": "computed",
-      "ms": 0.059962
+      "ms": 0.044105
     },
     "Cycles": {
       "state": "computed",
-      "ms": 0.023244
+      "ms": 0.025167
     },
     "KCore": {
       "state": "computed",
-      "ms": 0.041398
+      "ms": 0.033975
     },
     "Articulation": {
       "state": "computed"
     },
     "Slack": {
       "state": "computed",
-      "ms": 0.011441
+      "ms": 0.010311
     }
   },
   "quick_ref": {
-    "open_count": 7,
+    "open_count": 6,
     "actionable_count": 7,
     "blocked_count": 2,
     "in_progress_count": 1,
-    "not_closed_count": 10,
-    "not_actionable_count": 3,
+    "not_closed_count": 9,
+    "not_actionable_count": 2,
     "top_picks": []
   },
   "recommendations": [
-    {
-      "id": "jolt-android-csj.3",
-      "title": "Run identical conformance fixtures through CLI, GTK, and Android",
-      "type": "task",
-      "status": "open",
-      "assignee": "hard",
-      "priority": 1,
-      "labels": [
-        "conformance",
-        "plan-gap",
-        "shared"
-      ],
-      "score": 0.2489561474781644,
-      "breakdown": {
-        "pagerank": 0.028252240061581134,
-        "betweenness": 0.050147492625368745,
-        "blocker_ratio": 0.043333333333333335,
-        "staleness": 0.000008809250139641205,
-        "priority_boost": 0.07500000000000001,
-        "time_to_impact": 0.04725000000000001,
-        "urgency": 0.0011293026947625795,
-        "risk": 0.012474289656184466,
-        "pagerank_norm": 0.12841927300718697,
-        "betweenness_norm": 0.2507374631268437,
-        "blocker_ratio_norm": 0.3333333333333333,
-        "staleness_norm": 0.00017618500279282409,
-        "priority_boost_norm": 0.75,
-        "time_to_impact_norm": 0.47250000000000003,
-        "urgency_norm": 0.011293026947625795,
-        "risk_norm": 0.12474289656184465,
-        "time_to_impact_explanation": "Deep in critical path (depth 3), median estimate 60m",
-        "risk_explanation": "Low risk - stable dependency structure",
-        "risk_signals": {
-          "fan_variance": 0.34914298853948217,
-          "activity_churn": 0,
-          "cross_repo_risk": 0,
-          "status_risk": 0.1,
-          "composite_risk": 0.12474289656184465,
-          "explanation": "Low risk - stable dependency structure"
-        }
-      },
-      "action": "Contact hard if you want to help",
-      "reasons": [
-        "🔓 Unblocks 1 item(s): jolt-android-ono.6",
-        "👤 Claimed by hard",
-        "🚨 High priority (P1) - prioritize this work"
-      ],
-      "unblocks_ids": [
-        "jolt-android-ono.6"
-      ]
-    },
     {
       "id": "jolt-android-ono.6",
       "title": "Implement scripts/verify clean-room orchestration",
@@ -116,23 +65,23 @@
         "plan-gap",
         "validation"
       ],
-      "score": 0.18634698912617262,
+      "score": 0.19612024531314737,
       "breakdown": {
         "pagerank": 0.0247465009659691,
         "betweenness": 0.026253687315634225,
         "blocker_ratio": 0.021666666666666667,
-        "staleness": 0.00006060323162112269,
+        "staleness": 0.000060959036171759256,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.04025,
-        "urgency": 0.0011261512089024317,
+        "urgency": 0.0011276417179859166,
         "risk": 0.006330127018922194,
         "pagerank_norm": 0.11248409529985955,
         "betweenness_norm": 0.1312684365781711,
         "blocker_ratio_norm": 0.16666666666666666,
-        "staleness_norm": 0.0012120646324224537,
+        "staleness_norm": 0.001219180723435185,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.40249999999999997,
-        "urgency_norm": 0.011261512089024317,
+        "urgency_norm": 0.011276417179859166,
         "risk_norm": 0.06330127018922194,
         "time_to_impact_explanation": "On dependency chain (depth 2), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -145,18 +94,14 @@
           "explanation": "Low risk - stable dependency structure"
         }
       },
-      "action": "Work on jolt-android-csj.3 first to unblock this",
+      "action": "Contact hard if you want to help",
       "reasons": [
         "🔓 Unblocks 1 item(s): jolt-android-ono.8",
         "👤 Claimed by hard",
-        "⏳ Blocked by jolt-android-csj.3 - complete that first",
         "🚨 High priority (P1) - prioritize this work"
       ],
       "unblocks_ids": [
         "jolt-android-ono.8"
-      ],
-      "blocked_by": [
-        "jolt-android-csj.3"
       ]
     },
     {
@@ -167,23 +112,23 @@
       "assignee": "easy",
       "priority": 2,
       "labels": null,
-      "score": 0.12929151133592273,
+      "score": 0.1592930737272597,
       "breakdown": {
         "pagerank": 0.0247465009659691,
         "betweenness": 0,
         "blocker_ratio": 0.021666666666666667,
-        "staleness": 0.00004926063902853009,
+        "staleness": 0.000049616443579166664,
         "priority_boost": 0.05,
         "time_to_impact": 0.04025,
-        "urgency": 0.0013952321235389477,
+        "urgency": 0.001396714426443524,
         "risk": 0.013999999999999999,
         "pagerank_norm": 0.11248409529985955,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0.16666666666666666,
-        "staleness_norm": 0.0009852127805706017,
+        "staleness_norm": 0.0009923288715833333,
         "priority_boost_norm": 0.5,
         "time_to_impact_norm": 0.40249999999999997,
-        "urgency_norm": 0.013952321235389475,
+        "urgency_norm": 0.013967144264435238,
         "risk_norm": 0.13999999999999999,
         "time_to_impact_explanation": "On dependency chain (depth 2), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -198,8 +143,12 @@
       },
       "action": "Contact easy or resolve blockers before claiming",
       "reasons": [
+        "🔓 Unblocks 1 item(s): jolt-android-csj.4",
         "⛔ Status is blocked - not ready to claim",
         "👤 Claimed by easy"
+      ],
+      "unblocks_ids": [
+        "jolt-android-csj.4"
       ]
     },
     {
@@ -213,23 +162,23 @@
         "plan-gap",
         "shared"
       ],
-      "score": 0.10948532685065124,
+      "score": 0.10948689611878862,
       "breakdown": {
         "pagerank": 0.017365984584944084,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 0.000060333169892727626,
+        "staleness": 0.0000606889744433642,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.03325,
-        "urgency": 0.0011299491282822595,
+        "urgency": 0.0011314395215403395,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.07893629356792765,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.0012066633978545524,
+        "staleness_norm": 0.001213779488867284,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.011299491282822594,
+        "urgency_norm": 0.011314395215403394,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -259,23 +208,23 @@
         "plan-gap",
         "validation"
       ],
-      "score": 0.10948326010591455,
+      "score": 0.10948482944108197,
       "breakdown": {
         "pagerank": 0.017365984584944084,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 0.00006048749088038195,
+        "staleness": 0.000060843295431018516,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.03325,
-        "urgency": 0.001127363342898502,
+        "urgency": 0.001128853815015457,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.07893629356792765,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.001209749817607639,
+        "staleness_norm": 0.0012168659086203703,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.01127363342898502,
+        "urgency_norm": 0.01128853815015457,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -295,96 +244,6 @@
       ]
     },
     {
-      "id": "jolt-android-1fz",
-      "title": "Environment and emulator bootstrap",
-      "type": "epic",
-      "status": "in_progress",
-      "assignee": "hard",
-      "priority": 1,
-      "labels": null,
-      "score": 0.10266565973612299,
-      "breakdown": {
-        "pagerank": 0.017365984584944084,
-        "betweenness": 0,
-        "blocker_ratio": 0,
-        "staleness": 0.00006052607112729553,
-        "priority_boost": 0.07500000000000001,
-        "time_to_impact": 0.03325,
-        "urgency": 0.007378624922908795,
-        "risk": 0.01361009261548124,
-        "pagerank_norm": 0.07893629356792765,
-        "betweenness_norm": 0,
-        "blocker_ratio_norm": 0,
-        "staleness_norm": 0.0012105214225459106,
-        "priority_boost_norm": 0.75,
-        "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.07378624922908794,
-        "risk_norm": 0.1361009261548124,
-        "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
-        "risk_explanation": "Low risk - stable dependency structure",
-        "risk_signals": {
-          "fan_variance": 0,
-          "activity_churn": 0.387003087182708,
-          "cross_repo_risk": 0,
-          "status_risk": 0.1,
-          "composite_risk": 0.1361009261548124,
-          "explanation": "Low risk - stable dependency structure"
-        }
-      },
-      "action": "Contact hard if you want to help",
-      "reasons": [
-        "👤 Claimed by hard",
-        "🚨 High priority (P1) - prioritize this work"
-      ]
-    },
-    {
-      "id": "jolt-android-1fz.7",
-      "title": "Boot and validate the API 35 ARM64 Android app on a native ARM64 host",
-      "type": "task",
-      "status": "blocked",
-      "assignee": "medium",
-      "priority": 2,
-      "labels": [
-        "android",
-        "arm64",
-        "plan-gap"
-      ],
-      "score": 0.09843159209170509,
-      "breakdown": {
-        "pagerank": 0.017365984584944084,
-        "betweenness": 0,
-        "blocker_ratio": 0,
-        "staleness": 0.00006054536125075232,
-        "priority_boost": 0.05,
-        "time_to_impact": 0.03325,
-        "urgency": 0.0011253431028699745,
-        "risk": 0.013999999999999999,
-        "pagerank_norm": 0.07893629356792765,
-        "betweenness_norm": 0,
-        "blocker_ratio_norm": 0,
-        "staleness_norm": 0.0012109072250150463,
-        "priority_boost_norm": 0.5,
-        "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.011253431028699745,
-        "risk_norm": 0.13999999999999999,
-        "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
-        "risk_explanation": "Low risk - stable dependency structure",
-        "risk_signals": {
-          "fan_variance": 0,
-          "activity_churn": 0,
-          "cross_repo_risk": 0,
-          "status_risk": 0.7,
-          "composite_risk": 0.13999999999999999,
-          "explanation": "Low risk - stable dependency structure"
-        }
-      },
-      "action": "Contact medium or resolve blockers before claiming",
-      "reasons": [
-        "⛔ Status is blocked - not ready to claim",
-        "👤 Claimed by medium"
-      ]
-    },
-    {
       "id": "jolt-android-ono.8",
       "title": "Refresh architecture, gotchas, and final graded feasibility report",
       "type": "task",
@@ -396,23 +255,23 @@
         "plan-gap",
         "validation"
       ],
-      "score": 0.0966016616874035,
+      "score": 0.10304324952930051,
       "breakdown": {
         "pagerank": 0.017365984584944084,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 0.00006056465137420911,
+        "staleness": 0.00006092045592484568,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.03325,
-        "urgency": 0.001125666346886345,
+        "urgency": 0.0011271568707567016,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.07893629356792765,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.0012112930274841823,
+        "staleness_norm": 0.0012184091184969136,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.011256663468863448,
+        "urgency_norm": 0.011271568707567015,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -436,6 +295,96 @@
       ]
     },
     {
+      "id": "jolt-android-1fz",
+      "title": "Environment and emulator bootstrap",
+      "type": "epic",
+      "status": "in_progress",
+      "assignee": "hard",
+      "priority": 1,
+      "labels": null,
+      "score": 0.10266526664855813,
+      "breakdown": {
+        "pagerank": 0.017365984584944084,
+        "betweenness": 0,
+        "blocker_ratio": 0,
+        "staleness": 0.0000608818756779321,
+        "priority_boost": 0.07500000000000001,
+        "time_to_impact": 0.03325,
+        "urgency": 0.007379924749877093,
+        "risk": 0.013607875430298212,
+        "pagerank_norm": 0.07893629356792765,
+        "betweenness_norm": 0,
+        "blocker_ratio_norm": 0,
+        "staleness_norm": 0.001217637513558642,
+        "priority_boost_norm": 0.75,
+        "time_to_impact_norm": 0.3325,
+        "urgency_norm": 0.07379924749877093,
+        "risk_norm": 0.1360787543029821,
+        "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
+        "risk_explanation": "Low risk - stable dependency structure",
+        "risk_signals": {
+          "fan_variance": 0,
+          "activity_churn": 0.38692918100994034,
+          "cross_repo_risk": 0,
+          "status_risk": 0.1,
+          "composite_risk": 0.1360787543029821,
+          "explanation": "Low risk - stable dependency structure"
+        }
+      },
+      "action": "Contact hard if you want to help",
+      "reasons": [
+        "👤 Claimed by hard",
+        "🚨 High priority (P1) - prioritize this work"
+      ]
+    },
+    {
+      "id": "jolt-android-1fz.7",
+      "title": "Boot and validate the API 35 ARM64 Android app on a native ARM64 host",
+      "type": "task",
+      "status": "blocked",
+      "assignee": "medium",
+      "priority": 2,
+      "labels": [
+        "android",
+        "arm64",
+        "plan-gap"
+      ],
+      "score": 0.09843316147924222,
+      "breakdown": {
+        "pagerank": 0.017365984584944084,
+        "betweenness": 0,
+        "blocker_ratio": 0,
+        "staleness": 0.0000609011658013889,
+        "priority_boost": 0.05,
+        "time_to_impact": 0.03325,
+        "urgency": 0.001126833636598329,
+        "risk": 0.013999999999999999,
+        "pagerank_norm": 0.07893629356792765,
+        "betweenness_norm": 0,
+        "blocker_ratio_norm": 0,
+        "staleness_norm": 0.0012180233160277779,
+        "priority_boost_norm": 0.5,
+        "time_to_impact_norm": 0.3325,
+        "urgency_norm": 0.01126833636598329,
+        "risk_norm": 0.13999999999999999,
+        "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
+        "risk_explanation": "Low risk - stable dependency structure",
+        "risk_signals": {
+          "fan_variance": 0,
+          "activity_churn": 0,
+          "cross_repo_risk": 0,
+          "status_risk": 0.7,
+          "composite_risk": 0.13999999999999999,
+          "explanation": "Low risk - stable dependency structure"
+        }
+      },
+      "action": "Contact medium or resolve blockers before claiming",
+      "reasons": [
+        "⛔ Status is blocked - not ready to claim",
+        "👤 Claimed by medium"
+      ]
+    },
+    {
       "id": "jolt-android-jkb",
       "title": "GTK reference application",
       "type": "epic",
@@ -443,23 +392,23 @@
       "assignee": "hard",
       "priority": 2,
       "labels": null,
-      "score": 0.09196722408450993,
+      "score": 0.09196867954172422,
       "breakdown": {
         "pagerank": 0.017365984584944084,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 0.00006037175013964121,
+        "staleness": 0.000060727554690277776,
         "priority_boost": 0.05,
         "time_to_impact": 0.03325,
-        "urgency": 0.005520377881986777,
+        "urgency": 0.005521734380041193,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.07893629356792765,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.001207435002792824,
+        "staleness_norm": 0.0012145510938055555,
         "priority_boost_norm": 0.5,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.055203778819867766,
+        "urgency_norm": 0.05521734380041193,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -489,23 +438,23 @@
         "plan-gap",
         "shared"
       ],
-      "score": 0.08703599038418829,
+      "score": 0.08703746762043783,
       "breakdown": {
         "pagerank": 0.017365984584944084,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 0.00006044891063346837,
+        "staleness": 0.000060804715184104934,
         "priority_boost": 0.05,
         "time_to_impact": 0.03325,
-        "urgency": 0.0011185544846577967,
+        "urgency": 0.001120045225419103,
         "risk": 0.007000000000000001,
         "pagerank_norm": 0.07893629356792765,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.0012089782126693675,
+        "staleness_norm": 0.0012160943036820986,
         "priority_boost_norm": 0.5,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.011185544846577966,
+        "urgency_norm": 0.011200452254191029,
         "risk_norm": 0.07,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -518,13 +467,12 @@
           "explanation": "Low risk - stable dependency structure"
         }
       },
-      "action": "Work on jolt-android-csj.3 first to unblock this",
+      "action": "Work on jolt-android-jkb.2 first to unblock this",
       "reasons": [
         "👤 Claimed by medium",
-        "⏳ Blocked by 2 items - need to clear dependencies"
+        "⏳ Blocked by jolt-android-jkb.2 - complete that first"
       ],
       "blocked_by": [
-        "jolt-android-csj.3",
         "jolt-android-jkb.2"
       ]
     }
@@ -540,12 +488,12 @@
       ]
     },
     {
-      "id": "jolt-android-csj.3",
-      "title": "Run identical conformance fixtures through CLI, GTK, and Android",
-      "score": 0.7000000000000001,
-      "reason": "Unblocks 1 items, high priority",
+      "id": "jolt-android-jkb.2",
+      "title": "Provision native Linux GTK validation host",
+      "score": 0.8,
+      "reason": "Unblocks 1 items",
       "unblocks_ids": [
-        "jolt-android-ono.6"
+        "jolt-android-csj.4"
       ]
     },
     {
@@ -569,11 +517,11 @@
   ],
   "blockers_to_clear": [
     {
-      "id": "jolt-android-csj.3",
-      "title": "Run identical conformance fixtures through CLI, GTK, and Android",
+      "id": "jolt-android-jkb.2",
+      "title": "Provision native Linux GTK validation host",
       "unblocks_count": 1,
       "unblocks_ids": [
-        "jolt-android-ono.6"
+        "jolt-android-csj.4"
       ],
       "actionable": true
     },
@@ -584,26 +532,23 @@
       "unblocks_ids": [
         "jolt-android-ono.8"
       ],
-      "actionable": false,
-      "blocked_by": [
-        "jolt-android-csj.3"
-      ]
+      "actionable": true
     }
   ],
   "project_health": {
     "counts": {
       "total": 74,
-      "open": 7,
-      "closed": 64,
+      "open": 6,
+      "closed": 65,
       "blocked": 2,
       "actionable": 7,
-      "not_closed": 10,
-      "dependency_blocked": 3,
+      "not_closed": 9,
+      "dependency_blocked": 2,
       "by_status": {
         "blocked": 2,
-        "closed": 64,
+        "closed": 65,
         "in_progress": 1,
-        "open": 7
+        "open": 6
       },
       "by_type": {
         "bug": 4,
@@ -625,13 +570,13 @@
       "phase2_ready": true
     },
     "velocity": {
-      "closed_last_7_days": 64,
-      "closed_last_30_days": 64,
-      "avg_days_to_close": 0.12536964699074074,
+      "closed_last_7_days": 65,
+      "closed_last_30_days": 65,
+      "avg_days_to_close": 0.12582015669515667,
       "weekly": [
         {
           "week_start": "2026-08-24T00:00:00Z",
-          "closed": 64
+          "closed": 65
         },
         {
           "week_start": "2026-08-17T00:00:00Z",
