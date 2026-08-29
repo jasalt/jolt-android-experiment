@@ -1,0 +1,1122 @@
+{
+  "positions": {
+    "jolt-android-1fz": [
+      0,
+      0
+    ],
+    "jolt-android-1fz.1": [
+      200,
+      40
+    ],
+    "jolt-android-1fz.2": [
+      400,
+      -40
+    ],
+    "jolt-android-1fz.3": [
+      600,
+      -80
+    ],
+    "jolt-android-1fz.4": [
+      0,
+      -960
+    ],
+    "jolt-android-1fz.5": [
+      0,
+      800
+    ],
+    "jolt-android-1fz.6": [
+      0,
+      -560
+    ],
+    "jolt-android-1fz.7": [
+      200,
+      -40
+    ],
+    "jolt-android-5s3": [
+      0,
+      160
+    ],
+    "jolt-android-5s3.1": [
+      800,
+      -120
+    ],
+    "jolt-android-5s3.2": [
+      1000,
+      -200
+    ],
+    "jolt-android-5s3.3": [
+      1200,
+      -40
+    ],
+    "jolt-android-5s3.4": [
+      0,
+      560
+    ],
+    "jolt-android-6fp": [
+      0,
+      -320
+    ],
+    "jolt-android-6fp.1": [
+      1800,
+      0
+    ],
+    "jolt-android-6fp.2": [
+      2000,
+      0
+    ],
+    "jolt-android-6fp.3": [
+      2200,
+      0
+    ],
+    "jolt-android-6fp.4": [
+      2400,
+      0
+    ],
+    "jolt-android-6fp.5": [
+      2600,
+      0
+    ],
+    "jolt-android-6fp.6": [
+      2800,
+      0
+    ],
+    "jolt-android-6fp.7": [
+      3000,
+      0
+    ],
+    "jolt-android-6fp.8": [
+      3200,
+      0
+    ],
+    "jolt-android-6fp.9": [
+      3400,
+      0
+    ],
+    "jolt-android-97n": [
+      0,
+      -800
+    ],
+    "jolt-android-97n.1": [
+      800,
+      120
+    ],
+    "jolt-android-97n.2": [
+      1000,
+      40
+    ],
+    "jolt-android-97n.3": [
+      1200,
+      -120
+    ],
+    "jolt-android-97n.4": [
+      3600,
+      40
+    ],
+    "jolt-android-97n.5": [
+      1200,
+      200
+    ],
+    "jolt-android-a4e": [
+      0,
+      -1040
+    ],
+    "jolt-android-a4e.1": [
+      400,
+      40
+    ],
+    "jolt-android-a4e.2": [
+      600,
+      0
+    ],
+    "jolt-android-a4e.3": [
+      0,
+      -160
+    ],
+    "jolt-android-a4e.4": [
+      0,
+      -1120
+    ],
+    "jolt-android-a4e.5": [
+      0,
+      -480
+    ],
+    "jolt-android-a4e.6": [
+      0,
+      400
+    ],
+    "jolt-android-csj": [
+      0,
+      640
+    ],
+    "jolt-android-csj.1": [
+      600,
+      80
+    ],
+    "jolt-android-csj.2": [
+      800,
+      -40
+    ],
+    "jolt-android-csj.3": [
+      3800,
+      -80
+    ],
+    "jolt-android-csj.4": [
+      4000,
+      -120
+    ],
+    "jolt-android-d06": [
+      0,
+      -80
+    ],
+    "jolt-android-d06.1": [
+      1200,
+      120
+    ],
+    "jolt-android-d06.2": [
+      1400,
+      40
+    ],
+    "jolt-android-d06.3": [
+      1600,
+      0
+    ],
+    "jolt-android-d82": [
+      0,
+      240
+    ],
+    "jolt-android-d82.1": [
+      1000,
+      -40
+    ],
+    "jolt-android-d82.2": [
+      1200,
+      40
+    ],
+    "jolt-android-d82.3": [
+      1400,
+      -40
+    ],
+    "jolt-android-edn": [
+      0,
+      80
+    ],
+    "jolt-android-edn.1": [
+      3600,
+      -40
+    ],
+    "jolt-android-edn.2": [
+      0,
+      1040
+    ],
+    "jolt-android-edn.3": [
+      0,
+      480
+    ],
+    "jolt-android-h25": [
+      0,
+      880
+    ],
+    "jolt-android-jkb": [
+      0,
+      -240
+    ],
+    "jolt-android-jkb.1": [
+      800,
+      40
+    ],
+    "jolt-android-jkb.2": [
+      0,
+      1120
+    ],
+    "jolt-android-jkb.3": [
+      0,
+      960
+    ],
+    "jolt-android-jkb.4": [
+      0,
+      320
+    ],
+    "jolt-android-jkb.5": [
+      1000,
+      120
+    ],
+    "jolt-android-me9": [
+      0,
+      720
+    ],
+    "jolt-android-ono": [
+      0,
+      -720
+    ],
+    "jolt-android-ono.1": [
+      0,
+      -880
+    ],
+    "jolt-android-ono.2": [
+      1000,
+      -120
+    ],
+    "jolt-android-ono.3": [
+      1000,
+      200
+    ],
+    "jolt-android-ono.4": [
+      1200,
+      -200
+    ],
+    "jolt-android-ono.5": [
+      3800,
+      80
+    ],
+    "jolt-android-ono.6": [
+      4000,
+      40
+    ],
+    "jolt-android-ono.7": [
+      4000,
+      -40
+    ],
+    "jolt-android-ono.8": [
+      4200,
+      0
+    ],
+    "jolt-android-p4w": [
+      0,
+      -640
+    ],
+    "jolt-android-p4w.1": [
+      3800,
+      0
+    ],
+    "jolt-android-p4w.2": [
+      4000,
+      120
+    ],
+    "jolt-android-zmd": [
+      0,
+      -400
+    ]
+  },
+  "metrics": {
+    "jolt-android-1fz": [
+      0.004566794290976608,
+      0,
+      0,
+      0,
+      0
+    ],
+    "jolt-android-1fz.1": [
+      0.057854176888185276,
+      43,
+      1,
+      2,
+      0
+    ],
+    "jolt-android-1fz.2": [
+      0.026459114873465896,
+      90,
+      3,
+      2,
+      0
+    ],
+    "jolt-android-1fz.3": [
+      0.014302233031390669,
+      0,
+      1,
+      1,
+      0
+    ],
+    "jolt-android-1fz.4": [
+      0.05374302039711498,
+      0,
+      0,
+      1,
+      0
+    ],
+    "jolt-android-1fz.5": [
+      0.01206349809272402,
+      0,
+      0,
+      1,
+      0
+    ],
+    "jolt-android-1fz.6": [
+      0.01206349809272402,
+      0,
+      0,
+      1,
+      0
+    ],
+    "jolt-android-1fz.7": [
+      0.004566794290976608,
+      0,
+      1,
+      0,
+      0
+    ],
+    "jolt-android-5s3": [
+      0.004566794290976608,
+      0,
+      0,
+      0,
+      0
+    ],
+    "jolt-android-5s3.1": [
+      0.03436000856253382,
+      154,
+      3,
+      1,
+      0
+    ],
+    "jolt-android-5s3.2": [
+      0.03505029371968048,
+      170,
+      1,
+      3,
+      0
+    ],
+    "jolt-android-5s3.3": [
+      0.01625744165602084,
+      83,
+      1,
+      1,
+      0
+    ],
+    "jolt-android-5s3.4": [
+      0.014302233031390669,
+      0,
+      0,
+      1,
+      0
+    ],
+    "jolt-android-6fp": [
+      0.004566794290976608,
+      0,
+      0,
+      0,
+      0
+    ],
+    "jolt-android-6fp.1": [
+      0.026988837433855717,
+      220,
+      1,
+      1,
+      0
+    ],
+    "jolt-android-6fp.2": [
+      0.02637900378270437,
+      224,
+      1,
+      1,
+      0
+    ],
+    "jolt-android-6fp.3": [
+      0.025661474624374986,
+      226,
+      1,
+      1,
+      0
+    ],
+    "jolt-android-6fp.4": [
+      0.024817220423587395,
+      226,
+      1,
+      1,
+      0
+    ],
+    "jolt-android-6fp.5": [
+      0.023823928323975705,
+      224,
+      1,
+      1,
+      0
+    ],
+    "jolt-android-6fp.6": [
+      0.022655368406375075,
+      220,
+      1,
+      1,
+      0
+    ],
+    "jolt-android-6fp.7": [
+      0.02128065668878305,
+      214,
+      1,
+      1,
+      0
+    ],
+    "jolt-android-6fp.8": [
+      0.01966341362055534,
+      206,
+      1,
+      1,
+      0
+    ],
+    "jolt-android-6fp.9": [
+      0.01776080814639294,
+      196,
+      1,
+      2,
+      0
+    ],
+    "jolt-android-97n": [
+      0.004566794290976608,
+      0,
+      0,
+      0,
+      0
+    ],
+    "jolt-android-97n.1": [
+      0.019732899240496052,
+      19.066666666666666,
+      1,
+      3,
+      0
+    ],
+    "jolt-android-97n.2": [
+      0.01813201692671381,
+      22.266666666666666,
+      2,
+      4,
+      0
+    ],
+    "jolt-android-97n.3": [
+      0.007548826992512466,
+      2,
+      1,
+      2,
+      0
+    ],
+    "jolt-android-97n.4": [
+      0.007548826992512466,
+      122,
+      2,
+      2,
+      0
+    ],
+    "jolt-android-97n.5": [
+      0.005970046004310243,
+      3.6333333333333333,
+      2,
+      1,
+      0
+    ],
+    "jolt-android-a4e": [
+      0.004566794290976608,
+      0,
+      0,
+      0,
+      0
+    ],
+    "jolt-android-a4e.1": [
+      0.05387126926079762,
+      44,
+      1,
+      3,
+      0
+    ],
+    "jolt-android-a4e.2": [
+      0.005860714594715912,
+      0,
+      1,
+      1,
+      0
+    ],
+    "jolt-android-a4e.3": [
+      0.004566794290976608,
+      0,
+      0,
+      0,
+      0
+    ],
+    "jolt-android-a4e.4": [
+      0.004566794290976608,
+      0,
+      0,
+      0,
+      0
+    ],
+    "jolt-android-a4e.5": [
+      0.004566794290976608,
+      0,
+      0,
+      0,
+      0
+    ],
+    "jolt-android-a4e.6": [
+      0.004566794290976608,
+      0,
+      0,
+      0,
+      0
+    ],
+    "jolt-android-csj": [
+      0.004566794290976608,
+      0,
+      0,
+      0,
+      0
+    ],
+    "jolt-android-csj.1": [
+      0.0506223940597347,
+      57,
+      1,
+      3,
+      0
+    ],
+    "jolt-android-csj.2": [
+      0.031377591910437166,
+      38.266666666666666,
+      1,
+      6,
+      0
+    ],
+    "jolt-android-csj.3": [
+      0.007429591336409951,
+      56.66666666666667,
+      4,
+      2,
+      0
+    ],
+    "jolt-android-csj.4": [
+      0.004566794290976608,
+      0,
+      2,
+      0,
+      0
+    ],
+    "jolt-android-d06": [
+      0.004566794290976608,
+      0,
+      0,
+      0,
+      0
+    ],
+    "jolt-android-d06.1": [
+      0.01147630318472555,
+      0,
+      1,
+      1,
+      0
+    ],
+    "jolt-android-d06.2": [
+      0.01625744165602084,
+      103,
+      2,
+      1,
+      0
+    ],
+    "jolt-android-d06.3": [
+      0.027507241803330657,
+      214,
+      2,
+      1,
+      0
+    ],
+    "jolt-android-d82": [
+      0.004566794290976608,
+      0,
+      0,
+      0,
+      0
+    ],
+    "jolt-android-d82.1": [
+      0.012531656871513912,
+      14,
+      2,
+      1,
+      0
+    ],
+    "jolt-android-d82.2": [
+      0.009370471792018907,
+      11,
+      1,
+      2,
+      0
+    ],
+    "jolt-android-d82.3": [
+      0.004566794290976608,
+      0,
+      1,
+      0,
+      0
+    ],
+    "jolt-android-edn": [
+      0.004566794290976608,
+      0,
+      0,
+      0,
+      0
+    ],
+    "jolt-android-edn.1": [
+      0.011748032457651346,
+      44,
+      1,
+      1,
+      0
+    ],
+    "jolt-android-edn.2": [
+      0.009892721403701971,
+      0,
+      0,
+      1,
+      0
+    ],
+    "jolt-android-edn.3": [
+      0.004566794290976608,
+      0,
+      0,
+      0,
+      0
+    ],
+    "jolt-android-h25": [
+      0.004566794290976608,
+      0,
+      0,
+      0,
+      0
+    ],
+    "jolt-android-jkb": [
+      0.004566794290976608,
+      0,
+      0,
+      0,
+      0
+    ],
+    "jolt-android-jkb.1": [
+      0.004566794290976608,
+      0,
+      3,
+      0,
+      0
+    ],
+    "jolt-android-jkb.2": [
+      0.006507674746585564,
+      0,
+      0,
+      1,
+      0
+    ],
+    "jolt-android-jkb.3": [
+      0.004566794290976608,
+      0,
+      0,
+      0,
+      0
+    ],
+    "jolt-android-jkb.4": [
+      0.005860714594715912,
+      0,
+      0,
+      1,
+      0
+    ],
+    "jolt-android-jkb.5": [
+      0.0061455752791788314,
+      6.666666666666666,
+      2,
+      1,
+      0
+    ],
+    "jolt-android-me9": [
+      0.004566794290976608,
+      0,
+      0,
+      0,
+      0
+    ],
+    "jolt-android-ono": [
+      0.004566794290976608,
+      0,
+      0,
+      0,
+      0
+    ],
+    "jolt-android-ono.1": [
+      0.010773723505352542,
+      0,
+      0,
+      3,
+      0
+    ],
+    "jolt-android-ono.2": [
+      0.0054887108808009955,
+      3.6666666666666665,
+      1,
+      1,
+      0
+    ],
+    "jolt-android-ono.3": [
+      0.01158305285764478,
+      9.100000000000001,
+      2,
+      1,
+      0
+    ],
+    "jolt-android-ono.4": [
+      0.008254460650274157,
+      6.1,
+      1,
+      2,
+      0
+    ],
+    "jolt-android-ono.5": [
+      0.008254460650274157,
+      59.56666666666666,
+      5,
+      2,
+      0
+    ],
+    "jolt-android-ono.6": [
+      0.006507674746585564,
+      29.666666666666668,
+      6,
+      1,
+      0
+    ],
+    "jolt-android-ono.7": [
+      0.006507674746585564,
+      10.333333333333334,
+      2,
+      1,
+      0
+    ],
+    "jolt-android-ono.8": [
+      0.004566794290976608,
+      0,
+      2,
+      0,
+      0
+    ],
+    "jolt-android-p4w": [
+      0.004566794290976608,
+      0,
+      0,
+      0,
+      0
+    ],
+    "jolt-android-p4w.1": [
+      0.00844855520219452,
+      23,
+      1,
+      1,
+      0
+    ],
+    "jolt-android-p4w.2": [
+      0.004566794290976608,
+      0,
+      1,
+      0,
+      0
+    ],
+    "jolt-android-zmd": [
+      0.004566794290976608,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "links": [
+    [
+      "jolt-android-ono.6",
+      "jolt-android-ono.8"
+    ],
+    [
+      "jolt-android-ono.7",
+      "jolt-android-ono.8"
+    ],
+    [
+      "jolt-android-csj.3",
+      "jolt-android-ono.6"
+    ],
+    [
+      "jolt-android-ono.2",
+      "jolt-android-ono.6"
+    ],
+    [
+      "jolt-android-ono.5",
+      "jolt-android-ono.6"
+    ],
+    [
+      "jolt-android-ono.4",
+      "jolt-android-ono.6"
+    ],
+    [
+      "jolt-android-ono.1",
+      "jolt-android-ono.6"
+    ],
+    [
+      "jolt-android-d82.2",
+      "jolt-android-ono.6"
+    ],
+    [
+      "jolt-android-97n.4",
+      "jolt-android-ono.5"
+    ],
+    [
+      "jolt-android-97n.5",
+      "jolt-android-ono.5"
+    ],
+    [
+      "jolt-android-97n.3",
+      "jolt-android-ono.5"
+    ],
+    [
+      "jolt-android-97n.2",
+      "jolt-android-ono.5"
+    ],
+    [
+      "jolt-android-ono.1",
+      "jolt-android-ono.5"
+    ],
+    [
+      "jolt-android-ono.3",
+      "jolt-android-ono.4"
+    ],
+    [
+      "jolt-android-97n.1",
+      "jolt-android-ono.3"
+    ],
+    [
+      "jolt-android-csj.2",
+      "jolt-android-ono.3"
+    ],
+    [
+      "jolt-android-csj.2",
+      "jolt-android-97n.2"
+    ],
+    [
+      "jolt-android-97n.1",
+      "jolt-android-97n.2"
+    ],
+    [
+      "jolt-android-csj.1",
+      "jolt-android-97n.1"
+    ],
+    [
+      "jolt-android-jkb.5",
+      "jolt-android-csj.3"
+    ],
+    [
+      "jolt-android-97n.3",
+      "jolt-android-csj.3"
+    ],
+    [
+      "jolt-android-97n.4",
+      "jolt-android-csj.3"
+    ],
+    [
+      "jolt-android-csj.2",
+      "jolt-android-csj.3"
+    ],
+    [
+      "jolt-android-csj.1",
+      "jolt-android-csj.2"
+    ],
+    [
+      "jolt-android-a4e.1",
+      "jolt-android-csj.1"
+    ],
+    [
+      "jolt-android-5s3.3",
+      "jolt-android-d06.3"
+    ],
+    [
+      "jolt-android-d06.2",
+      "jolt-android-d06.3"
+    ],
+    [
+      "jolt-android-5s3.2",
+      "jolt-android-d06.2"
+    ],
+    [
+      "jolt-android-d06.1",
+      "jolt-android-d06.2"
+    ],
+    [
+      "jolt-android-5s3.2",
+      "jolt-android-d06.1"
+    ],
+    [
+      "jolt-android-5s3.2",
+      "jolt-android-5s3.3"
+    ],
+    [
+      "jolt-android-5s3.1",
+      "jolt-android-5s3.2"
+    ],
+    [
+      "jolt-android-a4e.1",
+      "jolt-android-a4e.2"
+    ],
+    [
+      "jolt-android-1fz.1",
+      "jolt-android-a4e.1"
+    ],
+    [
+      "jolt-android-5s3.4",
+      "jolt-android-5s3.1"
+    ],
+    [
+      "jolt-android-1fz.3",
+      "jolt-android-5s3.1"
+    ],
+    [
+      "jolt-android-1fz.2",
+      "jolt-android-5s3.1"
+    ],
+    [
+      "jolt-android-1fz.4",
+      "jolt-android-1fz.1"
+    ],
+    [
+      "jolt-android-1fz.1",
+      "jolt-android-1fz.2"
+    ],
+    [
+      "jolt-android-1fz.6",
+      "jolt-android-1fz.2"
+    ],
+    [
+      "jolt-android-1fz.5",
+      "jolt-android-1fz.2"
+    ],
+    [
+      "jolt-android-jkb.2",
+      "jolt-android-csj.4"
+    ],
+    [
+      "jolt-android-csj.3",
+      "jolt-android-csj.4"
+    ],
+    [
+      "jolt-android-ono.1",
+      "jolt-android-1fz.7"
+    ],
+    [
+      "jolt-android-csj.2",
+      "jolt-android-jkb.5"
+    ],
+    [
+      "jolt-android-csj.1",
+      "jolt-android-jkb.5"
+    ],
+    [
+      "jolt-android-ono.4",
+      "jolt-android-ono.7"
+    ],
+    [
+      "jolt-android-ono.5",
+      "jolt-android-ono.7"
+    ],
+    [
+      "jolt-android-csj.2",
+      "jolt-android-ono.2"
+    ],
+    [
+      "jolt-android-d82.1",
+      "jolt-android-d82.2"
+    ],
+    [
+      "jolt-android-csj.2",
+      "jolt-android-d82.1"
+    ],
+    [
+      "jolt-android-edn.2",
+      "jolt-android-d82.1"
+    ],
+    [
+      "jolt-android-97n.2",
+      "jolt-android-97n.5"
+    ],
+    [
+      "jolt-android-97n.1",
+      "jolt-android-97n.5"
+    ],
+    [
+      "jolt-android-6fp.9",
+      "jolt-android-97n.4"
+    ],
+    [
+      "jolt-android-97n.2",
+      "jolt-android-97n.4"
+    ],
+    [
+      "jolt-android-97n.2",
+      "jolt-android-97n.3"
+    ],
+    [
+      "jolt-android-p4w.1",
+      "jolt-android-p4w.2"
+    ],
+    [
+      "jolt-android-edn.1",
+      "jolt-android-p4w.1"
+    ],
+    [
+      "jolt-android-6fp.9",
+      "jolt-android-edn.1"
+    ],
+    [
+      "jolt-android-6fp.8",
+      "jolt-android-6fp.9"
+    ],
+    [
+      "jolt-android-6fp.7",
+      "jolt-android-6fp.8"
+    ],
+    [
+      "jolt-android-6fp.6",
+      "jolt-android-6fp.7"
+    ],
+    [
+      "jolt-android-6fp.5",
+      "jolt-android-6fp.6"
+    ],
+    [
+      "jolt-android-6fp.4",
+      "jolt-android-6fp.5"
+    ],
+    [
+      "jolt-android-6fp.3",
+      "jolt-android-6fp.4"
+    ],
+    [
+      "jolt-android-6fp.2",
+      "jolt-android-6fp.3"
+    ],
+    [
+      "jolt-android-6fp.1",
+      "jolt-android-6fp.2"
+    ],
+    [
+      "jolt-android-d06.3",
+      "jolt-android-6fp.1"
+    ],
+    [
+      "jolt-android-jkb.4",
+      "jolt-android-jkb.1"
+    ],
+    [
+      "jolt-android-a4e.1",
+      "jolt-android-jkb.1"
+    ],
+    [
+      "jolt-android-a4e.2",
+      "jolt-android-jkb.1"
+    ],
+    [
+      "jolt-android-1fz.2",
+      "jolt-android-1fz.3"
+    ],
+    [
+      "jolt-android-d82.2",
+      "jolt-android-d82.3"
+    ]
+  ],
+  "version": "1.0.0",
+  "generated_at": "2026-08-29T10:49:40Z",
+  "node_count": 74,
+  "edge_count": 74
+}
