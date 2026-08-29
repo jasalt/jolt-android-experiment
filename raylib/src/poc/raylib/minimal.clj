@@ -22,6 +22,11 @@
 
 ;; First-frame scalar ABI only. Color is four u8 fields, passed as one :uint on
 ;; both tested desktop ABIs; larger by-value structs belong to the later ABI task.
+;; The declarations keep editor analysis aware of vars created by the FFI macro;
+;; `defcfn` remains the runtime definition.
+(declare init-window should-close-raw begin-drawing clear-background draw-text
+         end-drawing close-window get-screen-width get-screen-height
+         set-target-fps)
 (ffi/defcfn init-window "InitWindow" [:int :int :string] :void)
 (ffi/defcfn ^:private should-close-raw "WindowShouldClose" [] :int)
 (ffi/defcfn begin-drawing "BeginDrawing" [] :void)
