@@ -6,7 +6,7 @@ Last log lines:
 > '/nix/store/sfxp0jk86kj57zgk0yj0lmab9n8b4zr1-android-sdk-env/bin/sdkmanager' -> '../share/android-sdk/cmdline-tools/latest/bin/sdkmanager'
 > WARNING: The SDK Manager CLI tool (sdkmanager) is deprecated. Android CLI will be used instead.
 > The 'android' binary can also be found in the cmdline-tools directory, and 'android sdk' is the replacement for 'sdkmanager'.
-> To learn more about the Android CLI and how to use it, see the documentation (https://d.android.com/tools/agents/android-cli)
+> To learn more about the Android CLI and how to use it, see the documentation (<https://d.android.com/tools/agents/android-cli>)
 >
 > Warning: Flag --verbose is no longer supported. Ignoring.
 > /nix/store/sfxp0jk86kj57zgk0yj0lmab9n8b4zr1-android-sdk-env/share/android-sdk/cmdline-tools/latest/bin/android: line 22: /nix/store/sfxp0jk86kj57zgk0yj0lmab9n8b4zr1-android-sdk-env/share/android-sdk/cmdline-tools/latest/bin/.android-wrapped: cannot execute: required file not found

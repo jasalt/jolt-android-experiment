@@ -43,7 +43,7 @@ MiB guest RAM. The explicit `-accel off` software fallback also segfaulted.
 
 `coredumpctl` retained cores for QEMU PIDs `57061`, `58049`, `60571`, and
 `62785`. The first three are available at the time of writing; PID `60571`
-shows `SIGSEGV` with a 150.1 MiB core. See [actual.txt](actual.txt).
+shows `SIGSEGV` with a 150.1 MiB core. See [actual.md](actual.md).
 
 ## Investigation
 

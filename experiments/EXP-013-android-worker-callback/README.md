@@ -14,6 +14,6 @@ returns to the main looper. Jolt records `:worker :completed` in shared state.
 
 ## Result
 
-See [actual.txt](actual.txt),
+See [actual.md](actual.md),
 [`artifacts/logs/exp013-worker-callback.txt`](../../artifacts/logs/exp013-worker-callback.txt),
 and [`artifacts/screenshots/exp013-worker-callback.png`](../../artifacts/screenshots/exp013-worker-callback.png).

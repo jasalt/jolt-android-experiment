@@ -20,6 +20,6 @@ Jolt nor JNI receives Android clipboard objects.
 
 ## Result
 
-See [actual.txt](actual.txt),
+See [actual.md](actual.md),
 [`artifacts/logs/exp011-clipboard-effect.txt`](../../artifacts/logs/exp011-clipboard-effect.txt),
 and [`artifacts/screenshots/exp011-clipboard-effect.png`](../../artifacts/screenshots/exp011-clipboard-effect.png).

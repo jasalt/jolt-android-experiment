@@ -20,7 +20,7 @@ its platform callback. `onRequestPermissionsResult` queues either
 
 ## Result
 
-See [actual.txt](actual.txt),
+See [actual.md](actual.md),
 [`artifacts/logs/exp014-notification-permission.txt`](../../artifacts/logs/exp014-notification-permission.txt),
 and the dialog and granted-state screenshots under
 [`artifacts/screenshots/`](../../artifacts/screenshots/).

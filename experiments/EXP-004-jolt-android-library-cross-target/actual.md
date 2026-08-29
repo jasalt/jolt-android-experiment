@@ -10,7 +10,7 @@ places:
   (throw (ex-info "cross build (--target) does not support --library yet" {})))
 ```
 
-2. `host/chez/build.ss` lines 1390–1393 repeats the same guard in the
+1. `host/chez/build.ss` lines 1390–1393 repeats the same guard in the
 cross-compilation path before it can call `build-shared`.
 
 The existing cross path is executable-only. It uses a target pack containing

@@ -20,6 +20,6 @@ only the bounded integer restore event and returns caller-owned result text.
 
 ## Result
 
-See [actual.txt](actual.txt),
+See [actual.md](actual.md),
 [`artifacts/logs/exp012-persistence.txt`](../../artifacts/logs/exp012-persistence.txt),
 and [`artifacts/screenshots/exp012-persistence-restored.png`](../../artifacts/screenshots/exp012-persistence-restored.png).

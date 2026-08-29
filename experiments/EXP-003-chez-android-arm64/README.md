@@ -22,4 +22,4 @@ fixnum to Java. Jolt is intentionally not involved.
 
 ## Result
 
-Observed successful on 2026-08-28. See `actual.txt`.
+Observed successful on 2026-08-28. See `actual.md`.

@@ -18,11 +18,11 @@ The source is deliberately only `int poc_answer(void) { return 42; }`. No Chez o
 
 ## Expected
 
-See [expected.txt](expected.txt).
+See [expected.md](expected.md).
 
 ## Actual
 
-See [actual.txt](actual.txt). APK packaging, install, and native invocation are recorded only after those steps have been observed.
+See [actual.md](actual.md). APK packaging, install, and native invocation are recorded only after those steps have been observed.
 
 ## Investigation
 

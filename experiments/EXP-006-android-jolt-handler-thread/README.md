@@ -20,5 +20,5 @@ in EXP-005.
 
 ## Result
 
-See [actual.txt](actual.txt) and
+See [actual.md](actual.md) and
 [`artifacts/logs/exp006-jolt-handler-thread.txt`](../../artifacts/logs/exp006-jolt-handler-thread.txt).

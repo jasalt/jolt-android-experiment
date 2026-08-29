@@ -39,5 +39,5 @@ Force-stop and repeat the last five commands to test process relaunch.
 
 ## Result
 
-See [actual.txt](actual.txt) and
+See [actual.md](actual.md) and
 [`artifacts/logs/exp005-jolt-stress-runtime.txt`](../../artifacts/logs/exp005-jolt-stress-runtime.txt).

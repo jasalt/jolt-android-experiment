@@ -18,5 +18,5 @@ owner queue before quitting that thread. A new process starts a fresh session.
 
 ## Result
 
-See [actual.txt](actual.txt) and
+See [actual.md](actual.md) and
 [`artifacts/logs/exp008-jolt-session.txt`](../../artifacts/logs/exp008-jolt-session.txt).

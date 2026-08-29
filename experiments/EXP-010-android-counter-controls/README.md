@@ -15,6 +15,6 @@ completion renders the caller-owned result string.
 
 ## Result
 
-See [actual.txt](actual.txt),
+See [actual.md](actual.md),
 [`artifacts/logs/exp010-counter-controls.txt`](../../artifacts/logs/exp010-counter-controls.txt),
 and [`artifacts/screenshots/exp010-counter-controls.png`](../../artifacts/screenshots/exp010-counter-controls.png).

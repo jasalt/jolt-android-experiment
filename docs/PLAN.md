@@ -1626,8 +1626,8 @@ experiments/EXP-012-jolt-cross-library-linker/
 ├── README.md
 ├── minimal/
 ├── commands.sh
-├── expected.txt
-└── actual.txt
+├── expected.md
+└── actual.md
 ```
 
 `README.md` must contain:

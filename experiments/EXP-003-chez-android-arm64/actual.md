@@ -17,7 +17,6 @@ Chez (+ 40 2) = 42
 
 This proves standalone Chez initialization and a Scheme procedure call under Android ARM64 translation. It does not prove Jolt.
 
-
 The final APK packaged symlinks to the staged boot files so the APK asset
 `scheme.boot` SHA-256 matched the staged target boot exactly. A direct copied
 asset was observed to be stale in this shared workspace and was not used.

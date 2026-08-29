@@ -16,6 +16,6 @@ model.
 
 ## Result
 
-See [actual.txt](actual.txt),
+See [actual.md](actual.md),
 [`artifacts/logs/exp009-runtime-lifecycle.txt`](../../artifacts/logs/exp009-runtime-lifecycle.txt),
 and [`artifacts/screenshots/exp009-runtime-lifecycle.png`](../../artifacts/screenshots/exp009-runtime-lifecycle.png).

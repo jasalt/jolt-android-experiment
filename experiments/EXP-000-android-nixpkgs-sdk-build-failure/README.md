@@ -35,7 +35,7 @@ Nix constructs `android-sdk-env` and enters a shell containing `adb`,
 ## Actual
 
 The build fails while `android-sdk-env` runs the command-line tools' `android`
-program. See [actual.txt](actual.txt).
+program. See [actual.md](actual.md).
 
 ## Investigation
 
@@ -46,7 +46,7 @@ Jolt failure.
 
 ## Workaround
 
-Resolved locally and reproducibly; see [resolution.txt](resolution.txt). The
+Resolved locally and reproducibly; see [resolution.md](resolution.md). The
 repository patches the new CLI executable's ELF interpreter and composes the
 same pinned SDK packages without the upstream mutable-state verification probe.
 It does not use a host-installed SDK.

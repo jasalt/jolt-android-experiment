@@ -25,7 +25,7 @@ was added.
 
 A diagnostic rerun published every expected export and called the fixed
 `load-string` function on `HandlerThread("JoltRuntime")`, returning `42`. See
-[actual.txt](actual.txt) and
+[actual.md](actual.md) and
 [`artifacts/logs/exp015-fixed-debug-eval-rerun.txt`](../../artifacts/logs/exp015-fixed-debug-eval-rerun.txt).
 
 The first run's aggregate `{:error :exports}` did not identify which lookup had

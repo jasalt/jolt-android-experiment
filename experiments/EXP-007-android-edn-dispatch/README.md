@@ -24,5 +24,5 @@ behavior without relying on an undocumented exception ABI.
 
 ## Result
 
-See [actual.txt](actual.txt) and
+See [actual.md](actual.md) and
 [`artifacts/logs/exp007-edn-dispatch.txt`](../../artifacts/logs/exp007-edn-dispatch.txt).
