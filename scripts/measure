@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+# Reproducible quantitative evidence for the Android/portable PoC.
+set -euo pipefail
+root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+: "${ANDROID_HOME:?run through nix develop so ANDROID_HOME is set}"
+serial="emulator-${JOLT_ANDROID_EMULATOR_PORT:-5554}"
+pkg=${JOLT_ANDROID_PACKAGE:-net.joltlang.androidpoc.abiprobe}
+out="$root/artifacts/reports/measurements.txt"
+mkdir -p "$(dirname -- "$out")"
+apk="$root/app/build/outputs/apk/debug/app-debug.apk"
+[[ -s "$apk" ]] || { echo 'build APK first' >&2; exit 1; }
+{
+  echo '# Jolt Android PoC measurements'
+  date -u '+UTC: %Y-%m-%dT%H:%M:%SZ'
+  echo "Host: $(uname -m) $(uname -s)"
+  echo "Device SDK: $(adb -s "$serial" shell getprop ro.build.version.sdk | tr -d '\r')"
+  echo "Device ABI: $(adb -s "$serial" shell getprop ro.product.cpu.abi | tr -d '\r')"
+  echo
+  echo '## APK'
+  stat -c 'debug APK bytes: %s' "$apk"
+  echo
+  echo '## Cold-start timings (5 am start -W runs, milliseconds)'
+  for _ in 1 2 3 4 5; do
+    adb -s "$serial" shell am force-stop "$pkg"
+    adb -s "$serial" shell am start -W -n "$pkg/.MainActivity" | grep -E 'TotalTime|WaitTime'
+  done
+  echo
+  echo '## Native process memory after launch'
+  pid=$(adb -s "$serial" shell pidof "$pkg" | tr -d '\r')
+  [[ -n "$pid" ]] && adb -s "$serial" shell dumpsys meminfo "$pid" | grep -E 'TOTAL PSS|Native Heap' | head -2 || true
+  echo
+  echo '## Source LOC (wc -l; generated/build output excluded)'
+  for label in 'shared Jolt' 'Android Jolt' 'Kotlin/Java' 'JNI/C' 'GTK Jolt' 'CLI Jolt'; do
+    case "$label" in
+      'shared Jolt') paths=(src/shared);; 'Android Jolt') paths=(src/android);;
+      'Kotlin/Java') paths=(app/src/main/java);; 'JNI/C') paths=(app/src/main/cpp);;
+      'GTK Jolt') paths=(src/linux);; 'CLI Jolt') paths=(src/cli);;
+    esac
+    if [[ -e "${paths[0]}" ]]; then
+      count=$(find "${paths[@]}" -type f \( -name '*.clj' -o -name '*.cljc' -o -name '*.jolt' -o -name '*.kt' -o -name '*.java' -o -name '*.c' -o -name '*.h' \) -print0 | xargs -0 -r wc -l | tail -1 | awk '{print $1}')
+    else
+      count=0
+    fi
+    printf '%s LOC: %s\n' "$label" "${count:-0}"
+  done
+} > "$out"
+printf 'Wrote %s\n' "$out"
