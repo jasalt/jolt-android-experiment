@@ -1,0 +1,254 @@
+--------- beginning of main
+08-29 23:09:52.186   460   460 I adbd    : Remote process closed the socket (on MSG_PEEK)
+08-29 23:09:52.194   584   619 I libprocessgroup: Removed cgroup /sys/fs/cgroup/uid_10231/pid_15435
+08-29 23:09:52.195   386   386 I Zygote  : Process 15435 exited due to signal 9 (Killed)
+--------- beginning of system
+08-29 23:09:52.287   584  1960 W ActivityTaskManager: callingPackage for (uid=2000, pid=15501) has no WPC
+08-29 23:09:52.288   584  1960 D CompatChangeReporter: Compat change id reported: 151861875; UID 10231; state: ENABLED
+08-29 23:09:52.288   584  1960 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_USER_ASPECT_RATIO_OVERRIDE
+08-29 23:09:52.288   584  1960 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_USER_ASPECT_RATIO_FULLSCREEN_OVERRIDE
+08-29 23:09:52.288   584  1960 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_ORIENTATION_OVERRIDE
+08-29 23:09:52.288   584  1960 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10231, packageName = null, attributionTag = null, token = android.os.Binder@6b5b2fd, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+08-29 23:09:52.288   584  1960 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_RESIZEABLE_ACTIVITY_OVERRIDES
+08-29 23:09:52.288   584  1960 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_MIN_ASPECT_RATIO_OVERRIDE
+08-29 23:09:52.291   584  1960 V SplashScreenExceptionList: SplashScreen checking exception for package net.joltlang.raylibjoltprobe (target sdk:35) -> false
+08-29 23:09:52.292   584  1022 D CompatChangeReporter: Compat change id reported: 309578419; UID 10231; state: ENABLED
+08-29 23:09:52.293   941  1026 D SplashScreenView: Build android.window.SplashScreenView{e115eaa V.E...... ......ID 0,0-0,0}
+08-29 23:09:52.293   941  1026 D SplashScreenView: Icon: view: android.widget.ImageView{9b94a9b V.ED..... ......I. 0,0-0,0 #1020504 android:id/splashscreen_icon_view} drawable: com.android.wm.shell.startingsurface.SplashscreenIconDrawableFactory$ImmobileIconDrawable@7822e38 size: 420
+08-29 23:09:52.293   941  1026 D SplashScreenView: Branding: view: android.view.View{3d2ee11 G.ED..... ......I. 0,0-0,0 #1020503 android:id/splashscreen_branding_view} drawable: null size w: 0 h: 0
+08-29 23:09:52.293   584  1960 I ActivityTaskManager: START u0 {flg=0x10000000 cmp=net.joltlang.raylibjoltprobe/android.app.NativeActivity} with LAUNCH_MULTIPLE from uid 2000 (BAL_ALLOW_PERMISSION) result code=0
+08-29 23:09:52.293   941   978 V WindowManagerShell: Transition requested (#153): android.os.BinderProxy@47f5e4 TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=77 displayId=0 isRunning=true baseIntent=Intent { flg=0x10000000 cmp=net.joltlang.raylibjoltprobe/android.app.NativeActivity } baseActivity=ComponentInfo{net.joltlang.raylibjoltprobe/android.app.NativeActivity} topActivity=ComponentInfo{net.joltlang.raylibjoltprobe/android.app.NativeActivity} origActivity=null realActivity=ComponentInfo{net.joltlang.raylibjoltprobe/android.app.NativeActivity} numActivities=1 lastActiveTime=41411219 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@de75a4d} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 128 - 0, 0) topActivityInfo=ActivityInfo{d931902 android.app.NativeActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=false isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=false appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= falseisLetterboxEducationEnabled= true isLetterboxDoubleTapEnabled= false topActivityEligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=1080 topActivityLetterboxHeight=2400 isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false cameraCompatTaskInfo=CameraCompatTaskInfo { cameraCompatControlState=hidden freeformCameraCompatMode=inactive}}}, pipTask = null, remoteTransition = null, displayChange = null, flags = 0, debugId = 153 }
+08-29 23:09:52.294   584   608 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10231, packageName = null, attributionTag = null, token = android.os.Binder@6b5b2fd, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+08-29 23:09:52.296 13526 13548 I JoltRuntime: entering JNI on JoltRuntime
+08-29 23:09:52.296  1257  1257 I TopTaskTracker: onTaskMovedToFront: (moved taskInfo to front) taskId=77, baseIntent=Intent { flg=0x10000000 cmp=net.joltlang.raylibjoltprobe/android.app.NativeActivity }
+08-29 23:09:52.299 13526 13548 I jolt_probe: canonical dispatch completed
+08-29 23:09:52.301   510  2123 W IPCThreadState: Sending oneway calls to frozen process.
+08-29 23:09:52.302   451   451 I BpBinder: onLastStrongRef automatically unlinking death recipients: 
+08-29 23:09:52.312   386   386 D Zygote  : Forked child process 15504
+08-29 23:09:52.314   584   618 I ActivityManager: Start proc 15504:net.joltlang.raylibjoltprobe/u0a231 for next-top-activity {net.joltlang.raylibjoltprobe/android.app.NativeActivity}
+08-29 23:09:52.316   584  2010 I AppsFilter: interaction: PackageSetting{4eaed11 com.android.microdroid.empty_payload/10199} -> PackageSetting{bf09917 net.joltlang.raylibjoltprobe/10231} BLOCKED
+08-29 23:09:52.316   584  2010 I AppsFilter: interaction: PackageSetting{1958c77 net.joltlang.androidpoc.abiprobe/10229} -> PackageSetting{bf09917 net.joltlang.raylibjoltprobe/10231} BLOCKED
+08-29 23:09:52.316   584  2010 I AppsFilter: interaction: PackageSetting{88340e4 net.joltlang.raylibprobe/10230} -> PackageSetting{bf09917 net.joltlang.raylibjoltprobe/10231} BLOCKED
+08-29 23:09:52.320 15504 15504 I raylibjoltprobe: Late-enabling -Xcheck:jni
+08-29 23:09:52.321   584  1021 D CoreBackPreview: Window{df1c0b1 u0 Splash Screen net.joltlang.raylibjoltprobe}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@430b6ed, mPriority=0, mIsAnimationCallback=false}
+08-29 23:09:52.323   584   891 I AppWidgetServiceImpl: Received broadcast: android.intent.action.PACKAGE_UNSTOPPED on user 0
+08-29 23:09:52.323   584   891 I AppWidgetServiceImpl: Updating package stopped masked state for uid 10231 package net.joltlang.raylibjoltprobe isStopped false
+08-29 23:09:52.343 15504 15504 I raylibjoltprobe: Using CollectorTypeCMC GC.
+08-29 23:09:52.343 15504 15504 W raylibjoltprobe: Unexpected CPU variant for x86: x86_64.
+08-29 23:09:52.343 15504 15504 W raylibjoltprobe: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, default
+08-29 23:09:52.376 15504 15504 I berberis: Initialized Berberis (aarch64), version 0.2.3
+08-29 23:09:52.384 13526 13545 D EGL_emulation: app_time_stats: avg=126350.50ms min=64.72ms max=252636.27ms count=2
+08-29 23:09:52.401   941  1074 V WindowManagerShell: onTransitionReady(transaction=2508260908003)
+08-29 23:09:52.401   941   978 V WindowManagerShell: onTransitionReady (#153) android.os.BinderProxy@47f5e4: {id=153 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{android.window.IWindowContainerToken$Stub$Proxy@93a7d81} m=OPEN f=NONE leash=Surface(name=Task=77)/@0x496c65a sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0 taskParent=-1},{WCT{android.window.IWindowContainerToken$Stub$Proxy@2eaee26} m=TO_BACK f=NONE leash=Surface(name=Task=70)/@0x83e108b sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0 taskParent=-1}]}
+08-29 23:09:52.402   941   978 V WindowManagerShell: Playing animation for (#153) android.os.BinderProxy@47f5e4@0
+08-29 23:09:52.402   941   978 V WindowManagerShell:  try handler com.android.wm.shell.transition.DefaultMixedHandler@ec31604
+08-29 23:09:52.402   941   978 V WindowManagerShell:  try handler com.android.wm.shell.keyguard.KeyguardTransitionHandler@4ddc7ed
+08-29 23:09:52.402   941   978 V WindowManagerShell:  try handler com.android.wm.shell.pip.PipTransition@3a68622
+08-29 23:09:52.402   941   978 V WindowManagerShell:  try handler com.android.wm.shell.activityembedding.ActivityEmbeddingController@b11a8b3
+08-29 23:09:52.402   941   978 V WindowManagerShell:  try handler com.android.wm.shell.recents.RecentsTransitionHandler@55d8e70
+08-29 23:09:52.402   941   978 V ShellRecents: RecentsTransitionHandler.startAnimation: no controller found
+08-29 23:09:52.402   941   978 V WindowManagerShell:  try handler com.android.wm.shell.splitscreen.StageCoordinator@4dbf5e9
+08-29 23:09:52.402   941   978 V WindowManagerShell:  try handler com.android.wm.shell.transition.RemoteTransitionHandler@1cae26e
+08-29 23:09:52.402   941   978 V WindowManagerShell: Transition doesn't have explicit remote, search filters for match for {id=153 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{android.window.IWindowContainerToken$Stub$Proxy@93a7d81} m=OPEN f=NONE leash=Surface(name=Task=77)/@0x496c65a sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0 taskParent=-1},{WCT{android.window.IWindowContainerToken$Stub$Proxy@2eaee26} m=TO_BACK f=NONE leash=Surface(name=Task=70)/@0x83e108b sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0 taskParent=-1}]}
+08-29 23:09:52.402   941   978 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=undefined independent=true modes=[OPEN,TO_FRONT] flags=IN_TASK_WITH_EMBEDDED_ACTIVITY mustBeTask=false order=ANY topActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity} launchCookie=null},{atype=undefined independent=true modes=[CLOSE,TO_BACK] flags=IN_TASK_WITH_EMBEDDED_ACTIVITY mustBeTask=false order=ANY topActivity=null launchCookie=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@bce91a9, appThread = android.app.IApplicationThread$Stub$Proxy@90bb32e, debugName = OverlaySwipeBack }}
+08-29 23:09:52.402   941   978 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=dream independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null},{atype=home independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@97507a5, appThread = android.app.IApplicationThread$Stub$Proxy@dc6b77a, debugName = LauncherToDream }}
+08-29 23:09:52.402   941   978 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x100 checks=[{atype=home independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=TOP topActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity} launchCookie=null},{atype=standard independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@bdf7b2b, appThread = android.app.IApplicationThread$Stub$Proxy@3f0bb88, debugName = QuickstepLaunchHome }}
+08-29 23:09:52.402   941   978 V WindowManagerShell:  Delegate animation for (#153) to null
+08-29 23:09:52.402   941   978 V WindowManagerShell:  try handler com.android.wm.shell.transition.DefaultTransitionHandler@9d37921
+08-29 23:09:52.402   941   978 V WindowManagerShell: start default transition animation, info = {id=153 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{android.window.IWindowContainerToken$Stub$Proxy@93a7d81} m=OPEN f=NONE leash=Surface(name=Task=77)/@0x496c65a sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0 taskParent=-1},{WCT{android.window.IWindowContainerToken$Stub$Proxy@2eaee26} m=TO_BACK f=NONE leash=Surface(name=Task=70)/@0x83e108b sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0 taskParent=-1}]}
+08-29 23:09:52.403   941   978 V WindowManagerShell: loadAnimation: anim=android.view.animation.AnimationSet@69070bd animAttr=0x9 type=OPEN isEntrance=false
+08-29 23:09:52.417   941   978 V WindowManagerShell: loadAnimation: anim=android.view.animation.AnimationSet@a860603 animAttr=0x8 type=OPEN isEntrance=true
+08-29 23:09:52.418   451   451 E SurfaceFlinger: Out of order buffers detected for RequestedLayerState{net.joltlang.androidpoc.abiprobe/net.joltlang.androidpoc.abiprobe.MainActivity#1794 parentId=1702} producedId=7 frameNumber=21 -> producedId=7 frameNumber=3
+08-29 23:09:52.418   451   451 D SurfaceFlinger: TransactionTraceWriter: file=/data/misc/wmtrace/out_of_order_buffers_transactions_trace.winscope already exists
+08-29 23:09:52.424   941   978 V WindowManagerShell:  animated by com.android.wm.shell.transition.DefaultTransitionHandler@9d37921
+08-29 23:09:52.434 15504 15504 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+08-29 23:09:52.435   419  4478 I RanchuHwc: logCompositionFallbackIfChanged: layer 395 CompositionType fallback from 3 to 1
+08-29 23:09:52.448   460   472 I adbd    : jdwp connection from 15504
+08-29 23:09:52.450   584   605 V WindowManager: Sent Transition (#153) createdAt=08-29 23:09:52.288 via request=TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=77 displayId=0 isRunning=true baseIntent=Intent { flg=0x10000000 cmp=net.joltlang.raylibjoltprobe/android.app.NativeActivity } baseActivity=ComponentInfo{net.joltlang.raylibjoltprobe/android.app.NativeActivity} topActivity=ComponentInfo{net.joltlang.raylibjoltprobe/android.app.NativeActivity} origActivity=null realActivity=ComponentInfo{net.joltlang.raylibjoltprobe/android.app.NativeActivity} numActivities=1 lastActiveTime=41411219 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{RemoteToken{456d6a5 Task{34a706c #77 type=standard A=10231:net.joltlang.raylibjoltprobe}}} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 128 - 0, 0) topActivityInfo=ActivityInfo{6fdda7a android.app.NativeActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=false isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=false appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= falseisLetterboxEducationEnabled= true isLetterboxDoubleTapEnabled= false topActivityEligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=1080 topActivityLetterboxHeight=2400 isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false cameraCompatTaskInfo=CameraCompatTaskInfo { cameraCompatControlState=hidden freeformCameraCompatMode=inactive}}}, pipTask = null, remoteTransition = null, displayChange = null, flags = 0, debugId = 153 }
+08-29 23:09:52.450   584   605 V WindowManager:     startWCT=WindowContainerTransaction { changes = {} hops = [] errorCallbackToken=null taskFragmentOrganizer=null }
+08-29 23:09:52.450   584   605 V WindowManager:     info={id=153 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[
+08-29 23:09:52.450   584   605 V WindowManager:         {WCT{RemoteToken{456d6a5 Task{34a706c #77 type=standard A=10231:net.joltlang.raylibjoltprobe}}} m=OPEN f=NONE leash=Surface(name=Task=77)/@0xe57940f sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0 taskParent=-1},
+08-29 23:09:52.450   584   605 V WindowManager:         {WCT{RemoteToken{6723e84 Task{bc61145 #70 type=standard A=10229:net.joltlang.androidpoc.abiprobe}}} m=TO_BACK f=NONE leash=Surface(name=Task=70)/@0x11b6b16 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0 taskParent=-1}
+08-29 23:09:52.450   584   605 V WindowManager:     ]}
+08-29 23:09:52.466   584  2010 W UserManagerService: Requested status bar icon for non-badged user 0
+08-29 23:09:52.557 15504 15504 W System  : ClassLoader referenced unknown path: 
+08-29 23:09:52.558 15504 15504 D nativeloader: Configuring clns-7 for other apk . target_sdk_version=35, uses_libraries=, library_path=/data/app/~~BNLVy7t1e-RFsFqEcPJjjQ==/net.joltlang.raylibjoltprobe-EgMNyk7J3G34LIotL_c_IQ==/lib/arm64:/data/app/~~BNLVy7t1e-RFsFqEcPJjjQ==/net.joltlang.raylibjoltprobe-EgMNyk7J3G34LIotL_c_IQ==/base.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand:/data/user/0/net.joltlang.raylibjoltprobe
+08-29 23:09:52.570   941   947 I ndroid.systemui: Background concurrent mark compact GC freed 15MB AllocSpace bytes, 144(2992KB) LOS objects, 49% free, 18MB/36MB, paused 430us,3.407ms total 166.999ms
+08-29 23:09:52.570   941   947 W ndroid.systemui: Reducing the number of considered missed Gc histogram windows from 142 to 100
+08-29 23:09:52.598 15504 15504 V GraphicsEnvironment: Currently set values for:
+08-29 23:09:52.599 15504 15504 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+08-29 23:09:52.599 15504 15504 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+08-29 23:09:52.599 15504 15504 V GraphicsEnvironment: Global.Settings values are invalid: number of packages: 0, number of values: 0
+08-29 23:09:52.599 15504 15504 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+08-29 23:09:52.611 15504 15504 D CompatChangeReporter: Compat change id reported: 202956589; UID 10231; state: ENABLED
+08-29 23:09:52.623   584  1022 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ENABLE_FAKE_FOCUS
+08-29 23:09:52.624   584  1022 D CompatChangeReporter: Compat change id reported: 324203798; UID 10231; state: ENABLED
+--------- beginning of kernel
+08-29 23:09:52.882     0     0 W healthd : battery l=100 v=5000 t=25.0 h=2 st=2 c=900000 fc=3000000 cc=10 chg=a
+08-29 23:09:52.686  1257  1711 D EGL_emulation: app_time_stats: avg=31570.21ms min=1.00ms max=252530.58ms count=8
+08-29 23:09:52.707   584   597 I system_server: NativeAlloc concurrent mark compact GC freed 16MB AllocSpace bytes, 71(1508KB) LOS objects, 47% free, 26MB/50MB, paused 655us,2.047ms total 292.742ms
+08-29 23:09:52.709   584   599 W system_server: ApkAssets: Deleting an ApkAssets object '<empty> and /system_ext/app/AccessibilityMenu/AccessibilityMenu.apk' with 1 weak references
+08-29 23:09:52.709   584   599 W system_server: ApkAssets: Deleting an ApkAssets object '/product/overlay/AccessibilityMenu__sdk_gphone64_x86_64__auto_generated_rro_product.apk' with 1 weak references
+08-29 23:09:52.709   584   599 W system_server: ApkAssets: Deleting an ApkAssets object '<empty> and /product/priv-app/Velvet/Velvet.apk' with 1 weak references
+08-29 23:09:52.709   584   599 W system_server: ApkAssets: Deleting an ApkAssets object '<empty> and /product/priv-app/PrebuiltGmsCore/PrebuiltGmsCore.apk' with 1 weak references
+08-29 23:09:52.710   584   599 W system_server: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/PrebuiltGmail/PrebuiltGmail.apk' with 1 weak references
+08-29 23:09:52.712 15504 15504 D CompatChangeReporter: Compat change id reported: 279646685; UID 10231; state: ENABLED
+08-29 23:09:52.714   584   599 W system_server: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/Drive/Drive.apk' with 1 weak references
+08-29 23:09:52.715   584   599 W system_server: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/CalendarGooglePrebuilt/CalendarGooglePrebuilt.apk' with 1 weak references
+08-29 23:09:52.715 15504 15504 D CompatChangeReporter: Compat change id reported: 309578419; UID 10231; state: ENABLED
+08-29 23:09:52.716   584   599 W system_server: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/LatinIMEGooglePrebuilt/LatinIMEGooglePrebuilt.apk' with 1 weak references
+08-29 23:09:52.716   584   599 W system_server: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/talkback/talkback.apk' with 1 weak references
+08-29 23:09:52.716   584   599 W system_server: ApkAssets: Deleting an ApkAssets object '/vendor/overlay/EmulatorTalkBackOverlay/EmulatorTalkBackOverlay.apk' with 1 weak references
+08-29 23:09:52.716   584   599 W system_server: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/GoogleTTS/GoogleTTS.apk' with 1 weak references
+08-29 23:09:52.862 15504 15504 D nativeloader: Load /data/app/~~BNLVy7t1e-RFsFqEcPJjjQ==/net.joltlang.raylibjoltprobe-EgMNyk7J3G34LIotL_c_IQ==/base.apk!/lib/arm64-v8a/libmain.so using ns clns-7 from class loader (caller=<unknown>): ok
+08-29 23:09:52.866 15504 15504 V threaded_app: Creating: 0x779d86b5f1d0
+08-29 23:09:52.867 15504 15522 V threaded_app: Config: mcc=310 mnc=260 lang=en cnt=US orien=1 touch=3 dens=420 keys=2 nav=1 keysHid=1 navHid=0 sdk=35 size=2 long=2 modetype=1 modenight=1
+08-29 23:09:52.869 15504 15504 V threaded_app: Start: 0x779d86b5f1d0
+08-29 23:09:52.876 15504 15522 I jolt_raylib_bootstrap: enter main thread=15522
+08-29 23:09:52.878 15504 15522 I jolt_raylib_bootstrap: dlopen ok thread=15522
+08-29 23:09:52.864 15504 15504 W raylibjoltprobe: type=1400 audit(0.0:1343): avc:  denied  { getattr } for  path="/dev/pmsg0" dev="tmpfs" ino=747 scontext=u:r:untrusted_app:s0:c231,c256,c512,c768 tcontext=u:object_r:pmsg_device:s0 tclass=chr_file permissive=0 app=net.joltlang.raylibjoltprobe
+08-29 23:09:52.864 15504 15504 W raylibjoltprobe: type=1400 audit(0.0:1344): avc:  denied  { getattr } for  path="/dev/pmsg0" dev="tmpfs" ino=747 scontext=u:r:untrusted_app:s0:c231,c256,c512,c768 tcontext=u:object_r:pmsg_device:s0 tclass=chr_file permissive=0 app=net.joltlang.raylibjoltprobe
+08-29 23:09:52.864 15504 15504 W raylibjoltprobe: type=1400 audit(0.0:1345): avc:  denied  { getattr } for  path="/dev/pmsg0" dev="tmpfs" ino=747 scontext=u:r:untrusted_app:s0:c231,c256,c512,c768 tcontext=u:object_r:pmsg_device:s0 tclass=chr_file permissive=0 app=net.joltlang.raylibjoltprobe
+08-29 23:09:52.936   941   978 V WindowManagerShell: Transition animation finished (aborted=false), notifying core (#153) android.os.BinderProxy@47f5e4@0
+08-29 23:09:52.938   584   605 V WindowManager: Finish Transition (#153): created at 08-29 23:09:52.288 collect-started=0.022ms request-sent=3.192ms started=6.446ms ready=92.527ms sent=97.216ms finished=649.187ms
+08-29 23:09:52.939   941   978 V WindowManagerShell: Track 0 became idle
+08-29 23:09:52.939   941   978 V WindowManagerShell: All active transition animations finished
+08-29 23:09:52.940 13526 13526 D VRI[MainActivity]: visibilityChanged oldVisibility=true newVisibility=false
+08-29 23:09:52.954   584  2010 W UserManagerService: Requested status bar icon for non-badged user 0
+08-29 23:09:52.984   584  1021 W UserManagerService: Requested status bar icon for non-badged user 0
+08-29 23:09:53.964   584   853 W BestClock: java.time.DateTimeException: Missing network time fix
+08-29 23:09:53.964   584   853 W BestClock: java.time.DateTimeException: Missing network time fix
+08-29 23:09:53.964   584   853 W BestClock: java.time.DateTimeException: Missing network time fix
+08-29 23:09:53.965   584   853 W BestClock: java.time.DateTimeException: Missing network time fix
+08-29 23:09:53.965   584   853 W BestClock: java.time.DateTimeException: Missing network time fix
+08-29 23:09:54.815 15504 15522 I jolt_raylib_bootstrap: jolt_library_init result=0 thread=15522 owner=15522
+08-29 23:09:54.816 15504 15522 I jolt_raylib_bootstrap: jolt_lookup raylib_host_noop=ok thread=15522 owner=15522
+08-29 23:09:54.816 15504 15522 I jolt_raylib_bootstrap: raylib_host_noop result=7 thread=15522 owner=15522
+08-29 23:09:54.816 15504 15522 I jolt_raylib_bootstrap: jolt_library_shutdown thread=15522 owner=15522
+08-29 23:09:54.818 15504 15522 I jolt_raylib_bootstrap: bootstrap complete thread=15522 owner=15522
+08-29 23:09:54.819 15504 15522 V threaded_app: activityState=10
+08-29 23:09:54.823 15504 15504 V threaded_app: Resume: 0x779d86b5f1d0
+08-29 23:09:54.823 15504 15522 V threaded_app: activityState=11
+08-29 23:09:54.827   584  2010 W WindowManager: Failed looking up window session=Session{67f2af6 15504:u0a10231} callers=com.android.server.wm.WindowManagerService.windowForClientLocked:6311 com.android.server.wm.Session.updateRequestedVisibleTypes:755 android.view.IWindowSession$Stub.onTransact:1078 
+08-29 23:09:54.830 15504 15504 V threaded_app: InputQueueCreated: 0x779d86b5f1d0 -- 0x779e96b675c0
+08-29 23:09:54.830 15504 15522 V threaded_app: APP_CMD_INPUT_CHANGED
+08-29 23:09:54.830 15504 15522 V threaded_app: Attaching input queue to looper
+08-29 23:09:54.833   941   978 V WindowManagerShell: Transition requested (#154): android.os.BinderProxy@391f22 TransitionRequestInfo { type = CLOSE, triggerTask = TaskInfo{userId=0 taskId=77 displayId=0 isRunning=false baseIntent=Intent { flg=0x10000000 cmp=net.joltlang.raylibjoltprobe/android.app.NativeActivity } baseActivity=null topActivity=null origActivity=null realActivity=ComponentInfo{net.joltlang.raylibjoltprobe/android.app.NativeActivity} numActivities=0 lastActiveTime=41411551 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@61acdb3} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=null topActivityInfo=null launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isVisibleRequested=true isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=false appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= falseisLetterboxEducationEnabled= false isLetterboxDoubleTapEnabled= false topActivityEligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false cameraCompatTaskInfo=CameraCompatTaskInfo { cameraCompatControlState=hidden freeformCameraCompatMode=inactive}}}, pipTask = null, remoteTransition = null, displayChange = null, flags = 0, debugId = 154 }
+08-29 23:09:54.834  1257  1257 I TopTaskTracker: onTaskMovedToFront: (moved taskInfo to front) taskId=70, baseIntent=Intent { flg=0x10000000 cmp=net.joltlang.androidpoc.abiprobe/.MainActivity }
+08-29 23:09:54.835   451   451 I BpBinder: onLastStrongRef automatically unlinking death recipients: 
+08-29 23:09:54.838   584  1021 D CoreBackPreview: Window{988b164 u0 net.joltlang.raylibjoltprobe/android.app.NativeActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@eb0082, mPriority=0, mIsAnimationCallback=false}
+08-29 23:09:54.850 15504 15504 V threaded_app: NativeWindowCreated: 0x779d86b5f1d0 -- 0x779d36b72f10
+08-29 23:09:54.850 15504 15522 V threaded_app: APP_CMD_INIT_WINDOW
+08-29 23:09:54.851 15504 15504 V threaded_app: NativeWindowResized: 0x779d86b5f1d0 -- 0x779d36b72f10
+08-29 23:09:54.853 15504 15504 V threaded_app: ContentRectChanged: l=0,t=0,r=1080,b=2400
+08-29 23:09:54.855 15504 15504 V threaded_app: NativeWindowRedrawNeeded: 0x779d86b5f1d0 -- 0x779d36b72f10
+08-29 23:09:54.857 15504 15504 V threaded_app: Pause: 0x779d86b5f1d0
+08-29 23:09:54.857 15504 15522 V threaded_app: activityState=13
+08-29 23:09:54.860 13526 13526 D VRI[MainActivity]: visibilityChanged oldVisibility=false newVisibility=true
+08-29 23:09:54.893   380   380 I netd    : tetherGetStats() -> {[]} <0.48ms>
+08-29 23:09:54.930 13526 13548 I JoltRuntime: entering JNI on JoltRuntime
+08-29 23:09:54.933 13526 13548 I jolt_probe: canonical dispatch completed
+08-29 23:09:54.937 13526 13541 E FrameEvents: addRelease: Did not find frame.
+08-29 23:09:54.940   941   958 V WindowManagerShell: onTransitionReady(transaction=2508260908025)
+08-29 23:09:54.940   941   978 V WindowManagerShell: onTransitionReady (#154) android.os.BinderProxy@391f22: {id=154 t=CLOSE f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{android.window.IWindowContainerToken$Stub$Proxy@66a920f} m=TO_FRONT f=NONE leash=Surface(name=Task=70)/@0xf884f70 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0 taskParent=-1},{WCT{android.window.IWindowContainerToken$Stub$Proxy@a7af29c} m=CLOSE f=NONE leash=Surface(name=Task=77)/@0x5de22e9 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0 taskParent=-1}]}
+08-29 23:09:54.940   941   978 V WindowManagerShell: Playing animation for (#154) android.os.BinderProxy@391f22@0
+08-29 23:09:54.940   941   978 V WindowManagerShell:  try handler com.android.wm.shell.transition.DefaultMixedHandler@ec31604
+08-29 23:09:54.940   941   978 V WindowManagerShell:  try handler com.android.wm.shell.keyguard.KeyguardTransitionHandler@4ddc7ed
+08-29 23:09:54.940   941   978 V WindowManagerShell:  try handler com.android.wm.shell.pip.PipTransition@3a68622
+08-29 23:09:54.940   941   978 V WindowManagerShell:  try handler com.android.wm.shell.activityembedding.ActivityEmbeddingController@b11a8b3
+08-29 23:09:54.940   941   978 V WindowManagerShell:  try handler com.android.wm.shell.recents.RecentsTransitionHandler@55d8e70
+08-29 23:09:54.940   941   978 V ShellRecents: RecentsTransitionHandler.startAnimation: no controller found
+08-29 23:09:54.940   941   978 V WindowManagerShell:  try handler com.android.wm.shell.splitscreen.StageCoordinator@4dbf5e9
+08-29 23:09:54.940   941   978 V WindowManagerShell:  try handler com.android.wm.shell.transition.RemoteTransitionHandler@1cae26e
+08-29 23:09:54.940   941   978 V WindowManagerShell: Transition doesn't have explicit remote, search filters for match for {id=154 t=CLOSE f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{android.window.IWindowContainerToken$Stub$Proxy@66a920f} m=TO_FRONT f=NONE leash=Surface(name=Task=70)/@0xf884f70 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0 taskParent=-1},{WCT{android.window.IWindowContainerToken$Stub$Proxy@a7af29c} m=CLOSE f=NONE leash=Surface(name=Task=77)/@0x5de22e9 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0 taskParent=-1}]}
+08-29 23:09:54.940   941   978 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=undefined independent=true modes=[OPEN,TO_FRONT] flags=IN_TASK_WITH_EMBEDDED_ACTIVITY mustBeTask=false order=ANY topActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity} launchCookie=null},{atype=undefined independent=true modes=[CLOSE,TO_BACK] flags=IN_TASK_WITH_EMBEDDED_ACTIVITY mustBeTask=false order=ANY topActivity=null launchCookie=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@bce91a9, appThread = android.app.IApplicationThread$Stub$Proxy@90bb32e, debugName = OverlaySwipeBack }}
+08-29 23:09:54.940   941   978 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=dream independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null},{atype=home independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@97507a5, appThread = android.app.IApplicationThread$Stub$Proxy@dc6b77a, debugName = LauncherToDream }}
+08-29 23:09:54.940   941   978 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x100 checks=[{atype=home independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=TOP topActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity} launchCookie=null},{atype=standard independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@bdf7b2b, appThread = android.app.IApplicationThread$Stub$Proxy@3f0bb88, debugName = QuickstepLaunchHome }}
+08-29 23:09:54.940   941   978 V WindowManagerShell:  Delegate animation for (#154) to null
+08-29 23:09:54.940   941   978 V WindowManagerShell:  try handler com.android.wm.shell.transition.DefaultTransitionHandler@9d37921
+08-29 23:09:54.940   941   978 V WindowManagerShell: start default transition animation, info = {id=154 t=CLOSE f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{android.window.IWindowContainerToken$Stub$Proxy@66a920f} m=TO_FRONT f=NONE leash=Surface(name=Task=70)/@0xf884f70 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0 taskParent=-1},{WCT{android.window.IWindowContainerToken$Stub$Proxy@a7af29c} m=CLOSE f=NONE leash=Surface(name=Task=77)/@0x5de22e9 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0 taskParent=-1}]}
+08-29 23:09:54.940   941   978 V WindowManagerShell: loadAnimation: anim=android.view.animation.AnimationSet@4f3707a animAttr=0xb type=CLOSE isEntrance=false
+08-29 23:09:54.961   584   605 V WindowManager: Sent Transition (#154) createdAt=08-29 23:09:54.832 via request=TransitionRequestInfo { type = CLOSE, triggerTask = TaskInfo{userId=0 taskId=77 displayId=0 isRunning=false baseIntent=Intent { flg=0x10000000 cmp=net.joltlang.raylibjoltprobe/android.app.NativeActivity } baseActivity=null topActivity=null origActivity=null realActivity=ComponentInfo{net.joltlang.raylibjoltprobe/android.app.NativeActivity} numActivities=0 lastActiveTime=41411551 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{RemoteToken{456d6a5 Task{34a706c #77 type=standard A=10231:net.joltlang.raylibjoltprobe}}} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=null topActivityInfo=null launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isVisibleRequested=true isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=false appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= falseisLetterboxEducationEnabled= false isLetterboxDoubleTapEnabled= false topActivityEligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false cameraCompatTaskInfo=CameraCompatTaskInfo { cameraCompatControlState=hidden freeformCameraCompatMode=inactive}}}, pipTask = null, remoteTransition = null, displayChange = null, flags = 0, debugId = 154 }
+08-29 23:09:54.961   584   605 V WindowManager:     startWCT=WindowContainerTransaction { changes = {} hops = [] errorCallbackToken=null taskFragmentOrganizer=null }
+08-29 23:09:54.961   584   605 V WindowManager:     info={id=154 t=CLOSE f=0x0 trk=0 r=[0@Point(0, 0)] c=[
+08-29 23:09:54.961   584   605 V WindowManager:         {WCT{RemoteToken{6723e84 Task{bc61145 #70 type=standard A=10229:net.joltlang.androidpoc.abiprobe}}} m=TO_FRONT f=NONE leash=Surface(name=Task=70)/@0x11b6b16 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0 taskParent=-1},
+08-29 23:09:54.961   584   605 V WindowManager:         {WCT{RemoteToken{456d6a5 Task{34a706c #77 type=standard A=10231:net.joltlang.raylibjoltprobe}}} m=CLOSE f=NONE leash=Surface(name=Task=77)/@0xe57940f sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0 taskParent=-1}
+08-29 23:09:54.961   584   605 V WindowManager:     ]}
+08-29 23:09:54.964   941   978 V WindowManagerShell: loadAnimation: anim=android.view.animation.AnimationSet@e08b407 animAttr=0xa type=CLOSE isEntrance=true
+08-29 23:09:54.967   584  1022 W UserManagerService: Requested status bar icon for non-badged user 0
+08-29 23:09:54.969   419  4478 I RanchuHwc: logCompositionFallbackIfChanged: layer 397 CompositionType fallback from 3 to 1
+08-29 23:09:54.970   941   978 V WindowManagerShell:  animated by com.android.wm.shell.transition.DefaultTransitionHandler@9d37921
+08-29 23:09:54.971   941   978 W Looper  : Slow dispatch took 31ms wmshell.main h=android.os.Handler c=com.android.wm.shell.transition.Transitions$TransitionPlayerImpl$$ExternalSyntheticLambda0@9aa2c1e m=0
+08-29 23:09:54.983   584   710 I ImeTracker: net.joltlang.androidpoc.abiprobe:6d10dd76: onRequestHide at ORIGIN_SERVER reason HIDE_SAME_WINDOW_FOCUSED_WITHOUT_EDITOR fromUser false
+08-29 23:09:54.983   584   710 I ImeTracker: net.joltlang.androidpoc.abiprobe:6d10dd76: onCancelled at PHASE_SERVER_SHOULD_HIDE
+08-29 23:09:54.985   451   451 E SurfaceFlinger: Out of order buffers detected for RequestedLayerState{net.joltlang.androidpoc.abiprobe/net.joltlang.androidpoc.abiprobe.MainActivity#1794 parentId=1702} producedId=8 frameNumber=21 -> producedId=8 frameNumber=2
+08-29 23:09:54.985   451   451 D SurfaceFlinger: TransactionTraceWriter: file=/data/misc/wmtrace/out_of_order_buffers_transactions_trace.winscope already exists
+08-29 23:09:54.998  1370  1370 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():3157 
+08-29 23:09:55.018  1370  1370 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 0, locked = false
+08-29 23:09:55.018  1370  1370 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1986 onStartInput(EditorInfo{EditorInfo{packageName=net.joltlang.androidpoc.abiprobe, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+08-29 23:09:55.030  1370  1370 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 1, locked = false
+08-29 23:09:55.030  1370  1370 I AndroidIME: InputBundleManager.loadActiveInputBundleId():450 loadActiveInputBundleId: und-Latn-x-password, password
+08-29 23:09:55.030   584  2010 W PackageConfigPersister: App-specific configuration not found for packageName: net.joltlang.androidpoc.abiprobe and userId: 0
+08-29 23:09:55.247 15504 15510 I raylibjoltprobe: Compiler allocated 5174KB to compile void android.view.ViewRootImpl.performTraversals()
+08-29 23:09:55.273  1257  1711 D EGL_emulation: app_time_stats: avg=356.38ms min=1.34ms max=2478.67ms count=7
+08-29 23:09:55.360   510  2123 W IPCThreadState: Sending oneway calls to frozen process.
+08-29 23:09:55.383   941  1024 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@c5c4e49
+08-29 23:09:55.383   584  1021 D CoreBackPreview: Window{df1c0b1 u0 Splash Screen net.joltlang.raylibjoltprobe EXITING}: Setting back callback null
+08-29 23:09:55.383   584  1021 W InputManager-JNI: Input channel object 'df1c0b1 Splash Screen net.joltlang.raylibjoltprobe (client)' was disposed without first being removed with the input manager!
+08-29 23:09:55.432   941  1024 W FrameTracker: Missed App frame:UNKNOWN: 24, 234669, 44170000, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-29 23:09:55.432   941  1024 W FrameTracker: Missed SF frame:UNKNOWN: 24, 234669, 44170000, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-29 23:09:55.432   941  1024 W FrameTracker: Missed App frame:UNKNOWN: 72, 234698, 0, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-29 23:09:55.432   941  1024 W FrameTracker: Missing HWUI jank callback for vsyncId: 234698, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-29 23:09:55.432   941  1024 W FrameTracker: Missed SF frame:UNKNOWN: 80, 234713, 49708428, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-29 23:09:55.432   941  1024 W FrameTracker: Missed App frame:UNKNOWN: 76, 234721, 0, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-29 23:09:55.432   941  1024 W FrameTracker: Missed SF frame:UNKNOWN: 76, 234721, 0, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-29 23:09:55.432   941  1024 W FrameTracker: Missing HWUI jank callback for vsyncId: 234721, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-29 23:09:55.432   941  1024 W FrameTracker: Missed SF frame:UNKNOWN: 80, 234736, 78182240, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-29 23:09:55.432   941  1024 W FrameTracker: Missed App frame:UNKNOWN: 76, 234759, 0, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-29 23:09:55.432   941  1024 W FrameTracker: Missed SF frame:UNKNOWN: 76, 234759, 0, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-29 23:09:55.432   941  1024 W FrameTracker: Missing HWUI jank callback for vsyncId: 234759, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-29 23:09:55.432   941  1024 W FrameTracker: Missed App frame:UNKNOWN: 72, 234782, 64759384, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-29 23:09:55.432   941  1024 W FrameTracker: Missed App frame:UNKNOWN: 88, 234797, 66991526, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-29 23:09:55.432   941  1024 W FrameTracker: Missed SF frame:UNKNOWN: 88, 234797, 66991526, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-29 23:09:55.432   941  1024 W FrameTracker: Missed App frame:UNKNOWN: 72, 234819, 0, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-29 23:09:55.432   941  1024 W FrameTracker: Missing HWUI jank callback for vsyncId: 234819, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-29 23:09:55.432   941  1024 W FrameTracker: Missed SF frame:UNKNOWN: 80, 234856, 67873728, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-29 23:09:55.432   941  1024 W FrameTracker: Missed App frame:UNKNOWN: 88, 234879, 0, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-29 23:09:55.432   941  1024 W FrameTracker: Missed SF frame:UNKNOWN: 88, 234879, 0, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-29 23:09:55.432   941  1024 W FrameTracker: Missing HWUI jank callback for vsyncId: 234879, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-29 23:09:55.433   941  1024 W FrameTracker: Missed SF frame:UNKNOWN: 68, 234901, 0, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-29 23:09:55.433   941  1024 W FrameTracker: Missing HWUI jank callback for vsyncId: 234901, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-29 23:09:55.433   941  1024 W FrameTracker: Missed App frame:UNKNOWN: 88, 234938, 57002931, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-29 23:09:55.433   941  1024 W FrameTracker: Missed SF frame:UNKNOWN: 88, 234938, 57002931, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-29 23:09:55.433   941  1024 W FrameTracker: Missed App frame:UNKNOWN: 88, 234982, 0, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-29 23:09:55.433   941  1024 W FrameTracker: Missed SF frame:UNKNOWN: 88, 234982, 0, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-29 23:09:55.433   941  1024 W FrameTracker: Missing HWUI jank callback for vsyncId: 234982, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-29 23:09:55.433   941   988 V PerfettoTrigger: Not triggering com.android.telemetry.interaction-jank-monitor-39 - not enough time since last trigger
+08-29 23:09:55.484   941   978 V WindowManagerShell: Transition animation finished (aborted=false), notifying core (#154) android.os.BinderProxy@391f22@0
+08-29 23:09:55.489   584   605 V WindowManager: Finish Transition (#154): created at 08-29 23:09:54.832 collect-started=0.027ms request-sent=0.081ms started=1.5ms ready=29.676ms sent=106.36ms finished=656.497ms
+08-29 23:09:55.489   941   978 V WindowManagerShell: Track 0 became idle
+08-29 23:09:55.489   941   978 V WindowManagerShell: All active transition animations finished
+08-29 23:09:55.494 15504 15504 D VRI[NativeActivity]: visibilityChanged oldVisibility=true newVisibility=false
+08-29 23:09:55.494 15504 15504 V threaded_app: NativeWindowDestroyed: 0x779d86b5f1d0 -- 0x779d36b72f10
+08-29 23:09:55.495 15504 15522 V threaded_app: APP_CMD_TERM_WINDOW
+08-29 23:09:55.495 15504 15522 V threaded_app: APP_CMD_TERM_WINDOW
+08-29 23:09:55.500   584  2010 W UserManagerService: Requested status bar icon for non-badged user 0
+08-29 23:09:55.501   584  2010 W UserManagerService: Requested status bar icon for non-badged user 0
+08-29 23:09:55.504 15504 15504 V threaded_app: Stop: 0x779d86b5f1d0
+08-29 23:09:55.504 15504 15522 V threaded_app: activityState=14
+08-29 23:09:55.506 15504 15504 V threaded_app: InputQueueDestroyed: 0x779d86b5f1d0 -- 0x779e96b675c0
+08-29 23:09:55.506 15504 15522 V threaded_app: APP_CMD_INPUT_CHANGED
+08-29 23:09:55.516 15504 15504 V threaded_app: Destroy: 0x779d86b5f1d0
+08-29 23:09:55.517 15504 15522 V threaded_app: APP_CMD_DESTROY
+08-29 23:09:55.517 15504 15522 V threaded_app: android_app_destroy!
+08-29 23:09:55.518 15504 15504 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@c30931b
+08-29 23:09:55.518   584  2010 D CoreBackPreview: Window{988b164 u0 net.joltlang.raylibjoltprobe/android.app.NativeActivity}: Setting back callback null
+08-29 23:09:55.519   584  2010 W InputManager-JNI: Input channel object '988b164 net.joltlang.raylibjoltprobe/android.app.NativeActivity (client)' was disposed without first being removed with the input manager!
+08-29 23:09:55.542  1257  1257 I TopTaskTracker: onTaskRemoved: taskId=77
+08-29 23:09:55.542  1257  1257 I TopTaskTracker: onTaskRemoved: taskId=77
+08-29 23:09:56.817   584  2481 E TaskPersister: File error accessing recents directory (directory doesn't exist?).
+08-29 23:09:56.968   584   853 W BestClock: java.time.DateTimeException: Missing network time fix
+08-29 23:09:56.969   584   853 W BestClock: java.time.DateTimeException: Missing network time fix
+08-29 23:09:56.969   584   853 W BestClock: java.time.DateTimeException: Missing network time fix
+08-29 23:09:56.970   584   853 W BestClock: java.time.DateTimeException: Missing network time fix
+08-29 23:09:56.970   584   853 W BestClock: java.time.DateTimeException: Missing network time fix

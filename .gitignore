@@ -21,3 +21,6 @@ artifacts/abi-probe/
 # Reproducible local source/build workareas.
 .cache/
 target/
+
+# Generated Raylib Jolt packaging staging.
+raylib/jolt-android/src/main/jniLibs/

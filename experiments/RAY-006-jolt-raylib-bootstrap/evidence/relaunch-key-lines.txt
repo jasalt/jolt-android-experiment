@@ -1,0 +1,11 @@
+08-29 23:09:59.185 15543 15543 I berberis: Initialized Berberis (aarch64), version 0.2.3
+08-29 23:09:59.235 15543 15543 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+08-29 23:09:59.272 15543 15543 D nativeloader: Configuring clns-7 for other apk . target_sdk_version=35, uses_libraries=, library_path=/data/app/~~BNLVy7t1e-RFsFqEcPJjjQ==/net.joltlang.raylibjoltprobe-EgMNyk7J3G34LIotL_c_IQ==/lib/arm64:/data/app/~~BNLVy7t1e-RFsFqEcPJjjQ==/net.joltlang.raylibjoltprobe-EgMNyk7J3G34LIotL_c_IQ==/base.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand:/data/user/0/net.joltlang.raylibjoltprobe
+08-29 23:09:59.413 15543 15543 D nativeloader: Load /data/app/~~BNLVy7t1e-RFsFqEcPJjjQ==/net.joltlang.raylibjoltprobe-EgMNyk7J3G34LIotL_c_IQ==/base.apk!/lib/arm64-v8a/libmain.so using ns clns-7 from class loader (caller=<unknown>): ok
+08-29 23:09:59.418 15543 15561 I jolt_raylib_bootstrap: enter main thread=15561
+08-29 23:09:59.420 15543 15561 I jolt_raylib_bootstrap: dlopen ok thread=15561
+08-29 23:10:01.473 15543 15561 I jolt_raylib_bootstrap: jolt_library_init result=0 thread=15561 owner=15561
+08-29 23:10:01.473 15543 15561 I jolt_raylib_bootstrap: jolt_lookup raylib_host_noop=ok thread=15561 owner=15561
+08-29 23:10:01.473 15543 15561 I jolt_raylib_bootstrap: raylib_host_noop result=7 thread=15561 owner=15561
+08-29 23:10:01.474 15543 15561 I jolt_raylib_bootstrap: jolt_library_shutdown thread=15561 owner=15561
+08-29 23:10:01.475 15543 15561 I jolt_raylib_bootstrap: bootstrap complete thread=15561 owner=15561

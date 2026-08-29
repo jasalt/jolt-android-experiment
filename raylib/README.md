@@ -15,10 +15,11 @@ Compose UI, EDN-over-JNI dispatch, lifecycle/effect adapters, or `:app`
 module. `scripts/verify` also remains the primary-host verifier; a future
 Raylib task supplies a separate `scripts/raylib-verify`.
 
-This task deliberately creates no Android module, window, rendering code,
-Raylib dependency in the repository root, or copied upstream binding suite.
-The next feasibility tasks first reproduce the desktop binding baseline and a
-plain-C Android NativeActivity before integrating Jolt.
+The plain-C baseline is in `android/`; the separate Jolt bootstrap probe is in
+`jolt-android/`. They are intentionally independent modules: the baseline
+remains a Raylib-only NativeActivity, while the bootstrap probe packages the
+separate `libjoltraylib.so` and tests one no-op Jolt export. Neither changes the
+primary `:app` host or copies the upstream binding suite.
 
 ## Immutable upstream baselines
 
@@ -61,8 +62,9 @@ requirement, recorded in [`../docs/RAYLIB-GOTCHAS.md`](../docs/RAYLIB-GOTCHAS.md
 
 ## Minimal local manifest check
 
-This `deps.edn` is intentionally dependency-free at this phase. It validates
-that the independent manifest parses without making a Raylib build claim:
+This `deps.edn` contains only the desktop native declaration for the minimal
+scalar binding; Android native topology is kept in the separate bootstrap
+module. The check validates that the independent manifest parses:
 
 ```sh
 (
@@ -79,8 +81,11 @@ inspection. `scripts/bootstrap` reports those values, the header version,
 pkg-config library facts, and the API-35 ARM64 compiler path in a separate
 Raylib section.
 
-Later tasks create explicit Linux/Android build commands. Do not use
-host-installed Android Studio, SDK, NDK, or a floating upstream checkout.
+The current explicit commands are `scripts/raylib-build-android` for the
+Raylib-only baseline, `scripts/raylib-jolt-android-library-build` for the
+managed library, and `scripts/raylib-jolt-bootstrap-build` for the packaged
+bootstrap probe. Do not use host-installed Android Studio, SDK, NDK, or a
+floating upstream checkout.
 
 ## Evidence conventions
 

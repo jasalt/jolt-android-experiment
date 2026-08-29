@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Assemble the independent Raylib NativeActivity with its Jolt library.
+set -euo pipefail
+
+repo_root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+cd "$repo_root"
+
+: "${ANDROID_HOME:?run through nix develop so Android tools are pinned}"
+: "${JOLT_SOURCE:?set to a clean checkout at the pinned Jolt revision}"
+: "${RAYLIB_SOURCE:?run through nix develop so Raylib is pinned}"
+
+./scripts/raylib-jolt-android-library-build
+stage="$repo_root/raylib/jolt-android/src/main/jniLibs/arm64-v8a"
+rm -rf "$repo_root/raylib/jolt-android/src/main/jniLibs"
+mkdir -p "$stage"
+cp "$repo_root/native/jolt/android-arm64/arm64-v8a/libjoltraylib.so" \
+  "$stage/libjoltraylib.so"
+
+gradle --no-daemon :raylib-jolt-android:assembleDebug
+apk="$repo_root/raylib/jolt-android/build/outputs/apk/debug/raylib-jolt-android-debug.apk"
+test -s "$apk" || {
+  printf 'expected Raylib Jolt APK was not produced: %s\n' "$apk" >&2
+  exit 1
+}
+printf 'Built %s\n' "$apk"
