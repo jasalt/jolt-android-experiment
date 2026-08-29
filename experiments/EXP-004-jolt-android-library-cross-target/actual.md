@@ -50,14 +50,17 @@ exit=1
 The command exited nonzero before generating a library. This confirms the
 source guards are active in the pinned implementation.
 
-## Isolated patched build and Android runtime — observed 2026-08-28
+## Upstreamed cross-library support and Android runtime
 
-`scripts/jolt-android-library-build` checks out the exact pinned Jolt revision
-in a disposable Git worktree, initializes the required submodules, and applies
-`jolt-cross-library.patch` there only. The 13-line experiment patch forwards
-`--target`/`--target-pack` through `build-library`, makes `build-shared` load
-the target xpatch, and selects the target compiler/link platform. It does not
-modify the pinned Jolt checkout.
+The generic source reduction was upstreamed as Jolt PR
+[#778](https://github.com/jolt-lang/jolt/pull/778), merged in
+`ae5c5a6d5be263a883e9b4b53f255b8c0b493d3e`. The project now pins that revision;
+`scripts/jolt-android-library-build` uses its native cross-`--library` support
+without applying the former `jolt-cross-library.patch` workaround. The script
+still applies only `jolt-library-collect.patch` in a disposable worktree. That
+one-function patch exposes `jolt_library_collect` for EXP-005 stress testing;
+it was deliberately outside PR #778's generic scope and does not implement
+cross compilation.
 
 The script built
 `native/jolt/android-arm64/arm64-v8a/libjoltpoc.so` using NDK r29:

@@ -1,0 +1,8 @@
+diff --git a/host/chez/build.ss b/host/chez/build.ss
+index a4fb6f88..5a543853 100644
+--- a/host/chez/build.ss
++++ b/host/chez/build.ss
+@@ -2006 +2006,2 @@
+-    "void jolt_library_shutdown(void) { Sscheme_deinit(); }\n"))
++    "void jolt_library_shutdown(void) { Sscheme_deinit(); }\n"
++    "void jolt_library_collect(void) { Scompact_heap(); }\n"))

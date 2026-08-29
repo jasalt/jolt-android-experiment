@@ -7,8 +7,10 @@ set -euo pipefail
 root="$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)"
 jolt_source="${JOLT_SOURCE:?set JOLT_SOURCE to the pinned Jolt checkout}"
 chez_source="$root/.cache/chezscheme-v10.4.1"
-revision="8fcba79f8b33628af926f88032d93a1b31c24235"
-patch="$root/experiments/EXP-004-jolt-android-library-cross-target/jolt-cross-library.patch"
+revision="ae5c5a6d5be263a883e9b4b53f255b8c0b493d3e"
+# Jolt PR #778 provides cross --library support upstream. This patch retains
+# only EXP-005's deliberately downstream heap-compaction ABI hook.
+patch="$root/experiments/EXP-004-jolt-android-library-cross-target/jolt-library-collect.patch"
 poc="$root/experiments/EXP-004-jolt-android-library-cross-target/poc"
 output="$root/native/jolt/android-arm64/arm64-v8a/libjoltpoc.so"
 
@@ -33,10 +35,7 @@ git -C "$jolt_source" worktree add --detach "$work/jolt" "$revision" >/dev/null
 git -C "$work/jolt" submodule update --init --recursive
 (
   cd "$work/jolt"
-  # The stored patch uses a marker for blank unified-diff context lines so the
-  # project-wide whitespace gate can remain strict; restore it only in /tmp.
-  sed 's/^__JOLT_PATCH_CONTEXT_BLANK__$/ /' "$patch" > "$work/jolt-cross-library.patch"
-  git apply "$work/jolt-cross-library.patch"
+  git apply --unidiff-zero "$patch"
 )
 CHEZ_SRC="$chez_source" "$work/jolt/tools/cross-compile/make-pack.sh" tarm64le "$pack"
 # Android/Bionic has neither librt nor libpthread; EXP-003 established this

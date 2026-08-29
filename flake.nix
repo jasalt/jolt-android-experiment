@@ -8,7 +8,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     jolt = {
-      url = "git+https://github.com/jolt-lang/jolt.git?rev=8fcba79f8b33628af926f88032d93a1b31c24235&submodules=1";
+      url = "git+https://github.com/jolt-lang/jolt.git?rev=ae5c5a6d5be263a883e9b4b53f255b8c0b493d3e&submodules=1";
       flake = false;
     };
   };
