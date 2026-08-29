@@ -2,7 +2,7 @@
 
 **Assessment date:** 2026-08-29
 
-**Pinned Jolt:** `8fcba79f8b33628af926f88032d93a1b31c24235`
+**Pinned Jolt:** `ae5c5a6d5be263a883e9b4b53f255b8c0b493d3e` (merged PR #778)
 
 **Pinned Chez:** v10.4.1
 
@@ -18,9 +18,10 @@ an Android application through a Kotlin/JNI boundary:
 
 1. Chez ARM64 target artifacts initialize and evaluate Scheme independently
    ([EXP-003](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-003-chez-android-jni)).
-2. A reduced Jolt cross-library patch builds an Android-35 AArch64 `.so` with
-   Bionic dependencies only; it initializes, resolves exports, and executes
-   them in the app ([EXP-004](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-004-jolt-android-library-cross-target)).
+2. Upstream Jolt PR #778 builds an Android-35 AArch64 `.so` with Bionic
+   dependencies only; it initializes, resolves exports, and executes them in
+   the app. The only remaining downstream patch is EXP-005's explicit
+   compaction ABI hook ([EXP-004](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-004-jolt-android-library-cross-target)).
 3. The bridge survives 10,000 calls, allocation, explicit compaction, shutdown,
    and process relaunch under the tested emulator configuration ([EXP-005](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-005-jolt-android-lifecycle-stress)).
 4. Android calls are confined to `HandlerThread("JoltRuntime")`; UI, lifecycle,
@@ -59,8 +60,10 @@ Android has one narrower debug-evaluation result: a disposable fixed
 `load-string` export resolved through `jolt_lookup` and returned `42` on the
 Jolt runtime thread ([EXP-015](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-015-android-fixed-debug-eval)). The initial aggregate export-check failure was
 not evidence that this export was absent; a diagnostic rerun corrected that
-attribution. No caller-supplied evaluation, Android nREPL, remote evaluation,
-CIDER, error-recovery path, or redefinition is implemented.
+attribution. Caller-supplied debug evaluation is available only through the debug-only,
+ADB-forwarded loopback protocol, with structured success/error recovery and a
+separate reduced live-redefinition observation. It is not Android nREPL or
+CIDER; its exact boundary is [EXP-015](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-015-android-fixed-debug-eval).
 
 ### Linux GTK reference host
 
@@ -73,13 +76,28 @@ screenshots, and scope boundary are in
 [EXP-021](experiments/EXP-021-x86-64-linux-gtk-host). This is not native ARM64
 Linux, Android, or macOS GTK evidence.
 
-### Unimplemented
+### Graded outcome
 
-- Native ARM64 Linux GTK reference host.
-- Compose UI; the observed Android shell uses native Android Views.
-- Android notification posting, URL/intent effects, generalized permissions,
-  and additional platform capabilities.
-- A general Android eval server or nREPL protocol.
+**Level 5 — development-quality PoC is evidenced.** The project has a
+persistent runtime, data-oriented Android effects/callbacks, debug eval,
+automated portable/JNI/UI checks, screenshots, measurements, and a fail-fast
+clean-room verifier ([EXP-016](experiments/EXP-016-clean-room-validation)).
+
+**Level 6 is not evidenced.** Native ARM64 Linux portable CLI/GTK validation is
+blocked by the missing host, and API-35 x86_64 emulator execution remains ARM64
+translation evidence rather than native ARM64 Android-process evidence.
+
+### Remaining boundaries and production risks
+
+- Native ARM64 Linux GTK/portable validation and native ARM64 Android execution.
+- GTK `gtk_show_uri` is invoked but the minimal Xvfb desktop has no portal or
+  browser handler; it must not be reported as a successful open-uri action.
+- The single-thread embedded-library restriction, Android lifecycle ownership,
+  raw JNI/C boundary, downstream compaction ABI extension, and Bionic/PIC
+  target-pack requirements remain production integration risks.
+- The Compose shell, notification posting, clipboard/vibration/URL effects,
+  locale/package information, and permission flow are implemented as bounded
+  platform adapters; they are not a general mobile framework or Android nREPL.
 
 ## Evidence index
 
@@ -101,13 +119,15 @@ Linux, Android, or macOS GTK evidence.
 | Native Apple Silicon portable CLI/nREPL | [EXP-017](experiments/EXP-017-native-arm64-portable-cli) |
 | Native Apple Silicon Android Nix build | [EXP-019](experiments/EXP-019-native-darwin-android-nix-build) |
 | Linux x86_64 Glimmer/GTK4 reference host | [EXP-021](experiments/EXP-021-x86-64-linux-gtk-host) |
+| Canonical CLI/GTK/Android fixtures | `test/conformance/fixtures.tsv`; `./scripts/cli --conformance`; Android instrumentation |
+| Automated clean-room verifier | [EXP-016](experiments/EXP-016-clean-room-validation); `scripts/verify` |
 
 ## Reproducible validation baseline
 
 ```sh
-nix --extra-experimental-features 'nix-command flakes' develop -c ./scripts/test-portable
-nix --extra-experimental-features 'nix-command flakes' develop -c env JOLT_SOURCE=../jolt scripts/jolt-android-library-build
-nix --extra-experimental-features 'nix-command flakes' develop -c gradle --no-daemon :app:assembleDebug
+nix --extra-experimental-features 'nix-command flakes' develop -c ./scripts/bootstrap
+JOLT_SOURCE=/path/to/jolt-at-ae5c5a6d5be263a883e9b4b53f255b8c0b493d3e \
+  nix --extra-experimental-features 'nix-command flakes' develop -c ./scripts/verify
 ```
 
 Install and interact with the deterministic API 35 AVD using the command

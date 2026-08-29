@@ -24,16 +24,18 @@ nREPL without GTK ([EXP-017](experiments/EXP-017-native-arm64-portable-cli))
 and builds the Android debug APK through the Nix-provided SDK/NDK
 ([EXP-019](experiments/EXP-019-native-darwin-android-nix-build)). This does not
 prove native ARM64 Android execution or a successful macOS emulator boot.
-The Linux x86_64 GTK/Glimmer reference host now renders the shared reducer,
-executes its counter persistence effect, and preserves visual evidence
+The Linux x86_64 GTK/Glimmer reference host renders the shared reducer,
+executes persistence and clipboard adapters, invokes its URI adapter with an
+explicit headless-handler limitation, and preserves visual evidence
 ([EXP-021](experiments/EXP-021-x86-64-linux-gtk-host)). This does not prove a
-native ARM64 Linux GTK host. Compose, notification posting, intents, and Android
-nREPL remain unimplemented.
-[EXP-015](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-015-android-fixed-debug-eval)
-demonstrates one bounded, fixed Android `load-string` call; it is not a
-caller-supplied eval or nREPL result.
+native ARM64 Linux GTK host. The Android Compose diagnostic shell includes
+notification posting, URL/vibration/info adapters, and permission flow. Its
+debug-only ADB-forwarded eval/redefinition evidence is bounded and is not
+Android nREPL/CIDER ([EXP-015](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-015-android-fixed-debug-eval)).
 
-The project reports graded outcomes, including reproducible blockers. See
+A fail-fast `scripts/verify` now preserves supported clean-room validation
+outputs and explicit host-specific skips. The project reports graded outcomes,
+including reproducible blockers. See
 [docs/PLAN.md](docs/PLAN.md) for the complete research plan and success levels.
 
 [Task management](https://jasalt.github.io/jolt-android-experiment/bv/)

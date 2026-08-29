@@ -12,16 +12,18 @@ Each item is an observed constraint with an evidence reference.
 - **Chez Android kernel must be PIC and Bionic-linked.** The tested target uses
   `-fPIC` and Bionic `-llz4 -lz -lm -ldl`, not generic Linux `-lrt -lpthread`
   ([EXP-003](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-003-chez-android-jni)).
-- **Jolt cross shared libraries require an isolated patch.** Pinned Jolt rejects
-  `--target` combined with `--library`; [EXP-004](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-004-jolt-android-library-cross-target) applies the reduced patch only
-  in a disposable worktree.
+- **Cross shared-library support is upstream; compaction is not.** Jolt PR #778
+  (the pinned revision) supports `--target` with `--library`. [EXP-004](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-004-jolt-android-library-cross-target)
+  applies only the EXP-005-specific `jolt_library_collect` hook in a disposable
+  worktree; Android target-pack PIC/Bionic link flags remain downstream.
 - **Jolt FFI needs Nix library paths for GTK.** Glimmer GTK declares Linux
   library names such as `libglib-2.0.so.0`, but Nix keeps GTK/GLib outside the
   system loader paths. The Linux development shell must export its GTK/GLib
   `LD_LIBRARY_PATH`; this is validated on x86_64 Linux in
   [EXP-021](../experiments/EXP-021-x86-64-linux-gtk-host).
-- **Never retain Jolt-managed string pointers in JNI.** The Android bridge uses
-  primitive Jolt exports and formats bounded caller-owned result buffers
+- **Never retain Jolt-managed string pointers in JNI.** The Android bridge's
+  canonical `poc_dispatch` response is a `:string` copied across the C ABI and
+  copied again into Java; C no longer formats domain EDN
   ([EXP-007](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-007-android-edn-dispatch)).
 - **Every Jolt entry must use `JoltRuntime`.** Worker/UI/platform callbacks queue
   data to one HandlerThread; direct runtime entry is not a supported Android
@@ -36,4 +38,6 @@ Each item is an observed constraint with an evidence reference.
   but the bridge had checked all pointers at once. Per-export diagnostics on a
   rerun resolved the fixed export and `load-string` returned `42`. Keep failed
   initialization terminal so queued work cannot enter a shut-down Chez runtime.
-  This remains a bounded call, not Android nREPL ([EXP-015](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-015-android-fixed-debug-eval)).
+  The subsequent debug-only ADB-forwarded eval and reduced redefinition result
+  remain interactive development evidence, not Android nREPL/CIDER
+  ([EXP-015](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-015-android-fixed-debug-eval)).

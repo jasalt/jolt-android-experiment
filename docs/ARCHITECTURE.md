@@ -8,7 +8,7 @@ shared .cljc reducer
        │
        │ Jolt Android ARM64 library (API 35, ARM64-v8a)
        ▼
-caller-owned C/JNI result buffer
+canonical EDN string response copied through C/JNI
        │
        ▼
 Kotlin JoltRuntime HandlerThread
@@ -32,9 +32,9 @@ Kotlin JoltRuntime HandlerThread
   its owner thread; AndroidWorker does not call JNI directly.
 - Jolt domain state is retained in a Jolt atom, not in Android views. The
   Android shell renders a caller-owned serialized result after each queued call.
-- Jolt returns primitive export values across the C ABI. C renders result data
-  into bounded caller-owned buffers before JNI copies it into Java. No
-  Jolt-managed returned string pointer is retained by Android.
+- Jolt's `poc_dispatch` export decodes/validates canonical EDN, advances the
+  persistent model, and returns a copied `:string` response. JNI immediately
+  copies it into Java; no Jolt-managed pointer is retained by Android.
 
 ## Observed shared contracts
 
@@ -43,7 +43,8 @@ permission state. It emits data-only effects for:
 
 - `:platform/clipboard`;
 - `:storage/write`;
-- `:permission/request`.
+- `:permission/request`, `:notification/show`, `:platform/vibrate`, and
+  `:platform/open-uri`.
 
 Android adapters execute those effects with platform APIs and queue result events
 back through `JoltRuntime`.
@@ -51,9 +52,10 @@ back through `JoltRuntime`.
 ## Observed Linux GTK reference boundary
 
 - On native x86_64 Linux, Glimmer/GTK4 renders the shared reducer model and
-  converts GTK counter controls into reducer events. Its `:storage/write` effect
-  is executed by a host-side EDN persistence adapter and a fresh GTK process
-  restores the resulting counter. [EXP-021](../experiments/EXP-021-x86-64-linux-gtk-host)
+  converts GTK counter controls into reducer events. Its `:storage/write` and
+  clipboard effects execute through host adapters; `gtk_show_uri` is invoked
+  but the minimal Xvfb desktop has no URI handler. A fresh GTK process restores
+  the persisted counter. [EXP-021](../experiments/EXP-021-x86-64-linux-gtk-host)
   retains the exact smoke tests, screenshots, and platform boundary.
 - This is native x86_64 Linux GTK evidence only. It is not native ARM64 Linux,
   Android, or macOS GTK support. Native Apple Silicon macOS validation of the
@@ -62,8 +64,7 @@ back through `JoltRuntime`.
 
 ## Explicitly not demonstrated
 
-- Compose UI; the demonstrated shell is a minimal native Android View layout.
-- Android notification posting, URL intents, or generalized permissions.
-- General Android debug evaluation, caller-supplied source/result transport, a
-  socket server, Android nREPL, CIDER, or code redefinition. [EXP-015](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-015-android-fixed-debug-eval)
-  proves only one fixed `load-string` call returning a primitive value.
+- Native ARM64 Android-process and native ARM64 Linux GTK validation.
+- Android nREPL/CIDER or an unrestricted production eval protocol. The
+  debug-only ADB-forwarded eval/redefinition evidence in [EXP-015](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-015-android-fixed-debug-eval)
+  is deliberately narrower.
