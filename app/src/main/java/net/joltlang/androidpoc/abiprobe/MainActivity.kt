@@ -5,6 +5,11 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
+import android.Manifest
+import android.content.pm.PackageManager
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import androidx.core.app.NotificationCompat
 import java.util.Locale
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -48,6 +53,15 @@ class MainActivity : ComponentActivity() {
         output = "$it\nURL intent launched"
       }
       it.contains(":platform/read-info") -> output = "$it\nLocale: ${Locale.getDefault()}\nPackage: $packageName"
+      it.contains(":permission/request") -> requestPermissions(arrayOf(Manifest.permission.POST_NOTIFICATIONS), 7)
+      it.contains(":notification/show") -> {
+        val manager = getSystemService(NotificationManager::class.java)
+        manager.createNotificationChannel(NotificationChannel("jolt", "Jolt", NotificationManager.IMPORTANCE_DEFAULT))
+        if (checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
+          manager.notify(7, NotificationCompat.Builder(this, "jolt").setSmallIcon(android.R.drawable.ic_dialog_info).setContentTitle("Jolt").setContentText("Counter notification").setAutoCancel(true).build())
+          output = "$it\nNotification posted"
+        } else output = "$it\nNotification denied"
+      }
     }
   }
 
@@ -70,6 +84,7 @@ class MainActivity : ComponentActivity() {
             Button(onClick = { dispatch(":platform/vibrate") }) { Text("Vibrate") }
             Button(onClick = { dispatch(":platform/open-url") }) { Text("Open Jolt URL") }
             Button(onClick = { dispatch(":platform/read-info") }) { Text("Read locale/package") }
+            Button(onClick = { dispatch(":platform/notify-counter") }) { Text("Show notification") }
           }
           "Permission" -> Button(onClick = { dispatch(":permission/request-notifications") }) { Text("Request notifications") }
           "Persistence" -> Button(onClick = { dispatch(":storage/restore :value 0") }) { Text("Restore counter") }
