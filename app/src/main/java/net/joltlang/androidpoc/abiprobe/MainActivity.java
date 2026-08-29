@@ -6,6 +6,7 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.content.pm.PackageManager;
 import android.os.Process;
 import android.util.Log;
 import android.content.SharedPreferences;
@@ -22,6 +23,7 @@ public final class MainActivity extends Activity {
   private TextView model;
   private TextView effect;
   private SharedPreferences preferences;
+  private static final int NOTIFICATION_PERMISSION_REQUEST = 1;
   private ExecutorService worker;
 
   @Override
@@ -39,6 +41,7 @@ public final class MainActivity extends Activity {
     layout.addView(button("Decrement", "{:type :counter/dec}"));
     layout.addView(button("Reset", "{:type :counter/reset}"));
     layout.addView(button("Copy counter", "{:type :platform/copy-counter}"));
+    layout.addView(button("Request notifications", "{:type :permission/request-notifications}"));
     setContentView(layout);
 
     preferences = getSharedPreferences("jolt-poc", MODE_PRIVATE);
@@ -81,6 +84,9 @@ public final class MainActivity extends Activity {
         int counter = Integer.parseInt(counterFrom(result));
         preferences.edit().putInt("counter", counter).commit();
         effect.setText("Storage written: " + counter);
+      } else if (result.contains(":permission/request")) {
+        requestPermissions(new String[] {"android.permission.POST_NOTIFICATIONS"},
+            NOTIFICATION_PERMISSION_REQUEST);
       }
     });
   }
@@ -90,6 +96,19 @@ public final class MainActivity extends Activity {
     int start = result.indexOf(marker) + marker.length();
     int end = result.indexOf(',', start);
     return result.substring(start, end);
+  }
+
+  @Override
+  public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    if (requestCode == NOTIFICATION_PERMISSION_REQUEST) {
+      boolean granted = grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED;
+      runtime.dispatch(granted ? "{:type :permission/result-granted}"
+          : "{:type :permission/result-denied}", result -> {
+            model.setText("Jolt model: " + result);
+            effect.setText("Notification permission: " + (granted ? "granted" : "denied"));
+          });
+    }
   }
 
   @Override

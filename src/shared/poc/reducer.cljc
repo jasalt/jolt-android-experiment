@@ -5,7 +5,8 @@
    :events []
    :platform nil
    :lifecycle nil
-   :worker nil})
+   :worker nil
+   :notification-permission nil})
 
 (defn step [state event]
   (case (:type event)
@@ -29,6 +30,15 @@
 
     :worker/completed
     [(assoc state :worker :completed) []]
+
+    :permission/request-notifications
+    [state [{:type :permission/request :permission :notifications}]]
+
+    :permission/result-granted
+    [(assoc state :notification-permission :granted) []]
+
+    :permission/result-denied
+    [(assoc state :notification-permission :denied) []]
 
     :platform/copy-counter
     [state [{:type :platform/clipboard

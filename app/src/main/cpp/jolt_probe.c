@@ -14,6 +14,7 @@ typedef int (*poc_dispatch_counter_fn)(const char *);
 typedef int (*poc_lifecycle_code_fn)(void);
 typedef int (*poc_effect_code_fn)(const char *);
 typedef int (*poc_worker_code_fn)(void);
+typedef int (*poc_permission_code_fn)(void);
 
 static pthread_mutex_t lifecycle_lock = PTHREAD_MUTEX_INITIALIZER;
 static pthread_t owner_thread;
@@ -24,6 +25,7 @@ static poc_dispatch_counter_fn dispatch_counter;
 static poc_lifecycle_code_fn lifecycle_code;
 static poc_effect_code_fn effect_code;
 static poc_worker_code_fn worker_code;
+static poc_permission_code_fn permission_code;
 
 static jstring result_string(JNIEnv *environment, const char *text) {
   return (*environment)->NewStringUTF(environment, text);
@@ -34,6 +36,14 @@ static const char *lifecycle_name(int code) {
     case 1: return ":created";
     case 2: return ":started";
     case 3: return ":resumed";
+    default: return "nil";
+  }
+}
+
+static const char *permission_name(int code) {
+  switch (code) {
+    case 1: return ":granted";
+    case 2: return ":denied";
     default: return "nil";
   }
 }
@@ -49,6 +59,9 @@ static bool valid_event(const char *event) {
       strcmp(event, "{:type :lifecycle/start}") == 0 ||
       strcmp(event, "{:type :lifecycle/resume}") == 0 ||
       strcmp(event, "{:type :worker/completed}") == 0 ||
+      strcmp(event, "{:type :permission/request-notifications}") == 0 ||
+      strcmp(event, "{:type :permission/result-granted}") == 0 ||
+      strcmp(event, "{:type :permission/result-denied}") == 0 ||
       sscanf(event, "{:type :storage/restore :value %d}%c", &restored_counter, &trailing) == 1;
 }
 
@@ -79,7 +92,8 @@ static const char *ensure_session(void) {
   lifecycle_code = (poc_lifecycle_code_fn)lookup("poc_lifecycle_code");
   effect_code = (poc_effect_code_fn)lookup("poc_effect_code");
   worker_code = (poc_worker_code_fn)lookup("poc_worker_code");
-  if (dispatch_counter == NULL || lifecycle_code == NULL || effect_code == NULL || worker_code == NULL) {
+  permission_code = (poc_permission_code_fn)lookup("poc_permission_code");
+  if (dispatch_counter == NULL || lifecycle_code == NULL || effect_code == NULL || worker_code == NULL || permission_code == NULL) {
     shutdown_runtime();
     return "{:error :exports}";
   }
@@ -110,19 +124,24 @@ Java_net_joltlang_androidpoc_abiprobe_JoltRuntime_nativeJoltDispatch(
   const int lifecycle = lifecycle_code();
   const int effect = effect_code(event);
   const int worker = worker_code();
+  const int permission = permission_code();
   (*environment)->ReleaseStringUTFChars(environment, event_edn, event);
-  char output[208];
+  char output[240];
   const int written = effect == 1
       ? snprintf(output, sizeof output,
-          "{:model {:counter %d, :events [], :platform nil, :lifecycle %s, :worker %s}, :effects [{:type :platform/clipboard, :text \"Jolt counter: %d\"}]}",
-          counter, lifecycle_name(lifecycle), worker ? ":completed" : "nil", counter)
+          "{:model {:counter %d, :events [], :platform nil, :lifecycle %s, :worker %s, :notification-permission %s}, :effects [{:type :platform/clipboard, :text \"Jolt counter: %d\"}]}",
+          counter, lifecycle_name(lifecycle), worker ? ":completed" : "nil", permission_name(permission), counter)
       : effect == 2
           ? snprintf(output, sizeof output,
-              "{:model {:counter %d, :events [], :platform nil, :lifecycle %s, :worker %s}, :effects [{:type :storage/write, :key \"counter\", :value %d}]}",
-              counter, lifecycle_name(lifecycle), worker ? ":completed" : "nil", counter)
-          : snprintf(output, sizeof output,
-              "{:model {:counter %d, :events [], :platform nil, :lifecycle %s, :worker %s}, :effects []}",
-              counter, lifecycle_name(lifecycle), worker ? ":completed" : "nil");
+              "{:model {:counter %d, :events [], :platform nil, :lifecycle %s, :worker %s, :notification-permission %s}, :effects [{:type :storage/write, :key \"counter\", :value %d}]}",
+              counter, lifecycle_name(lifecycle), worker ? ":completed" : "nil", permission_name(permission), counter)
+          : effect == 3
+              ? snprintf(output, sizeof output,
+                  "{:model {:counter %d, :events [], :platform nil, :lifecycle %s, :worker %s, :notification-permission %s}, :effects [{:type :permission/request, :permission :notifications}]}",
+                  counter, lifecycle_name(lifecycle), worker ? ":completed" : "nil", permission_name(permission))
+              : snprintf(output, sizeof output,
+                  "{:model {:counter %d, :events [], :platform nil, :lifecycle %s, :worker %s, :notification-permission %s}, :effects []}",
+                  counter, lifecycle_name(lifecycle), worker ? ":completed" : "nil", permission_name(permission));
   if (written < 0 || written >= (int)sizeof output) return result_string(environment, "{:error :output-too-large}");
   __android_log_print(ANDROID_LOG_INFO, "jolt_probe", "dispatch counter=%d", counter);
   return result_string(environment, output);
