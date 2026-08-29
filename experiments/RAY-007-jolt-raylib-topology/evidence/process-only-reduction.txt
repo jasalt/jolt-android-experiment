@@ -1,0 +1,10 @@
+Initial reduced variant used only:
+
+:jolt/native [{:name "Raylib process symbols" :process true}]
+
+The APK loaded and direct C dlsym(RTLD_DEFAULT, "GetScreenWidth") returned ok,
+but the Jolt call emitted no result and the translated NativeActivity process
+exited cleanly with status 255. This was reduced before selecting topology A's
+working declaration of the already-loaded libmain.so as an optional scoped
+native. The working variant is therefore still topology A (one static Raylib
+image in libmain.so), but not the unqualified :process-only form.

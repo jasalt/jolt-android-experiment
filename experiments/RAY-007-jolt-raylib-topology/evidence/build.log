@@ -1,0 +1,78 @@
+Preparing worktree (detached HEAD ae5c5a6d)
+Cloning into '/tmp/nix-shell.6xDsFj/tmp.c6Wy7Khn0i/jolt/vendor/clojure-test-suite'...
+Cloning into '/tmp/nix-shell.6xDsFj/tmp.c6Wy7Khn0i/jolt/vendor/fs'...
+Cloning into '/tmp/nix-shell.6xDsFj/tmp.c6Wy7Khn0i/jolt/vendor/grenadine'...
+Cloning into '/tmp/nix-shell.6xDsFj/tmp.c6Wy7Khn0i/jolt/vendor/irregex'...
+Cloning into '/tmp/nix-shell.6xDsFj/tmp.c6Wy7Khn0i/jolt/vendor/process'...
+Cloning into '/tmp/nix-shell.6xDsFj/tmp.c6Wy7Khn0i/jolt/vendor/sci'...
+Submodule path 'vendor/clojure-test-suite': checked out '489b6743e8421687ef96cec557830acf258d1886'
+Submodule path 'vendor/fs': checked out '5b273b8a943a622593fbc85fca6761c5a39d6d66'
+Submodule path 'vendor/grenadine': checked out '77992327c0b220c186ece61d74f7eb570978a6f5'
+Submodule path 'vendor/irregex': checked out 'c948a704fc732914a243c1643bfe359913d11c7b'
+Submodule path 'vendor/process': checked out '7d881f3a3ec6d273cf014c8172dea037abb31da3'
+Submodule path 'vendor/sci': checked out '32d62a5136ad3dc148588752f5bcc4cc30b14752'
+wrote target pack: /tmp/nix-shell.6xDsFj/tmp.c6Wy7Khn0i/tarm64le-pack
+  jolt build -m <ns> -o <out> --target tarm64le --target-pack /tmp/nix-shell.6xDsFj/tmp.c6Wy7Khn0i/tarm64le-pack
+jolt build: compiling poc.raylib.topology (release mode, shared library)
+loading tarm64le cross compiler
+compiling /tmp/nix-shell.6xDsFj/tmp.c6Wy7Khn0i/libjoltraylib-topology.so.build/flat.ss with output to /tmp/nix-shell.6xDsFj/tmp.c6Wy7Khn0i/libjoltraylib-topology.so.build/flat.so
+jolt build: wrote /tmp/nix-shell.6xDsFj/tmp.c6Wy7Khn0i/libjoltraylib-topology.so
+/home/user/dev/jail/jolt/jolt-android/native/jolt/android-arm64/arm64-v8a/libjoltraylib-topology.so: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, for Android 35, built by NDK r29 (14206865), not stripped
+ 0x0000000000000001 (NEEDED)             Shared library: [libc.so]
+Built Raylib topology Jolt library: /home/user/dev/jail/jolt/jolt-android/native/jolt/android-arm64/arm64-v8a/libjoltraylib-topology.so
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.4/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :raylib-topology-android:preBuild UP-TO-DATE
+> Task :raylib-topology-android:preDebugBuild UP-TO-DATE
+> Task :raylib-topology-android:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :raylib-topology-android:javaPreCompileDebug UP-TO-DATE
+> Task :raylib-topology-android:checkDebugAarMetadata UP-TO-DATE
+> Task :raylib-topology-android:generateDebugResValues UP-TO-DATE
+> Task :raylib-topology-android:mapDebugSourceSetPaths UP-TO-DATE
+> Task :raylib-topology-android:generateDebugResources UP-TO-DATE
+> Task :raylib-topology-android:mergeDebugResources UP-TO-DATE
+> Task :raylib-topology-android:packageDebugResources UP-TO-DATE
+> Task :raylib-topology-android:parseDebugLocalResources UP-TO-DATE
+> Task :raylib-topology-android:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :raylib-topology-android:extractDeepLinksDebug UP-TO-DATE
+> Task :raylib-topology-android:processDebugMainManifest UP-TO-DATE
+> Task :raylib-topology-android:processDebugManifest UP-TO-DATE
+> Task :raylib-topology-android:processDebugManifestForPackage UP-TO-DATE
+> Task :raylib-topology-android:processDebugResources UP-TO-DATE
+> Task :raylib-topology-android:compileDebugJavaWithJavac NO-SOURCE
+> Task :raylib-topology-android:mergeDebugShaders UP-TO-DATE
+> Task :raylib-topology-android:compileDebugShaders NO-SOURCE
+> Task :raylib-topology-android:generateDebugAssets UP-TO-DATE
+> Task :raylib-topology-android:mergeDebugAssets UP-TO-DATE
+> Task :raylib-topology-android:compressDebugAssets UP-TO-DATE
+> Task :raylib-topology-android:processDebugJavaRes NO-SOURCE
+> Task :raylib-topology-android:mergeDebugJavaResource UP-TO-DATE
+> Task :raylib-topology-android:checkDebugDuplicateClasses UP-TO-DATE
+> Task :raylib-topology-android:desugarDebugFileDependencies UP-TO-DATE
+> Task :raylib-topology-android:mergeExtDexDebug UP-TO-DATE
+> Task :raylib-topology-android:mergeLibDexDebug UP-TO-DATE
+> Task :raylib-topology-android:dexBuilderDebug UP-TO-DATE
+> Task :raylib-topology-android:mergeProjectDexDebug UP-TO-DATE
+> Task :raylib-topology-android:configureCMakeDebug[arm64-v8a]
+> Task :raylib-topology-android:buildCMakeDebug[arm64-v8a]
+> Task :raylib-topology-android:mergeDebugJniLibFolders
+> Task :raylib-topology-android:validateSigningDebug UP-TO-DATE
+> Task :raylib-topology-android:writeDebugAppMetadata UP-TO-DATE
+> Task :raylib-topology-android:writeDebugSigningConfigVersions UP-TO-DATE
+> Task :raylib-topology-android:mergeDebugNativeLibs
+> Task :raylib-topology-android:stripDebugDebugSymbols
+> Task :raylib-topology-android:packageDebug
+> Task :raylib-topology-android:createDebugApkListingFileRedirect UP-TO-DATE
+> Task :raylib-topology-android:assembleDebug
+
+[Incubating] Problems report is available at: file:///home/user/dev/jail/jolt/jolt-android/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.14.4/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 20s
+34 actionable tasks: 6 executed, 28 up-to-date
+Built /home/user/dev/jail/jolt/jolt-android/raylib/topology-android/build/outputs/apk/debug/raylib-topology-android-debug.apk

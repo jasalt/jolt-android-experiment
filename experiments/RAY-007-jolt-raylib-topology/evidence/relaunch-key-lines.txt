@@ -1,0 +1,12 @@
+08-29 23:45:51.610 20339 20339 I berberis: Initialized Berberis (aarch64), version 0.2.3
+08-29 23:45:51.662 20339 20339 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+08-29 23:45:51.701 20339 20339 D nativeloader: Configuring clns-7 for other apk . target_sdk_version=35, uses_libraries=, library_path=/data/app/~~9wrBzWHTwHtZEA4-13oBiQ==/net.joltlang.raylibtopologyprobe-DF2qY2bcnhaHEG8NVQQnIQ==/lib/arm64:/data/app/~~9wrBzWHTwHtZEA4-13oBiQ==/net.joltlang.raylibtopologyprobe-DF2qY2bcnhaHEG8NVQQnIQ==/base.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand:/data/user/0/net.joltlang.raylibtopologyprobe
+08-29 23:45:51.884 20339 20339 D nativeloader: Load /data/app/~~9wrBzWHTwHtZEA4-13oBiQ==/net.joltlang.raylibtopologyprobe-DF2qY2bcnhaHEG8NVQQnIQ==/base.apk!/lib/arm64-v8a/libmain.so using ns clns-7 from class loader (caller=<unknown>): ok
+08-29 23:45:51.898 20339 20356 I jolt_raylib_topology: enter main thread=20356
+08-29 23:45:51.899 20339 20356 I jolt_raylib_topology: direct process dlsym GetScreenWidth=ok thread=20356 owner=20356
+08-29 23:45:51.900 20339 20356 I jolt_raylib_topology: direct GetScreenWidth result=0 thread=20356 owner=20356
+08-29 23:45:53.928 20339 20356 I jolt_raylib_topology: jolt_library_init result=0 thread=20356 owner=20356
+08-29 23:45:53.928 20339 20356 I jolt_raylib_topology: jolt_lookup raylib_process_screen_width=ok thread=20356 owner=20356
+08-29 23:45:53.929 20339 20356 I jolt_raylib_topology: GetScreenWidth via process lookup result=0 thread=20356 owner=20356
+08-29 23:45:53.929 20339 20356 I jolt_raylib_topology: jolt_library_shutdown thread=20356 owner=20356
+08-29 23:45:53.931 20339 20356 I jolt_raylib_topology: topology A complete thread=20356 owner=20356

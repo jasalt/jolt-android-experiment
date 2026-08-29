@@ -1,0 +1,7 @@
+{:paths ["src"]
+ ;; Android loads libmain.so before Jolt. The optional declaration lets the
+ ;; cross build proceed without a host libmain.so; at runtime the scoped native
+ ;; resolver opens the already-loaded process image and serves GetScreenWidth.
+ :jolt/native [{:name "Raylib main image"
+                :linux ["libmain.so"]
+                :optional true}]}

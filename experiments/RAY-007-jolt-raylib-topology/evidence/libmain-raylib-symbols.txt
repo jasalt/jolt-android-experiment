@@ -1,0 +1,3 @@
+0000000000032a5c T ANativeActivity_onCreate
+000000000004e864 T GetScreenWidth
+000000000004b884 T android_main

@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Assemble the preferred topology-A process-symbol probe.
+set -euo pipefail
+
+repo_root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+cd "$repo_root"
+
+: "${ANDROID_HOME:?run through nix develop so Android tools are pinned}"
+: "${JOLT_SOURCE:?set to a clean checkout at the pinned Jolt revision}"
+: "${RAYLIB_SOURCE:?run through nix develop so Raylib is pinned}"
+
+./scripts/raylib-jolt-topology-build
+stage="$repo_root/raylib/topology-android/src/main/jniLibs/arm64-v8a"
+rm -rf "$repo_root/raylib/topology-android/src/main/jniLibs"
+mkdir -p "$stage"
+cp "$repo_root/native/jolt/android-arm64/arm64-v8a/libjoltraylib-topology.so" \
+  "$stage/libjoltraylib-topology.so"
+
+gradle --no-daemon :raylib-topology-android:assembleDebug
+apk="$repo_root/raylib/topology-android/build/outputs/apk/debug/raylib-topology-android-debug.apk"
+test -s "$apk" || {
+  printf 'expected topology APK was not produced: %s\n' "$apk" >&2
+  exit 1
+}
+printf 'Built %s\n' "$apk"

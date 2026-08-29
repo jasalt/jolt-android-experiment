@@ -1,0 +1,1 @@
+/tmp/nix-shell.6xDsFj/tmp.olqf7nraoG/libmain.so: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, for Android 35, built by NDK r29 (14206865), BuildID[sha1]=215214a2239b947352221dd17586ef9d3e08cd2f, stripped

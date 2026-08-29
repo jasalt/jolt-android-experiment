@@ -1,0 +1,6 @@
+Starting: Intent { cmp=net.joltlang.raylibtopologyprobe/android.app.NativeActivity }
+Status: ok
+LaunchState: UNKNOWN (0)
+Activity: net.joltlang.raylibtopologyprobe/android.app.NativeActivity
+WaitTime: 2552
+Complete
