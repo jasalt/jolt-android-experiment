@@ -2,7 +2,7 @@
 
 ## 📊 Executive Summary
 
-**74** total issues | **84%** complete | **8** ready to work | **1** blocked
+**74** total issues | **86%** complete | **7** ready to work | **2** blocked
 
 ## 🚧 Critical Bottlenecks
 
@@ -10,8 +10,7 @@ These issues are blocking the most downstream work. Clearing them has outsized i
 
 | Issue | Title | Unblocks | Status |
 |-------|-------|----------|--------|
-| `jolt-android-csj.3` | Run identical conformance fixtures th... | **1** issues | Blocked by 1 |
-| `jolt-android-jkb.5` | Extend GTK adapter to shared capabili... | **1** issues | Ready |
+| `jolt-android-csj.3` | Run identical conformance fixtures th... | **1** issues | Ready |
 | `jolt-android-ono.6` | Implement scripts/verify clean-room o... | **1** issues | Blocked by 1 |
 
 ## 📈 Graph Analysis
@@ -26,13 +25,13 @@ Low-effort items that clear the path forward:
 
 - **jolt-android-ono.6**: Implement scripts/verify clean-room orchestration (unblocks 1)
   - *Unblocks 1 items, high priority*
-- **jolt-android-jkb.5**: Extend GTK adapter to shared capability and platform-effect parity (unblocks 1)
-  - *Unblocks 1 items*
 - **jolt-android-csj.3**: Run identical conformance fixtures through CLI, GTK, and Android (unblocks 1)
   - *Unblocks 1 items, high priority*
 - **jolt-android-1fz**: Environment and emulator bootstrap
   - *Low complexity, high priority*
 - **jolt-android-csj**: Complete portable contracts and cross-host conformance
+  - *Low complexity, high priority*
+- **jolt-android-ono**: Finish automated validation and final Level 5/6 evidence
   - *Low complexity, high priority*
 
 ## 📋 Status Summary
@@ -43,5 +42,5 @@ Low-effort items that clear the path forward:
 
 ---
 
-*Generated Aug 29, 2026 at 11:31 AM UTC by [bv](https://github.com/Dicklesworthstone/beads_viewer)*
+*Generated Aug 29, 2026 at 12:20 PM UTC by [bv](https://github.com/Dicklesworthstone/beads_viewer)*
 

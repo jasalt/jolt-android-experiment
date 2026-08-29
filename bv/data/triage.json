@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": "1.0.0",
-    "generated_at": "2026-08-29T11:31:02.040021744Z",
+    "generated_at": "2026-08-29T12:20:08.671527239Z",
     "phase2_ready": true,
     "issue_count": 74,
     "compute_time_ms": 0
@@ -9,47 +9,47 @@
   "status": {
     "PageRank": {
       "state": "computed",
-      "ms": 0.071655
+      "ms": 0.082394
     },
     "Betweenness": {
       "state": "computed",
-      "ms": 0.622439
+      "ms": 0.648082
     },
     "Eigenvector": {
       "state": "computed",
-      "ms": 0.041728
+      "ms": 0.044864
     },
     "HITS": {
       "state": "computed",
-      "ms": 0.072586
+      "ms": 0.08043
     },
     "Critical": {
       "state": "computed",
-      "ms": 0.048612
+      "ms": 0.059962
     },
     "Cycles": {
       "state": "computed",
-      "ms": 0.024696
+      "ms": 0.023244
     },
     "KCore": {
       "state": "computed",
-      "ms": 0.070172
+      "ms": 0.041398
     },
     "Articulation": {
       "state": "computed"
     },
     "Slack": {
       "state": "computed",
-      "ms": 0.012414
+      "ms": 0.011441
     }
   },
   "quick_ref": {
-    "open_count": 9,
-    "actionable_count": 8,
-    "blocked_count": 1,
-    "in_progress_count": 2,
-    "not_closed_count": 12,
-    "not_actionable_count": 4,
+    "open_count": 7,
+    "actionable_count": 7,
+    "blocked_count": 2,
+    "in_progress_count": 1,
+    "not_closed_count": 10,
+    "not_actionable_count": 3,
     "top_picks": []
   },
   "recommendations": [
@@ -65,23 +65,23 @@
         "plan-gap",
         "shared"
       ],
-      "score": 0.23588128237743833,
+      "score": 0.2489561474781644,
       "breakdown": {
         "pagerank": 0.028252240061581134,
         "betweenness": 0.050147492625368745,
         "blocker_ratio": 0.043333333333333335,
-        "staleness": 0.0000036273152342592594,
+        "staleness": 0.000008809250139641205,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.04725000000000001,
-        "urgency": 0.0008906199800959969,
+        "urgency": 0.0011293026947625795,
         "risk": 0.012474289656184466,
         "pagerank_norm": 0.12841927300718697,
         "betweenness_norm": 0.2507374631268437,
         "blocker_ratio_norm": 0.3333333333333333,
-        "staleness_norm": 0.00007254630468518518,
+        "staleness_norm": 0.00017618500279282409,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.47250000000000003,
-        "urgency_norm": 0.008906199800959969,
+        "urgency_norm": 0.011293026947625795,
         "risk_norm": 0.12474289656184465,
         "time_to_impact_explanation": "Deep in critical path (depth 3), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -94,18 +94,14 @@
           "explanation": "Low risk - stable dependency structure"
         }
       },
-      "action": "Work on jolt-android-jkb.5 first to unblock this",
+      "action": "Contact hard if you want to help",
       "reasons": [
         "🔓 Unblocks 1 item(s): jolt-android-ono.6",
         "👤 Claimed by hard",
-        "⏳ Blocked by jolt-android-jkb.5 - complete that first",
         "🚨 High priority (P1) - prioritize this work"
       ],
       "unblocks_ids": [
         "jolt-android-ono.6"
-      ],
-      "blocked_by": [
-        "jolt-android-jkb.5"
       ]
     },
     {
@@ -120,23 +116,23 @@
         "plan-gap",
         "validation"
       ],
-      "score": 0.17635364806183784,
+      "score": 0.18634698912617262,
       "breakdown": {
         "pagerank": 0.0247465009659691,
         "betweenness": 0.026253687315634225,
         "blocker_ratio": 0.021666666666666667,
-        "staleness": 0.0000037623460984567897,
+        "staleness": 0.00006060323162112269,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.04025,
-        "urgency": 0.0008874531024931076,
+        "urgency": 0.0011261512089024317,
         "risk": 0.006330127018922194,
         "pagerank_norm": 0.11248409529985955,
         "betweenness_norm": 0.1312684365781711,
         "blocker_ratio_norm": 0.16666666666666666,
-        "staleness_norm": 0.00007524692196913579,
+        "staleness_norm": 0.0012120646324224537,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.40249999999999997,
-        "urgency_norm": 0.008874531024931076,
+        "urgency_norm": 0.011261512089024317,
         "risk_norm": 0.06330127018922194,
         "time_to_impact_explanation": "On dependency chain (depth 2), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -164,93 +160,45 @@
       ]
     },
     {
-      "id": "jolt-android-jkb.5",
-      "title": "Extend GTK adapter to shared capability and platform-effect parity",
-      "type": "feature",
-      "status": "open",
-      "assignee": "hard",
-      "priority": 2,
-      "labels": [
-        "gtk",
-        "plan-gap"
-      ],
-      "score": 0.16861485747992316,
-      "breakdown": {
-        "pagerank": 0.023369558329943984,
-        "betweenness": 0.0058997050147492625,
-        "blocker_ratio": 0.021666666666666667,
-        "staleness": 0.0000035694448638888894,
-        "priority_boost": 0.05,
-        "time_to_impact": 0.05425,
-        "urgency": 0.0008868034613328246,
-        "risk": 0.007000000000000001,
-        "pagerank_norm": 0.10622526513610901,
-        "betweenness_norm": 0.02949852507374631,
-        "blocker_ratio_norm": 0.16666666666666666,
-        "staleness_norm": 0.00007138889727777778,
-        "priority_boost_norm": 0.5,
-        "time_to_impact_norm": 0.5425,
-        "urgency_norm": 0.008868034613328246,
-        "risk_norm": 0.07,
-        "time_to_impact_explanation": "Deep in critical path (depth 4), median estimate 60m",
-        "risk_explanation": "Low risk - stable dependency structure",
-        "risk_signals": {
-          "fan_variance": 0.16666666666666666,
-          "activity_churn": 0,
-          "cross_repo_risk": 0,
-          "status_risk": 0.1,
-          "composite_risk": 0.07,
-          "explanation": "Low risk - stable dependency structure"
-        }
-      },
-      "action": "Contact hard if you want to help",
-      "reasons": [
-        "🔓 Unblocks 1 item(s): jolt-android-csj.3",
-        "👤 Claimed by hard"
-      ],
-      "unblocks_ids": [
-        "jolt-android-csj.3"
-      ]
-    },
-    {
       "id": "jolt-android-jkb.2",
       "title": "Provision native Linux GTK validation host",
       "type": "task",
-      "status": "open",
+      "status": "blocked",
       "assignee": "easy",
       "priority": 2,
       "labels": null,
-      "score": 0.1188508810880507,
+      "score": 0.12929151133592273,
       "breakdown": {
         "pagerank": 0.0247465009659691,
         "betweenness": 0,
         "blocker_ratio": 0.021666666666666667,
-        "staleness": 0.0000035501547404320987,
+        "staleness": 0.00004926063902853009,
         "priority_boost": 0.05,
         "time_to_impact": 0.04025,
-        "urgency": 0.0011578481985657807,
-        "risk": 0.0020000000000000005,
+        "urgency": 0.0013952321235389477,
+        "risk": 0.013999999999999999,
         "pagerank_norm": 0.11248409529985955,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0.16666666666666666,
-        "staleness_norm": 0.00007100309480864197,
+        "staleness_norm": 0.0009852127805706017,
         "priority_boost_norm": 0.5,
         "time_to_impact_norm": 0.40249999999999997,
-        "urgency_norm": 0.011578481985657807,
-        "risk_norm": 0.020000000000000004,
+        "urgency_norm": 0.013952321235389475,
+        "risk_norm": 0.13999999999999999,
         "time_to_impact_explanation": "On dependency chain (depth 2), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
         "risk_signals": {
           "fan_variance": 0,
           "activity_churn": 0,
           "cross_repo_risk": 0,
-          "status_risk": 0.1,
-          "composite_risk": 0.020000000000000004,
+          "status_risk": 0.7,
+          "composite_risk": 0.13999999999999999,
           "explanation": "Low risk - stable dependency structure"
         }
       },
-      "action": "Contact easy if you want to help",
+      "action": "Contact easy or resolve blockers before claiming",
       "reasons": [
+        "⛔ Status is blocked - not ready to claim",
         "👤 Claimed by easy"
       ]
     },
@@ -265,23 +213,23 @@
         "plan-gap",
         "shared"
       ],
-      "score": 0.10923413447407455,
+      "score": 0.10948532685065124,
       "breakdown": {
         "pagerank": 0.017365984584944084,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 0.0000034922843700617282,
+        "staleness": 0.000060333169892727626,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.03325,
-        "urgency": 0.0008912695707735619,
+        "urgency": 0.0011299491282822595,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.07893629356792765,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.00006984568740123456,
+        "staleness_norm": 0.0012066633978545524,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.008912695707735618,
+        "urgency_norm": 0.011299491282822594,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -311,23 +259,23 @@
         "plan-gap",
         "validation"
       ],
-      "score": 0.10923205699478808,
+      "score": 0.10948326010591455,
       "breakdown": {
         "pagerank": 0.017365984584944084,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 0.0000036466053577160497,
+        "staleness": 0.00006048749088038195,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.03325,
-        "urgency": 0.0008886711565076922,
+        "urgency": 0.001127363342898502,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.07893629356792765,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.00007293210715432099,
+        "staleness_norm": 0.001209749817607639,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.008886711565076921,
+        "urgency_norm": 0.01127363342898502,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -354,32 +302,32 @@
       "assignee": "hard",
       "priority": 1,
       "labels": null,
-      "score": 0.10273595246205232,
+      "score": 0.10266565973612299,
       "breakdown": {
         "pagerank": 0.017365984584944084,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 0.00000368518560462963,
+        "staleness": 0.00006052607112729553,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.03325,
-        "urgency": 0.007170463671542066,
-        "risk": 0.013975512932269677,
+        "urgency": 0.007378624922908795,
+        "risk": 0.01361009261548124,
         "pagerank_norm": 0.07893629356792765,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.0000737037120925926,
+        "staleness_norm": 0.0012105214225459106,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.07170463671542066,
-        "risk_norm": 0.13975512932269676,
+        "urgency_norm": 0.07378624922908794,
+        "risk_norm": 0.1361009261548124,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
         "risk_signals": {
           "fan_variance": 0,
-          "activity_churn": 0.39918376440898923,
+          "activity_churn": 0.387003087182708,
           "cross_repo_risk": 0,
           "status_risk": 0.1,
-          "composite_risk": 0.13975512932269676,
+          "composite_risk": 0.1361009261548124,
           "explanation": "Low risk - stable dependency structure"
         }
       },
@@ -401,23 +349,23 @@
         "arm64",
         "plan-gap"
       ],
-      "score": 0.0981803805938164,
+      "score": 0.09843159209170509,
       "breakdown": {
         "pagerank": 0.017365984584944084,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 0.0000037044757280864197,
+        "staleness": 0.00006054536125075232,
         "priority_boost": 0.05,
         "time_to_impact": 0.03325,
-        "urgency": 0.000886641049700071,
+        "urgency": 0.0011253431028699745,
         "risk": 0.013999999999999999,
         "pagerank_norm": 0.07893629356792765,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.00007408951456172839,
+        "staleness_norm": 0.0012109072250150463,
         "priority_boost_norm": 0.5,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.00886641049700071,
+        "urgency_norm": 0.011253431028699745,
         "risk_norm": 0.13999999999999999,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -437,48 +385,6 @@
       ]
     },
     {
-      "id": "jolt-android-jkb",
-      "title": "GTK reference application",
-      "type": "epic",
-      "status": "open",
-      "assignee": "hard",
-      "priority": 2,
-      "labels": null,
-      "score": 0.0917342579986264,
-      "breakdown": {
-        "pagerank": 0.017365984584944084,
-        "betweenness": 0,
-        "blocker_ratio": 0,
-        "staleness": 0.0000035308646169753084,
-        "priority_boost": 0.05,
-        "time_to_impact": 0.03325,
-        "urgency": 0.005303141019411178,
-        "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.07893629356792765,
-        "betweenness_norm": 0,
-        "blocker_ratio_norm": 0,
-        "staleness_norm": 0.00007061729233950616,
-        "priority_boost_norm": 0.5,
-        "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.05303141019411178,
-        "risk_norm": 0.020000000000000004,
-        "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
-        "risk_explanation": "Low risk - stable dependency structure",
-        "risk_signals": {
-          "fan_variance": 0,
-          "activity_churn": 0,
-          "cross_repo_risk": 0,
-          "status_risk": 0.1,
-          "composite_risk": 0.020000000000000004,
-          "explanation": "Low risk - stable dependency structure"
-        }
-      },
-      "action": "Contact hard if you want to help",
-      "reasons": [
-        "👤 Claimed by hard"
-      ]
-    },
-    {
       "id": "jolt-android-ono.8",
       "title": "Refresh architecture, gotchas, and final graded feasibility report",
       "type": "task",
@@ -490,23 +396,23 @@
         "plan-gap",
         "validation"
       ],
-      "score": 0.08995467195625689,
+      "score": 0.0966016616874035,
       "breakdown": {
         "pagerank": 0.017365984584944084,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 0.0000037237658515432104,
+        "staleness": 0.00006056465137420911,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.03325,
-        "urgency": 0.0008869658724285024,
+        "urgency": 0.001125666346886345,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.07893629356792765,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.0000744753170308642,
+        "staleness_norm": 0.0012112930274841823,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.008869658724285023,
+        "urgency_norm": 0.011256663468863448,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -528,6 +434,99 @@
       "blocked_by": [
         "jolt-android-ono.6"
       ]
+    },
+    {
+      "id": "jolt-android-jkb",
+      "title": "GTK reference application",
+      "type": "epic",
+      "status": "open",
+      "assignee": "hard",
+      "priority": 2,
+      "labels": null,
+      "score": 0.09196722408450993,
+      "breakdown": {
+        "pagerank": 0.017365984584944084,
+        "betweenness": 0,
+        "blocker_ratio": 0,
+        "staleness": 0.00006037175013964121,
+        "priority_boost": 0.05,
+        "time_to_impact": 0.03325,
+        "urgency": 0.005520377881986777,
+        "risk": 0.0020000000000000005,
+        "pagerank_norm": 0.07893629356792765,
+        "betweenness_norm": 0,
+        "blocker_ratio_norm": 0,
+        "staleness_norm": 0.001207435002792824,
+        "priority_boost_norm": 0.5,
+        "time_to_impact_norm": 0.3325,
+        "urgency_norm": 0.055203778819867766,
+        "risk_norm": 0.020000000000000004,
+        "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
+        "risk_explanation": "Low risk - stable dependency structure",
+        "risk_signals": {
+          "fan_variance": 0,
+          "activity_churn": 0,
+          "cross_repo_risk": 0,
+          "status_risk": 0.1,
+          "composite_risk": 0.020000000000000004,
+          "explanation": "Low risk - stable dependency structure"
+        }
+      },
+      "action": "Contact hard if you want to help",
+      "reasons": [
+        "👤 Claimed by hard"
+      ]
+    },
+    {
+      "id": "jolt-android-csj.4",
+      "title": "Validate portable CLI/nREPL and GTK on native aarch64-linux",
+      "type": "task",
+      "status": "open",
+      "assignee": "medium",
+      "priority": 2,
+      "labels": [
+        "aarch64-linux",
+        "plan-gap",
+        "shared"
+      ],
+      "score": 0.08703599038418829,
+      "breakdown": {
+        "pagerank": 0.017365984584944084,
+        "betweenness": 0,
+        "blocker_ratio": 0,
+        "staleness": 0.00006044891063346837,
+        "priority_boost": 0.05,
+        "time_to_impact": 0.03325,
+        "urgency": 0.0011185544846577967,
+        "risk": 0.007000000000000001,
+        "pagerank_norm": 0.07893629356792765,
+        "betweenness_norm": 0,
+        "blocker_ratio_norm": 0,
+        "staleness_norm": 0.0012089782126693675,
+        "priority_boost_norm": 0.5,
+        "time_to_impact_norm": 0.3325,
+        "urgency_norm": 0.011185544846577966,
+        "risk_norm": 0.07,
+        "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
+        "risk_explanation": "Low risk - stable dependency structure",
+        "risk_signals": {
+          "fan_variance": 0.16666666666666666,
+          "activity_churn": 0,
+          "cross_repo_risk": 0,
+          "status_risk": 0.1,
+          "composite_risk": 0.07,
+          "explanation": "Low risk - stable dependency structure"
+        }
+      },
+      "action": "Work on jolt-android-csj.3 first to unblock this",
+      "reasons": [
+        "👤 Claimed by medium",
+        "⏳ Blocked by 2 items - need to clear dependencies"
+      ],
+      "blocked_by": [
+        "jolt-android-csj.3",
+        "jolt-android-jkb.2"
+      ]
     }
   ],
   "quick_wins": [
@@ -538,15 +537,6 @@
       "reason": "Unblocks 1 items, high priority",
       "unblocks_ids": [
         "jolt-android-ono.8"
-      ]
-    },
-    {
-      "id": "jolt-android-jkb.5",
-      "title": "Extend GTK adapter to shared capability and platform-effect parity",
-      "score": 0.8,
-      "reason": "Unblocks 1 items",
-      "unblocks_ids": [
-        "jolt-android-csj.3"
       ]
     },
     {
@@ -569,6 +559,12 @@
       "title": "Complete portable contracts and cross-host conformance",
       "score": 0.5,
       "reason": "Low complexity, high priority"
+    },
+    {
+      "id": "jolt-android-ono",
+      "title": "Finish automated validation and final Level 5/6 evidence",
+      "score": 0.5,
+      "reason": "Low complexity, high priority"
     }
   ],
   "blockers_to_clear": [
@@ -578,18 +574,6 @@
       "unblocks_count": 1,
       "unblocks_ids": [
         "jolt-android-ono.6"
-      ],
-      "actionable": false,
-      "blocked_by": [
-        "jolt-android-jkb.5"
-      ]
-    },
-    {
-      "id": "jolt-android-jkb.5",
-      "title": "Extend GTK adapter to shared capability and platform-effect parity",
-      "unblocks_count": 1,
-      "unblocks_ids": [
-        "jolt-android-csj.3"
       ],
       "actionable": true
     },
@@ -609,17 +593,17 @@
   "project_health": {
     "counts": {
       "total": 74,
-      "open": 9,
-      "closed": 62,
-      "blocked": 1,
-      "actionable": 8,
-      "not_closed": 12,
-      "dependency_blocked": 4,
+      "open": 7,
+      "closed": 64,
+      "blocked": 2,
+      "actionable": 7,
+      "not_closed": 10,
+      "dependency_blocked": 3,
       "by_status": {
-        "blocked": 1,
-        "closed": 62,
-        "in_progress": 2,
-        "open": 9
+        "blocked": 2,
+        "closed": 64,
+        "in_progress": 1,
+        "open": 7
       },
       "by_type": {
         "bug": 4,
@@ -641,13 +625,13 @@
       "phase2_ready": true
     },
     "velocity": {
-      "closed_last_7_days": 62,
-      "closed_last_30_days": 62,
-      "avg_days_to_close": 0.11206653225806452,
+      "closed_last_7_days": 64,
+      "closed_last_30_days": 64,
+      "avg_days_to_close": 0.12536964699074074,
       "weekly": [
         {
           "week_start": "2026-08-24T00:00:00Z",
-          "closed": 62
+          "closed": 64
         },
         {
           "week_start": "2026-08-17T00:00:00Z",
