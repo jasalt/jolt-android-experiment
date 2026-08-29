@@ -1,0 +1,5 @@
+Performing Streamed Install
+Success
+D/nativeloader(11237): Load /data/app/~~ZI0j3HPsMrx1l6xU-P6RLw==/net.joltlang.androidpoc.abiprobe-C3ChwmnZhucnYZrZS8EnHA==/base.apk!/lib/arm64-v8a/libjolt_probe.so using ns clns-7 from class loader (caller=/data/app/~~ZI0j3HPsMrx1l6xU-P6RLw==/net.joltlang.androidpoc.abiprobe-C3ChwmnZhucnYZrZS8EnHA==/base.apk!classes3.dex): ok
+I/jolt_probe(11237): owner JNI session initialized
+Runtime: initialized&#10;Process ABI: x86_64&#10;PID: 11237&#10;Jolt thread: HandlerThread(JoltRuntime)&#10;Lifecycle model: {:model {:counter 0, :events [], :platform nil, :lifecycle :resumed, :worker :completed, :notification-permission nil}, :effects []}
