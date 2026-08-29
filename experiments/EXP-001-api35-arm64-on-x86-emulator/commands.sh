@@ -10,7 +10,10 @@ output_dir="$repo_root/artifacts/abi-probe"
 compiler="$ANDROID_NDK_ROOT/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android35-clang"
 serial=emulator-5554
 
-[[ -x "$compiler" ]] || { printf 'missing NDK compiler: %s\n' "$compiler" >&2; exit 1; }
+[[ -x "$compiler" ]] || {
+  printf 'missing NDK compiler: %s\n' "$compiler" >&2
+  exit 1
+}
 mkdir -p "$output_dir"
 "$compiler" -shared -fPIC -Wl,-soname,libabi_probe.so \
   -o "$output_dir/libabi_probe.so" "$experiment_dir/minimal/poc_answer.c"
@@ -25,8 +28,10 @@ unzip -l "$apk" | grep -F 'lib/arm64-v8a/libabi_probe.so'
 adb -s "$serial" logcat -c
 adb -s "$serial" install -r "$apk"
 adb -s "$serial" shell am start -W -n net.joltlang.androidpoc.abiprobe/.MainActivity
-printf 'primary ABI: '; adb -s "$serial" shell getprop ro.product.cpu.abi
-printf 'ABI list: '; adb -s "$serial" shell getprop ro.product.cpu.abilist
+printf 'primary ABI: '
+adb -s "$serial" shell getprop ro.product.cpu.abi
+printf 'ABI list: '
+adb -s "$serial" shell getprop ro.product.cpu.abilist
 adb -s "$serial" shell uiautomator dump /sdcard/exp001-window.xml >/dev/null
 adb -s "$serial" exec-out cat /sdcard/exp001-window.xml | grep -F 'poc_answer() = 42'
 adb -s "$serial" logcat -d -v brief | grep -F 'libabi_probe.so' | grep -F ': ok'

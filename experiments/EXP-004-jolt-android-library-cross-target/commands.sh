@@ -7,8 +7,8 @@ scripts/jolt-android-library-build
 
 readelf -h native/jolt/android-arm64/arm64-v8a/libjoltpoc.so | grep -E 'Class:|Machine:'
 readelf -d native/jolt/android-arm64/arm64-v8a/libjoltpoc.so | grep NEEDED
-nm -D --defined-only native/jolt/android-arm64/arm64-v8a/libjoltpoc.so \
-  | grep -E 'jolt_library_(init|lookup|shutdown)'
+nm -D --defined-only native/jolt/android-arm64/arm64-v8a/libjoltpoc.so |
+  grep -E 'jolt_library_(init|lookup|shutdown)'
 
 gradle --no-daemon :app:assembleDebug
 adb install -r app/build/outputs/apk/debug/app-debug.apk
