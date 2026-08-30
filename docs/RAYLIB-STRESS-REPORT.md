@@ -68,10 +68,21 @@ or ANR signatures. Native heap PSS was 8,924 → 9,024 KiB; total PSS was
 Screenshot SHA-256:
 `4c5a915bf77787e0e4e070e481a9bd04432bd6fb01482d8d998dc4af22d352fc`.
 
+## Fifteen-minute deliberate-allocation result
+
+The deliberate-allocation workload also completed fifteen minutes without
+fatal or ANR signatures. Native heap PSS was 8,912 → 4,780 KiB; total PSS was
+374,140 → 360,237 KiB; RSS was 551,024 → 541,492 KiB.
+
+![Raylib fifteen-minute deliberate allocation run](assets/raylib-stress-alloc15.png)
+
+Screenshot SHA-256:
+`bb50b8b3c4553838138104cb6067bb4bab6fc9484f27a0feea9ddfc3e2e527a7`.
+
 ## Boundary
 
-The baseline workload has reproducible 30-second, five-minute and
-fifteen-minute runs. The deliberate-allocation workload now has 30-second and
-five-minute runs. A complete 15-minute run for each deliberate/normal workload,
-plus FPS distributions and collector-specific metrics, remains open; no such
-claim is made here.
+The low-allocation baseline has reproducible 30-second, five-minute and
+fifteen-minute runs. The deliberate-allocation workload now also has
+30-second, five-minute and fifteen-minute runs. The normal shared-reducer
+workload still needs its distinct 5m/15m run, and FPS distributions and
+collector-specific metrics remain unmeasured; no such claim is made here.
