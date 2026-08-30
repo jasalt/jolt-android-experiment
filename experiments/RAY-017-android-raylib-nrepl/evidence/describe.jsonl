@@ -1,0 +1,1 @@
+{"id": "android-173011582123031", "ops": {"clone": {}, "close": {}, "complete": {}, "completions": {}, "describe": {}, "eval": {}, "load-file": {}}, "session": "none", "status": ["done"], "versions": {"jolt": {"version-string": "dev"}, "jolt-nrepl": {"major": 0, "minor": 1}}}

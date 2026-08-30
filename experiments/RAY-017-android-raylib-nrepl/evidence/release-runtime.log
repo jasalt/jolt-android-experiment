@@ -1,0 +1,22 @@
+08-30 16:48:06.299 20569 20592 I jolt_raylib_gallery: enter main thread=20592 owner=20592
+08-30 16:48:06.302 20569 20592 I jolt_raylib_gallery: dlopen ok thread=20592 owner=20592
+08-30 16:48:08.428 20569 20592 I jolt_raylib_gallery: jolt_library_init result=0 thread=20592 owner=20592
+08-30 16:48:08.428 20569 20592 I jolt_raylib_gallery: aggregate probe lookup name=raylib_abi_constant_size result=ok thread=20592 owner=20592
+08-30 16:48:08.429 20569 20592 I jolt_raylib_gallery: aggregate probe call name=raylib_abi_constant_size result=4 thread=20592 owner=20592
+08-30 16:48:08.429 20569 20592 I jolt_raylib_gallery: aggregate probe lookup name=raylib_abi_map_size result=ok thread=20592 owner=20592
+08-30 16:48:08.429 20569 20592 I jolt_raylib_gallery: aggregate probe call name=raylib_abi_map_size result=4 thread=20592 owner=20592
+08-30 16:48:08.429 20569 20592 I jolt_raylib_gallery: aggregate probe lookup name=raylib_abi_color_layout_map result=ok thread=20592 owner=20592
+08-30 16:48:08.429 20569 20592 I jolt_raylib_gallery: aggregate probe call name=raylib_abi_color_layout_map result=1 thread=20592 owner=20592
+08-30 16:48:08.429 20569 20592 I jolt_raylib_gallery: aggregate probe lookup name=raylib_abi_color_layout_marker result=ok thread=20592 owner=20592
+08-30 16:48:08.429 20569 20592 I jolt_raylib_gallery: aggregate probe call name=raylib_abi_color_layout_marker result=1 thread=20592 owner=20592
+08-30 16:48:08.429 20569 20592 I jolt_raylib_gallery: aggregate probe lookup name=raylib_abi_color_raw_size result=ok thread=20592 owner=20592
+08-30 16:48:08.430 20569 20592 I jolt_raylib_gallery: aggregate probe call name=raylib_abi_color_raw_size result=4 thread=20592 owner=20592
+08-30 16:48:08.430 20569 20592 I jolt_raylib_gallery: aggregate probe lookup name=raylib_abi_layout_size_bound result=ok thread=20592 owner=20592
+08-30 16:48:08.430 20569 20592 I jolt_raylib_gallery: aggregate probe call name=raylib_abi_layout_size_bound result=1 thread=20592 owner=20592
+08-30 16:48:08.430 20569 20592 I jolt_raylib_gallery: aggregate probe lookup name=raylib_abi_color_size result=ok thread=20592 owner=20592
+08-30 16:48:08.430 20569 20592 I jolt_raylib_gallery: aggregate probe call name=raylib_abi_color_size result=4 thread=20592 owner=20592
+08-30 16:48:08.430 20569 20592 I jolt_raylib_gallery: jolt_lookup aggregate verify=ok thread=20592 owner=20592
+08-30 16:48:08.441 20569 20592 I jolt_raylib_gallery: aggregate matrix result=1 thread=20592 owner=20592
+08-30 16:48:08.441 20569 20592 I jolt_raylib_gallery: jolt_lookup raylib_gallery_debug=missing mode=release thread=20592 owner=20592
+08-30 16:48:08.441 20569 20592 I jolt_raylib_gallery: jolt_lookup raylib_gallery=ok mode=release thread=20592 owner=20592
+08-30 16:48:08.803 20569 20592 I jolt_raylib_gallery_state: {:frame 0, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :idle, :position nil}, :touches {:count 0, :ids [], :point-0 nil, :available-coordinates :none, :all-coordinates-available? false}, :gesture {:code 0}, :keyboard {:activate? false, :previous? false, :next? false, :back? false}, :gallery-contract 1, :gallery-mode :gallery, :selected-scene nil, :scene-frame nil, :shared-model {:counter 0, :event-count 0, :lifecycle nil, :worker nil, :notification-permission nil, :platform nil}, :effects [], :last-event nil, :tap-count 0, :hold-frames 0, :drag-samples 0, :close-requested? false, :runtime-state {:status :running, :frame 0, :owner-thread-id 0, :presentation :baseline, :gallery-mode :gallery, :selected-scene nil, :owner-queue {:pending 0, :operations [:submit-owner! :owner-result]}}}

@@ -1,0 +1,90 @@
+Preparing worktree (detached HEAD ae5c5a6d)
+Cloning into '/tmp/nix-shell.ObIkYR/tmp.dqjOX2mkTx/jolt/vendor/clojure-test-suite'...
+Cloning into '/tmp/nix-shell.ObIkYR/tmp.dqjOX2mkTx/jolt/vendor/fs'...
+Cloning into '/tmp/nix-shell.ObIkYR/tmp.dqjOX2mkTx/jolt/vendor/grenadine'...
+Cloning into '/tmp/nix-shell.ObIkYR/tmp.dqjOX2mkTx/jolt/vendor/irregex'...
+Cloning into '/tmp/nix-shell.ObIkYR/tmp.dqjOX2mkTx/jolt/vendor/process'...
+Cloning into '/tmp/nix-shell.ObIkYR/tmp.dqjOX2mkTx/jolt/vendor/sci'...
+Submodule path 'vendor/clojure-test-suite': checked out '489b6743e8421687ef96cec557830acf258d1886'
+Submodule path 'vendor/fs': checked out '5b273b8a943a622593fbc85fca6761c5a39d6d66'
+Submodule path 'vendor/grenadine': checked out '77992327c0b220c186ece61d74f7eb570978a6f5'
+Submodule path 'vendor/irregex': checked out 'c948a704fc732914a243c1643bfe359913d11c7b'
+Submodule path 'vendor/process': checked out '7d881f3a3ec6d273cf014c8172dea037abb31da3'
+Submodule path 'vendor/sci': checked out '32d62a5136ad3dc148588752f5bcc4cc30b14752'
+wrote target pack: /tmp/nix-shell.ObIkYR/tmp.dqjOX2mkTx/tarm64le-pack
+  jolt build -m <ns> -o <out> --target tarm64le --target-pack /tmp/nix-shell.ObIkYR/tmp.dqjOX2mkTx/tarm64le-pack
+jolt build: compiling poc.raylib.loop (release mode, shared library)
+loading tarm64le cross compiler
+compiling /tmp/nix-shell.ObIkYR/tmp.dqjOX2mkTx/libjoltraylib-loop.so.build/flat.ss with output to /tmp/nix-shell.ObIkYR/tmp.dqjOX2mkTx/libjoltraylib-loop.so.build/flat.so
+jolt build: wrote /tmp/nix-shell.ObIkYR/tmp.dqjOX2mkTx/libjoltraylib-loop.so
+/home/user/dev/jail/jolt/jolt-android/native/jolt/android-arm64/arm64-v8a/libjoltraylib-loop.so: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, for Android 35, built by NDK r29 (14206865), not stripped
+ 0x0000000000000001 (NEEDED)             Shared library: [libc.so]
+Built Raylib persistent-loop Jolt library (release): /home/user/dev/jail/jolt/jolt-android/native/jolt/android-arm64/arm64-v8a/libjoltraylib-loop.so
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.4/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build
+> Task :raylib-loop-android:preBuild UP-TO-DATE
+> Task :raylib-loop-android:preReleaseBuild UP-TO-DATE
+> Task :raylib-loop-android:javaPreCompileRelease UP-TO-DATE
+> Task :raylib-loop-android:checkReleaseAarMetadata UP-TO-DATE
+> Task :raylib-loop-android:generateReleaseResValues UP-TO-DATE
+> Task :raylib-loop-android:mapReleaseSourceSetPaths UP-TO-DATE
+> Task :raylib-loop-android:generateReleaseResources UP-TO-DATE
+> Task :raylib-loop-android:mergeReleaseResources UP-TO-DATE
+> Task :raylib-loop-android:packageReleaseResources UP-TO-DATE
+> Task :raylib-loop-android:parseReleaseLocalResources UP-TO-DATE
+> Task :raylib-loop-android:createReleaseCompatibleScreenManifests UP-TO-DATE
+> Task :raylib-loop-android:extractDeepLinksRelease UP-TO-DATE
+> Task :raylib-loop-android:processReleaseMainManifest UP-TO-DATE
+> Task :raylib-loop-android:processReleaseManifest UP-TO-DATE
+> Task :raylib-loop-android:processReleaseManifestForPackage UP-TO-DATE
+> Task :raylib-loop-android:processReleaseResources UP-TO-DATE
+> Task :raylib-loop-android:compileReleaseJavaWithJavac NO-SOURCE
+> Task :raylib-loop-android:extractProguardFiles UP-TO-DATE
+> Task :raylib-loop-android:generateReleaseLintVitalReportModel UP-TO-DATE
+> Task :raylib-loop-android:lintVitalAnalyzeRelease UP-TO-DATE
+> Task :raylib-loop-android:lintVitalReportRelease UP-TO-DATE
+> Task :raylib-loop-android:lintVitalRelease
+> Task :raylib-loop-android:configureCMakeRelWithDebInfo[arm64-v8a]
+> Task :raylib-loop-android:buildCMakeRelWithDebInfo[arm64-v8a]
+> Task :raylib-loop-android:mergeReleaseJniLibFolders
+> Task :raylib-loop-android:checkReleaseDuplicateClasses UP-TO-DATE
+> Task :raylib-loop-android:dexBuilderRelease UP-TO-DATE
+> Task :raylib-loop-android:desugarReleaseFileDependencies UP-TO-DATE
+> Task :raylib-loop-android:mergeReleaseStartupProfile UP-TO-DATE
+> Task :raylib-loop-android:mergeExtDexRelease UP-TO-DATE
+> Task :raylib-loop-android:mergeDexRelease UP-TO-DATE
+> Task :raylib-loop-android:mergeReleaseArtProfile UP-TO-DATE
+> Task :raylib-loop-android:mergeReleaseGlobalSynthetics UP-TO-DATE
+> Task :raylib-loop-android:compileReleaseArtProfile UP-TO-DATE
+> Task :raylib-loop-android:mergeReleaseShaders UP-TO-DATE
+> Task :raylib-loop-android:compileReleaseShaders NO-SOURCE
+> Task :raylib-loop-android:generateReleaseAssets UP-TO-DATE
+> Task :raylib-loop-android:mergeReleaseAssets UP-TO-DATE
+> Task :raylib-loop-android:compressReleaseAssets UP-TO-DATE
+> Task :raylib-loop-android:extractReleaseVersionControlInfo UP-TO-DATE
+> Task :raylib-loop-android:processReleaseJavaRes NO-SOURCE
+> Task :raylib-loop-android:mergeReleaseJavaResource UP-TO-DATE
+> Task :raylib-loop-android:optimizeReleaseResources UP-TO-DATE
+> Task :raylib-loop-android:collectReleaseDependencies UP-TO-DATE
+> Task :raylib-loop-android:sdkReleaseDependencyData UP-TO-DATE
+> Task :raylib-loop-android:writeReleaseAppMetadata UP-TO-DATE
+> Task :raylib-loop-android:writeReleaseSigningConfigVersions UP-TO-DATE
+> Task :raylib-loop-android:mergeReleaseNativeLibs
+> Task :raylib-loop-android:stripReleaseDebugSymbols
+> Task :raylib-loop-android:extractReleaseNativeSymbolTables
+> Task :raylib-loop-android:packageRelease
+> Task :raylib-loop-android:createReleaseApkListingFileRedirect UP-TO-DATE
+> Task :raylib-loop-android:mergeReleaseNativeDebugMetadata
+> Task :raylib-loop-android:assembleRelease
+
+[Incubating] Problems report is available at: file:///home/user/dev/jail/jolt/jolt-android/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.14.4/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 33s
+47 actionable tasks: 9 executed, 38 up-to-date
+Built release gallery APK: /home/user/dev/jail/jolt/jolt-android/raylib/loop-android/build/outputs/apk/release/raylib-loop-android-release-unsigned.apk

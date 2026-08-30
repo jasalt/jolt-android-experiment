@@ -1,0 +1,2 @@
+{"err": "expected-nrepl-failure\n", "id": "android-173013415957631", "session": "none"}
+{"ex": "expected-nrepl-failure", "id": "android-173013415957631", "session": "none", "status": ["eval-error", "done"]}

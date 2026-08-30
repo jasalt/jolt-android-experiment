@@ -1,0 +1,1 @@
+{"id": "android-173023328092258", "ns": "poc.raylib.loop", "session": "none", "status": ["done"], "value": "{:status :running, :frame 390, :owner-thread-id 0, :presentation :android-load-file-v3, :gallery-mode :gallery, :selected-scene nil, :owner-queue {:pending 0, :operations [:submit-owner! :owner-result]}}"}

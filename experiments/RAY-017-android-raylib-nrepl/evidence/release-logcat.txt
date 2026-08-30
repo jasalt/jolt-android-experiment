@@ -1,0 +1,569 @@
+--------- beginning of main
+08-30 16:48:05.271 23823 23823 D BoundBrokerSvc: onBind: Intent { act=com.google.android.gms.icing.LIGHTWEIGHT_INDEX_SERVICE dat=chimera-action:/... cmp=com.google.android.gms/.chimera.PersistentApiService }
+08-30 16:48:05.275 23823 23823 D BoundBrokerSvc: Loading bound service for intent: Intent { act=com.google.android.gms.icing.LIGHTWEIGHT_INDEX_SERVICE dat=chimera-action:/... cmp=com.google.android.gms/.chimera.PersistentApiService }
+08-30 16:48:05.282  1257  1305 D PackageUpdatedTask: Package updated: mOp=ADD packages=[net.joltlang.raylibgallery]
+08-30 16:48:05.283  1520  1520 I AiAiEcho: AppFetcherImplV2 updateApps package:[net.joltlang.raylibgallery], userId:[0], reason:[package is added.].
+08-30 16:48:05.295  1085  1085 D CarrierSvcBindHelper: onPackageModified: net.joltlang.raylibgallery
+08-30 16:48:05.296  1085  1085 D CarrierSvcBindHelper: No carrier app for: 0
+--------- beginning of system
+08-30 16:48:05.297   584   906 D ShortcutService: received package broadcast intent: Intent { act=android.intent.action.PACKAGE_CHANGED dat=package: flg=0x5000010 (has extras) }
+08-30 16:48:05.297   584   906 D ShortcutService: changing package: net.joltlang.raylibgallery userId0
+08-30 16:48:05.297   584   906 D ShortcutService: handlePackageChanged: net.joltlang.raylibgallery user=0
+08-30 16:48:05.297   584   906 D ShortcutService: rescanPackageIfNeeded 0@net.joltlang.raylibgallery, forceRescan=true , isNewApp=true
+08-30 16:48:05.297   584   906 D ShortcutService: Package net.joltlang.raylibgallery has 0 manifest shortcut(s), and 0 share target(s)
+08-30 16:48:05.298   584   891 I AppWidgetServiceImpl: Received broadcast: android.intent.action.PACKAGE_CHANGED on user 0
+08-30 16:48:05.300   942   959 I PermissionControllerServiceImpl: Updating user sensitive for uid 10243
+08-30 16:48:05.305  1257  1257 D StatsLog: LAUNCHER_ALLAPPS_COUNT
+08-30 16:48:05.306   584  1022 I AppWidgetServiceImpl: getInstalledProvidersForProfiles() 0
+08-30 16:48:05.308  1257  1305 D BaseIconCache: Default icon returned for net.joltlang.raylibgallery
+08-30 16:48:05.318  1085  1085 E SmsApplication: com.google.android.apps.messaging lost android:read_cell_broadcasts:  (fixing)
+08-30 16:48:05.318   584  2000 W AppOpService: Ignored setUidMode call for runtime permission app op: uid = 10133, code = READ_CELL_BROADCASTS, mode = allow, callingUid = 1001, oldMode = allow
+08-30 16:48:05.325  1085  1085 E CellBroadcastUtils: getDefaultCellBroadcastReceiverPackageName: no package found
+08-30 16:48:05.327   584   616 W MagnificationConnectionManager: requestConnection duplicated request: connect=false, mConnectionState=DISCONNECTED
+08-30 16:48:05.327   584  1028 W AppOpService: Ignored setUidMode call for runtime permission app op: uid = 1001, code = READ_SMS, mode = allow, callingUid = 1001, oldMode = allow
+08-30 16:48:05.329   584   616 W MagnificationConnectionManager: requestConnection duplicated request: connect=false, mConnectionState=DISCONNECTED
+08-30 16:48:05.331   584  1999 W AppOpService: Ignored setUidMode call for runtime permission app op: uid = 1001, code = RECEIVE_SMS, mode = allow, callingUid = 1001, oldMode = allow
+08-30 16:48:05.336   584  1761 W AppOpService: Ignored setUidMode call for runtime permission app op: uid = 1001, code = RECEIVE_WAP_PUSH, mode = allow, callingUid = 1001, oldMode = allow
+08-30 16:48:05.344  1257  1305 D PackageUpdatedTask: Package updated: mOp=UPDATE packages=[net.joltlang.raylibgallery]
+08-30 16:48:05.345   584   584 W IPCThreadState: Sending oneway calls to frozen process.
+08-30 16:48:05.345   584   584 W IPCThreadState: Sending oneway calls to frozen process.
+08-30 16:48:05.346   584   584 W IPCThreadState: Sending oneway calls to frozen process.
+08-30 16:48:05.346   584   584 W IPCThreadState: Sending oneway calls to frozen process.
+08-30 16:48:05.346   584   584 W IPCThreadState: Sending oneway calls to frozen process.
+08-30 16:48:05.347   584   584 W IPCThreadState: Sending oneway calls to frozen process.
+08-30 16:48:05.347   584   584 W IPCThreadState: Sending oneway calls to frozen process.
+08-30 16:48:05.347   584   584 W IPCThreadState: Sending oneway calls to frozen process.
+08-30 16:48:05.348   584   584 W IPCThreadState: Sending oneway calls to frozen process.
+08-30 16:48:05.348   584   584 W IPCThreadState: Sending oneway calls to frozen process.
+08-30 16:48:05.348   584   584 W IPCThreadState: Sending oneway calls to frozen process.
+08-30 16:48:05.348   584   584 W IPCThreadState: Sending oneway calls to frozen process.
+08-30 16:48:05.348   584   584 W IPCThreadState: Sending oneway calls to frozen process.
+08-30 16:48:05.353  1520  1520 I AiAiEcho: AppFetcherImpl onPackageChanged net.joltlang.raylibgallery.
+08-30 16:48:05.360   584   584 W IPCThreadState: Sending oneway calls to frozen process.
+08-30 16:48:05.360   584   584 W IPCThreadState: Sending oneway calls to frozen process.
+08-30 16:48:05.360   584   584 W IPCThreadState: Sending oneway calls to frozen process.
+08-30 16:48:05.364  1520 20555 I AiAiEcho: AppIndexer Package:[net.joltlang.raylibgallery] UserProfile:[0] Enabled:[true].
+08-30 16:48:05.367  1520 20555 I AiAiEcho: AppFetcherImplV2 updateApps package:[net.joltlang.raylibgallery], userId:[0], reason:[package is updated.].
+08-30 16:48:05.372   584  1999 I AppWidgetServiceImpl: getInstalledProvidersForProfiles() 0
+08-30 16:48:05.374   584  1999 W ParceledListSlice: Element #25 is 19764 bytes.
+08-30 16:48:05.374   584  1999 W ParceledListSlice: Element #26 is 19800 bytes.
+08-30 16:48:05.374   584  1022 W AppOpService: Ignored setUidMode call for runtime permission app op: uid = 1001, code = SEND_SMS, mode = allow, callingUid = 1001, oldMode = allow
+08-30 16:48:05.375   584  1022 W AppOpService: Ignored setUidMode call for runtime permission app op: uid = 1001, code = READ_CELL_BROADCASTS, mode = allow, callingUid = 1001, oldMode = allow
+08-30 16:48:05.375   584  1627 W ParceledListSlice: Element #27 is 19644 bytes.
+08-30 16:48:05.376   584  1627 W ParceledListSlice: Element #28 is 19552 bytes.
+08-30 16:48:05.376   584  1627 W ParceledListSlice: Element #29 is 19664 bytes.
+08-30 16:48:05.389  1520  1864 W PackageManager: Failure retrieving text 0x7f130786 in package com.android.systemui
+08-30 16:48:05.389  1520  1864 W PackageManager: android.content.res.Resources$NotFoundException: String resource ID #0x7f130786
+08-30 16:48:05.389  1520  1864 W PackageManager: 	at android.content.res.Resources.getText(Resources.java:466)
+08-30 16:48:05.389  1520  1864 W PackageManager: 	at android.app.ApplicationPackageManager.getText(ApplicationPackageManager.java:2405)
+08-30 16:48:05.389  1520  1864 W PackageManager: 	at android.appwidget.AppWidgetProviderInfo.loadDescription(AppWidgetProviderInfo.java:484)
+08-30 16:48:05.389  1520  1864 W PackageManager: 	at kml.a(PG:341)
+08-30 16:48:05.389  1520  1864 W PackageManager: 	at kmg.b(PG:39)
+08-30 16:48:05.389  1520  1864 W PackageManager: 	at aaer.g(PG:13)
+08-30 16:48:05.389  1520  1864 W PackageManager: 	at kotlinx.coroutines.DispatchedTask.run(PG:114)
+08-30 16:48:05.389  1520  1864 W PackageManager: 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:487)
+08-30 16:48:05.389  1520  1864 W PackageManager: 	at wqm.a(PG:3)
+08-30 16:48:05.389  1520  1864 W PackageManager: 	at wpo.run(PG:21)
+08-30 16:48:05.389  1520  1864 W PackageManager: 	at wqn.run(PG:5)
+08-30 16:48:05.389  1520  1864 W PackageManager: 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:487)
+08-30 16:48:05.389  1520  1864 W PackageManager: 	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+08-30 16:48:05.389  1520  1864 W PackageManager: 	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:307)
+08-30 16:48:05.389  1520  1864 W PackageManager: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+08-30 16:48:05.389  1520  1864 W PackageManager: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644)
+08-30 16:48:05.389  1520  1864 W PackageManager: 	at hqv.run(PG:221)
+08-30 16:48:05.389  1520  1864 W PackageManager: 	at java.lang.Thread.run(Thread.java:1012)
+08-30 16:48:05.403   584   693 I RoleService: Granting default roles...
+08-30 16:48:05.413  1085  1320 D ImsResolver: maybeAddedImsService, packageName: net.joltlang.raylibgallery
+08-30 16:48:05.415  1520  1864 I AiAiEcho: EchoSearch: WidgetFetcherImpl is initialized with [33] widgets [reason=package added for userId: 0]
+08-30 16:48:05.435   584  1064 W Role    : Default holder doesn't have required signing certificate: com.google.android.retaildemo:6547c73dee150c103980bfdffe55cc9a011d785dd694a5f99afd8205bcaf1f80
+08-30 16:48:05.437   584  1961 I ActivityManager: Force stopping net.joltlang.raylibgallery appid=10243 user=0: from pid 20560
+08-30 16:48:05.438   584  1064 E RoleControllerServiceImpl: Default/fallback role holder package doesn't qualify for the role, package: com.google.android.gms.supervision, role: android.app.role.SYSTEM_SUPERVISION
+08-30 16:48:05.442   584  1961 I AppsFilter: interaction: PackageSetting{f09e401 net.joltlang.raylibjoltprobe/10231} -> PackageSetting{47492a6 net.joltlang.raylibgallery/10243} BLOCKED
+08-30 16:48:05.443   584  1961 I AppsFilter: interaction: PackageSetting{cb534e7 com.android.microdroid.empty_payload/10199} -> PackageSetting{47492a6 net.joltlang.raylibgallery/10243} BLOCKED
+08-30 16:48:05.443   584  1961 I AppsFilter: interaction: PackageSetting{f01894 net.joltlang.raylibframeprobe/10233} -> PackageSetting{47492a6 net.joltlang.raylibgallery/10243} BLOCKED
+08-30 16:48:05.443   584  1961 I AppsFilter: interaction: PackageSetting{42fbf3d net.joltlang.raylibloopprobe/10234} -> PackageSetting{47492a6 net.joltlang.raylibgallery/10243} BLOCKED
+08-30 16:48:05.443   584  1961 I AppsFilter: interaction: PackageSetting{ac73332 net.joltlang.androidpoc.abiprobe/10229} -> PackageSetting{47492a6 net.joltlang.raylibgallery/10243} BLOCKED
+08-30 16:48:05.443   584  1961 I AppsFilter: interaction: PackageSetting{3163883 net.joltlang.raylibprobe/10230} -> PackageSetting{47492a6 net.joltlang.raylibgallery/10243} BLOCKED
+08-30 16:48:05.443   584  1961 I AppsFilter: interaction: PackageSetting{e002a00 net.joltlang.raylibtopologyprobe/10232} -> PackageSetting{47492a6 net.joltlang.raylibgallery/10243} BLOCKED
+08-30 16:48:05.449  1085  1085 D CarrierSvcBindHelper: onHandleForceStop: [net.joltlang.raylibgallery]
+08-30 16:48:05.451  1085  1085 D CarrierSvcBindHelper: No carrier app for: 0
+08-30 16:48:05.459   584  1064 W Role    : Default holder doesn't have required signing certificate: com.google.android.apps.work.clouddpc:23962F4B43B9857638EA66F4D419518EAE282491ACDA4B94707BD59003C45E58
+08-30 16:48:05.471   584   891 I AppWidgetServiceImpl: Received broadcast: android.intent.action.PACKAGE_RESTARTED on user 0
+08-30 16:48:05.471   584   891 I AppWidgetServiceImpl: Updating package stopped masked state for uid 10243 package net.joltlang.raylibgallery isStopped true
+08-30 16:48:05.505  1257  1257 D StatsLog: LAUNCHER_ALLAPPS_COUNT
+08-30 16:48:05.520   584  1028 W ActivityTaskManager: callingPackage for (uid=2000, pid=20565) has no WPC
+08-30 16:48:05.523   584  1028 D CompatChangeReporter: Compat change id reported: 151861875; UID 10243; state: ENABLED
+08-30 16:48:05.523   584  1028 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_USER_ASPECT_RATIO_OVERRIDE
+08-30 16:48:05.524   584  1028 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_USER_ASPECT_RATIO_FULLSCREEN_OVERRIDE
+08-30 16:48:05.524   451   475 W TransactionTracing: Could not find layer id 3637
+08-30 16:48:05.524   451   475 W TransactionTracing: Could not find layer id 3636
+08-30 16:48:05.524   451   475 W TransactionTracing: Could not find layer id 3636
+08-30 16:48:05.525   584  1028 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_ORIENTATION_OVERRIDE
+08-30 16:48:05.525   584  1028 I incfs-mounts: [incfs] Loaded incremental-fs mount info: 1 instances, 2 mount points
+08-30 16:48:05.526   584  1028 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10243, packageName = null, attributionTag = null, token = android.os.Binder@6b5b2fd, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+08-30 16:48:05.531   584  1028 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_RESIZEABLE_ACTIVITY_OVERRIDES
+08-30 16:48:05.533   584  1028 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_MIN_ASPECT_RATIO_OVERRIDE
+08-30 16:48:05.554   584  1028 V SplashScreenExceptionList: SplashScreen checking exception for package net.joltlang.raylibgallery (target sdk:35) -> false
+08-30 16:48:05.556   941  1024 I incfs-mounts: [incfs] Loaded incremental-fs mount info: 1 instances, 2 mount points
+08-30 16:48:05.560   584  1022 D CompatChangeReporter: Compat change id reported: 309578419; UID 10243; state: ENABLED
+08-30 16:48:05.561  1385 19859 I Icing   : IndexChimeraService.getServiceInterface callingPackage=com.google.android.gms componentName=null serviceId=30
+08-30 16:48:05.567   941   978 V WindowManagerShell: Transition requested (#1621): android.os.BinderProxy@1938594 TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=154 displayId=0 isRunning=true baseIntent=Intent { flg=0x10000000 cmp=net.joltlang.raylibgallery/android.app.NativeActivity } baseActivity=ComponentInfo{net.joltlang.raylibgallery/android.app.NativeActivity} topActivity=ComponentInfo{net.joltlang.raylibgallery/android.app.NativeActivity} origActivity=null realActivity=ComponentInfo{net.joltlang.raylibgallery/android.app.NativeActivity} numActivities=1 lastActiveTime=104904488 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@2fb283d} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 128 - 0, 0) topActivityInfo=ActivityInfo{760e832 android.app.NativeActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=false isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=false appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= falseisLetterboxEducationEnabled= true isLetterboxDoubleTapEnabled= false topActivityEligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=1080 topActivityLetterboxHeight=2400 isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false cameraCompatTaskInfo=CameraCompatTaskInfo { cameraCompatControlState=hidden freeformCameraCompatMode=inactive}}}, pipTask = null, remoteTransition = null, displayChange = null, flags = 0, debugId = 1621 }
+08-30 16:48:05.570   584  1028 I ActivityTaskManager: START u0 {flg=0x10000000 cmp=net.joltlang.raylibgallery/android.app.NativeActivity} with LAUNCH_MULTIPLE from uid 2000 (BAL_ALLOW_PERMISSION) result code=0
+08-30 16:48:05.585   941  1026 D SplashScreenView: Build android.window.SplashScreenView{c094b8a V.E...... ......ID 0,0-0,0}
+08-30 16:48:05.585   941  1026 D SplashScreenView: Icon: view: android.widget.ImageView{bb565fb V.ED..... ......I. 0,0-0,0 #1020504 android:id/splashscreen_icon_view} drawable: com.android.wm.shell.startingsurface.SplashscreenIconDrawableFactory$ImmobileIconDrawable@c711618 size: 420
+08-30 16:48:05.585   941  1026 D SplashScreenView: Branding: view: android.view.View{f71e871 G.ED..... ......I. 0,0-0,0 #1020503 android:id/splashscreen_branding_view} drawable: null size w: 0 h: 0
+08-30 16:48:05.594   584  1022 D CoreBackPreview: Window{77ab729 u0 Splash Screen net.joltlang.raylibgallery}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@151e04f, mPriority=0, mIsAnimationCallback=false}
+08-30 16:48:05.609   584   608 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10243, packageName = null, attributionTag = null, token = android.os.Binder@6b5b2fd, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+08-30 16:48:05.611   584  1064 E RoleControllerServiceImpl: Default/fallback role holder package doesn't qualify for the role, package: com.google.android.gms, role: android.app.role.WALLET
+08-30 16:48:05.626   584  1064 E RoleControllerServiceImpl: Default/fallback role holder package doesn't qualify for the role, package: com.google.android.devicelockcontroller, role: android.app.role.SYSTEM_FINANCED_DEVICE_CONTROLLER
+08-30 16:48:05.650   451   451 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+08-30 16:48:05.660   584   608 W ActivityManager: Slow operation: 52ms so far, now at startProcess: done creating new process record
+08-30 16:48:05.661   584   608 W ActivityManager: Slow operation: 52ms so far, now at startProcess: stepping in to startProcess
+08-30 16:48:05.661   584   608 W ActivityManager: Slow operation: 52ms so far, now at startProcess: done starting proc!
+08-30 16:48:05.675  1257  1257 W SplitSelectStateCtor: Missing session instanceIds
+08-30 16:48:05.675  1257  1257 D StatsLog: LAUNCHER_SPLIT_SELECTION_EXIT_INTERRUPTED
+08-30 16:48:05.685   584  2000 I AppsFilter: interaction: PackageSetting{f09e401 net.joltlang.raylibjoltprobe/10231} -> PackageSetting{65b6186 net.joltlang.raylibgallery/10243} BLOCKED
+08-30 16:48:05.685   584  2000 I AppsFilter: interaction: PackageSetting{cb534e7 com.android.microdroid.empty_payload/10199} -> PackageSetting{65b6186 net.joltlang.raylibgallery/10243} BLOCKED
+08-30 16:48:05.685   584  2000 I AppsFilter: interaction: PackageSetting{f01894 net.joltlang.raylibframeprobe/10233} -> PackageSetting{65b6186 net.joltlang.raylibgallery/10243} BLOCKED
+08-30 16:48:05.685   584  2000 I AppsFilter: interaction: PackageSetting{42fbf3d net.joltlang.raylibloopprobe/10234} -> PackageSetting{65b6186 net.joltlang.raylibgallery/10243} BLOCKED
+08-30 16:48:05.685   584  2000 I AppsFilter: interaction: PackageSetting{ac73332 net.joltlang.androidpoc.abiprobe/10229} -> PackageSetting{65b6186 net.joltlang.raylibgallery/10243} BLOCKED
+08-30 16:48:05.685   584  2000 I AppsFilter: interaction: PackageSetting{3163883 net.joltlang.raylibprobe/10230} -> PackageSetting{65b6186 net.joltlang.raylibgallery/10243} BLOCKED
+08-30 16:48:05.685   584  2000 I AppsFilter: interaction: PackageSetting{e002a00 net.joltlang.raylibtopologyprobe/10232} -> PackageSetting{65b6186 net.joltlang.raylibgallery/10243} BLOCKED
+08-30 16:48:05.689   584   891 I AppWidgetServiceImpl: Received broadcast: android.intent.action.PACKAGE_UNSTOPPED on user 0
+08-30 16:48:05.689   584   891 I AppWidgetServiceImpl: Updating package stopped masked state for uid 10243 package net.joltlang.raylibgallery isStopped false
+08-30 16:48:05.714   386   386 D Zygote  : Forked child process 20569
+08-30 16:48:05.717   584   618 W ActivityManager: Slow operation: 56ms so far, now at startProcess: returned from zygote!
+08-30 16:48:05.722   941   941 D ControlsListingControllerImpl: ServiceConfig reloaded, count: 0
+08-30 16:48:05.723   941   978 D WindowManagerShell: setLauncherKeepClearAreaHeight: visible=false, height=527
+08-30 16:48:05.724   941   941 D ControlsListingControllerImpl: ServiceConfig reloaded, count: 0
+08-30 16:48:05.726  1257  1257 I TopTaskTracker: onTaskMovedToFront: (moved taskInfo to front) taskId=154, baseIntent=Intent { flg=0x10000000 cmp=net.joltlang.raylibgallery/android.app.NativeActivity }
+08-30 16:48:05.741 20569 20569 I g.raylibgallery: Using CollectorTypeCMC GC.
+08-30 16:48:05.742 20569 20569 W g.raylibgallery: Unexpected CPU variant for x86: x86_64.
+08-30 16:48:05.742 20569 20569 W g.raylibgallery: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, default
+08-30 16:48:05.746  1546  1546 I GsaVoiceInteractionSrv: (REDACTED) O received %s
+08-30 16:48:05.750   941  2609 V WindowManagerShell: onTransitionReady(transaction=2508260928935)
+08-30 16:48:05.756   584   618 W ActivityManager: Slow operation: 95ms so far, now at startProcess: done updating battery stats
+08-30 16:48:05.756   584   618 W ActivityManager: Slow operation: 95ms so far, now at startProcess: building log message
+08-30 16:48:05.756   584   618 I ActivityManager: Start proc 20569:net.joltlang.raylibgallery/u0a243 for next-top-activity {net.joltlang.raylibgallery/android.app.NativeActivity}
+08-30 16:48:05.756   584   618 W ActivityManager: Slow operation: 95ms so far, now at startProcess: starting to update pids map
+08-30 16:48:05.757   941   978 V WindowManagerShell: onTransitionReady (#1621) android.os.BinderProxy@1938594: {id=1621 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{android.window.IWindowContainerToken$Stub$Proxy@c53ab3a} m=OPEN f=NONE leash=Surface(name=Task=154)/@0x38559cf sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0 taskParent=-1},{WCT{android.window.IWindowContainerToken$Stub$Proxy@6a7c3eb} m=TO_BACK f=SHOW_WALLPAPER leash=Surface(name=Task=1)/@0x63e7f5c sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0 taskParent=-1}]}
+08-30 16:48:05.757   941   978 V WindowManagerShell: Playing animation for (#1621) android.os.BinderProxy@1938594@0
+08-30 16:48:05.757   941   978 V WindowManagerShell:  try handler com.android.wm.shell.transition.DefaultMixedHandler@ec31604
+08-30 16:48:05.757   941   978 V WindowManagerShell:  try handler com.android.wm.shell.keyguard.KeyguardTransitionHandler@4ddc7ed
+08-30 16:48:05.757   941   978 V WindowManagerShell:  try handler com.android.wm.shell.pip.PipTransition@3a68622
+08-30 16:48:05.757   941   978 V WindowManagerShell:  try handler com.android.wm.shell.activityembedding.ActivityEmbeddingController@b11a8b3
+08-30 16:48:05.757   941   978 V WindowManagerShell:  try handler com.android.wm.shell.recents.RecentsTransitionHandler@55d8e70
+08-30 16:48:05.757   941   978 V ShellRecents: RecentsTransitionHandler.startAnimation: no controller found
+08-30 16:48:05.757   941   978 V WindowManagerShell:  try handler com.android.wm.shell.splitscreen.StageCoordinator@4dbf5e9
+08-30 16:48:05.757   941   978 V WindowManagerShell:  try handler com.android.wm.shell.transition.RemoteTransitionHandler@1cae26e
+08-30 16:48:05.757   941   978 V WindowManagerShell: Transition doesn't have explicit remote, search filters for match for {id=1621 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{android.window.IWindowContainerToken$Stub$Proxy@c53ab3a} m=OPEN f=NONE leash=Surface(name=Task=154)/@0x38559cf sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0 taskParent=-1},{WCT{android.window.IWindowContainerToken$Stub$Proxy@6a7c3eb} m=TO_BACK f=SHOW_WALLPAPER leash=Surface(name=Task=1)/@0x63e7f5c sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0 taskParent=-1}]}
+08-30 16:48:05.757   941   978 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=undefined independent=true modes=[OPEN,TO_FRONT] flags=IN_TASK_WITH_EMBEDDED_ACTIVITY mustBeTask=false order=ANY topActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity} launchCookie=null},{atype=undefined independent=true modes=[CLOSE,TO_BACK] flags=IN_TASK_WITH_EMBEDDED_ACTIVITY mustBeTask=false order=ANY topActivity=null launchCookie=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@bce91a9, appThread = android.app.IApplicationThread$Stub$Proxy@90bb32e, debugName = OverlaySwipeBack }}
+08-30 16:48:05.757   941   978 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=dream independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null},{atype=home independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@97507a5, appThread = android.app.IApplicationThread$Stub$Proxy@dc6b77a, debugName = LauncherToDream }}
+08-30 16:48:05.757   941   978 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x100 checks=[{atype=home independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=TOP topActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity} launchCookie=null},{atype=standard independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@bdf7b2b, appThread = android.app.IApplicationThread$Stub$Proxy@3f0bb88, debugName = QuickstepLaunchHome }}
+08-30 16:48:05.757   941   978 V WindowManagerShell:  Delegate animation for (#1621) to null
+08-30 16:48:05.757   941   978 V WindowManagerShell:  try handler com.android.wm.shell.transition.DefaultTransitionHandler@9d37921
+08-30 16:48:05.758   941   978 V WindowManagerShell: start default transition animation, info = {id=1621 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{android.window.IWindowContainerToken$Stub$Proxy@c53ab3a} m=OPEN f=NONE leash=Surface(name=Task=154)/@0x38559cf sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0 taskParent=-1},{WCT{android.window.IWindowContainerToken$Stub$Proxy@6a7c3eb} m=TO_BACK f=SHOW_WALLPAPER leash=Surface(name=Task=1)/@0x63e7f5c sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0 taskParent=-1}]}
+08-30 16:48:05.758   941   978 V WindowManagerShell: loadAnimation: anim=android.view.animation.AnimationSet@b3ccfe1 animAttr=0x13 type=OPEN isEntrance=false
+08-30 16:48:05.758  1385 20201 I Icing   : Usage reports ok 0, Failed Usage reports 0, indexed 0, rejected 0
+08-30 16:48:05.758   941   978 V WindowManagerShell: loadAnimation: anim=android.view.animation.AnimationSet@dd5891d animAttr=0x12 type=OPEN isEntrance=true
+08-30 16:48:05.799   941   978 V WindowManagerShell:  animated by com.android.wm.shell.transition.DefaultTransitionHandler@9d37921
+08-30 16:48:05.799   941   978 W Looper  : Slow dispatch took 42ms wmshell.main h=android.os.Handler c=com.android.wm.shell.transition.Transitions$TransitionPlayerImpl$$ExternalSyntheticLambda0@2d86560 m=0
+08-30 16:48:05.814 20569 20569 I berberis: Initialized Berberis (aarch64), version 0.2.3
+08-30 16:48:05.821   584   605 V WindowManager: Sent Transition (#1621) createdAt=08-30 16:48:05.538 via request=TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=154 displayId=0 isRunning=true baseIntent=Intent { flg=0x10000000 cmp=net.joltlang.raylibgallery/android.app.NativeActivity } baseActivity=ComponentInfo{net.joltlang.raylibgallery/android.app.NativeActivity} topActivity=ComponentInfo{net.joltlang.raylibgallery/android.app.NativeActivity} origActivity=null realActivity=ComponentInfo{net.joltlang.raylibgallery/android.app.NativeActivity} numActivities=1 lastActiveTime=104904488 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{RemoteToken{3917b3f Task{ba4380 #154 type=standard A=10243:net.joltlang.raylibgallery}}} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 128 - 0, 0) topActivityInfo=ActivityInfo{a38dc0c android.app.NativeActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=false isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=false appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= falseisLetterboxEducationEnabled= true isLetterboxDoubleTapEnabled= false topActivityEligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=1080 topActivityLetterboxHeight=2400 isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false cameraCompatTaskInfo=CameraCompatTaskInfo { cameraCompatControlState=hidden freeformCameraCompatMode=inactive}}}, pipTask = null, remoteTransition = null, displayChange = null, flags = 0, debugId = 1621 }
+08-30 16:48:05.833   584   605 V WindowManager:     startWCT=WindowContainerTransaction { changes = {} hops = [] errorCallbackToken=null taskFragmentOrganizer=null }
+08-30 16:48:05.838   584   605 V WindowManager:     info={id=1621 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[
+08-30 16:48:05.838   584   605 V WindowManager:         {WCT{RemoteToken{3917b3f Task{ba4380 #154 type=standard A=10243:net.joltlang.raylibgallery}}} m=OPEN f=NONE leash=Surface(name=Task=154)/@0x1d2bc99 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0 taskParent=-1},
+08-30 16:48:05.838   584   605 V WindowManager:         {WCT{RemoteToken{f73b25d Task{874293c #1 type=home}}} m=TO_BACK f=SHOW_WALLPAPER leash=Surface(name=Task=1)/@0x5703194 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0 taskParent=-1}
+08-30 16:48:05.838   584   605 V WindowManager:     ]}
+08-30 16:48:05.844   584   618 W ActivityManager: Slow operation: 168ms so far, now at startProcess: done updating pids map
+08-30 16:48:05.858  1385 20201 I Icing   : Usage reports ok 0, Failed Usage reports 0, indexed 0, rejected 0
+08-30 16:48:05.888   584  1761 W UserManagerService: Requested status bar icon for non-badged user 0
+08-30 16:48:05.894  1520  1886 I AiAiTextClassifier: [VisualCortexAdapter]: provideRegistration: Registered Prominent Screen Entities for updates.
+08-30 16:48:05.896  1520  1886 I AiAiTextClassifier: [VisualCortexAdapter]: provideRegistration: Registered Prominent Screen Entities for updates.
+08-30 16:48:05.897 20569 20569 E g.raylibgallery: Not starting debugger since process cannot load the jdwp agent.
+08-30 16:48:05.898  1520  1886 I AiAiTextClassifier: [VisualCortexAdapter]: provideRegistration: Registered Prominent Screen Entities for updates.
+08-30 16:48:05.929 23823 20519 I Fitness : OnPackageChangedOperation got intent: Intent { act=android.intent.action.PACKAGE_CHANGED dat=package: flg=0x5000010 pkg=com.google.android.gms cmp=com.google.android.gms/.chimera.PersistentIntentOperationService (has extras) } [CONTEXT service_id=17 ]
+08-30 16:48:05.931   941   992 W Looper  : Slow dispatch took 30ms wmshell.anim h=android.view.Choreographer$FrameHandler c=android.view.Choreographer$FrameDisplayEventReceiver@74fb7cd m=0
+08-30 16:48:05.933   380   380 I netd    : tetherGetStats() -> {[]} <0.43ms>
+08-30 16:48:05.967  1385 20542 I Auth    : [SupervisedAccountIntentOperation] onHandleIntent(): android.intent.action.PACKAGE_ADDED
+08-30 16:48:05.967  1385 20542 I Auth    : [SupervisedAccountIntentOperation] This operation is disabled
+08-30 16:48:05.967  1385 20542 V Backup  : [PhotosPackagedAddedIO] Flag is disabled.
+08-30 16:48:05.968  1385 20539 I Blockstore: [DataStoreImpl] Clearing Blockstore Data for package net.joltlang.raylibgallery [CONTEXT service_id=258 ]
+08-30 16:48:05.968  1385 20539 I Blockstore: [DataStoreImpl] Keyless data not found or its IsLastInstallationData = false. [CONTEXT service_id=258 ]
+08-30 16:48:05.971 20569 20569 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+08-30 16:48:05.973  1385 20547 I Dck     : disableDckSupport: false [CONTEXT service_id=289 ]
+08-30 16:48:05.973  1385 20547 I Dck     : doesDeviceHaveSupportedWirelessCapabilities: wccSysProp:0, wccMendel:3, deviceWccOverride:false [CONTEXT service_id=289 ]
+08-30 16:48:05.973  1385 20547 I Dck     : Dck module condition - hasWccSupport: false [CONTEXT service_id=289 ]
+08-30 16:48:05.973  1385 20547 I Dck     : Dck module condition - downloadAllowed: false [CONTEXT service_id=289 ]
+08-30 16:48:05.973  1385 20547 W Dck     : Dck module not eligible for asynchronous downloading [CONTEXT service_id=289 ]
+08-30 16:48:05.976   584   597 I system_server: Background concurrent mark compact GC freed 18MB AllocSpace bytes, 48(1188KB) LOS objects, 45% free, 29MB/53MB, paused 898us,18.804ms total 769.132ms
+08-30 16:48:05.978   584   599 W system_server: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/LatinIMEGooglePrebuilt/LatinIMEGooglePrebuilt.apk' with 1 weak references
+08-30 16:48:05.979   584   599 W system_server: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/GoogleTTS/GoogleTTS.apk' with 1 weak references
+08-30 16:48:05.980   584   599 W system_server: ApkAssets: Deleting an ApkAssets object '<empty> and /system_ext/app/AccessibilityMenu/AccessibilityMenu.apk' with 1 weak references
+08-30 16:48:05.980   584   599 W system_server: ApkAssets: Deleting an ApkAssets object '/product/overlay/AccessibilityMenu__sdk_gphone64_x86_64__auto_generated_rro_product.apk' with 1 weak references
+08-30 16:48:05.980   584   599 W system_server: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/talkback/talkback.apk' with 1 weak references
+08-30 16:48:05.981   584   599 W system_server: ApkAssets: Deleting an ApkAssets object '/vendor/overlay/EmulatorTalkBackOverlay/EmulatorTalkBackOverlay.apk' with 1 weak references
+08-30 16:48:05.981   584   599 W system_server: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/InputDevices/InputDevices.apk' with 1 weak references
+08-30 16:48:05.982   584   599 W system_server: ApkAssets: Deleting an ApkAssets object '<empty> and /product/priv-app/PrebuiltGmsCore/PrebuiltGmsCore.apk' with 1 weak references
+08-30 16:48:05.983   584   599 W system_server: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/PrebuiltGmail/PrebuiltGmail.apk' with 1 weak references
+08-30 16:48:05.983   584   599 W system_server: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/Drive/Drive.apk' with 1 weak references
+08-30 16:48:05.984   584   599 W system_server: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/CalendarGooglePrebuilt/CalendarGooglePrebuilt.apk' with 1 weak references
+08-30 16:48:05.984   584   599 W system_server: ApkAssets: Deleting an ApkAssets object '<empty> and /product/priv-app/Velvet/Velvet.apk' with 1 weak references
+08-30 16:48:06.004  1257  1711 D EGL_emulation: app_time_stats: avg=297.66ms min=4.59ms max=1337.36ms count=6
+08-30 16:48:06.037 20569 20569 W System  : ClassLoader referenced unknown path:
+08-30 16:48:06.038 20569 20569 D nativeloader: Configuring clns-7 for other apk . target_sdk_version=35, uses_libraries=, library_path=/data/app/~~IvJcxgCdet5ePnekh-nJtg==/net.joltlang.raylibgallery-5QSqbBULajAoYnWsaxfYMg==/lib/arm64:/data/app/~~IvJcxgCdet5ePnekh-nJtg==/net.joltlang.raylibgallery-5QSqbBULajAoYnWsaxfYMg==/base.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand:/data/user/0/net.joltlang.raylibgallery
+08-30 16:48:06.059 20569 20569 V GraphicsEnvironment: Currently set values for:
+08-30 16:48:06.060 20569 20569 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+08-30 16:48:06.060 20569 20569 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+08-30 16:48:06.060 20569 20569 V GraphicsEnvironment: Global.Settings values are invalid: number of packages: 0, number of values: 0
+08-30 16:48:06.060 20569 20569 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+08-30 16:48:06.066 20569 20569 D CompatChangeReporter: Compat change id reported: 202956589; UID 10243; state: ENABLED
+08-30 16:48:06.071  1257  1711 D EGL_emulation: app_time_stats: avg=48.51ms min=11.28ms max=143.73ms count=19
+08-30 16:48:06.074 23823 20514 I Fitness : FitCleanupIntentOperation received Intent android.intent.action.PACKAGE_CHANGED [CONTEXT service_id=17 ]
+08-30 16:48:06.080   584  1949 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ENABLE_FAKE_FOCUS
+08-30 16:48:06.081   584  1949 D CompatChangeReporter: Compat change id reported: 324203798; UID 10243; state: ENABLED
+08-30 16:48:06.081 23823 20522 I FontLog : Package net.joltlang.raylibgallery has no metadata [CONTEXT service_id=132 ]
+08-30 16:48:06.115   941   992 W Looper  : Slow delivery took 30ms wmshell.anim h=android.view.Choreographer$FrameHandler c=android.view.Choreographer$FrameDisplayEventReceiver@74fb7cd m=0
+08-30 16:48:06.116   941   978 V WindowManagerShell: Transition animation finished (aborted=false), notifying core (#1621) android.os.BinderProxy@1938594@0
+08-30 16:48:06.120 23823 20520 W GCM     : Unexpected forwarded intent: Intent { act=android.intent.action.PACKAGE_ADDED dat=package: flg=0x4000010 pkg=com.google.android.gms cmp=com.google.android.gms/.chimera.PersistentIntentOperationService (has extras) }
+08-30 16:48:06.124   584   605 V WindowManager: Finish Transition (#1621): created at 08-30 16:48:05.538 collect-started=0.019ms request-sent=22.826ms started=49.702ms ready=190.949ms sent=209.077ms finished=584.409ms
+08-30 16:48:06.126  1257  1257 D VRI[NexusLauncherActivity]: visibilityChanged oldVisibility=true newVisibility=false
+08-30 16:48:06.126 23823 20519 W NetworkScheduler: Unexpected forwarded intent: Intent { act=android.intent.action.PACKAGE_ADDED dat=package: flg=0x4000010 pkg=com.google.android.gms cmp=com.google.android.gms/.chimera.PersistentIntentOperationService (has extras) }
+08-30 16:48:06.127   941   978 V WindowManagerShell: Track 0 became idle
+08-30 16:48:06.127   941   978 V WindowManagerShell: All active transition animations finished
+08-30 16:48:06.131 23823 20522 I Fitness : OnPackageChangedOperation got intent: Intent { act=android.intent.action.PACKAGE_CHANGED dat=package: flg=0x5000010 pkg=com.google.android.gms cmp=com.google.android.gms/.chimera.PersistentIntentOperationService (has extras) } [CONTEXT service_id=17 ]
+08-30 16:48:06.136  1257  1257 D NexusLauncherModelDelegate: notifySmartspaceEvent: SmartspaceTargetEvent{mSmartspaceTarget=null, mSmartspaceActionId='null', mEventType=7}
+08-30 16:48:06.140   584  2014 W UserManagerService: Requested status bar icon for non-badged user 0
+08-30 16:48:06.143   584   682 D IntervalStats: Unable to parse usage stats packages: [228, 251]
+08-30 16:48:06.143   584   682 D IntervalStats: Unable to parse event packages: [251]
+08-30 16:48:06.143   584  2014 W UserManagerService: Requested status bar icon for non-badged user 0
+08-30 16:48:06.145 23823 20530 I Fitness : FitCleanupIntentOperation received Intent android.intent.action.PACKAGE_CHANGED [CONTEXT service_id=17 ]
+08-30 16:48:06.177  9804  9812 I .apps.wellbeing: Background concurrent mark compact GC freed 3733KB AllocSpace bytes, 0(0B) LOS objects, 49% free, 5462KB/10MB, paused 262us,5.026ms total 65.972ms
+08-30 16:48:06.178 20569 20569 D CompatChangeReporter: Compat change id reported: 279646685; UID 10243; state: ENABLED
+08-30 16:48:06.178  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/YouTube/YouTube.apk' with 1 weak references
+08-30 16:48:06.179  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/overlay/DisplayCutoutEmulationCorner/DisplayCutoutEmulationCornerOverlay.apk' with 1 weak references
+08-30 16:48:06.180  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /apex/com.android.extservices/priv-app/GoogleExtServices@350820300/GoogleExtServices.apk' with 1 weak references
+08-30 16:48:06.180 20569 20569 D CompatChangeReporter: Compat change id reported: 309578419; UID 10243; state: ENABLED
+08-30 16:48:06.180  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/overlay/DisplayCutoutEmulationDouble/DisplayCutoutEmulationDoubleOverlay.apk' with 1 weak references
+08-30 16:48:06.181  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/TelephonyProvider/TelephonyProvider.apk' with 1 weak references
+08-30 16:48:06.181  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '/product/overlay/TelephonyProvider__sdk_gphone64_x86_64__auto_generated_rro_product.apk' with 1 weak references
+08-30 16:48:06.181  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/DynamicSystemInstallationService/DynamicSystemInstallationService.apk' with 1 weak references
+08-30 16:48:06.181  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/priv-app/Velvet/Velvet.apk' with 1 weak references
+08-30 16:48:06.182  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/CalendarProvider/CalendarProvider.apk' with 1 weak references
+08-30 16:48:06.182  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/priv-app/GoogleOneTimeInitializer/GoogleOneTimeInitializer.apk' with 1 weak references
+08-30 16:48:06.183  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/app/GoogleExtShared/GoogleExtShared.apk' with 1 weak references
+08-30 16:48:06.183  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/ExternalStorageProvider/ExternalStorageProvider.apk' with 1 weak references
+08-30 16:48:06.183  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/app/HTMLViewer/HTMLViewer.apk' with 1 weak references
+08-30 16:48:06.184  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/app/CompanionDeviceManager/CompanionDeviceManager.apk' with 1 weak references
+08-30 16:48:06.184  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/DownloadProvider/DownloadProvider.apk' with 1 weak references
+08-30 16:48:06.184  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/priv-app/PrebuiltBugle/PrebuiltBugle.apk' with 1 weak references
+08-30 16:48:06.185  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/SoundPickerPrebuilt/SoundPickerPrebuilt.apk' with 1 weak references
+08-30 16:48:06.185  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /apex/com.android.mediaprovider/priv-app/MediaProviderGoogle@350820300/MediaProviderGoogle.apk' with 1 weak references
+08-30 16:48:06.185  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/priv-app/SafetyHubPrebuilt/SafetyHubPrebuilt.apk' with 1 weak references
+08-30 16:48:06.185  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/DownloadProviderUi/DownloadProviderUi.apk' with 1 weak references
+08-30 16:48:06.185  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /apex/com.android.wifi/app/OsuLoginGoogle@350820300/OsuLoginGoogle.apk' with 1 weak references
+08-30 16:48:06.186  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/app/PacProcessor/PacProcessor.apk' with 1 weak references
+08-30 16:48:06.186  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/app/SimAppDialog/SimAppDialog.apk' with 1 weak references
+08-30 16:48:06.186  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '/product/overlay/SimAppDialog__sdk_gphone64_x86_64__auto_generated_rro_product.apk' with 1 weak references
+08-30 16:48:06.186  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /apex/com.android.adservices/priv-app/AdServicesApkGoogle@350820260/AdServicesApkGoogle.apk' with 1 weak references
+08-30 16:48:06.186 20569 20569 D CompatChangeReporter: Compat change id reported: 312399441; UID 10243; state: ENABLED
+08-30 16:48:06.187  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/overlay/DisplayCutoutEmulationHole/DisplayCutoutEmulationHoleOverlay.apk' with 1 weak references
+08-30 16:48:06.187  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/overlay/DisplayCutoutEmulationTall/DisplayCutoutEmulationTallOverlay.apk' with 1 weak references
+08-30 16:48:06.187  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/app/CertInstaller/CertInstaller.apk' with 1 weak references
+08-30 16:48:06.188  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/talkback/talkback.apk' with 1 weak references
+08-30 16:48:06.188  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '/vendor/overlay/EmulatorTalkBackOverlay/EmulatorTalkBackOverlay.apk' with 1 weak references
+08-30 16:48:06.191  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/overlay/NavigationBarMode3Button/NavigationBarMode3ButtonOverlay.apk' with 1 weak references
+08-30 16:48:06.191  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/Camera2/Camera2.apk' with 1 weak references
+08-30 16:48:06.191  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/app/EasterEgg/EasterEgg.apk' with 1 weak references
+08-30 16:48:06.191  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/MtpService/MtpService.apk' with 1 weak references
+08-30 16:48:06.191  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /apex/com.android.nfcservices/priv-app/NfcNciApexGoogle@AE3A.240806.043/NfcNciApexGoogle.apk' with 1 weak references
+08-30 16:48:06.191  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/app/Stk/Stk.apk' with 1 weak references
+08-30 16:48:06.191  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/PrebuiltDeskClockGoogle/PrebuiltDeskClockGoogle.apk' with 1 weak references
+08-30 16:48:06.191  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/overlay/NavigationBarMode2Button/NavigationBarMode2ButtonOverlay.apk' with 1 weak references
+08-30 16:48:06.191  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/priv-app/DevicePersonalizationPrebuiltPixel2021-aiai_20240329.00_RC16/DevicePersonalizationPrebuiltPixel2021-aiai_20240329.00_RC16.apk' with 1 weak references
+08-30 16:48:06.191  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/PrebuiltGmail/PrebuiltGmail.apk' with 1 weak references
+08-30 16:48:06.192  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /apex/com.android.permission/priv-app/GooglePermissionController@350820360/GooglePermissionController.apk' with 1 weak references
+08-30 16:48:06.192  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '/product/overlay/GooglePermissionControllerOverlay.apk' with 1 weak references
+08-30 16:48:06.193  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /apex/com.android.btservices/app/BluetoothGoogle@342010060/BluetoothGoogle.apk' with 1 weak references
+08-30 16:48:06.193  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/SettingsProvider/SettingsProvider.apk' with 1 weak references
+08-30 16:48:06.193  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '/product/overlay/LargeScreenSettingsProviderOverlay.apk' with 1 weak references
+08-30 16:48:06.193  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '/product/overlay/SettingsProvider__sdk_gphone64_x86_64__auto_generated_rro_product.apk' with 1 weak references
+08-30 16:48:06.193  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/app/PrintSpooler/PrintSpooler.apk' with 1 weak references
+08-30 16:48:06.193  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/app/BasicDreams/BasicDreams.apk' with 1 weak references
+08-30 16:48:06.193  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/priv-app/DeviceIntelligenceNetworkPrebuilt-astrea_20240329.00_RC02/DeviceIntelligenceNetworkPrebuilt-astrea_20240329.00_RC02.apk' with 1 weak references
+08-30 16:48:06.193  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/InputDevices/InputDevices.apk' with 1 weak references
+08-30 16:48:06.193  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /apex/com.android.devicelock/priv-app/DeviceLockControllerGoogle@AE3A.240806.043/DeviceLockControllerGoogle.apk' with 1 weak references
+08-30 16:48:06.193  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/priv-app/GoogleDialer/GoogleDialer.apk' with 1 weak references
+08-30 16:48:06.194  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/BuiltInPrintService/BuiltInPrintService.apk' with 1 weak references
+08-30 16:48:06.194  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '/product/overlay/BuiltInPrintService__sdk_gphone64_x86_64__auto_generated_rro_product.apk' with 1 weak references
+08-30 16:48:06.194  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/app/CaptivePortalLoginGoogle/CaptivePortalLoginGoogle.apk' with 1 weak references
+08-30 16:48:06.195  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/MusicFX/MusicFX.apk' with 1 weak references
+08-30 16:48:06.195  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/Drive/Drive.apk' with 1 weak references
+08-30 16:48:06.197  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/Maps/Maps.apk' with 1 weak references
+08-30 16:48:06.197  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/ModuleMetadataGoogle/ModuleMetadataGoogle.apk' with 1 weak references
+08-30 16:48:06.197  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/overlay/DisplayCutoutEmulationEmu01/DisplayCutoutEmulationEmu01Overlay.apk' with 1 weak references
+08-30 16:48:06.197  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system_ext/priv-app/AvatarPickerGoogle/AvatarPickerGoogle.apk' with 1 weak references
+08-30 16:48:06.198  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/MarkupGoogle_v2/MarkupGoogle_v2.apk' with 1 weak references
+08-30 16:48:06.198  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/NetworkStackGoogle/NetworkStackGoogle.apk' with 1 weak references
+08-30 16:48:06.198  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /apex/com.android.rkpd/priv-app/rkpdapp.google@350820300/rkpdapp.google.apk' with 1 weak references
+08-30 16:48:06.199  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/GoogleContacts/GoogleContacts.apk' with 1 weak references
+08-30 16:48:06.200  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/Telecom/Telecom.apk' with 1 weak references
+08-30 16:48:06.200  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '/product/overlay/Telecom__sdk_gphone64_x86_64__auto_generated_rro_product.apk' with 1 weak references
+08-30 16:48:06.201  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/app/KeyChain/KeyChain.apk' with 1 weak references
+08-30 16:48:06.201  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /data/app/~~Nd02zGzfwjo_v483bth1qA==/com.android.chrome-xMoE_j1GKi6UvyiVBsntiQ==/Chrome.apk' with 1 weak references
+08-30 16:48:06.201  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /data/app/~~k99ALRGhrXiaFHgnxs76qw==/com.google.android.trichromelibrary_636771938-djoRiEuzwYQK_H_kCR1zIA==/TrichromeLibrary.apk' with 1 weak references
+08-30 16:48:06.201  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/GooglePackageInstaller/GooglePackageInstaller.apk' with 1 weak references
+08-30 16:48:06.201  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/PixelThemesStub/PixelThemesStub.apk' with 1 weak references
+08-30 16:48:06.202  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system_ext/priv-app/GoogleServicesFramework/GoogleServicesFramework.apk' with 1 weak references
+08-30 16:48:06.202  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/TagGoogle/TagGoogle.apk' with 1 weak references
+08-30 16:48:06.202  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/GoogleTTS/GoogleTTS.apk' with 1 weak references
+08-30 16:48:06.202  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/CallLogBackup/CallLogBackup.apk' with 1 weak references
+08-30 16:48:06.203  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/priv-app/PartnerSetupPrebuilt/PartnerSetupPrebuilt.apk' with 1 weak references
+08-30 16:48:06.203  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/app/CameraExtensionsProxy/CameraExtensionsProxy.apk' with 1 weak references
+08-30 16:48:06.203  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/NexusWallpapersStubPrebuilt2018/NexusWallpapersStubPrebuilt2018.apk' with 1 weak references
+08-30 16:48:06.203  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system_ext/priv-app/NexusLauncherRelease/NexusLauncherRelease.apk' with 1 weak references
+08-30 16:48:06.203  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/app/CarrierDefaultApp/CarrierDefaultApp.apk' with 1 weak references
+08-30 16:48:06.203  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/CredentialManager/CredentialManager.apk' with 1 weak references
+08-30 16:48:06.203  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/overlay/FontNotoSerifSource/FontNotoSerifSourceOverlay.apk' with 1 weak references
+08-30 16:48:06.203  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/DeviceAsWebcam/DeviceAsWebcam.apk' with 1 weak references
+08-30 16:48:06.203  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/ProxyHandler/ProxyHandler.apk' with 1 weak references
+08-30 16:48:06.203  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /apex/com.android.permission/priv-app/GoogleSafetyCenterResources@350820360/GoogleSafetyCenterResources.apk' with 1 weak references
+08-30 16:48:06.203  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/overlay/DisplayCutoutEmulationWaterfall/DisplayCutoutEmulationWaterfallOverlay.apk' with 1 weak references
+08-30 16:48:06.203  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/IntentResolver/IntentResolver.apk' with 1 weak references
+08-30 16:48:06.203  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/overlay/TransparentNavigationBar/TransparentNavigationBarOverlay.apk' with 1 weak references
+08-30 16:48:06.204  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/E2eeContactKeysProvider/E2eeContactKeysProvider.apk' with 1 weak references
+08-30 16:48:06.204  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /apex/com.android.tethering/priv-app/ServiceConnectivityResourcesGoogle@350820300/ServiceConnectivityResourcesGoogle.apk' with 1 weak references
+08-30 16:48:06.204  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '/vendor/overlay/goldfish_overlay_connectivity_google.apk' with 1 weak references
+08-30 16:48:06.204  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system_ext/priv-app/GoogleFeedback/GoogleFeedback.apk' with 1 weak references
+08-30 16:48:06.204  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/app/GooglePrintRecommendationService/GooglePrintRecommendationService.apk' with 1 weak references
+08-30 16:48:06.204  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/Photos/Photos.apk' with 1 weak references
+08-30 16:48:06.204  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/CalendarGooglePrebuilt/CalendarGooglePrebuilt.apk' with 1 weak references
+08-30 16:48:06.205  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/ManagedProvisioning/ManagedProvisioning.apk' with 1 weak references
+08-30 16:48:06.205  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/SoundPicker/SoundPicker.apk' with 1 weak references
+08-30 16:48:06.205  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/DocumentsUIGoogle/DocumentsUIGoogle.apk' with 1 weak references
+08-30 16:48:06.205  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/PrebuiltGoogleTelemetryTvp/PrebuiltGoogleTelemetryTvp.apk' with 1 weak references
+08-30 16:48:06.205  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system_ext/priv-app/MultiDisplayProvider/MultiDisplayProvider.apk' with 1 weak references
+08-30 16:48:06.205  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/DeviceDiagnostics/DeviceDiagnostics.apk' with 1 weak references
+08-30 16:48:06.205  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '/product/overlay/DeviceDiagnostics__sdk_gphone64_x86_64__auto_generated_rro_product.apk' with 1 weak references
+08-30 16:48:06.237   584  1961 I ActivityManager: Background started FGS: Allowed [callingPackage: com.google.android.apps.wellbeing; callingUid: 10142; uidState: BTOP; uidBFSL: [BFSL]; intent: Intent { cmp=com.google.android.apps.wellbeing/com.google.apps.tiktok.concurrent.InternalForegroundService (has extras) }; code:BACKGROUND_ACTIVITY_PERMISSION; tempAllowListReason:<null>; targetSdkVersion:34; callerTargetSdkVersion:34; startForegroundCount:0; bindFromPackage:null: isBindService:false]
+08-30 16:48:06.241   584  1961 W ForegroundServiceTypeLoggerModule: Foreground service start for UID: 10142 does not have any types
+08-30 16:48:06.247   584  1961 W ForegroundServiceTypeLoggerModule: FGS stop call for: 10142 has no types!
+08-30 16:48:06.270   941   941 D TileServices: Couldn't find tile for ComponentInfo{com.google.android.apps.wellbeing/com.google.android.apps.wellbeing.focusmode.quicksettings.FocusModeTileService}(0)
+08-30 16:48:06.297 20569 20569 D nativeloader: Load /data/app/~~IvJcxgCdet5ePnekh-nJtg==/net.joltlang.raylibgallery-5QSqbBULajAoYnWsaxfYMg==/base.apk!/lib/arm64-v8a/libmain.so using ns clns-7 from class loader (caller=<unknown>): ok
+08-30 16:48:06.299 20569 20592 I jolt_raylib_gallery: enter main thread=20592 owner=20592
+08-30 16:48:06.302 20569 20592 I jolt_raylib_gallery: dlopen ok thread=20592 owner=20592
+08-30 16:48:06.296 20569 20569 W g.raylibgallery: type=1400 audit(0.0:5870): avc:  denied  { getattr } for  path="/dev/pmsg0" dev="tmpfs" ino=747 scontext=u:r:untrusted_app:s0:c243,c256,c512,c768 tcontext=u:object_r:pmsg_device:s0 tclass=chr_file permissive=0 app=net.joltlang.raylibgallery
+08-30 16:48:06.296 20569 20569 W g.raylibgallery: type=1400 audit(0.0:5871): avc:  denied  { getattr } for  path="/dev/pmsg0" dev="tmpfs" ino=747 scontext=u:r:untrusted_app:s0:c243,c256,c512,c768 tcontext=u:object_r:pmsg_device:s0 tclass=chr_file permissive=0 app=net.joltlang.raylibgallery
+08-30 16:48:06.296 20569 20569 W g.raylibgallery: type=1400 audit(0.0:5872): avc:  denied  { getattr } for  path="/dev/pmsg0" dev="tmpfs" ino=747 scontext=u:r:untrusted_app:s0:c243,c256,c512,c768 tcontext=u:object_r:pmsg_device:s0 tclass=chr_file permissive=0 app=net.joltlang.raylibgallery
+08-30 16:48:06.759  1385 20379 I Icing   : Indexing com.google.android.gms-internal.3p:MobileApplication from com.google.android.gms
+08-30 16:48:06.762  1385 20379 I Icing   : Indexing com.google.android.gms-apps from com.google.android.gms
+08-30 16:48:06.764  1385 20379 I Icing   : Indexing done com.google.android.gms-internal.3p:MobileApplication
+08-30 16:48:06.764  1385 20379 I Icing   : Indexing done com.google.android.gms-apps
+08-30 16:48:07.027  1385 20379 I Icing   : Indexing com.google.android.gms-apps from com.google.android.gms
+08-30 16:48:07.028  1385 20379 I Icing   : Indexing done com.google.android.gms-apps
+08-30 16:48:07.158  1385 20379 I Icing   : Indexing com.google.android.gms-internal.3p:MobileApplication from com.google.android.gms
+08-30 16:48:07.159  1385 20379 I Icing   : Indexing done com.google.android.gms-internal.3p:MobileApplication
+08-30 16:48:07.172  1385 20379 I Icing   : Indexing com.google.android.gms-internal.3p:MobileApplication from com.google.android.gms
+08-30 16:48:07.173  1385 20379 I Icing   : Indexing done com.google.android.gms-internal.3p:MobileApplication
+08-30 16:48:07.173  1385 20379 I Icing   : Indexing com.google.android.gms-apps from com.google.android.gms
+08-30 16:48:07.174  1385 20379 I Icing   : Indexing done com.google.android.gms-apps
+08-30 16:48:07.203  1385 20379 I Icing   : Indexing com.google.android.gms-apps from com.google.android.gms
+08-30 16:48:07.204  1385 20379 I Icing   : Indexing done com.google.android.gms-apps
+08-30 16:48:07.271  1385 20379 I Icing   : Indexing com.google.android.gms-internal.3p:MobileApplication from com.google.android.gms
+08-30 16:48:07.272  1385 20379 I Icing   : Indexing done com.google.android.gms-internal.3p:MobileApplication
+08-30 16:48:07.334   584   853 W BestClock: java.time.DateTimeException: Missing network time fix
+08-30 16:48:07.334   584   853 W BestClock: java.time.DateTimeException: Missing network time fix
+08-30 16:48:07.334   584   853 W BestClock: java.time.DateTimeException: Missing network time fix
+08-30 16:48:07.334   584   853 W BestClock: java.time.DateTimeException: Missing network time fix
+08-30 16:48:07.334   584   853 W BestClock: java.time.DateTimeException: Missing network time fix
+08-30 16:48:07.338   584   860 W IPCThreadState: Sending oneway calls to frozen process.
+08-30 16:48:07.339  3492  3537 I BugleRcsEngine: Connected state: [1], networkType: [WIFI] [CONTEXT thread_id=60 ]
+08-30 16:48:07.340  3492  3672 I BugleRcsEngine: handleMessage processing message:[NOTIFY_UPTIME_IGNORE_STATE_CHANGED] with [non-null]:RcsEngineImpl reference [CONTEXT log_prefix="RcsEngineImpl[DUAL_REG]:[11118c4f-5b13]>Handler" thread_id=70 ]
+08-30 16:48:07.341   584   860 W IPCThreadState: Sending oneway calls to frozen process.
+08-30 16:48:07.341   584   860 W IPCThreadState: Sending oneway calls to frozen process.
+08-30 16:48:07.343   584   860 W IPCThreadState: Sending oneway calls to frozen process.
+08-30 16:48:07.343   584   860 W IPCThreadState: Sending oneway calls to frozen process.
+08-30 16:48:07.343   584   860 W IPCThreadState: Sending oneway calls to frozen process.
+08-30 16:48:07.343  3492  3672 I BugleRcsEngine: RCS Configuration storage in Bugle is disabled by p/h flag, using ProvisioningEngineStateCacheUtil.getProvisioningConfigurationForGivenSimIfExist() [CONTEXT log_prefix="ProvisioningEngineDataRetriever" thread_id=70 ]
+08-30 16:48:07.346 23823 24262 I ChimeraSrvcProxy: NullBinder for android.net.action.RECOMMEND_NETWORKS triggering remote TransactionTooLargeException due to Service without Chimera impl
+08-30 16:48:07.347 23823 24262 W .gms.persistent: Large reply transaction of 1056768 bytes, interface descriptor , code 1
+08-30 16:48:07.587 20518 20518 I AidlLazyServiceRegistrar: Process has 0 (of 2 available) client(s) in use after notification android.system.virtualizationmaintenance has clients: 0
+08-30 16:48:07.587 20518 20518 I AidlLazyServiceRegistrar: Trying to shut down the service. No clients in use for any service in process.
+--------- beginning of kernel
+08-30 16:48:07.848     0     0 I servicemanager: Notifying android.system.virtualizationmaintenance they don't (previously: do) have clients when we now have no record of a client
+08-30 16:48:07.853     0     0 I servicemanager: Notifying artd they don't (previously: do) have clients when we now have no record of a client
+08-30 16:48:07.859     0     0 I servicemanager: Caller(pid=20518,uid=1000,sid=u:r:virtualizationservice:s0) Unregistering android.system.virtualizationmaintenance
+08-30 16:48:07.596 20259 20262 I AidlLazyServiceRegistrar: Process has 0 (of 1 available) client(s) in use after notification artd has clients: 0
+08-30 16:48:07.596 20259 20262 I AidlLazyServiceRegistrar: Trying to shut down the service. No clients in use for any service in process.
+08-30 16:48:07.863     0     0 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+08-30 16:48:07.867     0     0 I servicemanager: Caller(pid=20259,uid=1082,sid=u:r:artd:s0) Unregistering artd
+08-30 16:48:07.870     0     0 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+08-30 16:48:07.873     0     0 I servicemanager: Caller(pid=20518,uid=1000,sid=u:r:virtualizationservice:s0) Unregistering android.system.virtualizationservice
+08-30 16:48:07.607 20259 20262 I AidlLazyServiceRegistrar: Unregistered all clients and exiting
+08-30 16:48:07.879     0     0 I init    : Service 'artd' (pid 20259) exited with status 0 oneshot service took 129.867996 seconds in background
+08-30 16:48:07.879     0     0 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+08-30 16:48:07.620 20518 20518 I AidlLazyServiceRegistrar: Unregistered all clients and exiting
+08-30 16:48:07.887     0     0 I init    : Sending signal 9 to service 'artd' (pid 20259) process group...
+08-30 16:48:07.890     0     0 I libprocessgroup: Removed cgroup /sys/fs/cgroup/uid_1082/pid_20259
+08-30 16:48:07.893     0     0 I init    : Service 'virtualizationservice' (pid 20518) exited with status 0 oneshot service took 2.975000 seconds in background
+08-30 16:48:07.897     0     0 I init    : Sending signal 9 to service 'virtualizationservice' (pid 20518) process group...
+08-30 16:48:07.901     0     0 I libprocessgroup: Removed cgroup /sys/fs/cgroup/uid_1000/pid_20518
+08-30 16:48:08.354   584  2481 E TaskPersister: File error accessing recents directory (directory doesn't exist?).
+08-30 16:48:08.428 20569 20592 I jolt_raylib_gallery: jolt_library_init result=0 thread=20592 owner=20592
+08-30 16:48:08.428 20569 20592 I jolt_raylib_gallery: aggregate probe lookup name=raylib_abi_constant_size result=ok thread=20592 owner=20592
+08-30 16:48:08.429 20569 20592 I jolt_raylib_gallery: aggregate probe call name=raylib_abi_constant_size result=4 thread=20592 owner=20592
+08-30 16:48:08.429 20569 20592 I jolt_raylib_gallery: aggregate probe lookup name=raylib_abi_map_size result=ok thread=20592 owner=20592
+08-30 16:48:08.429 20569 20592 I jolt_raylib_gallery: aggregate probe call name=raylib_abi_map_size result=4 thread=20592 owner=20592
+08-30 16:48:08.429 20569 20592 I jolt_raylib_gallery: aggregate probe lookup name=raylib_abi_color_layout_map result=ok thread=20592 owner=20592
+08-30 16:48:08.429 20569 20592 I jolt_raylib_gallery: aggregate probe call name=raylib_abi_color_layout_map result=1 thread=20592 owner=20592
+08-30 16:48:08.429 20569 20592 I jolt_raylib_gallery: aggregate probe lookup name=raylib_abi_color_layout_marker result=ok thread=20592 owner=20592
+08-30 16:48:08.429 20569 20592 I jolt_raylib_gallery: aggregate probe call name=raylib_abi_color_layout_marker result=1 thread=20592 owner=20592
+08-30 16:48:08.429 20569 20592 I jolt_raylib_gallery: aggregate probe lookup name=raylib_abi_color_raw_size result=ok thread=20592 owner=20592
+08-30 16:48:08.430 20569 20592 I jolt_raylib_gallery: aggregate probe call name=raylib_abi_color_raw_size result=4 thread=20592 owner=20592
+08-30 16:48:08.430 20569 20592 I jolt_raylib_gallery: aggregate probe lookup name=raylib_abi_layout_size_bound result=ok thread=20592 owner=20592
+08-30 16:48:08.430 20569 20592 I jolt_raylib_gallery: aggregate probe call name=raylib_abi_layout_size_bound result=1 thread=20592 owner=20592
+08-30 16:48:08.430 20569 20592 I jolt_raylib_gallery: aggregate probe lookup name=raylib_abi_color_size result=ok thread=20592 owner=20592
+08-30 16:48:08.430 20569 20592 I jolt_raylib_gallery: aggregate probe call name=raylib_abi_color_size result=4 thread=20592 owner=20592
+08-30 16:48:08.430 20569 20592 I jolt_raylib_gallery: jolt_lookup aggregate verify=ok thread=20592 owner=20592
+08-30 16:48:08.441 20569 20592 I jolt_raylib_gallery: aggregate matrix result=1 thread=20592 owner=20592
+08-30 16:48:08.441 20569 20592 I jolt_raylib_gallery: jolt_lookup raylib_gallery_debug=missing mode=release thread=20592 owner=20592
+08-30 16:48:08.441 20569 20592 I jolt_raylib_gallery: jolt_lookup raylib_gallery=ok mode=release thread=20592 owner=20592
+08-30 16:48:08.442 20569 20592 I raylib  : Initializing raylib 6.1-dev
+08-30 16:48:08.442 20569 20592 I raylib  : Platform backend: ANDROID
+08-30 16:48:08.442 20569 20592 I raylib  : Supported raylib modules:
+08-30 16:48:08.442 20569 20592 I raylib  :     > rcore:..... loaded (mandatory)
+08-30 16:48:08.442 20569 20592 I raylib  :     > rlgl:...... loaded (mandatory)
+08-30 16:48:08.442 20569 20592 I raylib  :     > rshapes:... loaded (optional)
+08-30 16:48:08.442 20569 20592 I raylib  :     > rtextures:. loaded (optional)
+08-30 16:48:08.442 20569 20592 I raylib  :     > rtext:..... loaded (optional)
+08-30 16:48:08.442 20569 20592 I raylib  :     > rmodels:... loaded (optional)
+08-30 16:48:08.442 20569 20592 I raylib  :     > raudio:.... loaded (optional)
+08-30 16:48:08.443 20569 20592 I raylib  : ANDROID: Window orientation set as portrait
+08-30 16:48:08.443 20569 20592 W raylib  : ANDROID: Window orientation changed to portrait
+08-30 16:48:08.443 20569 20592 I raylib  : PLATFORM: ANDROID: Initialized successfully
+08-30 16:48:08.486   584  1949 D CoreBackPreview: Window{8d1dcc u0 net.joltlang.raylibgallery/android.app.NativeActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@fd16bf6, mPriority=0, mIsAnimationCallback=false}
+08-30 16:48:08.487   451  1162 W ServiceManagerCppClient: Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=10243 pid=0
+08-30 16:48:08.487   451  1162 D PermissionCache: checking android.permission.ACCESS_SURFACE_FLINGER for uid=10243 => denied (153 us)
+08-30 16:48:08.488   451  1162 W ServiceManagerCppClient: Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=10243 pid=0
+08-30 16:48:08.488   451  1162 D PermissionCache: checking android.permission.ROTATE_SURFACE_FLINGER for uid=10243 => denied (83 us)
+08-30 16:48:08.488   451  1162 W ServiceManagerCppClient: Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=10243 pid=0
+08-30 16:48:08.488   451  1162 D PermissionCache: checking android.permission.INTERNAL_SYSTEM_WINDOW for uid=10243 => denied (40 us)
+08-30 16:48:08.490 20569 20592 I EGL_emulation: Opening libGLESv1_CM_emulation.so
+08-30 16:48:08.490 20569 20592 I EGL_emulation: Opening libGLESv2_emulation.so
+08-30 16:48:08.495   584  1949 W ServiceManagerCppClient: Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=10243 pid=0
+08-30 16:48:08.495   584  1949 D PermissionCache: checking android.permission.ACCESS_SURFACE_FLINGER for uid=10243 => denied (97 us)
+08-30 16:48:08.495   584  1949 W ServiceManagerCppClient: Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=10243 pid=0
+08-30 16:48:08.495   584  1949 D PermissionCache: checking android.permission.ROTATE_SURFACE_FLINGER for uid=10243 => denied (15 us)
+08-30 16:48:08.495   584  1949 W ServiceManagerCppClient: Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=10243 pid=0
+08-30 16:48:08.495   584  1949 D PermissionCache: checking android.permission.INTERNAL_SYSTEM_WINDOW for uid=10243 => denied (9 us)
+08-30 16:48:08.498   584   605 W system_server: Failed to determine oat file name for dex location /data/app/~~IvJcxgCdet5ePnekh-nJtg==/net.joltlang.raylibgallery-5QSqbBULajAoYnWsaxfYMg==/base.apk: Dalvik cache directory does not exist
+08-30 16:48:08.499   584   605 W ziparchive: Unable to open '/data/app/~~IvJcxgCdet5ePnekh-nJtg==/net.joltlang.raylibgallery-5QSqbBULajAoYnWsaxfYMg==/base.dm': No such file or directory
+08-30 16:48:08.512   584   605 I ActivityTaskManager: Displayed net.joltlang.raylibgallery/android.app.NativeActivity for user 0: +2s979ms
+08-30 16:48:08.513 20569 20592 I raylib  : DISPLAY: Upscaling required: Screen size (0x0) smaller than display size (1080x2400)
+08-30 16:48:08.779     0     0 I servicemanager: Caller(pid=20569,uid=10243,sid=u:r:untrusted_app:s0:c243,c256,c512,c768) Could not find android.hardware.graphics.allocator.IAllocator/default in the VINTF manifest. No alternative instances declared in VINTF.
+08-30 16:48:08.530   168   168 I hwservicemanager: getTransport: Cannot find entry android.hardware.graphics.mapper@4.0::IMapper/default in either framework or device VINTF manifest.
+08-30 16:48:08.530 20569 20592 I Gralloc4: mapper 4.x is not supported
+08-30 16:48:08.532  1257  1257 D BaseDepthController: setSurface:
+08-30 16:48:08.532  1257  1257 D BaseDepthController: 	mWaitingOnSurfaceValidity: false
+08-30 16:48:08.532  1257  1257 D BaseDepthController: 	mSurface: null
+08-30 16:48:08.532  1257  1257 D BaseDepthController: mSurface is null and mCurrentBlur is: 0
+08-30 16:48:08.532   584   710 I ImeTracker: net.joltlang.raylibgallery:a80c0445: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+08-30 16:48:08.533   584   710 I ImeTracker: net.joltlang.raylibgallery:a80c0445: onCancelled at PHASE_SERVER_SHOULD_HIDE
+08-30 16:48:08.534  1257  1257 D StateManager: goToState - fromState: Normal, toState: Normal, partial trace:
+08-30 16:48:08.534  1257  1257 D StateManager: 	at com.android.launcher3.statemanager.StateManager.moveToRestState(go/retraceme 31f9979659277bb965985aff1272c33e3c3c9e755b77166d20a2465454178f2c:4)
+08-30 16:48:08.534  1257  1257 D StateManager: 	at com.android.launcher3.statemanager.StateManager.moveToRestState(go/retraceme 31f9979659277bb965985aff1272c33e3c3c9e755b77166d20a2465454178f2c:1)
+08-30 16:48:08.534  1257  1257 D StateManager: 	at com.android.launcher3.statemanager.StatefulActivity.onStop(go/retraceme 31f9979659277bb965985aff1272c33e3c3c9e755b77166d20a2465454178f2c:34)
+08-30 16:48:08.534  1257  1257 D StatsLog: LAUNCHER_ONSTOP
+08-30 16:48:08.534   584  1028 I AppWidgetServiceImpl: setAppWidgetHidden() 0
+08-30 16:48:08.535  1257  1257 D StatsLog: LAUNCHER_GOOGLE_SEARCH_RESTORE_LIST_SIZE_AFTER_ACTIVITY_RESTART
+08-30 16:48:08.535  1257  1830 D OneSearchSuggestProvider: Shut down the binder channel
+08-30 16:48:08.536  1257  1270 I IPCThreadState: oneway function results for code 2 on binder at 0x779d96bc63c0 will be dropped but finished with status UNKNOWN_TRANSACTION
+08-30 16:48:08.579  1370  1370 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():3157
+08-30 16:48:08.582  1370  1370 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 0, locked = false
+08-30 16:48:08.582  1370  1370 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1986 onStartInput(EditorInfo{EditorInfo{packageName=net.joltlang.raylibgallery, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+08-30 16:48:08.582  1370  1370 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 1, locked = false
+08-30 16:48:08.582  1370  1370 I AndroidIME: InputBundleManager.loadActiveInputBundleId():450 loadActiveInputBundleId: und-Latn-x-password, password
+08-30 16:48:08.586   584  1961 W PackageConfigPersister: App-specific configuration not found for packageName: net.joltlang.raylibgallery and userId: 0
+08-30 16:48:08.587   380   380 I netd    : tetherGetStats() -> {[]} <0.77ms>
+08-30 16:48:08.631 20569 20592 I raylib  : DISPLAY: Device initialized successfully
+08-30 16:48:08.631 20569 20592 I raylib  :     > Display size: 1080 x 2400
+08-30 16:48:08.631 20569 20592 I raylib  :     > Screen size:  1080 x 2400
+08-30 16:48:08.631 20569 20592 I raylib  :     > Render size:  1080 x 2400
+08-30 16:48:08.631 20569 20592 I raylib  :     > Viewport offsets: 0, 0
+08-30 16:48:08.632 20569 20592 I raylib  : GL: Supported extensions count: 53
+08-30 16:48:08.634 20569 20592 I raylib  : GL: OpenGL device information:
+08-30 16:48:08.634 20569 20592 I raylib  :     > Vendor:   Google (Google Inc. (Mesa))
+08-30 16:48:08.635 20569 20592 I raylib  :     > Renderer: Android Emulator OpenGL ES Translator (ANGLE (Mesa, Vulkan 1.4.318 (llvmpipe (LLVM 21.0.0 256 bits) (0x00000000)), llvmpipe-25.2.4))
+08-30 16:48:08.638 20569 20592 I raylib  :     > Version:  OpenGL ES 3.1 (OpenGL ES 3.1.0 (ANGLE 2.1.17841 git hash: 5fa2e61da947))
+08-30 16:48:08.638 20569 20592 I raylib  :     > GLSL:     OpenGL ES GLSL ES 3.10
+08-30 16:48:08.644 20569 20592 I raylib  : GL: VAO extension detected, VAO functions loaded successfully
+08-30 16:48:08.644 20569 20592 I raylib  : GL: NPOT textures extension detected, full NPOT textures supported
+08-30 16:48:08.644 20569 20592 I raylib  : GL: ETC1 compressed textures supported
+08-30 16:48:08.645 20569 20592 I raylib  : TEXTURE: [ID 1] Texture loaded successfully (1x1 | R8G8B8A8 | 1 mipmaps)
+08-30 16:48:08.645 20569 20592 I raylib  : TEXTURE: [ID 1] Default texture loaded successfully
+08-30 16:48:08.656 20569 20592 I raylib  : SHADER: [ID 1] Vertex shader compiled successfully
+08-30 16:48:08.666 20569 20592 I raylib  : SHADER: [ID 2] Fragment shader compiled successfully
+08-30 16:48:08.688 20569 20592 I raylib  : SHADER: [ID 3] Program shader loaded successfully
+08-30 16:48:08.688 20569 20592 I raylib  : SHADER: [ID 3] Default shader loaded successfully
+08-30 16:48:08.697 20569 20592 I raylib  : RLGL: Render batch vertex buffers loaded successfully in RAM (CPU)
+08-30 16:48:08.699 20569 20592 I raylib  : RLGL: Render batch vertex buffers loaded successfully in VRAM (GPU)
+08-30 16:48:08.700 20569 20592 I raylib  : RLGL: Default OpenGL state initialized successfully
+08-30 16:48:08.709 20569 20592 I raylib  : TEXTURE: [ID 2] Texture loaded successfully (128x128 | GRAY_ALPHA | 1 mipmaps)
+08-30 16:48:08.710 20569 20592 I raylib  : FONT: Default font loaded successfully (224 glyphs)
+08-30 16:48:08.718 20569 20592 I raylib  : TEXTURE: [ID 3] Texture loaded successfully (1x1 | R8G8B8A8 | 1 mipmaps)
+08-30 16:48:08.719 20569 20592 I raylib  : TEXTURE: [ID 3] Default texture loaded successfully
+08-30 16:48:08.720 20569 20592 I raylib  : SHADER: [ID 4] Vertex shader compiled successfully
+08-30 16:48:08.721 20569 20592 I raylib  : SHADER: [ID 5] Fragment shader compiled successfully
+08-30 16:48:08.763 20569 20592 I raylib  : SHADER: [ID 6] Program shader loaded successfully
+08-30 16:48:08.763 20569 20592 I raylib  : SHADER: [ID 6] Default shader loaded successfully
+08-30 16:48:08.765 20569 20592 I raylib  : RLGL: Render batch vertex buffers loaded successfully in RAM (CPU)
+08-30 16:48:08.779 20569 20592 I raylib  : RLGL: Render batch vertex buffers loaded successfully in VRAM (GPU)
+08-30 16:48:08.779 20569 20592 I raylib  : RLGL: Default OpenGL state initialized successfully
+08-30 16:48:08.780 20569 20592 I raylib  : SYSTEM: Working Directory: /
+08-30 16:48:08.781 20569 20592 I raylib  : TIMER: Target time per frame: 33.333 milliseconds
+08-30 16:48:08.803 20569 20592 I jolt_raylib_gallery_state: {:frame 0, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :idle, :position nil}, :touches {:count 0, :ids [], :point-0 nil, :available-coordinates :none, :all-coordinates-available? false}, :gesture {:code 0}, :keyboard {:activate? false, :previous? false, :next? false, :back? false}, :gallery-contract 1, :gallery-mode :gallery, :selected-scene nil, :scene-frame nil, :shared-model {:counter 0, :event-count 0, :lifecycle nil, :worker nil, :notification-permission nil, :platform nil}, :effects [], :last-event nil, :tap-count 0, :hold-frames 0, :drag-samples 0, :close-requested? false, :runtime-state {:status :running, :frame 0, :owner-thread-id 0, :presentation :baseline, :gallery-mode :gallery, :selected-scene nil, :owner-queue {:pending 0, :operations [:submit-owner! :owner-result]}}}
+08-30 16:48:08.869 20569 20596 W InteractionJankMonitor: Initializing without READ_DEVICE_CONFIG permission. enabled=true, interval=1, missedFrameThreshold=3, frameTimeThreshold=64, package=net.joltlang.raylibgallery
+08-30 16:48:08.992   941  1024 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@f3fc1e2
+08-30 16:48:08.992   584  2010 D CoreBackPreview: Window{77ab729 u0 Splash Screen net.joltlang.raylibgallery EXITING}: Setting back callback null
+08-30 16:48:08.993   584  1961 W InputManager-JNI: Input channel object '77ab729 Splash Screen net.joltlang.raylibgallery (client)' was disposed without first being removed with the input manager!
+08-30 16:48:09.041   941  1024 W FrameTracker: Missed App frame:UNKNOWN: 24, 632808, 0, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 16:48:09.041   941  1024 W FrameTracker: Missed SF frame:UNKNOWN: 24, 632808, 0, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 16:48:09.041   941  1024 W FrameTracker: Missing HWUI jank callback for vsyncId: 632808, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 16:48:09.041   941  1024 W FrameTracker: Missed App frame:UNKNOWN: 72, 632837, 0, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 16:48:09.041   941  1024 W FrameTracker: Missing HWUI jank callback for vsyncId: 632837, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 16:48:09.041   941  1024 W FrameTracker: Missed SF frame:UNKNOWN: 80, 632880, 66032141, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 16:48:09.041   941  1024 W FrameTracker: Missed App frame:UNKNOWN: 88, 632909, 69553690, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 16:48:09.041   941  1024 W FrameTracker: Missed SF frame:UNKNOWN: 88, 632909, 69553690, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 16:48:09.041   941  1024 W FrameTracker: Missed SF frame:UNKNOWN: 80, 632975, 67046014, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 16:48:09.041   941  1024 W FrameTracker: Missed App frame:UNKNOWN: 88, 633004, 72403090, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 16:48:09.041   941  1024 W FrameTracker: Missed SF frame:UNKNOWN: 88, 633004, 72403090, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 16:48:09.041   941  1024 W FrameTracker: Missed SF frame:UNKNOWN: 80, 633041, 0, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 16:48:09.041   941  1024 W FrameTracker: Missing HWUI jank callback for vsyncId: 633041, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 16:48:09.041   941  1024 W FrameTracker: Missed SF frame:UNKNOWN: 80, 633063, 0, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 16:48:09.041   941  1024 W FrameTracker: Missing HWUI jank callback for vsyncId: 633063, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 16:48:09.041   941  1024 W FrameTracker: Missed App frame:UNKNOWN: 88, 633100, 52886273, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 16:48:09.041   941  1024 W FrameTracker: Missed SF frame:UNKNOWN: 88, 633100, 52886273, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 16:48:09.041   941  1024 W FrameTracker: Missed App frame:UNKNOWN: 88, 633144, 67193189, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 16:48:09.041   941  1024 W FrameTracker: Missed SF frame:UNKNOWN: 88, 633144, 67193189, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 16:48:09.041   941  1024 W FrameTracker: Missed App frame:UNKNOWN: 74, 633166, 70013980, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 16:48:09.041   941  1024 W FrameTracker: Missed SF frame:UNKNOWN: 74, 633166, 70013980, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 16:48:09.041   941  1024 W FrameTracker: Missed App frame:UNKNOWN: 328, 633203, 140871874, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 16:48:09.042   941   988 V PerfettoTrigger: Not triggering com.android.telemetry.interaction-jank-monitor-39 - not enough time since last trigger
+08-30 16:48:09.051  1257  1711 D EGL_emulation: app_time_stats: avg=298.42ms min=1.34ms max=2781.41ms count=10
+08-30 16:48:09.327   584   860 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-30 16:48:09.328   584   860 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-30 16:48:09.328   584   860 D InetDiagMessage: Destroyed live tcp sockets for uids={10145} in 1ms
+08-30 16:48:09.329   584   860 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-30 16:48:09.329   584   860 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-30 16:48:09.329   584   860 D InetDiagMessage: Destroyed live tcp sockets for uids={20145} in 1ms
+08-30 16:48:09.929 20569 20592 D EGL_emulation: app_time_stats: avg=29.84ms min=8.54ms max=34.82ms count=32
+08-30 16:48:10.134   584  1028 W IPCThreadState: Sending oneway calls to frozen process.
+08-30 16:48:10.160   941  1110 D EGL_emulation: app_time_stats: avg=10111.74ms min=10111.74ms max=10111.74ms count=1
+08-30 16:48:10.338   584   853 W BestClock: java.time.DateTimeException: Missing network time fix
+08-30 16:48:10.339   584   853 W BestClock: java.time.DateTimeException: Missing network time fix
+08-30 16:48:10.339   584   853 W BestClock: java.time.DateTimeException: Missing network time fix
+08-30 16:48:10.339   584   853 W BestClock: java.time.DateTimeException: Missing network time fix
+08-30 16:48:10.340   584   853 W BestClock: java.time.DateTimeException: Missing network time fix
+08-30 16:48:10.929 20569 20592 D EGL_emulation: app_time_stats: avg=33.32ms min=30.39ms max=37.28ms count=30
+08-30 16:48:11.961 20569 20592 D EGL_emulation: app_time_stats: avg=33.26ms min=27.77ms max=38.72ms count=31
+08-30 16:48:12.305   380   380 I netd    : tetherGetStats() -> {[]} <0.53ms>
