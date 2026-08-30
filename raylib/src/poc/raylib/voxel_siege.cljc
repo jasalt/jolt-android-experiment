@@ -71,6 +71,31 @@
               {:yaw (clamp (- yaw base-yaw) yaw-range)
                :pitch (clamp (+ 0.4 (- pitch base-pitch)) pitch-range)})))
 
+(defn ^:export transform-sensor
+  "Map Android sensor x/y coordinates into the active display rotation."
+  [[x y] rotation]
+  (case rotation
+    90 [(- y) x]
+    180 [(- x) (- y)]
+    270 [y (- x)]
+    [x y]))
+
+(defn ^:export relative-quaternion
+  "Return current relative to the calibration quaternion [x y z w]."
+  [[bx by bz bw] [cx cy cz cw]]
+  (let [[ix iy iz iw] [(- bx) (- by) (- bz) bw]]
+    [(+ (* iw cx) (* ix cw) (* iy cz) (- (* iz cy)))
+     (+ (* iw cy) (- (* ix cz)) (* iy cw) (* iz cx))
+     (+ (* iw cz) (* ix cy) (- (* iy cx)) (* iz cw))
+     (- (* iw cw) (* ix cx) (* iy cy) (* iz cz))]))
+
+(defn ^:export quaternion-yaw-pitch
+  "Extract bounded yaw/pitch from a relative quaternion."
+  [[x y z w]]
+  [(Math/atan2 (* 2.0 (+ (* w y) (* x z)))
+               (- 1.0 (* 2.0 (+ (* y y) (* z z)))))
+   (Math/asin (clamp (* 2.0 (- (* w x) (* y z))) [-1.0 1.0]))])
+
 (defn press-fire [state]
   (if (and (= :playing (:phase state)) (pos? (:balls-left state))
            (not (:charging? state)))

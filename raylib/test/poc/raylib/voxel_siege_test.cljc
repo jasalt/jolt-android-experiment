@@ -11,6 +11,15 @@
     (is (= 0.15 (siege/power-from-charge 0.0)))
     (is (= 0.9 (siege/power-from-charge 2.0)))))
 
+(deftest orientation-quaternion-fixtures
+  (is (= [-2.0 1.0] (siege/transform-sensor [1.0 2.0] 90)))
+  (is (= [2.0 -1.0] (siege/transform-sensor [1.0 2.0] 270)))
+  (is (< (Math/abs (- 1.0 (last (siege/relative-quaternion [0.0 0.0 0.0 1.0]
+                                                                  [0.0 0.0 0.0 1.0])))) 1e-9))
+  (let [[yaw pitch] (siege/quaternion-yaw-pitch [0.0 0.0 0.0 1.0])]
+    (is (< (Math/abs yaw) 1e-9))
+    (is (< (Math/abs pitch) 1e-9))))
+
 (deftest charge-release-consumes-one-shot
   (let [state (-> (siege/new-game)
                   siege/press-fire
