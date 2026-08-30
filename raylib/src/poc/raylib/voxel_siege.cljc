@@ -140,13 +140,15 @@
 
 (defn input-command
   "Resolve one normalized pointer event with deterministic control precedence."
-  [metrics _state {:keys [phase position]}]
+  [metrics state {:keys [phase position]}]
   (let [rects (control-rects metrics)]
     (cond
       (= phase :back) {:command :back}
       (and (= phase :press) (inside? (:reset rects) position)) {:command :reset}
       (and (= phase :press) (inside? (:mode rects) position)) {:command :toggle-orientation}
       (inside? (:fire rects) position) {:command (if (= phase :release) :release-fire :press-fire)}
+      (and (:orientation? state) (= phase :press)) {:command :press-fire}
+      (and (:orientation? state) (= phase :release)) {:command :release-fire}
       :else {:command (if (= phase :drag) :aim-drag :none)
              :position position})))
 
@@ -161,4 +163,7 @@
     :aim-drag (aim-drag state dx dy)
     :calibrate (calibrate state pose)
     :orientation-aim (orientation-aim state pose)
+    :toggle-orientation (if (:orientation? state)
+                          (assoc state :orientation? false :baseline-pose nil)
+                          (calibrate state pose))
     state))

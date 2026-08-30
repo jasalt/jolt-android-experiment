@@ -50,6 +50,18 @@
     (is (< (Math/abs (- 0.1 (get-in state [:aim :yaw]))) 1e-9))
     (is (< (Math/abs (- 0.5 (get-in state [:aim :pitch]))) 1e-9))))
 
+(deftest orientation-mode-tap-fires-outside-controls
+  (let [metrics {:width 960 :height 540}
+        state (siege/apply-command (siege/new-game)
+                                   {:command :toggle-orientation :pose [0.2 0.1]})
+        press (siege/input-command metrics state {:phase :press :position [480 270]})
+        release (siege/input-command metrics state {:phase :release :position [480 270]})]
+    (is (:orientation? state))
+    (is (= :press-fire (:command press)))
+    (is (= :release-fire (:command release)))
+    (is (= 4 (:balls-left (siege/apply-command
+                           (siege/apply-command state press) release))))))
+
 (deftest command-application
   (let [state (-> (siege/new-game)
                   (siege/apply-command {:command :aim-drag :dx 10 :dy -10})
