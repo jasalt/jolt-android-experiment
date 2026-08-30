@@ -2,7 +2,7 @@
 
 ## 📊 Executive Summary
 
-**125** total issues | **73%** complete | **14** ready to work | **3** blocked
+**125** total issues | **74%** complete | **13** ready to work | **3** blocked
 
 ## 🚧 Critical Bottlenecks
 
