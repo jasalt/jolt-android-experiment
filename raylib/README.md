@@ -119,7 +119,11 @@ functions or drawing function bodies without invoking them in the nREPL
 request—the frame owner resolves and calls the replacement later. Short
 owner-affine Raylib probes must use the bounded `submit-owner!` queue. See
 [RAY-017](../experiments/RAY-017-android-raylib-nrepl/) for the exact workflow,
-proof, limits, and release-exclusion gate.
+proof, limits, and release-exclusion gate. The first touch-first game scene,
+[RAY-018 Flappy Bird](../experiments/RAY-018-flappy-bird/), shows the intended
+sequence: pure deterministic simulation/tests first, then one AOT rebuild only
+for static scene registration and owner-thread drawing, followed by nREPL state
+inspection and ADB interaction.
 
 The release image builds from the non-debug entry, contains no debug nREPL
 export, remains direct-linked, requests no network permission, and starts no

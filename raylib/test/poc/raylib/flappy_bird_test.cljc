@@ -16,9 +16,13 @@
   (reduce (fn [current dt] (flappy/step current (input dt))) state partitions))
 
 (deftest deterministic-seeded-fixture-test
-  (is (= (flappy/new-game metrics 42) (flappy/new-game metrics 42)))
-  (is (not= (mapv :gap (:pipes (flappy/new-game metrics 42)))
-            (mapv :gap (:pipes (flappy/new-game metrics 43))))))
+  (let [game (flappy/new-game metrics 42)
+        dims (flappy/dimensions metrics)]
+    (is (= game (flappy/new-game metrics 42)))
+    (is (not= (mapv :gap (:pipes game))
+              (mapv :gap (:pipes (flappy/new-game metrics 43)))))
+    (is (< (:x (first (:pipes game))) (:width dims)))
+    (is (> (+ (:x (first (:pipes game))) (:pipe-width dims)) 0.0))))
 
 (deftest equivalent-elapsed-time-fixtures-test
   (let [initial (flappy/new-game metrics 9)

@@ -45,7 +45,9 @@
   ([metrics] (new-game metrics default-seed))
   ([metrics seed]
    (let [{:keys [width height pipe-spacing]} (dimensions metrics)
-         first-x (+ (* 0.70 width) pipe-spacing)]
+         ;; Keep the first obstacle visible on a phone-sized initial frame;
+         ;; later pipes preserve the stable metric-scaled spacing.
+         first-x (* 0.75 width)]
      (loop [index 0
             seed (long seed)
             pipes []]
