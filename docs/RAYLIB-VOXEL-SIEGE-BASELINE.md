@@ -18,6 +18,8 @@ Results on 2026-08-30:
 - Pure and integration tests: **45 tests, 240 assertions, 0 failures, 0 errors**.
 - `b3probe`: **PASS** — gravity/contact, sleep, explosion, ballistics, world
   recycle and physics restart all completed.
+- Pure scripted shot oracle (`dir-from-yaw-pitch 0.0 0.4`, power `0.9`) produced
+  `{:phase :playing, :balls-left 4, :ball? true, :events 0}`.
 - The current checkout reports more tests than the earlier upstream review;
   the executed result above is authoritative for this pinned snapshot.
 
