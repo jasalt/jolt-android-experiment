@@ -4,13 +4,14 @@
             [poc.reducer :as reducer]
             [poc.raylib.abi]
             [poc.raylib.diagnostics :as diagnostics]
+            [poc.raylib.flappy-bird :as flappy]
             [poc.raylib.app :as app]
             [poc.raylib.gallery :as gallery]
             [poc.raylib.gallery-ui :as gallery-ui]
             [poc.raylib.repl-queue :as repl-queue]))
 
 (declare init-window set-target-fps should-close-raw begin-drawing
-         clear-background draw-text end-drawing
+         clear-background draw-text draw-circle end-drawing get-frame-time
          get-screen-width get-screen-height get-render-width get-render-height
          get-touch-point-count get-touch-point-id get-touch-x get-touch-y
          get-gesture-detected get-mouse-x get-mouse-y mouse-pressed-raw
@@ -22,9 +23,11 @@
 (ffi/defcfn begin-drawing "BeginDrawing" [] :void)
 (ffi/defcfn clear-background "ClearBackground" [:uint] :void)
 (ffi/defcfn draw-text "DrawText" [:string :int :int :int :uint] :void)
+(ffi/defcfn draw-circle "DrawCircle" [:int :int :float :uint] :void)
 (ffi/defcfn draw-rectangle "DrawRectangle" [:int :int :int :int :uint] :void)
 (ffi/defcfn draw-rectangle-lines "DrawRectangleLines" [:int :int :int :int :uint] :void)
 (ffi/defcfn end-drawing "EndDrawing" [] :void)
+(ffi/defcfn get-frame-time "GetFrameTime" [] :float)
 (ffi/defcfn get-screen-width "GetScreenWidth" [] :int)
 (ffi/defcfn get-screen-height "GetScreenHeight" [] :int)
 (ffi/defcfn get-render-width "GetRenderWidth" [] :int)
@@ -60,6 +63,9 @@
 (def MAROON (rgba 190 33 55 255))
 (def CARD-BLUE (rgba 35 92 150 255))
 (def CARD-DARK (rgba 24 50 78 255))
+(def SKYBLUE (rgba 102 191 255 255))
+(def DARKGREEN (rgba 0 117 44 255))
+(def GOLD (rgba 255 203 0 255))
 
 (defn placeholder-scene [scene-id title]
   {:id scene-id
@@ -84,7 +90,7 @@
 (def core-scenes
   [(placeholder-scene :following-eyes "Following Eyes")
    (placeholder-scene :touch-trail "Touch Trail")
-   (placeholder-scene :flappy-bird "Flappy Bird")
+   (flappy/scene)
    (placeholder-scene :virtual-controls "Virtual Controls")
    (placeholder-scene :touch-diagnostics "Touch Diagnostics")
    (placeholder-scene :gesture-diagnostics "Gesture Diagnostics")])
@@ -232,6 +238,29 @@
                  margin footer-y body-size DARKGRAY))
     (end-drawing)))
 
+(defn- draw-flappy-bird! [frame input scene-state back sizes]
+  (let [{:keys [height bird-x bird-radius pipe-width gap-height]}
+        (flappy/dimensions (:metrics input))
+        {:keys [margin title-size body-size line-gap]} sizes]
+    (clear-background SKYBLUE)
+    (draw-rectangle! back CARD-DARK RAYWHITE)
+    (draw-text "< Back to gallery" (+ (:x back) (quot margin 2))
+               (+ (:y back) (quot body-size 3)) body-size RAYWHITE)
+    (draw-text "Flappy Bird" margin (+ margin title-size line-gap)
+               title-size RAYWHITE)
+    (draw-text (str "Touch or Enter to flap | score " (:score scene-state))
+               margin (+ margin (* 2 line-gap) title-size) body-size DARKGRAY)
+    (doseq [{:keys [x gap]} (:pipes scene-state)]
+      (draw-rectangle (int x) 0 (int pipe-width) (int gap) DARKGREEN)
+      (draw-rectangle (int x) (int (+ gap gap-height)) (int pipe-width)
+                      (int (- height (+ gap gap-height))) DARKGREEN))
+    (draw-circle (int bird-x) (int (:y scene-state)) (double bird-radius) GOLD)
+    (when (:over? scene-state)
+      (draw-text "GAME OVER - TOUCH TO RESTART" margin (int (/ height 2.0))
+                 body-size MAROON))
+    (draw-text (str "Frame " frame " | elapsed " (int (* 1000 (:elapsed scene-state))) " ms")
+               margin (- (int height) (+ margin line-gap)) body-size DARKGRAY)))
+
 (defn draw-scene! [frame input gallery-state app-state effects presentation]
   (let [metrics (:metrics input)
         {:keys [margin title-size body-size line-gap]} (diagnostics/layout metrics)
@@ -246,33 +275,38 @@
         [width height] (:screen metrics)
         back (:back layout)]
     (begin-drawing)
-    (clear-background background)
-    (draw-rectangle! back CARD-DARK RAYWHITE)
-    (draw-text "< Back to gallery" (+ (:x back) (quot margin 2))
-               (+ (:y back) (quot body-size 3)) body-size RAYWHITE)
-    (draw-text (:title scene) margin (+ margin title-size line-gap)
-               title-size accent)
-    (draw-text "Placeholder scene ready for its focused adaptation"
-               margin (+ margin (* 2 line-gap) title-size) body-size DARKGRAY)
-    (draw-text (str "Scene " (name scene-id) " | frame " (:frame scene-state))
-               margin (+ margin (* 3 line-gap) title-size) body-size MAROON)
-    (draw-text (str "Pointer " (name (get-in input [:pointer :phase]))
-                    " | position " (get-in input [:pointer :position]))
-               margin (+ margin (* 4 line-gap) title-size) body-size DARKGRAY)
-    (draw-text (str "Screen " width "x" height " | touch count "
-                    (get-in input [:touches :count]))
-               margin (+ margin (* 5 line-gap) title-size) body-size DARKGRAY)
-    (draw-text (str "Shared counter " (:counter view)
-                    " | effect data: " (effects-label effects))
-               margin (+ margin (* 6 line-gap) title-size) body-size MAROON)
-    (doseq [control controls]
-      (draw-rectangle! control CARD-BLUE RAYWHITE)
-      (draw-text (:label control)
-                 (+ (:x control) (quot margin 2))
-                 (+ (:y control) (quot body-size 3))
-                 body-size RAYWHITE))
-    (draw-text (str "Frame " frame " | Android Back or canvas Back returns to gallery")
-               margin (- height (+ margin line-gap)) body-size DARKGRAY)
+    (if (= :flappy-bird scene-id)
+      (draw-flappy-bird! frame input scene-state back
+                          {:margin margin :title-size title-size
+                           :body-size body-size :line-gap line-gap})
+      (do
+        (clear-background background)
+        (draw-rectangle! back CARD-DARK RAYWHITE)
+        (draw-text "< Back to gallery" (+ (:x back) (quot margin 2))
+                   (+ (:y back) (quot body-size 3)) body-size RAYWHITE)
+        (draw-text (:title scene) margin (+ margin title-size line-gap)
+                   title-size accent)
+        (draw-text "Placeholder scene ready for its focused adaptation"
+                   margin (+ margin (* 2 line-gap) title-size) body-size DARKGRAY)
+        (draw-text (str "Scene " (name scene-id) " | frame " (:frame scene-state))
+                   margin (+ margin (* 3 line-gap) title-size) body-size MAROON)
+        (draw-text (str "Pointer " (name (get-in input [:pointer :phase]))
+                        " | position " (get-in input [:pointer :position]))
+                   margin (+ margin (* 4 line-gap) title-size) body-size DARKGRAY)
+        (draw-text (str "Screen " width "x" height " | touch count "
+                        (get-in input [:touches :count]))
+                   margin (+ margin (* 5 line-gap) title-size) body-size DARKGRAY)
+        (draw-text (str "Shared counter " (:counter view)
+                        " | effect data: " (effects-label effects))
+                   margin (+ margin (* 6 line-gap) title-size) body-size MAROON)
+        (doseq [control controls]
+          (draw-rectangle! control CARD-BLUE RAYWHITE)
+          (draw-text (:label control)
+                     (+ (:x control) (quot margin 2))
+                     (+ (:y control) (quot body-size 3))
+                     body-size RAYWHITE))
+        (draw-text (str "Frame " frame " | Android Back or canvas Back returns to gallery")
+                   margin (- height (+ margin line-gap)) body-size DARKGRAY)))
     (end-drawing)))
 
 (defn- take-owner-request! []
@@ -319,7 +353,7 @@
              app-state reducer/initial-state
              last-effects []]
         (let [elapsed (- (System/currentTimeMillis) start)
-              input (poll-input)
+              input (assoc (poll-input) :delta-seconds (get-frame-time))
               _ (process-one-owner-request!)
               event (app/counter-event (:mode gallery-state) input
                                         (scene-controls input))
@@ -339,7 +373,9 @@
                      :owner-thread-id (.getId (Thread/currentThread))
                      :presentation (:revision presentation)
                      :gallery-mode (:mode next-gallery-state)
-                     :selected-scene (:active-scene-id next-gallery-state)}))
+                     :selected-scene (:active-scene-id next-gallery-state)
+                     :scene-state (when-let [scene-state (:scene-state next-gallery-state)]
+                                    (select-keys scene-state [:elapsed :score :over? :y :vy]))}))
           (when (or (zero? (mod frame 150))
                     (not= :idle phase)
                     (:back? input)
