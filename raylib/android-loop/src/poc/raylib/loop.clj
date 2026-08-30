@@ -6,6 +6,7 @@
             [poc.raylib.diagnostics :as diagnostics]
             [poc.raylib.flappy-bird :as flappy]
             [poc.raylib.following-eyes :as eyes]
+            [poc.raylib.touch-trail :as trail]
             [poc.raylib.app :as app]
             [poc.raylib.gallery :as gallery]
             [poc.raylib.gallery-ui :as gallery-ui]
@@ -91,7 +92,7 @@
 ;; descriptor without changing navigation or native window ownership.
 (def core-scenes
   [(eyes/scene)
-   (placeholder-scene :touch-trail "Touch Trail")
+   (trail/scene)
    (flappy/scene)
    (placeholder-scene :virtual-controls "Virtual Controls")
    (placeholder-scene :touch-diagnostics "Touch Diagnostics")
@@ -240,6 +241,23 @@
                  margin footer-y body-size DARKGRAY))
     (end-drawing)))
 
+(defn- draw-touch-trail! [input scene-state back sizes]
+  (let [{:keys [radius]} (trail/layout (:metrics input))
+        {:keys [margin title-size body-size line-gap]} sizes
+        points (:points scene-state)
+        point-count (max 1 (count points))]
+    (clear-background CARD-DARK)
+    (draw-rectangle! back CARD-BLUE RAYWHITE)
+    (draw-text "< Back to gallery" (+ (:x back) (quot margin 2))
+               (+ (:y back) (quot body-size 3)) body-size RAYWHITE)
+    (draw-text "Touch Trail" margin (+ margin title-size line-gap) title-size RAYWHITE)
+    (draw-text (str "Drag to paint | " (count points) "/" trail/max-points " points")
+               margin (+ margin (* 2 line-gap) title-size) body-size RAYWHITE)
+    (doseq [[index [x y]] (map-indexed vector points)]
+      (let [fade (/ (double (inc index)) point-count)
+            color (rgba 64 (int (+ 120 (* 110 fade))) 255 (int (+ 70 (* 185 fade))))]
+        (draw-circle (int x) (int y) (* radius fade) color)))))
+
 (defn- draw-following-eyes! [input scene-state back sizes]
   (let [{:keys [left right eye-radius pupil-radius]} (eyes/layout (:metrics input))
         target (:target scene-state)
@@ -296,6 +314,10 @@
         back (:back layout)]
     (begin-drawing)
     (cond
+      (= :touch-trail scene-id)
+      (draw-touch-trail! input scene-state back
+                         {:margin margin :title-size title-size
+                          :body-size body-size :line-gap line-gap})
       (= :following-eyes scene-id)
       (draw-following-eyes! input scene-state back
                             {:margin margin :title-size title-size
@@ -400,7 +422,7 @@
                      :gallery-mode (:mode next-gallery-state)
                      :selected-scene (:active-scene-id next-gallery-state)
                      :scene-state (when-let [scene-state (:scene-state next-gallery-state)]
-                                    (select-keys scene-state [:elapsed :score :over? :y :vy :target :phase]))}))
+                                    (select-keys scene-state [:elapsed :score :over? :y :vy :target :phase :points]))}))
           (when (or (zero? (mod frame 150))
                     (not= :idle phase)
                     (:back? input)
