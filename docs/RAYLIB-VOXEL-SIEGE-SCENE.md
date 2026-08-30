@@ -35,4 +35,11 @@ request landscape without creating a second Activity or window.
 Landscape screenshot SHA-256:
 `a9124b6dd0bab8b1b55ab792607fd81fcc88a5f0325e03622b489c44cac7904e`.
 The screenshot is host evidence; the Voxel scene still needs full gameplay
-rendering and a tested portrait restore path.
+rendering. The owner-thread nREPL call `(poc.raylib.loop/voxel-set-orientation
+0)` returned `1`; after the request the display returned to a direct 1080x2400
+portrait frame, embedded below.
+
+![Portrait restoration evidence](assets/voxel-portrait-restore.png)
+
+Portrait screenshot SHA-256:
+`a930b3f4062763660234d6a32b65ba21a7f46fc9350ea543129c01fe96e2994b`.
