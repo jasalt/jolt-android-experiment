@@ -81,6 +81,28 @@ but this current visual-host route has an explicit host-Mesa compatibility
 boundary. It is not Android evidence and must not be described as a fully
 self-contained Nix display server result.
 
+### Direct aggregate layouts currently exit the Android built image before a call
+
+**Observed experiment:** [RAY-012](../experiments/RAY-012-android-aggregate-abi).
+
+The pinned direct Jolt `[:by-value [:struct ...]]` declarations and a C oracle
+passed numerically on x86_64 Linux for `Color`, `Vector2`, `Vector3`,
+`Rectangle`, `Camera2D`, `Camera3D`, and `Texture2D`, including Jolt's
+caller-supplied destination convention for aggregate returns. The C oracle also
+compiled as static assertions against the pinned Raylib header and exported from
+the Android `libmain.so` process image.
+
+On the translated API-35 ARM64 NativeActivity, a scalar oracle call succeeded
+on the normal Jolt/Raylib owner thread. The process then exited cleanly with
+status 255 while evaluating `ffi/layout-size` for the literal `Color` layout,
+before any aggregate argument or return call. This is neither aggregate ABI
+success nor a demonstrated AArch64 calling-convention failure.
+
+**Consequence:** `jolt-android-lfu.2.6.1` tracks the reduced JOLT_FFI
+built-image/layout-initialization failure. Keep the scalar host behavior and do
+not introduce the stale pointer aggregate workaround to conceal this boundary.
+All per-index touch coordinate work remains blocked on its resolution.
+
 ### Scalar touch works, but all-point coordinates remain ABI-gated
 
 **Observed experiment:** [RAY-010](../experiments/RAY-010-touch-adaptive-diagnostics).

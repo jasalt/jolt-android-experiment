@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Compile the pinned Raylib-layout C oracle and exercise Jolt direct aggregates.
+set -euo pipefail
+
+root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+: "${RAYLIB_SOURCE:?run inside nix develop so the pinned Raylib source is supplied}"
+out="${TMPDIR:-/tmp}/jolt-raylib-abi"
+mkdir -p "$out"
+cc -shared -fPIC -std=c11 -I"$RAYLIB_SOURCE/src" \
+  "$root/raylib/abi/aggregate_oracle.c" -o "$out/libraylib-abi-oracle.so"
+cd "$root/raylib"
+RAYLIB_ABI_ORACLE="$out/libraylib-abi-oracle.so" \
+  jolt -M:abi

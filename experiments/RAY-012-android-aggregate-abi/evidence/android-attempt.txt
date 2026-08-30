@@ -1,0 +1,36 @@
+Observed 2026-08-30 on the repository API-35 x86_64 emulator running the
+ARM64 NativeActivity through Berberis translation.
+
+The temporary reduced Android build compiled raylib/abi/aggregate_oracle.c into
+libmain.so and required poc.raylib.abi from the tarm64le Jolt shared library.
+The existing single NativeActivity owner thread initialized Jolt successfully.
+
+Relevant logcat sequence:
+
+jolt_library_init result=0 thread=32359 owner=32359
+jolt_lookup raylib_persistent_loop=ok thread=32359 owner=32359
+jolt_raylib_abi: verification-start
+jolt_raylib_abi: oracle=1
+jolt_raylib_abi: stage=layouts
+jolt_raylib_abi: stage=layout-color
+ActivityManager: Process net.joltlang.raylibgallery (pid 32312) has died: fg TOP
+Zygote: Process 32312 exited cleanly (255)
+
+No jolt_raylib_abi stage=color was emitted. Therefore execution did not reach
+the first by-value C call. The checked Android libmain.so exports the full C
+oracle surface, including:
+
+jolt_raylib_abi_layout_ok
+jolt_raylib_abi_color
+jolt_raylib_abi_vector2
+jolt_raylib_abi_vector3
+jolt_raylib_abi_rectangle
+jolt_raylib_abi_camera2d
+jolt_raylib_abi_camera3d
+jolt_raylib_abi_texture
+jolt_raylib_abi_make_vector2
+jolt_raylib_abi_make_texture
+
+The failure is thus reduced to Jolt built-image evaluation of the literal Color
+layout (ffi/layout-size) after a scalar process-symbol call worked. It is not
+an observed aggregate calling-convention failure.
