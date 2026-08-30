@@ -2,18 +2,7 @@
 
 ## 📊 Executive Summary
 
-**124** total issues | **73%** complete | **14** ready to work | **3** blocked
-
-## 🎯 Top Priorities
-
-The graph analysis identified these as the highest-impact items to work on:
-
-### 1. Investigate Android AArch64 built-image FFI layout initialization failure
-**ID:** `jolt-android-lfu.2.6.1` | **Impact Score:** 0.11
-
-**Why this matters:**
-- ✅ Currently unclaimed - available for work
-- 🚨 High priority (P1) - prioritize this work
+**125** total issues | **73%** complete | **14** ready to work | **3** blocked
 
 ## 🚧 Critical Bottlenecks
 
@@ -30,7 +19,7 @@ These issues are blocking the most downstream work. Clearing them has outsized i
 ## 📈 Graph Analysis
 
 - **Dependency Density:** 0.009 (🟢 Healthy) — Issues are well-isolated and can be parallelized
-- **Graph Size:** 124 issues with 140 dependencies
+- **Graph Size:** 125 issues with 140 dependencies
 - **Cycles:** None detected ✓
 
 ## 🏃 Quick Wins
@@ -50,11 +39,11 @@ Low-effort items that clear the path forward:
 
 ## 📋 Status Summary
 
-**By Priority:** P0: 1 | P1: 60 | P2: 56 | P3: 5 | P4: 2
+**By Priority:** P0: 1 | P1: 60 | P2: 57 | P3: 5 | P4: 2
 
-**By Type:** bug: 5 | decision: 2 | epic: 19 | feature: 32 | task: 66
+**By Type:** bug: 5 | decision: 2 | epic: 19 | feature: 32 | task: 67
 
 ---
 
-*Generated Aug 30, 2026 at 9:27 AM UTC by [bv](https://github.com/Dicklesworthstone/beads_viewer)*
+*Generated Aug 30, 2026 at 10:46 AM UTC by [bv](https://github.com/Dicklesworthstone/beads_viewer)*
 

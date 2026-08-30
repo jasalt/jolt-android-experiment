@@ -1,67 +1,56 @@
 {
   "meta": {
     "version": "1.0.0",
-    "generated_at": "2026-08-30T09:27:42.579421447Z",
+    "generated_at": "2026-08-30T10:46:19.334344113Z",
     "phase2_ready": true,
-    "issue_count": 124,
+    "issue_count": 125,
     "compute_time_ms": 0
   },
   "status": {
     "PageRank": {
       "state": "computed",
-      "ms": 0.112494
+      "ms": 0.055573
     },
     "Betweenness": {
       "state": "computed",
-      "ms": 0.879246
+      "ms": 0.667328
     },
     "Eigenvector": {
       "state": "computed",
-      "ms": 0.055599
+      "ms": 0.107591
     },
     "HITS": {
       "state": "computed",
-      "ms": 0.089725
+      "ms": 0.055443
     },
     "Critical": {
       "state": "computed",
-      "ms": 0.05976
+      "ms": 0.043134
     },
     "Cycles": {
       "state": "computed",
-      "ms": 0.044434
+      "ms": 0.024767
     },
     "KCore": {
       "state": "computed",
-      "ms": 0.060806
+      "ms": 0.042503
     },
     "Articulation": {
       "state": "computed"
     },
     "Slack": {
       "state": "computed",
-      "ms": 0.018821
+      "ms": 0.011738
     }
   },
   "quick_ref": {
-    "open_count": 30,
+    "open_count": 29,
     "actionable_count": 14,
     "blocked_count": 3,
-    "in_progress_count": 1,
+    "in_progress_count": 2,
     "not_closed_count": 34,
     "not_actionable_count": 20,
-    "top_picks": [
-      {
-        "id": "jolt-android-lfu.2.6.1",
-        "title": "Investigate Android AArch64 built-image FFI layout initialization failure",
-        "score": 0.1071555914450281,
-        "reasons": [
-          "✅ Currently unclaimed - available for work",
-          "🚨 High priority (P1) - prioritize this work"
-        ],
-        "unblocks": 0
-      }
-    ]
+    "top_picks": []
   },
   "recommendations": [
     {
@@ -83,23 +72,23 @@
         "research",
         "touch"
       ],
-      "score": 0.5416476907566686,
+      "score": 0.5420510144164442,
       "breakdown": {
-        "pagerank": 0.10271498067110503,
+        "pagerank": 0.10271498426654378,
         "betweenness": 0.06801517067003793,
         "blocker_ratio": 0.13,
-        "staleness": 0.00014868015859272765,
+        "staleness": 0.00023966694336637734,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.08225,
-        "urgency": 0.0006331576257568917,
+        "urgency": 0.001016665668809824,
         "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.4668862757777501,
+        "pagerank_norm": 0.4668862921206536,
         "betweenness_norm": 0.34007585335018964,
         "blocker_ratio_norm": 1,
-        "staleness_norm": 0.0029736031718545527,
+        "staleness_norm": 0.004793338867327547,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.8225,
-        "urgency_norm": 0.006331576257568916,
+        "urgency_norm": 0.010166656688098241,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "Deep in critical path (depth 8), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -147,23 +136,23 @@
         "research",
         "shared"
       ],
-      "score": 0.3088820857947909,
+      "score": 0.309256660868635,
       "breakdown": {
-        "pagerank": 0.060585229816315714,
+        "pagerank": 0.06058523234558237,
         "betweenness": 0.03375474083438685,
         "blocker_ratio": 0.065,
-        "staleness": 0.001225763491926061,
+        "staleness": 0.0013167502766997107,
         "priority_boost": 0.05,
         "time_to_impact": 0.07525,
-        "urgency": 0.004986719733595968,
+        "urgency": 0.00533640697701927,
         "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.2753874082559805,
+        "pagerank_norm": 0.27538741975264713,
         "betweenness_norm": 0.16877370417193424,
         "blocker_ratio_norm": 0.5,
-        "staleness_norm": 0.02451526983852122,
+        "staleness_norm": 0.02633500553399421,
         "priority_boost_norm": 0.5,
         "time_to_impact_norm": 0.7525,
-        "urgency_norm": 0.04986719733595968,
+        "urgency_norm": 0.0533640697701927,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "Deep in critical path (depth 7), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -205,23 +194,23 @@
         "raylib",
         "research"
       ],
-      "score": 0.3067169248349549,
+      "score": 0.3070694671428676,
       "breakdown": {
-        "pagerank": 0.050893077441653584,
+        "pagerank": 0.05089307956378337,
         "betweenness": 0.04437420986093553,
         "blocker_ratio": 0.08666666666666667,
-        "staleness": 0.0012257056215556905,
+        "staleness": 0.0013166924063293403,
         "priority_boost": 0.05,
         "time_to_impact": 0.06825,
-        "urgency": 0.00498649645288215,
+        "urgency": 0.00533618543086949,
         "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.23133217018933447,
+        "pagerank_norm": 0.23133217983537896,
         "betweenness_norm": 0.22187104930467763,
         "blocker_ratio_norm": 0.6666666666666666,
-        "staleness_norm": 0.02451411243111381,
+        "staleness_norm": 0.026333848126586807,
         "priority_boost_norm": 0.5,
         "time_to_impact_norm": 0.6825,
-        "urgency_norm": 0.0498649645288215,
+        "urgency_norm": 0.05336185430869489,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "Deep in critical path (depth 6), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -266,23 +255,23 @@
         "raylib",
         "research"
       ],
-      "score": 0.23808646580254073,
+      "score": 0.2384610434328488,
       "breakdown": {
-        "pagerank": 0.048456912695873995,
+        "pagerank": 0.048456914763608624,
         "betweenness": 0.02551622418879056,
         "blocker_ratio": 0.08666666666666667,
-        "staleness": 0.0012256477511853204,
+        "staleness": 0.0013166345359589698,
         "priority_boost": 0.05,
         "time_to_impact": 0.061250000000000006,
-        "urgency": 0.0049862731710607795,
+        "urgency": 0.005335963883620765,
         "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.2202586940721545,
+        "pagerank_norm": 0.22025870347094828,
         "betweenness_norm": 0.1275811209439528,
         "blocker_ratio_norm": 0.6666666666666666,
-        "staleness_norm": 0.024512955023706404,
+        "staleness_norm": 0.026332690719179395,
         "priority_boost_norm": 0.5,
         "time_to_impact_norm": 0.6125,
-        "urgency_norm": 0.04986273171060779,
+        "urgency_norm": 0.053359638836207646,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "Deep in critical path (depth 5), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -319,23 +308,23 @@
         "touch",
         "validation"
       ],
-      "score": 0.20047127452107225,
+      "score": 0.20080343485440724,
       "breakdown": {
-        "pagerank": 0.037290777235448505,
+        "pagerank": 0.037290778779978974,
         "betweenness": 0.04306784660766962,
         "blocker_ratio": 0.065,
-        "staleness": 0.0001481207450124807,
+        "staleness": 0.00023910752978613042,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.05425,
-        "urgency": 0.0006307904419725952,
+        "urgency": 0.001014316874575616,
         "risk": 0.011000000000000001,
-        "pagerank_norm": 0.16950353288840228,
+        "pagerank_norm": 0.16950353990899533,
         "betweenness_norm": 0.2153392330383481,
         "blocker_ratio_norm": 0.5,
-        "staleness_norm": 0.002962414900249614,
+        "staleness_norm": 0.004782150595722608,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.5425,
-        "urgency_norm": 0.0063079044197259515,
+        "urgency_norm": 0.01014316874575616,
         "risk_norm": 0.11,
         "time_to_impact_explanation": "Deep in critical path (depth 4), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -378,23 +367,23 @@
         "research",
         "storage"
       ],
-      "score": 0.18210152315873465,
+      "score": 0.18243203432829158,
       "breakdown": {
-        "pagerank": 0.0315900517861379,
+        "pagerank": 0.03159005295724003,
         "betweenness": 0.013274336283185842,
         "blocker_ratio": 0.043333333333333335,
-        "staleness": 0.0012255513005680362,
+        "staleness": 0.001316538085341686,
         "priority_boost": 0.05,
         "time_to_impact": 0.05425,
-        "urgency": 0.004985901032230605,
+        "urgency": 0.005335594635764118,
         "risk": 0.004142857142857143,
-        "pagerank_norm": 0.143591144482445,
+        "pagerank_norm": 0.1435911498056365,
         "betweenness_norm": 0.06637168141592921,
         "blocker_ratio_norm": 0.3333333333333333,
-        "staleness_norm": 0.024511026011360723,
+        "staleness_norm": 0.02633076170683372,
         "priority_boost_norm": 0.5,
         "time_to_impact_norm": 0.5425,
-        "urgency_norm": 0.04985901032230605,
+        "urgency_norm": 0.05335594635764118,
         "risk_norm": 0.041428571428571426,
         "time_to_impact_explanation": "Deep in critical path (depth 4), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -439,23 +428,23 @@
         "research",
         "touch"
       ],
-      "score": 0.18055112599827772,
+      "score": 0.18093073231927218,
       "breakdown": {
-        "pagerank": 0.02796029348978857,
+        "pagerank": 0.02796029451497877,
         "betweenness": 0.021365360303413402,
         "blocker_ratio": 0.043333333333333335,
-        "staleness": 0.0001483136462470486,
+        "staleness": 0.00023930043102069832,
         "priority_boost": 0.05,
         "time_to_impact": 0.07525,
-        "urgency": 0.0006316067250647817,
+        "urgency": 0.0010151268163440252,
         "risk": 0.007000000000000001,
-        "pagerank_norm": 0.1270922431354026,
+        "pagerank_norm": 0.12709224779535805,
         "betweenness_norm": 0.106826801517067,
         "blocker_ratio_norm": 0.3333333333333333,
-        "staleness_norm": 0.0029662729249409717,
+        "staleness_norm": 0.004786008620413966,
         "priority_boost_norm": 0.5,
         "time_to_impact_norm": 0.7525,
-        "urgency_norm": 0.006316067250647817,
+        "urgency_norm": 0.010151268163440252,
         "risk_norm": 0.07,
         "time_to_impact_explanation": "Deep in critical path (depth 7), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -485,32 +474,32 @@
       "assignee": "easy",
       "priority": 2,
       "labels": null,
-      "score": 0.16509442794561133,
+      "score": 0.16537796938669014,
       "breakdown": {
-        "pagerank": 0.022487325240000182,
+        "pagerank": 0.022487326048522518,
         "betweenness": 0,
         "blocker_ratio": 0.021666666666666667,
-        "staleness": 0.0015163499116791473,
+        "staleness": 0.0016073366964527971,
         "priority_boost": 0.05,
         "time_to_impact": 0.04025,
-        "urgency": 0.007138622825270103,
-        "risk": 0.015875656468867818,
-        "pagerank_norm": 0.10221511472727356,
+        "urgency": 0.00747159293419914,
+        "risk": 0.01578527693261789,
+        "pagerank_norm": 0.10221511840237509,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0.16666666666666666,
-        "staleness_norm": 0.030326998233582945,
+        "staleness_norm": 0.03214673392905594,
         "priority_boost_norm": 0.5,
         "time_to_impact_norm": 0.40249999999999997,
-        "urgency_norm": 0.07138622825270102,
-        "risk_norm": 0.1587565646886782,
+        "urgency_norm": 0.0747159293419914,
+        "risk_norm": 0.1578527693261789,
         "time_to_impact_explanation": "On dependency chain (depth 2), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
         "risk_signals": {
           "fan_variance": 0,
-          "activity_churn": 0.06252188229559398,
+          "activity_churn": 0.05950923108726304,
           "cross_repo_risk": 0,
           "status_risk": 0.7,
-          "composite_risk": 0.1587565646886782,
+          "composite_risk": 0.1578527693261789,
           "explanation": "Low risk - stable dependency structure"
         }
       },
@@ -543,23 +532,23 @@
         "research",
         "touch"
       ],
-      "score": 0.16069071282873487,
+      "score": 0.1610228712910573,
       "breakdown": {
-        "pagerank": 0.03162915041753367,
+        "pagerank": 0.03162915182573112,
         "betweenness": 0.05221238938053098,
         "blocker_ratio": 0.021666666666666667,
-        "staleness": 0.0001481979055063079,
+        "staleness": 0.00023918469027995758,
         "priority_boost": 0.05,
         "time_to_impact": 0.061250000000000006,
-        "urgency": 0.000631116956829081,
+        "urgency": 0.0010146408528900086,
         "risk": 0.012020639856840277,
-        "pagerank_norm": 0.14376886553424395,
+        "pagerank_norm": 0.14376887193514143,
         "betweenness_norm": 0.2610619469026549,
         "blocker_ratio_norm": 0.16666666666666666,
-        "staleness_norm": 0.002963958110126158,
+        "staleness_norm": 0.004783693805599151,
         "priority_boost_norm": 0.5,
         "time_to_impact_norm": 0.6125,
-        "urgency_norm": 0.006311169568290809,
+        "urgency_norm": 0.010146408528900086,
         "risk_norm": 0.12020639856840276,
         "time_to_impact_explanation": "Deep in critical path (depth 5), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -605,23 +594,23 @@
         "research",
         "validation"
       ],
-      "score": 0.15854760451733116,
+      "score": 0.15885608890190345,
       "breakdown": {
-        "pagerank": 0.028188050689310785,
+        "pagerank": 0.028188051871261464,
         "betweenness": 0.03746312684365782,
         "blocker_ratio": 0.021666666666666667,
-        "staleness": 0.0012252040783458141,
+        "staleness": 0.001316190863119464,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.04725000000000001,
-        "urgency": 0.004984561306967894,
+        "urgency": 0.005334265318204007,
         "risk": 0.010718968296952645,
-        "pagerank_norm": 0.12812750313323085,
+        "pagerank_norm": 0.12812750850573393,
         "betweenness_norm": 0.18731563421828906,
         "blocker_ratio_norm": 0.16666666666666666,
-        "staleness_norm": 0.024504081566916282,
+        "staleness_norm": 0.02632381726238928,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.47250000000000003,
-        "urgency_norm": 0.04984561306967894,
+        "urgency_norm": 0.05334265318204007,
         "risk_norm": 0.10718968296952645,
         "time_to_impact_explanation": "Deep in critical path (depth 3), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -767,49 +756,49 @@
   ],
   "project_health": {
     "counts": {
-      "total": 124,
-      "open": 30,
-      "closed": 90,
+      "total": 125,
+      "open": 29,
+      "closed": 91,
       "blocked": 3,
       "actionable": 14,
       "not_closed": 34,
       "dependency_blocked": 20,
       "by_status": {
         "blocked": 3,
-        "closed": 90,
-        "in_progress": 1,
-        "open": 30
+        "closed": 91,
+        "in_progress": 2,
+        "open": 29
       },
       "by_type": {
         "bug": 5,
         "decision": 2,
         "epic": 19,
         "feature": 32,
-        "task": 66
+        "task": 67
       },
       "by_priority": {
         "0": 1,
         "1": 60,
-        "2": 56,
+        "2": 57,
         "3": 5,
         "4": 2
       }
     },
     "graph": {
-      "node_count": 124,
+      "node_count": 125,
       "edge_count": 140,
-      "density": 0.00917912404930501,
+      "density": 0.00903225806451613,
       "has_cycles": false,
       "phase2_ready": true
     },
     "velocity": {
-      "closed_last_7_days": 90,
-      "closed_last_30_days": 90,
-      "avg_days_to_close": 0.15256712962962965,
+      "closed_last_7_days": 91,
+      "closed_last_30_days": 91,
+      "avg_days_to_close": 0.1508950193325193,
       "weekly": [
         {
           "week_start": "2026-08-24T00:00:00Z",
-          "closed": 90
+          "closed": 91
         },
         {
           "week_start": "2026-08-17T00:00:00Z",
@@ -843,8 +832,8 @@
     }
   },
   "commands": {
-    "claim_top": "CI=1 br update jolt-android-lfu.2.6.1 --status in_progress --json",
-    "show_top": "CI=1 br show jolt-android-lfu.2.6.1 --json",
+    "claim_top": "CI=1 br ready --json  # No top pick available",
+    "show_top": "CI=1 br ready --json  # No top pick available",
     "list_ready": "CI=1 br ready --json",
     "list_blocked": "CI=1 br blocked --json",
     "refresh_triage": "bv --robot-triage"
