@@ -9,6 +9,7 @@
             [poc.raylib.touch-trail :as trail]
             [poc.raylib.touch-diagnostics :as touch-diagnostics]
             [poc.raylib.gesture-diagnostics :as gestures]
+            [poc.raylib.voxel-siege :as voxel]
             [poc.raylib.app :as app]
             [poc.raylib.gallery :as gallery]
             [poc.raylib.gallery-ui :as gallery-ui]
@@ -98,7 +99,8 @@
    (flappy/scene)
    (placeholder-scene :virtual-controls "Virtual Controls")
    (touch-diagnostics/scene)
-   (gestures/scene)])
+   (gestures/scene)
+   (voxel/scene)])
 (def scene-registry (gallery/make-registry core-scenes))
 (def scene-ids (mapv :id core-scenes))
 (def runtime-state
@@ -238,7 +240,7 @@
     (let [footer-y (- height (+ margin body-size))]
       (draw-text "Android Back: close | scene Back: gallery | mouse fallback"
                  margin (- footer-y line-gap) body-size DARKGRAY)
-      (draw-text (str "Frame " frame " | six registered scenes | cards " (:columns layout)
+      (draw-text (str "Frame " frame " | " (count scene-ids) " registered scenes | cards " (:columns layout)
                       "x" (:rows layout))
                  margin footer-y body-size DARKGRAY))
     (end-drawing)))
@@ -364,6 +366,21 @@
       (draw-flappy-bird! frame input scene-state back
                           {:margin margin :title-size title-size
                            :body-size body-size :line-gap line-gap})
+      (= :voxel-siege scene-id)
+      (do
+        (clear-background CARD-DARK)
+        (draw-rectangle! back CARD-BLUE RAYWHITE)
+        (draw-text "< Back to gallery" (+ (:x back) (quot margin 2))
+                   (+ (:y back) (quot body-size 3)) body-size RAYWHITE)
+        (draw-text "Voxel Siege" margin (+ margin title-size line-gap)
+                   title-size RAYWHITE)
+        (draw-text (str "Drag to aim | FIRE to charge/release | shots left "
+                        (:balls-left scene-state))
+                   margin (+ margin (* 2 line-gap) title-size) body-size RAYWHITE)
+        (draw-text (str "AIM MODE: " (if (:orientation? scene-state) "orientation" "drag"))
+                   margin (+ margin (* 3 line-gap) title-size) body-size LIGHTGRAY)
+        (draw-text (str "Destruction " (int (* 100.0 (voxel/destruction scene-state))) "%")
+                   margin (+ margin (* 4 line-gap) title-size) body-size LIGHTGRAY))
       :else (do
         (clear-background background)
         (draw-rectangle! back CARD-DARK RAYWHITE)

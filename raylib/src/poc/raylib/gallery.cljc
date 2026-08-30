@@ -1,6 +1,7 @@
 (ns poc.raylib.gallery
   "Pure, explicit scene lifecycle for one persistent Jolt/Raylib host loop.")
 
+(def ^:export contract-version 1)
 (def required-scene-keys [:id :title :init :update :draw :dispose])
 
 (def initial-gallery-state

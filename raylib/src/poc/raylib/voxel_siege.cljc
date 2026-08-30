@@ -122,6 +122,35 @@
 (defn reset [state]
   (new-game (:initial-cells state)))
 
+(defn- scene-metrics [input]
+  (let [[width height] (get-in input [:metrics :screen] [960 540])]
+    {:width width :height height}))
+
+(declare input-command apply-command)
+
+(defn ^:export scene
+  "Pure scene descriptor consumed by the shared gallery host."
+  []
+  {:id :voxel-siege
+   :title "Voxel Siege"
+   :orientation :landscape
+   :init (fn [_] [(new-game) [[:scene/init :voxel-siege]]])
+   :update (fn [state input]
+             (let [pointer (:pointer input)
+                   routed (input-command (scene-metrics input) state
+                                         {:phase (:phase pointer)
+                                          :position (:position pointer)})
+                   command (case (:command routed)
+                             :reset {:command :reset}
+                             :press-fire {:command :press-fire}
+                             :release-fire {:command :release-fire}
+                             :toggle-orientation {:command :toggle-orientation :pose [0 0]}
+                             :aim-drag {:command :aim-drag :dx 0 :dy 0}
+                             nil)]
+               [(if command (apply-command state command) state) []]))
+   :draw (fn [state _] [state []])
+   :dispose (fn [state] [state [[:scene/dispose :voxel-siege]]])})
+
 (defn apply-destruction [state cells]
   (let [destroyed (set/intersection (:cells state) (set cells))
         next-state (-> state
