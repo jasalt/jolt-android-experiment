@@ -13,14 +13,24 @@
   must not invoke Raylib FFI; redefined bodies are called later by the owner, or
   short owner-affine work is submitted through loop/submit-owner!."
   []
-  (let [stop-nrepl (nrepl/start nrepl-port)]
+  (loop/android-log-write loop/ANDROID-LOG-INFO "jolt_raylib_nrepl"
+                          (str "starting loopback port=" nrepl-port
+                               " owner-thread=" (.getId (Thread/currentThread))))
+  (let [stop-nrepl (try
+                     (nrepl/start nrepl-port)
+                     (catch Throwable error
+                       (loop/android-log-write loop/ANDROID-LOG-INFO "jolt_raylib_nrepl"
+                                               (str "startup failed: " error))
+                       nil))]
     (loop/android-log-write loop/ANDROID-LOG-INFO "jolt_raylib_nrepl"
-                            (str "started loopback port=" nrepl-port
-                                 " owner-thread=" (.getId (Thread/currentThread))))
+                            (if stop-nrepl
+                              (str "started loopback port=" nrepl-port
+                                   " owner-thread=" (.getId (Thread/currentThread)))
+                              "unavailable; continuing without debug server"))
     (try
       (loop/run-loop)
       (finally
-        (stop-nrepl)
+        (when stop-nrepl (stop-nrepl))
         (loop/android-log-write loop/ANDROID-LOG-INFO "jolt_raylib_nrepl"
                                 "stopped before Jolt shutdown")))))
 

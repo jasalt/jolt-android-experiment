@@ -175,6 +175,34 @@ selects the ordinary direct-linked gallery export, and a signed release probe
 answered no nREPL request. Do not move the permission to the main manifest or
 merge the debug entry into the release image.
 
+### Native Android 15 ARM64 currently cannot start Jolt nREPL
+
+**Observed device:** Samsung SM-G973F (`beyond1lte`), Android API 35, native
+`arm64-v8a`; evidence captured 2026-08-30 through loopback ADB wireless
+connection.
+
+The debug APK loaded its Jolt library, passed its Raylib ABI probes, resolved
+`raylib_gallery_debug`, and entered that export. Its debug-only manifest
+contained `android.permission.INTERNET`, confirmed granted by `dumpsys package`.
+Nevertheless, `jolt.nrepl/start` immediately threw
+`clojure.lang.ExceptionInfo: socket() failed {}`. The uncaught exception caused
+NativeActivity to exit and Android to restart the foreground process repeatedly,
+before a frame was rendered. This did not produce a Java exception, linker
+error, or tombstone.
+
+The debug bootstrap now catches that startup exception, writes the exact failure
+to `jolt_raylib_nrepl`, and continues into the Raylib owner loop without a
+server. The physical device then rendered and retained one PID, establishing
+that the failure is the Jolt nREPL socket startup rather than the Raylib loop,
+EGL, APK ABI, or the Android network permission. The translated API-35 emulator
+continues to be the only validated Android nREPL environment.
+
+**Consequence:** do not claim physical-device nREPL support or silently restore
+an uncaught startup path. Keep the listener debug-only and loopback-only; track
+root-cause work in Beads `jolt-android-cg1`. A native C socket control probe is
+built for the next device session to distinguish Android socket policy from the
+Jolt FFI socket binding.
+
 ### Primary Android facts do not automatically transfer
 
 The API-35 x86_64 emulator's ARM64 translation,

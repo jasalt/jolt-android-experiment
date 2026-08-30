@@ -1,5 +1,7 @@
 #include <android/log.h>
 #include <dlfcn.h>
+#include <errno.h>
+#include <sys/socket.h>
 #include <sys/types.h>
 #include <unistd.h>
 
@@ -18,6 +20,9 @@ static pid_t thread_id(void) { return gettid(); }
 int main(int argc, char *argv[]) {
   pid_t owner = thread_id();
   LOGI("enter main thread=%d owner=%d", owner, owner);
+  int socket_fd = socket(AF_INET, SOCK_STREAM | SOCK_CLOEXEC, 0);
+  LOGI("native socket probe fd=%d errno=%d", socket_fd, errno);
+  if (socket_fd >= 0) close(socket_fd);
   void *library = dlopen("libjoltraylib-loop.so", RTLD_NOW | RTLD_LOCAL);
   if (!library) {
     LOGE("dlopen failed thread=%d error=%s", thread_id(), dlerror());
@@ -98,8 +103,10 @@ int main(int argc, char *argv[]) {
     return 4;
   }
 
+  LOGI("calling %s mode=%s thread=%d owner=%d", loop_name, build_mode,
+       thread_id(), owner);
   int frames = loop();
-  LOGI("%s result=%d mode=%s thread=%d owner=%d", loop_name, frames,
+  LOGI("%s returned result=%d mode=%s thread=%d owner=%d", loop_name, frames,
        build_mode, thread_id(), owner);
   shutdown();
   LOGI("jolt_library_shutdown thread=%d owner=%d", thread_id(), owner);
