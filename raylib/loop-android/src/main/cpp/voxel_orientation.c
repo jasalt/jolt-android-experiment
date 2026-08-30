@@ -19,7 +19,7 @@ int voxel_set_orientation(int landscape) {
       env, activity_class, "setRequestedOrientation", "(I)V");
   if (set_orientation == NULL) return 0;
   (*env)->CallVoidMethod(env, app->activity->clazz, set_orientation,
-                         landscape ? 6 /* SENSOR_LANDSCAPE */
+                         landscape ? 0 /* LANDSCAPE */
                                    : 1 /* PORTRAIT */);
   return 1;
 }

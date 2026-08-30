@@ -24,3 +24,15 @@ Live scene screenshot SHA-256:
 `cf3f2aba16fb64f74f7e69ec078801d76c5d84a02c6efd92b88457835d2dd67a`.
 The scene's pure lifecycle, orientation event and input contracts are covered
 by the Raylib test suite: 34 tests, 155 assertions, 0 failures, 0 errors.
+
+The owner-thread nREPL call `(poc.raylib.loop/voxel-set-orientation 1)`
+returned `1`. Android display evidence then reported a logical 2400x1080 frame,
+and the captured frame below is 2400x1080, proving the NativeActivity helper can
+request landscape without creating a second Activity or window.
+
+![Landscape orientation helper evidence](assets/voxel-landscape-orientation.png)
+
+Landscape screenshot SHA-256:
+`a9124b6dd0bab8b1b55ab792607fd81fcc88a5f0325e03622b489c44cac7904e`.
+The screenshot is host evidence; the Voxel scene still needs full gameplay
+rendering and a tested portrait restore path.
