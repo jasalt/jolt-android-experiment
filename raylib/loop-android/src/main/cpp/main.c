@@ -7,6 +7,13 @@
 
 #include "voxel_sensor.h"
 
+#ifdef VOXEL_BOX3D_PROBE
+#include <stdint.h>
+extern uint32_t vb3_world_create(double, double, double, int);
+extern void vb3_world_step(uint32_t, float, int);
+extern void vb3_world_destroy(uint32_t);
+#endif
+
 #define LOG_TAG "jolt_raylib_gallery"
 #define LOGI(...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__)
 #define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
@@ -35,6 +42,12 @@ int main(int argc, char *argv[]) {
        sensor_quaternion[0], sensor_quaternion[1], sensor_quaternion[2],
        sensor_quaternion[3], thread_id());
   voxel_sensor_stop();
+#ifdef VOXEL_BOX3D_PROBE
+  uint32_t probe_world = vb3_world_create(0.0, -9.8, 0.0, 1);
+  for (int step = 0; step < 10; step++) vb3_world_step(probe_world, 0.016f, 1);
+  LOGI("voxel Box3D probe world=%u steps=10 thread=%d", probe_world, thread_id());
+  vb3_world_destroy(probe_world);
+#endif
   int socket_fd = socket(AF_INET, SOCK_STREAM | SOCK_CLOEXEC, 0);
   LOGI("native socket probe fd=%d errno=%d", socket_fd, errno);
   if (socket_fd >= 0) close(socket_fd);

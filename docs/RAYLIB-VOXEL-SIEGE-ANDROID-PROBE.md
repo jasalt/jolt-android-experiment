@@ -20,7 +20,10 @@ shim SHA-256: 1b6e4847f22ca791c8e58981d14c65239ca8134f1112b3a5e132835bc498fccb
 
 The generated `.so` is intentionally not committed. The command used the
 Nix-provided `ANDROID_NDK_ROOT`, so no machine-local SDK path is part of the
-artifact contract.
+artifact contract. The optional APK probe is reproducible with
+`BOX3D_SOURCE=/path/to/pinned/box3d VOXEL_SOURCE=/path/to/voxel-siege` before
+running `scripts/raylib-persistent-loop-build-android debug`; without those
+variables the normal gallery build does not acquire Box3D.
 
 ## Emulator evidence
 
@@ -37,12 +40,16 @@ The captured 1080x2400 frame has SHA-256
 `6ef63f3b7e67f6218bd083f79022d7d472c0db9086e91222c5399b37fd775eda`.
 
 The bootstrap smoke log records `available=1`, `sample=1`, timestamp
-`125622492828895`, and quaternion `0.478851,-0.478851,-0.520290,0.520290`
-on owner thread `23601`; start/stop returned cleanly. The bounded poll waits
+`126892332512895`, and quaternion `0.478851,-0.478851,-0.520290,0.520290`
+on owner thread `24063`; start/stop returned cleanly. The bounded poll waits
 up to 250 ms for the first event and never calls Jolt from a sensor callback.
-This proves the scalar sample seam and resource setup/teardown, not a gameplay
-sample stream. The adapter must remain scene-scoped when wired into Voxel
-Siege.
+
+With the optional pinned Box3D source enabled, the same owner-thread log
+records `voxel Box3D probe world=65536 steps=10 thread=24063`. Box3D, the
+Voxel pointer/scalar shim and the Android main process therefore execute a
+10-step gravity-world smoke test on the emulator. This is a native C probe,
+not yet a Jolt FFI call or gameplay sample stream; the adapter remains
+scene-scoped when wired into Voxel Siege.
 
 ## Runtime boundary
 
