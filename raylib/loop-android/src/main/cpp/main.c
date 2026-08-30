@@ -7,6 +7,9 @@
 
 #include "voxel_sensor.h"
 #include "voxel_orientation.h"
+#ifdef VOXEL_ASSET_PROBE
+#include "raylib.h"
+#endif
 
 #ifdef VOXEL_BOX3D_PROBE
 #include <stdint.h>
@@ -81,6 +84,18 @@ int main(int argc, char *argv[]) {
   int init_result = init(argc, argv);
   LOGI("jolt_library_init result=%d thread=%d owner=%d", init_result,
        thread_id(), owner);
+#ifdef VOXEL_ASSET_PROBE
+  char *asset_text = LoadFileText("raylib-gallery/voxel-state.edn");
+  int asset_loaded = asset_text != NULL;
+  if (asset_text != NULL) UnloadFileText(asset_text);
+  const char *state = "{:probe true}";
+  int saved = SaveFileText("voxel-probe-state.edn", (char *)state);
+  char *state_text = LoadFileText("voxel-probe-state.edn");
+  int state_loaded = state_text != NULL;
+  if (state_text != NULL) UnloadFileText(state_text);
+  LOGI("voxel asset probe loaded=%d saved=%d writable-readback=%d thread=%d",
+       asset_loaded, saved, state_loaded, thread_id());
+#endif
   if (init_result != 0) {
     dlclose(library);
     return 3;

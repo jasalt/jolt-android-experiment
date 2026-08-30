@@ -33,5 +33,10 @@ if(DEFINED ENV{VOXEL_ORIENTATION_PROBE})
   target_compile_definitions(main PRIVATE VOXEL_ORIENTATION_PROBE=1)
 endif()
 
-target_link_options(main PRIVATE "-u" "ANativeActivity_onCreate")
+if(DEFINED ENV{VOXEL_ASSET_PROBE})
+  target_compile_definitions(main PRIVATE VOXEL_ASSET_PROBE=1)
+endif()
+
+target_link_options(main PRIVATE "-u" "ANativeActivity_onCreate"
+                                  "-Wl,--wrap=fopen")
 target_link_libraries(main PRIVATE raylib log android EGL GLESv2 OpenSLES atomic c dl)
