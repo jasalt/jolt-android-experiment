@@ -13,19 +13,21 @@ The fix snapshots the runtime-image namespace set before the CLI loads
 `jolt.main`, and emits a regression gate for this source-mode ordering. With
 that workaround applied to the pinned Jolt revision, the translated API-35
 Android run reports `layout-size-bound=1`, `Color` size `4`, and the complete
-aggregate matrix succeeds. No unsafe pointer workaround was adopted.
+aggregate matrix succeeds. No unsafe pointer workaround was adopted. The upstream fix is tracked in
+[Jolt PR #787](https://github.com/jolt-lang/jolt/pull/787), “Fix source-mode
+builds omitting CLI-preloaded namespace code.”
 
 ## Pinned source declarations and literal Jolt layouts
 
 | Aggregate | Pinned Raylib C shape | Jolt literal layout | C size / relevant offsets | Linux direct result | Android ARM64 result |
 | --- | --- | --- | --- | --- | --- |
-| `Color` | four `unsigned char` fields | `[:struct [[:r :uint8] ... [:a :uint8]]]` | 4; `r=0`, `a=3` | argument score `4321` | layout initialization exits before call |
-| `Vector2` | two `float` fields | `[:struct [[:x :float] [:y :float]]]` | 8; `x=0`, `y=4` | argument `21.0`; return `[7.0 8.0]` | not reached |
-| `Vector3` | three `float` fields | `[:struct [[:x :float] [:y :float] [:z :float]]]` | 12; `z=8` | argument score `321.0` | not reached |
-| `Rectangle` | four `float` fields | `[:struct [[:x :float] [:y :float] [:width :float] [:height :float]]]` | 16; `width=8`, `height=12` | argument score `4321.0` | not reached |
-| `Camera2D` | two nested `Vector2`, two `float` | literal nested structs | 24; target=8, rotation=16, zoom=20 | argument score `21.0` | not reached |
-| `Camera3D` | three nested `Vector3`, `float`, `int` | literal nested structs | 44; target=12, up=24, fovy=36, projection=40 | argument score `15.0` | not reached |
-| `Texture2D` | `uint` plus four `int` | `[:struct [[:id :uint] ... [:format :int]]]` | 20; `id=0`, `format=16` | argument `15`; return `[7 8 9 10 11]` | not reached |
+| `Color` | four `unsigned char` fields | `[:struct [[:r :uint8] ... [:a :uint8]]]` | 4; `r=0`, `a=3` | argument score `4321` | size 4; argument score `4321` |
+| `Vector2` | two `float` fields | `[:struct [[:x :float] [:y :float]]]` | 8; `x=0`, `y=4` | argument `21.0`; return `[7.0 8.0]` | argument `21.0`; return `[7.0 8.0]` |
+| `Vector3` | three `float` fields | `[:struct [[:x :float] [:y :float] [:z :float]]]` | 12; `z=8` | argument score `321.0` | argument score `321.0` |
+| `Rectangle` | four `float` fields | `[:struct [[:x :float] [:y :float] [:width :float] [:height :float]]]` | 16; `width=8`, `height=12` | argument score `4321.0` | argument score `4321.0` |
+| `Camera2D` | two nested `Vector2`, two `float` | literal nested structs | 24; target=8, rotation=16, zoom=20 | argument score `21.0` | argument score `21.0` |
+| `Camera3D` | three nested `Vector3`, `float`, `int` | literal nested structs | 44; target=12, up=24, fovy=36, projection=40 | argument score `15.0` | argument score `15.0` |
+| `Texture2D` | `uint` plus four `int` | `[:struct [[:id :uint] ... [:format :int]]]` | 20; `id=0`, `format=16` | argument `15`; return `[7 8 9 10 11]` | argument `15`; return `[7 8 9 10 11]` |
 
 The static assertions in
 [`aggregate_oracle.c`](../../raylib/abi/aggregate_oracle.c) are compiled into
@@ -46,7 +48,7 @@ This builds a small host `.so` against `$RAYLIB_SOURCE/src/raylib.h`, then uses
 Jolt `ffi/foreign-fn`/`defcfn` direct by-value declarations. It writes the
 observed map to stdout.
 
-### Android reduced failure
+### Android reduced failure and workaround validation
 
 The original run compiled `aggregate_oracle.c` into the `libmain.so` process
 image, included `poc.raylib.abi` in the pinned `tarm64le` Jolt shared library,
@@ -73,8 +75,10 @@ After applying the workaround patch, the same probe sequence emits
 - A desktop pass does **not** establish Android AArch64 ABI behavior.
 - The API-35 x86_64 emulator runs ARM64 through Berberis translation; it is not
   native ARM64 hardware.
-- The failure occurs before aggregate argument/return execution, so it must not
-  be described as an AArch64 calling-convention failure.
-- The previous scalar first-frame/touch host is restored and continues to avoid
-  direct aggregate layouts. In particular, all-touch `Vector2` coordinates
-  remain unavailable until the follow-up resolves this gate.
+- The original failure occurred before aggregate argument/return execution and
+  was not an AArch64 calling-convention failure; it was an omitted source
+  namespace in the generated image.
+- The workaround is preserved as a patch until Jolt PR #787 is incorporated by
+  the pinned dependency.
+- With the workaround, direct aggregate calls and returns pass on the tested
+  translated Android environment. Native ARM64 hardware remains untested.

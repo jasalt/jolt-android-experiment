@@ -81,27 +81,28 @@ but this current visual-host route has an explicit host-Mesa compatibility
 boundary. It is not Android evidence and must not be described as a fully
 self-contained Nix display server result.
 
-### Direct aggregate layouts currently exit the Android built image before a call
+### Source-mode builds can omit CLI-preloaded namespace code
 
-**Observed experiment:** [RAY-012](../experiments/RAY-012-android-aggregate-abi).
+**Observed experiment:** [RAY-012](../experiments/RAY-012-android-aggregate-abi),
+fixed by [Jolt PR #787](https://github.com/jolt-lang/jolt/pull/787), “Fix
+source-mode builds omitting CLI-preloaded namespace code.”
 
-The pinned direct Jolt `[:by-value [:struct ...]]` declarations and a C oracle
-passed numerically on x86_64 Linux for `Color`, `Vector2`, `Vector3`,
-`Rectangle`, `Camera2D`, `Camera3D`, and `Texture2D`, including Jolt's
-caller-supplied destination convention for aggregate returns. The C oracle also
-compiled as static assertions against the pinned Raylib header and exported from
-the Android `libmain.so` process image.
+The source-mode CLI loads `jolt.main` before invoking the build driver. That
+also loads lazy namespaces such as `jolt.ffi`. The build driver previously
+snapshotted the process's `loaded-ns` table after this happened, then treated
+those namespaces as inherited by the distinct generated app/library image.
+Their vars were therefore interned but unbound; `jolt run` masked the problem
+because it recompiles source at runtime.
 
-On the translated API-35 ARM64 NativeActivity, a scalar oracle call succeeded
-on the normal Jolt/Raylib owner thread. The process then exited cleanly with
-status 255 while evaluating `ffi/layout-size` for the literal `Color` layout,
-before any aggregate argument or return call. This is neither aggregate ABI
-success nor a demonstrated AArch64 calling-convention failure.
+The reduced Android failure was a clean status-255 exit when calling
+`jolt.ffi/layout-size`, before any aggregate ABI call. The fix snapshots the
+runtime-image namespace set before CLI loading. With it, the Android matrix
+passes for the representative Raylib aggregates, including direct arguments
+and returns.
 
-**Consequence:** `jolt-android-lfu.2.6.1` tracks the reduced JOLT_FFI
-built-image/layout-initialization failure. Keep the scalar host behavior and do
-not introduce the stale pointer aggregate workaround to conceal this boundary.
-All per-index touch coordinate work remains blocked on its resolution.
+**Consequence:** apply PR #787 (or the pinned experiment patch) when using the
+older Jolt revision. Do not diagnose this as an AArch64 calling-convention
+failure or replace direct aggregates with the stale pointer workaround.
 
 ### Scalar touch works, but all-point coordinates remain ABI-gated
 
