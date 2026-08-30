@@ -12,6 +12,15 @@ pure scene shell pending the Box3D/render adapter.
 ![Android gallery with registered Voxel Siege scene](assets/voxel-gallery-registered.png)
 
 This screenshot is direct evidence of the current gallery host only. It does
-not claim that the Voxel gameplay renderer or landscape transition is complete.
+not claim that the Box3D gameplay renderer or landscape transition is complete.
+After rebuilding the pinned Jolt library, an emulator tap at `[100 1800]`
+selected `:voxel-siege`; the state log recorded `:gallery-mode :scene` and
+`:selected-scene :voxel-siege` at frame 69. The live scene screenshot is shown
+below.
+
+![Live Voxel Siege scene shell](assets/voxel-scene-live.png)
+
+Live scene screenshot SHA-256:
+`cf3f2aba16fb64f74f7e69ec078801d76c5d84a02c6efd92b88457835d2dd67a`.
 The scene's pure lifecycle, orientation event and input contracts are covered
 by the Raylib test suite: 34 tests, 155 assertions, 0 failures, 0 errors.
