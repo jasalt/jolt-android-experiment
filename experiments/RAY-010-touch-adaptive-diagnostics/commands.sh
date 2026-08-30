@@ -101,5 +101,5 @@ grep -Fq 'persistent-loop bootstrap complete' "$out/back-logcat.txt"
   "$out/back-logcat.txt"
 
 sha256sum "$out"/*.png >"$out/SHA256SUMS"
-printf 'Touch edges/state, point-0, adaptive portrait/landscape/two-size layout, and deterministic Back passed.\n' \
-  | tee "$out/result.txt"
+printf 'Touch edges/state, point-0, adaptive portrait/landscape/two-size layout, and deterministic Back passed.\n' |
+  tee "$out/result.txt"
