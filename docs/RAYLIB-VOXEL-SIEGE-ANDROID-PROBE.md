@@ -22,6 +22,20 @@ The generated `.so` is intentionally not committed. The command used the
 Nix-provided `ANDROID_NDK_ROOT`, so no machine-local SDK path is part of the
 artifact contract.
 
+## Emulator evidence
+
+The API-35 emulator exposes a Game Rotation Vector and Rotation Vector sensor in
+`sensorservice`; the emulator reports 12 hardware/synthetic sensors. The debug
+APK containing the adapter rebuilt successfully and installed/launched as
+`net.joltlang.raylibgallery`. This is host/gallery evidence only: Voxel Siege
+has not yet been registered as a scene, so the adapter was not started by a
+scene and no sensor sample is claimed.
+
+![API-35 emulator gallery frame](assets/voxel-sensor-emulator-gallery.png)
+
+The captured 1080x2400 frame has SHA-256
+`6ef63f3b7e67f6218bd083f79022d7d472c0db9086e91222c5399b37fd775eda`.
+
 ## Runtime boundary
 
 This sandbox has no `adb` executable or running Android emulator/device, so the
