@@ -43,6 +43,10 @@
   (is (= #{:clipboard :persistence :open-uri :notifications :vibration}
          (contracts/capabilities :android)))
   (is (contracts/permitted-effect? :linux {:type :platform/clipboard}))
+  (is (= {:platform :linux
+          :capabilities #{:clipboard :persistence :open-uri}
+          :capability-status {:open-uri :request-only}}
+         (contracts/platform-description :linux {:open-uri :request-only})))
   (is (not (contracts/permitted-effect? :cli {:type :platform/clipboard})))
   (is (= [(assoc base-model :platform (contracts/platform-description :cli))
           [{:type :platform/open-uri :uri "https://example.org"}]]

@@ -68,10 +68,12 @@ CIDER; its exact boundary is [EXP-015](https://github.com/jasalt/jolt-android-ex
 ### Linux GTK reference host
 
 The native x86_64 Fedora Lima host runs the pinned Glimmer/GTK4 backend against
-the same portable reducer. Its live GTK reactivity smoke passed, and the
-reference app rendered counter state, accepted GTK increment/decrement/reset
-events, persisted the reducer's `:storage/write` effect through a host-side EDN
-file, and restored state in a fresh process. The exact environment, tests,
+the same portable reducer. Its live GTK reactivity and worker-to-main-loop
+scheduling smokes passed. The reference app renders the shared view model,
+accepts GTK increment/decrement/reset events, persists the reducer's
+`:storage/write` effect through a host-side EDN file, and restores state through
+the reducer in a fresh process. Reducer state is separate from adapter outcomes;
+effect failures cannot roll back or contaminate the committed portable model. The exact environment, tests,
 screenshots, and scope boundary are in
 [EXP-021](experiments/EXP-021-x86-64-linux-gtk-host). This is not native ARM64
 Linux, Android, or macOS GTK evidence.

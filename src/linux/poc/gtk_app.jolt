@@ -1,8 +1,8 @@
 (ns poc.gtk-app
   "Linux GTK4 reference host for the portable reducer.
 
-  The only mutable host state is a Glimmer reactive cell containing the model
-  returned by poc.reducer/step. GTK widgets render that data and translate user
+  Authoritative reducer state and adapter diagnostics live in separate Glimmer
+  reactive cells. GTK widgets render the shared view model and translate user
   interaction into portable events; the reducer neither sees GTK pointers nor
   executes GTK effects."
   (:require [clojure.edn :as edn]
@@ -18,10 +18,25 @@
 (defn storage-file []
   (or (System/getenv "POC_GTK_STATE_FILE") "target/gtk-counter.edn"))
 
-(defn restore-state []
+(defn stored-counter []
   (try
-    (assoc reducer/initial-state :counter (edn/read-string (slurp (storage-file))))
-    (catch :default _ reducer/initial-state)))
+    (let [value (edn/read-string (slurp (storage-file)))]
+      (when (number? value) value))
+    (catch :default _ nil)))
+
+(defn initial-model []
+  (let [counter (stored-counter)
+        restored (if (some? counter)
+                   (first (reducer/step reducer/initial-state
+                                        {:type :storage/restore :value counter}))
+                   reducer/initial-state)]
+    (first (reducer/step restored
+                         {:type :platform/info
+                          :value (contracts/platform-description
+                                   :linux
+                                   {:persistence :available
+                                    :clipboard :session-dependent
+                                    :open-uri :request-only})}))))
 
 ;; These narrow FFI bindings deliberately remain in the Linux adapter.  The
 ;; shared contracts namespace uses only EDN data and never receives GTK values.
@@ -30,40 +45,55 @@
 (ffi/defcfn gdk-clipboard-set-text "gdk_clipboard_set_text" [:pointer :string] :void)
 (ffi/defcfn gtk-show-uri "gtk_show_uri" [:pointer :string :uint] :void)
 
-(def app-state
-  (atom (assoc (restore-state)
-               :platform (contracts/platform-description :linux))))
+;; Keep authoritative reducer data and adapter diagnostics in separate cells.
+;; defonce lets reducer state survive component redefinition plus ui/reload! in
+;; the documented nREPL workflow.
+(defonce app-state (atom (initial-model)))
+(defonce adapter-state
+  (atom {:last-effects [] :effect-results []}))
 
 (defn copy-to-clipboard! [text]
   (let [display (gdk-display-get-default)]
-    (when (not= display ffi/null)
-      (gdk-clipboard-set-text (gdk-display-get-clipboard display) text))))
+    (if (= display ffi/null)
+      :unavailable
+      (let [clipboard (gdk-display-get-clipboard display)]
+        (if (= clipboard ffi/null)
+          :unavailable
+          (do (gdk-clipboard-set-text clipboard text) :requested))))))
 
 (defn open-uri! [uri]
   ;; A nil parent makes this host operation independent of widget/domain state.
-  ;; GTK owns any resulting portal/browser UI.
-  (gtk-show-uri ffi/null uri 0))
+  ;; gtk_show_uri only confirms that GTK accepted the request; the desktop may
+  ;; still lack a portal/browser, as the Xvfb evidence demonstrates.
+  (gtk-show-uri ffi/null uri 0)
+  :requested)
 
 (defn execute-effect! [{:keys [type key value text uri]}]
   (case type
-    :storage/write (when (= key "counter") (spit (storage-file) (pr-str value)))
+    :storage/write (if (= key "counter")
+                     (do (spit (storage-file) (pr-str value)) :completed)
+                     :unsupported)
     :platform/clipboard (copy-to-clipboard! text)
     :platform/open-uri (open-uri! uri)
-    nil))
+    :unsupported))
+
+(defn execute-effect-safely! [effect]
+  (try
+    {:effect-type (:type effect) :status (execute-effect! effect)}
+    (catch :default error
+      {:effect-type (:type effect) :status :failed :message (str error)})))
 
 (defn execute-effects! [effects]
-  (doseq [effect effects]
-    (execute-effect! effect)))
+  (mapv execute-effect-safely! effects))
 
 (defn dispatch! [event]
-  ;; :last-effects is adapter render metadata, not domain state. Never feed it
-  ;; into the next reducer step or serialize it across the portable boundary.
-  (let [[model effects] (reducer/step (dissoc @app-state :last-effects) event)]
-    ;; GTK only executes portable effects and renders returned data. It never
-    ;; passes native widgets into the shared reducer or stores domain state in a
-    ;; GTK object.
-    (execute-effects! effects)
-    (reset! app-state (assoc model :last-effects effects))
+  (let [[model effects] (reducer/step @app-state event)]
+    ;; Commit the pure transition first. Adapter failures are diagnostics and do
+    ;; not roll back or contaminate authoritative reducer state.
+    (reset! app-state model)
+    (reset! adapter-state
+            {:last-effects effects
+             :effect-results (execute-effects! effects)})
     (wire/encode-response {:model model :effects effects})))
 
 (defn dispatch-wire! [event-wire]
@@ -76,7 +106,8 @@
   (if platform (pr-str platform) "Linux x86_64"))
 
 (defn app []
-  (let [model @app-state]
+  (let [model (reducer/view-model @app-state)
+        adapter @adapter-state]
     [:vbox {:spacing 12 :margin 18}
      [:label {:markup [:span {:weight "bold" :size "x-large"}
                        "Jolt Mobile PoC"]}]
@@ -89,10 +120,13 @@
       [:button {:label "+" :on-click #(dispatch! {:type :counter/inc})}]
       [:button {:label "Reset" :on-click #(dispatch! {:type :counter/reset})}]]
      [:separator {}]
-     [:label {:label "Shared state log:"}]
+     [:label {:label "Shared model:"}]
+     [:label {:label (str "Events: " (:event-count model))}]
      [:label {:label (str "Lifecycle: " (:lifecycle model))}]
      [:label {:label (str "Worker: " (:worker model))}]
-     [:label {:label (str "Effects: " (pr-str (:last-effects model)))}]
+     [:label {:label (str "Effects: " (pr-str (:last-effects adapter)))}]
+     [:label {:label (str "Adapter outcomes: "
+                          (pr-str (:effect-results adapter)))}]
      [:hbox {:spacing 8}
       [:button {:label "Copy counter"
                 :on-click #(dispatch! {:type :platform/copy-counter})}]
@@ -102,6 +136,7 @@
 (defn -main [& args]
   (if (= ["--conformance"] args)
     (do (reset! app-state reducer/initial-state)
+        (reset! adapter-state {:last-effects [] :effect-results []})
         (println (pr-str (conformance/verify! dispatch-wire!))))
-    (ui/run app :title "Jolt Mobile PoC" :width 460 :height 300
+    (ui/run app :title "Jolt Mobile PoC" :width 520 :height 360
             :app-id "net.joltlang.androidpoc.gtk")))

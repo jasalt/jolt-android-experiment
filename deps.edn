@@ -4,4 +4,6 @@
          :git/sha "ce79d45698d36ccf496397bb85974e3cce6abfd8"}}
  :aliases
  {:test {:extra-paths ["test/shared" "test"]
-         :main-opts ["-m" "poc.test-runner"]}}}
+         :main-opts ["-m" "poc.test-runner"]}
+  :gtk-test {:extra-paths ["test/linux"]
+             :main-opts ["-m" "poc.gtk-test-runner"]}}}

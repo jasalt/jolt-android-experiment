@@ -21,6 +21,16 @@ Each item is an observed constraint with an evidence reference.
   system loader paths. The Linux development shell must export its GTK/GLib
   `LD_LIBRARY_PATH`; this is validated on x86_64 Linux in
   [EXP-021](../experiments/EXP-021-x86-64-linux-gtk-host).
+- **GTK rerenders belong on its main loop.** The pinned backend retains native
+  signal callables as collect-safe callbacks and schedules ratom changes from
+  nREPL/worker threads through GTK's idle queue. Do not invoke GTK FFI directly
+  from an nREPL or future thread. EXP-021's `repl-live-smoke` exercises this
+  scheduling contract.
+- **GTK capability does not prove desktop availability.** The Linux adapter can
+  request `:platform/open-uri`, but `gtk_show_uri` returning does not mean a
+  portal or browser completed it. Keep implemented capabilities separate from
+  `:capability-status` and per-dispatch adapter outcomes; the Xvfb session's
+  missing URI handler is retained in EXP-021.
 - **Never retain Jolt-managed string pointers in JNI.** The Android bridge's
   canonical `poc_dispatch` response is a `:string` copied across the C ABI and
   copied again into Java; C no longer formats domain EDN

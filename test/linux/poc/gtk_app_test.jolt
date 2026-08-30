@@ -1,0 +1,30 @@
+(ns poc.gtk-app-test
+  (:require [clojure.test :refer [deftest is testing]]
+            [poc.gtk-app :as sut]
+            [poc.reducer :as reducer]
+            [poc.wire :as wire]))
+
+(deftest restore-enters-through-portable-model
+  (testing "valid persisted data becomes reducer state without adapter metadata"
+    (with-redefs [sut/stored-counter (fn [] 7)]
+      (let [model (sut/initial-model)]
+        (is (= 7 (:counter model)))
+        (is (= :linux (get-in model [:platform :platform])))
+        (is (not (contains? model :last-effects)))
+        (is (not (contains? model :effect-results)))))))
+
+(deftest effect-failure-does-not-roll-back-model
+  (reset! sut/app-state reducer/initial-state)
+  (reset! sut/adapter-state {:last-effects [] :effect-results []})
+  (with-redefs [sut/storage-file (fn [] "/proc/jolt-android/no-such-dir/counter.edn")]
+    (let [response (wire/decode-response (sut/dispatch! {:type :counter/inc}))]
+      (is (= 1 (:counter @sut/app-state)))
+      (is (= 1 (get-in response [:ok :model :counter])))
+      (is (not (contains? @sut/app-state :last-effects)))
+      (is (= :failed (get-in @sut/adapter-state [:effect-results 0 :status]))))))
+
+(deftest effect-outcomes-distinguish-completion-and-support
+  (with-redefs [sut/storage-file (fn [] "target/gtk-adapter-test.edn")]
+    (is (= :completed
+           (sut/execute-effect! {:type :storage/write :key "counter" :value 3}))))
+  (is (= :unsupported (sut/execute-effect! {:type :notification/show}))))

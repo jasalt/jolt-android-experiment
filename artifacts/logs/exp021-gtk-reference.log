@@ -1,7 +1,23 @@
 
-(process:161364): Gtk-WARNING **: 11:45:25.363: Locale not supported by C library.
+(process:262117): Gtk-WARNING **: 10:13:33.824: Locale not supported by C library.
 	Using the fallback 'C' locale.
 
-(jolt:161364): Gdk-WARNING **: 11:45:25.369: Cannot get portal org.freedesktop.host.portal.Registry version: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.freedesktop.portal.Desktop': startup job failed
+(jolt:262117): Gdk-WARNING **: 10:13:33.833: Cannot get portal org.freedesktop.host.portal.Registry version: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.freedesktop.portal.Desktop': startup job failed
 
-(jolt:161364): Gdk-WARNING **: 11:45:25.376: Cannot get portal org.freedesktop.portal.Inhibit version: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.freedesktop.portal.Desktop': startup job failed
+(jolt:262117): Gdk-WARNING **: 10:13:33.843: Cannot get portal org.freedesktop.portal.Inhibit version: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.freedesktop.portal.Desktop': startup job failed
+
+(jolt:262117): Gdk-WARNING **: 10:13:33.945: Vulkan: ../src/imagination/vulkan/pvr_instance.c:75: Failed to enumerate drm devices (errno 2: No such file or directory) (VK_ERROR_INITIALIZATION_FAILED)
+
+(jolt:262117): Gdk-WARNING **: 10:13:33.946: Vulkan: Loader Message: setup_loader_term_phys_devs: Call to 'vkEnumeratePhysicalDevices' in ICD /nix/store/v5c40hysv678q0yjwvdi0q97rdmxr9r4-mesa-26.2.1/lib/libvulkan_powervr_mesa.so failed with error code -3
+
+(jolt:262117): Gdk-WARNING **: 10:13:33.947: Vulkan: ../src/imagination/vulkan/pvr_instance.c:75: Failed to enumerate drm devices (errno 2: No such file or directory) (VK_ERROR_INITIALIZATION_FAILED)
+
+(jolt:262117): Gdk-WARNING **: 10:13:33.947: Vulkan: Loader Message: setup_loader_term_phys_devs: Call to 'vkEnumeratePhysicalDevices' in ICD /nix/store/v5c40hysv678q0yjwvdi0q97rdmxr9r4-mesa-26.2.1/lib/libvulkan_powervr_mesa.so failed with error code -3
+
+(jolt:262117): Gdk-WARNING **: 10:13:33.947: Vulkan: ../src/imagination/vulkan/pvr_instance.c:75: Failed to enumerate drm devices (errno 2: No such file or directory) (VK_ERROR_INITIALIZATION_FAILED)
+
+(jolt:262117): Gdk-WARNING **: 10:13:33.947: Vulkan: Loader Message: setup_loader_term_phys_devs: Call to 'vkEnumeratePhysicalDevices' in ICD /nix/store/v5c40hysv678q0yjwvdi0q97rdmxr9r4-mesa-26.2.1/lib/libvulkan_powervr_mesa.so failed with error code -3
+
+(jolt:262117): Gdk-WARNING **: 10:13:33.948: Vulkan: ../src/imagination/vulkan/pvr_instance.c:75: Failed to enumerate drm devices (errno 2: No such file or directory) (VK_ERROR_INITIALIZATION_FAILED)
+
+(jolt:262117): Gdk-WARNING **: 10:13:33.948: Vulkan: Loader Message: setup_loader_term_phys_devs: Call to 'vkEnumeratePhysicalDevices' in ICD /nix/store/v5c40hysv678q0yjwvdi0q97rdmxr9r4-mesa-26.2.1/lib/libvulkan_powervr_mesa.so failed with error code -3

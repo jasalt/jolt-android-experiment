@@ -27,8 +27,8 @@ DISPLAY=:99 nix --extra-experimental-features 'nix-command flakes' develop -c \
 
 The command verifies that the shell exposes GTK/GLib to Jolt FFI, clones the
 pinned upstream GTK backend into a temporary directory, runs its headless unit
-suite and its live GTK reactivity smoke, then runs this repository's shared
-portable suite.
+suite, live GTK reactivity smoke, and off-thread/nREPL scheduling smoke, then
+runs this repository's shared portable suite.
 
 Launch the reference host with:
 
@@ -40,13 +40,15 @@ DISPLAY=:99 nix --extra-experimental-features 'nix-command flakes' develop -c \
 ## Expected
 
 The GTK FFI libraries resolve from the pinned Nix environment, the Glimmer GTK
-smoke reports `:result :pass`, and the shared portable suite stays green.
+reactivity smoke reports `:result :pass`, the nREPL-style worker mutation reaches
+a GTK render on its main loop, and the shared portable suite stays green.
 
 ## Actual
 
 See [the observed results](actual.md). The upstream GTK tests passed (six tests and 24
-assertions), the live GTK reactivity smoke passed, and the shared project suite
-passed (seven tests and 16 assertions). The project reference host rendered the
+assertions), the live GTK reactivity and off-thread scheduling smokes passed,
+the GTK adapter suite passed (three tests and 10 assertions), and the shared
+project suite passed (10 tests and 30 assertions). The project reference host rendered the
 shared counter and actual GTK interactions exercised increment, decrement, and
 reset. It executes the reducer's `:storage/write` effect through a host-side EDN
 file, and a fresh launch restored the persisted counter. Screenshots and launch

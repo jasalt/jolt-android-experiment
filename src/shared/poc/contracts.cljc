@@ -13,8 +13,16 @@
 (defn supports? [platform capability]
   (contains? (capabilities platform) capability))
 
-(defn platform-description [platform]
-  {:platform platform :capabilities (capabilities platform)})
+(defn platform-description
+  "Describe capabilities implemented by an adapter. Optional capability-status
+  records runtime availability separately; membership in :capabilities alone
+  never promises that the current desktop/session can complete an operation."
+  ([platform]
+   {:platform platform :capabilities (capabilities platform)})
+  ([platform capability-status]
+   {:platform platform
+    :capabilities (capabilities platform)
+    :capability-status capability-status}))
 
 (defn effect-capability [{:keys [type]}]
   (case type

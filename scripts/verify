@@ -24,6 +24,7 @@ run bootstrap ./scripts/bootstrap
 run portable ./scripts/test-portable
 
 if [[ "$(uname -s)" == Linux && -n "${DISPLAY:-}" ]] && command -v xdotool >/dev/null && command -v ffmpeg >/dev/null; then
+  run gtk-unit jolt -M:gtk-test
   run gtk-conformance ./scripts/gtk-run --conformance
   run gtk-smoke ./scripts/gtk-smoke
 else

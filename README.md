@@ -24,9 +24,11 @@ nREPL without GTK ([EXP-017](experiments/EXP-017-native-arm64-portable-cli))
 and builds the Android debug APK through the Nix-provided SDK/NDK
 ([EXP-019](experiments/EXP-019-native-darwin-android-nix-build)). This does not
 prove native ARM64 Android execution or a successful macOS emulator boot.
-The Linux x86_64 GTK/Glimmer reference host renders the shared reducer,
-executes persistence and clipboard adapters, invokes its URI adapter with an
-explicit headless-handler limitation, and preserves visual evidence
+The Linux x86_64 GTK/Glimmer reference host renders the shared view model,
+keeps reducer state separate from adapter outcomes, validates nREPL-style
+main-loop scheduling, executes persistence and clipboard adapters, invokes its
+URI adapter with an explicit request-only/headless-handler limitation, and
+preserves visual evidence
 ([EXP-021](experiments/EXP-021-x86-64-linux-gtk-host)). This does not prove a
 native ARM64 Linux GTK host. The Android Compose diagnostic shell includes
 notification posting, URL/vibration/info adapters, and permission flow. Its

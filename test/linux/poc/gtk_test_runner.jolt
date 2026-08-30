@@ -1,0 +1,7 @@
+(ns poc.gtk-test-runner
+  (:require [clojure.test :as test]
+            poc.gtk-app-test))
+
+(defn -main [& _]
+  (let [{:keys [fail error]} (test/run-tests 'poc.gtk-app-test)]
+    (System/exit (if (zero? (+ fail error)) 0 1))))

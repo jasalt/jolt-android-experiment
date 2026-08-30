@@ -41,7 +41,13 @@ cd "$work_dir"
 jolt test
 DISPLAY="${DISPLAY:?set a display; the Lima Xvfb service uses :99}" \
   timeout --signal=TERM --kill-after=5s 60s jolt smoke
+# A worker mutation stands in for nREPL evaluation and must be marshalled onto
+# GTK's main loop rather than reconciling widgets on the worker thread.
+DISPLAY="$DISPLAY" timeout --signal=TERM --kill-after=5s 60s \
+  jolt repl-live-smoke
 
-# The project portable suite remains the shared-core baseline.
+# Project adapter invariants and the portable suite remain explicit baselines.
 cd "$repo_root"
+mkdir -p target
+jolt -M:gtk-test
 ./scripts/test-portable

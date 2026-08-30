@@ -41,6 +41,9 @@ capture() {
 }
 
 xdotool windowactivate --sync "$window"
+# Window discovery can precede Glimmer's first GTK paint; wait for stable content
+# so a passing smoke cannot preserve a blank evidence frame.
+sleep 1
 capture exp021-gtk-initial.png
 click "$((X + 101))" "$((Y + 180))" # +: Counter 1
 click "$((X + 101))" "$((Y + 180))" # +: Counter 2
@@ -73,6 +76,7 @@ done
 [[ -n "$window" ]] || { printf 'GTK reference restore window did not appear\n' >&2; exit 1; }
 eval "$(xdotool getwindowgeometry --shell "$window")"
 xdotool windowactivate --sync "$window"
+sleep 1
 click "$((X + 101))" "$((Y + 180))" # Counter 1 and persist it.
 cleanup
 trap - EXIT
@@ -91,6 +95,7 @@ for _ in $(seq 1 60); do
 done
 [[ -n "$window" ]] || { printf 'GTK restored-state window did not appear\n' >&2; exit 1; }
 xdotool windowactivate --sync "$window"
+sleep 1
 capture exp021-gtk-restored.png
 
 # The bottom row invokes adapter-owned native GTK operations.  Their portable

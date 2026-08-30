@@ -47,18 +47,65 @@ emulator validation until it boots on the host. See
 ## Linux GTK reference host
 
 The default shell supplies GTK4 and GLib on Linux, including the Nix library
-path required for Jolt's `dlopen`-based Glimmer GTK FFI. Start the reference
-application on an available X11 display:
+path required for Jolt's `dlopen`-based Glimmer GTK FFI. The project consumes
+the pinned upstream `glimmer-gtk` backend; its own GTK FFI calls are narrow
+clipboard and URI effect adapters, not a second widget backend.
+
+Start the reference application on an available X11 display:
 
 ```sh
 DISPLAY=:99 nix --extra-experimental-features 'nix-command flakes' develop -c \
   ./scripts/gtk-run
 ```
 
+`gtk-run` and `gtk-smoke` deliberately require X11 because deterministic
+interaction and capture use `xdotool` and FFmpeg's `x11grab`. This is a project
+automation constraint, not a GTK/Glimmer restriction; native GTK can use other
+display backends, but this repository has not validated a Wayland-only run.
+
+### Live GTK development over nREPL
+
+Start Jolt's nREPL server inside the Linux shell with `DISPLAY` exported:
+
+```sh
+DISPLAY=:99 nix --extra-experimental-features 'nix-command flakes' develop -c \
+  jolt nrepl-server
+```
+
+From the connected REPL, launch the host and iterate without restarting it:
+
+```clojure
+(require '[poc.gtk-app :as gtk]
+         '[glimmer.core :as ui])
+(gtk/-main)                                  ; returns while GTK remains live
+(gtk/dispatch! {:type :counter/inc})         ; window repaints
+;; evaluate changed component definitions, then:
+(ui/reload! gtk/app)
+```
+
+`app-state` and adapter diagnostics are top-level `defonce` reactive cells, so
+they survive component redefinition and `reload!`. Glimmer schedules ratom
+changes made by the nREPL worker onto GTK's main loop; GTK widgets must never be
+mutated directly from the REPL thread. The pinned backend's
+`repl-live-smoke` validates that scheduling path in EXP-021.
+
+### State and effect semantics
+
+The GTK host keeps authoritative reducer state separate from adapter diagnostics.
+A dispatch commits the pure reducer transition before running effects, and an
+adapter failure is reported in `:effect-results` without rolling back or adding
+host data to the portable model. `:completed` means a synchronous operation such
+as persistence finished; `:requested` means GTK accepted an asynchronous desktop
+request; `:unavailable`, `:unsupported`, and `:failed` do not imply success.
+Likewise, `:capabilities` describes operations implemented by the adapter while
+`:capability-status` records session-dependent or request-only availability.
+
 The current Fedora x86_64 Lima guest runs the project host and the pinned
-upstream Glimmer GTK reactivity smoke; see
-[EXP-021](../experiments/EXP-021-x86-64-linux-gtk-host). That is Linux x86_64
-reference-host evidence, not native ARM64 Linux, Android, or macOS GTK support.
+upstream Glimmer GTK reactivity and nREPL scheduling smokes; see
+[EXP-021](../experiments/EXP-021-x86-64-linux-gtk-host). That is this project's
+Linux x86_64 evidence, not native ARM64 Linux, Android, or macOS GTK support.
+Upstream `glimmer-gtk` contains additional platform support, but it is outside
+this project's validated boundary.
 
 ## Clean-room verification
 

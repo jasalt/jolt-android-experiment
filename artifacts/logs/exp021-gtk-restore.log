@@ -1,8 +1,24 @@
 
-(process:161535): Gtk-WARNING **: 11:45:30.378: Locale not supported by C library.
+(process:262347): Gtk-WARNING **: 10:13:43.672: Locale not supported by C library.
 	Using the fallback 'C' locale.
 
-(jolt:161535): Gdk-WARNING **: 11:45:30.383: Cannot get portal org.freedesktop.host.portal.Registry version: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.freedesktop.portal.Desktop': startup job failed
+(jolt:262347): Gdk-WARNING **: 10:13:43.685: Cannot get portal org.freedesktop.host.portal.Registry version: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.freedesktop.portal.Desktop': startup job failed
 
-(jolt:161535): Gdk-WARNING **: 11:45:30.391: Cannot get portal org.freedesktop.portal.Inhibit version: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.freedesktop.portal.Desktop': startup job failed
-Gtk-Message: 11:45:31.593: GtkDialog mapped without a transient parent. This is discouraged.
+(jolt:262347): Gdk-WARNING **: 10:13:43.701: Cannot get portal org.freedesktop.portal.Inhibit version: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.freedesktop.portal.Desktop': startup job failed
+
+(jolt:262347): Gdk-WARNING **: 10:13:43.852: Vulkan: ../src/imagination/vulkan/pvr_instance.c:75: Failed to enumerate drm devices (errno 2: No such file or directory) (VK_ERROR_INITIALIZATION_FAILED)
+
+(jolt:262347): Gdk-WARNING **: 10:13:43.853: Vulkan: Loader Message: setup_loader_term_phys_devs: Call to 'vkEnumeratePhysicalDevices' in ICD /nix/store/v5c40hysv678q0yjwvdi0q97rdmxr9r4-mesa-26.2.1/lib/libvulkan_powervr_mesa.so failed with error code -3
+
+(jolt:262347): Gdk-WARNING **: 10:13:43.856: Vulkan: ../src/imagination/vulkan/pvr_instance.c:75: Failed to enumerate drm devices (errno 2: No such file or directory) (VK_ERROR_INITIALIZATION_FAILED)
+
+(jolt:262347): Gdk-WARNING **: 10:13:43.857: Vulkan: Loader Message: setup_loader_term_phys_devs: Call to 'vkEnumeratePhysicalDevices' in ICD /nix/store/v5c40hysv678q0yjwvdi0q97rdmxr9r4-mesa-26.2.1/lib/libvulkan_powervr_mesa.so failed with error code -3
+
+(jolt:262347): Gdk-WARNING **: 10:13:43.857: Vulkan: ../src/imagination/vulkan/pvr_instance.c:75: Failed to enumerate drm devices (errno 2: No such file or directory) (VK_ERROR_INITIALIZATION_FAILED)
+
+(jolt:262347): Gdk-WARNING **: 10:13:43.858: Vulkan: Loader Message: setup_loader_term_phys_devs: Call to 'vkEnumeratePhysicalDevices' in ICD /nix/store/v5c40hysv678q0yjwvdi0q97rdmxr9r4-mesa-26.2.1/lib/libvulkan_powervr_mesa.so failed with error code -3
+
+(jolt:262347): Gdk-WARNING **: 10:13:43.858: Vulkan: ../src/imagination/vulkan/pvr_instance.c:75: Failed to enumerate drm devices (errno 2: No such file or directory) (VK_ERROR_INITIALIZATION_FAILED)
+
+(jolt:262347): Gdk-WARNING **: 10:13:43.859: Vulkan: Loader Message: setup_loader_term_phys_devs: Call to 'vkEnumeratePhysicalDevices' in ICD /nix/store/v5c40hysv678q0yjwvdi0q97rdmxr9r4-mesa-26.2.1/lib/libvulkan_powervr_mesa.so failed with error code -3
+Gtk-Message: 10:13:46.722: GtkDialog mapped without a transient parent. This is discouraged.
