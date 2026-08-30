@@ -10,9 +10,9 @@
   "Create, step and destroy one scalar-ABI world on the current owner thread."
   []
   (let [world (world-create 0.0 -9.8 0.0 1)]
-    (dotimes [_ 10] (world-step world 0.016 1))
+    (dotimes [_ 10000] (world-step world 0.016 1))
     (world-destroy world)
-    {:world world :steps 10 :status :ok}))
+    {:world world :steps 10000 :status :ok}))
 
 (defn ffi-probe []
   (smoke)

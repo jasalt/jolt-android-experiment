@@ -48,8 +48,9 @@ With the optional pinned Box3D source enabled, the owner-thread log records
 `voxel Box3D probe world=65536 steps=10 thread=24541`. The Jolt library then
 looked up `raylib_voxel_native_probe` and recorded `Jolt FFI Box3D probe
 result=1 thread=24541 owner=24541`. Box3D, the Voxel pointer/scalar shim and
-the Jolt FFI call therefore execute on the same Android owner thread. This is
-a ten-step gravity-world smoke test, not yet a full gameplay physics stream;
+the Jolt FFI call therefore execute on the same Android owner thread. The Jolt scalar probe now advances the world for 10,000 steps before destroy;
+the direct C bootstrap probe remains a ten-step startup check. This is still
+not a full gameplay physics stream;
 the adapter remains scene-scoped when wired into Voxel Siege.
 
 ## Runtime boundary
