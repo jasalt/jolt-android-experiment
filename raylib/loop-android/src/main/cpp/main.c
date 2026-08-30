@@ -7,9 +7,7 @@
 
 #include "voxel_sensor.h"
 #include "voxel_orientation.h"
-#ifdef VOXEL_ASSET_PROBE
 #include "raylib.h"
-#endif
 
 #ifdef VOXEL_BOX3D_PROBE
 #include <stdint.h>
@@ -29,6 +27,16 @@ typedef int (*loop_fn)(void);
 typedef int (*probe_fn)(void);
 
 static pid_t thread_id(void) { return gettid(); }
+
+int voxel_asset_visual_probe(void) {
+  Image image = LoadImage("raylib-gallery/voxel-marker.png");
+  int image_ok = image.data != NULL && image.width == 8 && image.height == 8;
+  if (image.data != NULL) UnloadImage(image);
+  Font font = LoadFont("raylib-gallery/DroidSans.ttf");
+  int font_ok = font.texture.id != 0 && font.baseSize > 0;
+  if (font.texture.id != 0) UnloadFont(font);
+  return image_ok && font_ok;
+}
 
 int main(int argc, char *argv[]) {
   pid_t owner = thread_id();
@@ -96,6 +104,7 @@ int main(int argc, char *argv[]) {
   LOGI("voxel asset probe loaded=%d saved=%d writable-readback=%d thread=%d",
        asset_loaded, saved, state_loaded, thread_id());
 #endif
+
   if (init_result != 0) {
     dlclose(library);
     return 3;

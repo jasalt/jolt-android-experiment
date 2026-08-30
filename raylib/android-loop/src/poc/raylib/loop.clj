@@ -24,7 +24,7 @@
          get-gesture-detected get-mouse-x get-mouse-y mouse-pressed-raw
          mouse-down-raw mouse-released-raw is-key-pressed-raw
          android-log-write draw-rectangle draw-rectangle-lines close-window
-         voxel-set-orientation)
+         voxel-set-orientation voxel-asset-visual-probe)
 (ffi/defcfn init-window "InitWindow" [:int :int :string] :void)
 (ffi/defcfn set-target-fps "SetTargetFPS" [:int] :void)
 (ffi/defcfn ^:private should-close-raw "WindowShouldClose" [] :int)
@@ -55,6 +55,7 @@
 (ffi/defcfn close-window "CloseWindow" [] :void)
 ;; Implemented by the NativeActivity process host; calls stay on the frame owner.
 (ffi/defcfn voxel-set-orientation "voxel_set_orientation" [:int] :int)
+(ffi/defcfn voxel-asset-visual-probe "voxel_asset_visual_probe" [] :int)
 
 (def MOUSE-BUTTON-LEFT 0)
 (def KEY-BACK 4)
@@ -484,6 +485,8 @@
         target-fps 30
         start (System/currentTimeMillis)]
     (init-window 0 0 "Jolt Raylib Gallery")
+    (android-log-write ANDROID-LOG-INFO "jolt_raylib_gallery"
+                       (str "voxel visual assets=" (voxel-asset-visual-probe)))
     (set-target-fps target-fps)
     (when (= "1" (System/getenv "VOXEL_NATIVE_PROBE"))
       (android-log-write ANDROID-LOG-INFO "jolt_raylib_gallery"
