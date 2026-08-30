@@ -1,0 +1,147 @@
+From 999601db124e2007a19e070941e73ba2dddb939d Mon Sep 17 00:00:00 2001
+From: jasalt <jarkko@saltiolacode.fi>
+Date: Sun, 30 Aug 2026 13:38:55 +0300
+Subject: [PATCH] Fix source-mode app runtime snapshot
+
+---
+ host/chez/build-lib-smoke.sh            |  6 +++---
+ host/chez/build-smoke.sh                | 10 ++++++++++
+ host/chez/build.ss                      | 12 ++++++------
+ host/chez/loader.ss                     |  7 +++++++
+ test/chez/build-lib/driver.c            |  6 ++++--
+ test/chez/build-lib/src/libadd/core.clj | 12 ++++++++----
+ 6 files changed, 38 insertions(+), 15 deletions(-)
+
+diff --git a/host/chez/build-lib-smoke.sh b/host/chez/build-lib-smoke.sh
+index de9614ac..1a3a03ce 100644
+--- a/host/chez/build-lib-smoke.sh
++++ b/host/chez/build-lib-smoke.sh
+@@ -63,8 +63,8 @@ if ! cc -O2 "$app/driver.c" -ldl -o "$work/driver" 2>"$work/driver.err"; then
+   echo "  FAIL: driver compile failed"; cat "$work/driver.err"; exit 1
+ fi
+ got="$("$work/driver" "$lib" 2>&1)"; rc=$?
+-if [ "$got" != "5" ] || [ "$rc" != "0" ]; then
+-  echo "  FAIL: add(2,3) — want '5' rc 0, got '$got' rc $rc"; exit 1
++if [ "$got" != "5 8" ] || [ "$rc" != "0" ]; then
++  echo "  FAIL: exports — want '5 8' rc 0, got '$got' rc $rc"; exit 1
+ fi
+
+-echo "build-lib smoke: passed (library built, add(2,3)=5 via dlopen+jolt_lookup)"
++echo "build-lib smoke: passed (add(2,3)=5 + jolt.ffi layout-size=8 via dlopen+jolt_lookup)"
+diff --git a/host/chez/build-smoke.sh b/host/chez/build-smoke.sh
+index e9fcdbc5..fb9dbd86 100755
+--- a/host/chez/build-smoke.sh
++++ b/host/chez/build-smoke.sh
+@@ -627,6 +627,16 @@ fi
+ # run` compiles the source at require time and masks it entirely.
+ ffiapp="$root/test/chez/ffi-app"
+ ffiout="$(dirname "$out")/ffi-app-bin"
++ffiout_source="$(dirname "$out")/ffi-app-source-bin"
++# Force the source-mode ordering that exposed #756 again: load jolt.ffi into the
++# driver process before build.ss snapshots the runtime image. A correct snapshot
++# still emits jolt.ffi into the app; a late snapshot leaves layout-size UNBOUND.
++if ! JOLT_PWD="$ffiapp" "$root/bin/jolt" build -m ffiapp.main -o "$ffiout_source" >/dev/null 2>&1; then
++  echo "  FAIL: source-mode jolt build of a preloaded jolt.ffi app exited non-zero"; exit 1
++fi
++if [ "$(cd / && "$ffiout_source" 2>&1 | tail -1)" != "FFI-APP 8 4 4 2.5 true" ]; then
++  echo "  FAIL: source-mode build skipped the preloaded jolt.ffi Clojure layer"; exit 1
++fi
+ if ! JOLT_PWD="$ffiapp" "$jolt" build -m ffiapp.main -o "$ffiout" >/dev/null 2>&1; then
+   echo "  FAIL: jolt build of a jolt.ffi app exited non-zero"; exit 1
+ fi
+diff --git a/host/chez/build.ss b/host/chez/build.ss
+index ca8d755b..9083c63a 100644
+--- a/host/chez/build.ss
++++ b/host/chez/build.ss
+@@ -955,10 +955,12 @@
+           (bld-walk-files root "" '()))))
+     (bld-strs embed-dirs)))
+
+-;; Namespaces already defined at boot in the BUILD process (snapshotted before
+-;; step 1 loads anything) — the driver image's set. bld-require-closure still
+-;; skips these as preloaded; only LAZY stdlib (not in the image) is emitted.
+-(define bld-boot-loaded #f)
++;; Namespaces defined in the runtime image before the CLI loads jolt.main and
++;; its require closure. By the time build-binary is called, jolt.main has loaded
++;; jolt.ffi and other lazy stdlib namespaces into THIS process, but those are not
++;; in the app image being written. Re-snapshotting loaded-ns there silently
++;; leaves their vars interned but UNBOUND in a source-mode-built app/library.
++(define bld-boot-loaded (ldr-runtime-image-ns-copy))
+
+ ;; --- the build --------------------------------------------------------------
+ ;; entry-ns: the app's main namespace (a string). out-path: the binary to write.
+@@ -1208,8 +1210,6 @@
+     (bld-preload-static-natives! natives (string-append out-path ".build")))
+    ;; 1. record app namespaces in dependency order as they finish loading.
+    (let ((app-order '()))
+-     (set! bld-boot-loaded
+-       (hashtable-copy loaded-ns #f))
+      (set-ns-loaded-hook!
+       (lambda (name file) (set! app-order (cons (cons name file) app-order))))
+     (ei-mark! "startup")
+diff --git a/host/chez/loader.ss b/host/chez/loader.ss
+index 87a28231..5dae0a1a 100644
+--- a/host/chez/loader.ss
++++ b/host/chez/loader.ss
+@@ -316,6 +316,13 @@
+ ;; (like clojure.test); the primitives stay defined either way.
+ (hashtable-delete! loaded-ns "clojure.core.async")
+
++;; Immutable baseline for app-image construction.  The build command itself
++;; loads jolt.main and lazy stdlib namespaces before build-binary runs; those
++;; process-local additions must not be mistaken for namespaces baked into the
++;; runtime image that the new app will inherit.
++(define ldr-runtime-image-ns (hashtable-copy loaded-ns #f))
++(define (ldr-runtime-image-ns-copy) (hashtable-copy ldr-runtime-image-ns #f))
++
+ ;; *loaded-libs* is the other half of the loaded set: a clojure.lang.Ref that
+ ;; tools.namespace and core.typed conj/disj on, and that ns-dedup-loaded? below
+ ;; reads alongside loaded-ns. A bare read-modify-write of the ref field lost marks
+diff --git a/test/chez/build-lib/driver.c b/test/chez/build-lib/driver.c
+index 97fd0896..2e3c0734 100644
+--- a/test/chez/build-lib/driver.c
++++ b/test/chez/build-lib/driver.c
+@@ -10,6 +10,7 @@
+ typedef int (*init_fn)(int, char**);
+ typedef void* (*lookup_fn)(const char*);
+ typedef int (*add_fn)(int, int);
++typedef int (*point_size_fn)(void);
+
+ int main(int argc, char** argv) {
+   if (argc < 2) { fprintf(stderr, "usage: driver <libpath>\n"); return 2; }
+@@ -20,7 +21,8 @@ int main(int argc, char** argv) {
+   if (!init || !lookup) { fprintf(stderr, "missing init/lookup: %s\n", dlerror()); return 1; }
+   if (init(0, NULL) != 0) { fprintf(stderr, "jolt_library_init failed\n"); return 1; }
+   add_fn add = (add_fn)lookup("add");
+-  if (!add) { fprintf(stderr, "jolt_lookup(\"add\") returned NULL\n"); return 1; }
+-  printf("%d\n", add(2, 3));
++  point_size_fn point_size = (point_size_fn)lookup("point_size");
++  if (!add || !point_size) { fprintf(stderr, "jolt_lookup returned NULL\n"); return 1; }
++  printf("%d %d\n", add(2, 3), point_size());
+   return 0;
+ }
+diff --git a/test/chez/build-lib/src/libadd/core.clj b/test/chez/build-lib/src/libadd/core.clj
+index b2ce3998..07572d79 100644
+--- a/test/chez/build-lib/src/libadd/core.clj
++++ b/test/chez/build-lib/src/libadd/core.clj
+@@ -1,10 +1,14 @@
+ (ns libadd.core
+   (:require [jolt.ffi :as ffi]))
+
++(def point-layout (ffi/layout [:struct [[:x :float] [:y :float]]]))
++
+ (defn add [x y] (+ x y))
++(defn point-size [] (ffi/layout-size point-layout))
+
+-;; Publish `add` as a C-callable entry point named "add". An embedder resolves it
+-;; via jolt_lookup("add") after jolt_library_init. export! runs at the library's
+-;; top-level (during heap build), so it is available before jolt_library_init
+-;; returns.
++;; Publish scalar controls and a function that calls the Clojure half of
++;; jolt.ffi. The latter catches a source-mode build driver mistaking jolt.ffi,
++;; loaded by jolt.main in the build process, for code inherited by this distinct
++;; library image: that leaves layout-size interned but UNBOUND at invocation.
+ (ffi/export! "add" add [:int :int] :int)
++(ffi/export! "point_size" point-size [] :int)
+--
+2.55.0

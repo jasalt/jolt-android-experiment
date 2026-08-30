@@ -11,6 +11,7 @@ typedef int (*jolt_init_fn)(int, char **);
 typedef void *(*jolt_lookup_fn)(const char *);
 typedef void (*jolt_shutdown_fn)(void);
 typedef int (*loop_fn)(void);
+typedef int (*probe_fn)(void);
 
 static pid_t thread_id(void) { return gettid(); }
 
@@ -41,6 +42,35 @@ int main(int argc, char *argv[]) {
     dlclose(library);
     return 3;
   }
+
+  const char *probe_names[] = {
+      "raylib_abi_constant_size", "raylib_abi_map_size",
+      "raylib_abi_color_layout_map", "raylib_abi_color_layout_marker",
+      "raylib_abi_color_raw_size", "raylib_abi_layout_size_bound",
+      "raylib_abi_color_size"};
+  for (size_t i = 0; i < sizeof(probe_names) / sizeof(probe_names[0]); i++) {
+    probe_fn probe = (probe_fn)lookup(probe_names[i]);
+    LOGI("aggregate probe lookup name=%s result=%s thread=%d owner=%d",
+         probe_names[i], probe ? "ok" : "missing", thread_id(), owner);
+    if (!probe) {
+      shutdown();
+      dlclose(library);
+      return 4;
+    }
+    LOGI("aggregate probe call name=%s result=%d thread=%d owner=%d",
+         probe_names[i], probe(), thread_id(), owner);
+  }
+
+  probe_fn abi_verify = (probe_fn)lookup("raylib_abi_verify");
+  LOGI("jolt_lookup aggregate verify=%s thread=%d owner=%d",
+       abi_verify ? "ok" : "missing", thread_id(), owner);
+  if (!abi_verify) {
+    shutdown();
+    dlclose(library);
+    return 4;
+  }
+  LOGI("aggregate matrix result=%d thread=%d owner=%d", abi_verify(),
+       thread_id(), owner);
 
   loop_fn loop = (loop_fn)lookup("raylib_persistent_loop");
   LOGI("jolt_lookup raylib_persistent_loop=%s thread=%d owner=%d",

@@ -1,6 +1,7 @@
 (ns poc.raylib.loop
   "Jolt-owned persistent Raylib loop with touch-first adaptive diagnostics."
   (:require [jolt.ffi :as ffi]
+            [poc.raylib.abi]
             [poc.raylib.diagnostics :as diagnostics]
             [poc.raylib.gallery :as gallery]))
 

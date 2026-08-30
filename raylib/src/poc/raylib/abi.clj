@@ -101,6 +101,22 @@
    :return-vector2 {:destination? true :fields [7.0 8.0]}
    :return-texture {:destination? true :fields [7 8 9 10 11]}})
 
+(defn constant-size [] 4)
+(defn map-size [] (:size {:size 4}))
+(defn color-layout-map? [] (if (map? color-layout) 1 0))
+(defn color-layout-marker? [] (if (= true (:jolt.ffi/layout color-layout)) 1 0))
+(defn color-raw-size [] (:size color-layout))
+(defn layout-size-bound? [] (if (bound? #'ffi/layout-size) 1 0))
+(defn color-size [] (ffi/layout-size color-layout))
+
+(ffi/export! "raylib_abi_constant_size" constant-size [] :int)
+(ffi/export! "raylib_abi_map_size" map-size [] :int)
+(ffi/export! "raylib_abi_color_layout_map" color-layout-map? [] :int)
+(ffi/export! "raylib_abi_color_layout_marker" color-layout-marker? [] :int)
+(ffi/export! "raylib_abi_color_raw_size" color-raw-size [] :int)
+(ffi/export! "raylib_abi_layout_size_bound" layout-size-bound? [] :int)
+(ffi/export! "raylib_abi_color_size" color-size [] :int)
+
 (defn verify! []
   (let [_ (*observe-stage!* "layouts")
         layouts (layout-observation)
@@ -112,3 +128,9 @@
     (when-not (= expected-aggregates (:aggregates observation))
       (throw (ex-info "Unexpected Jolt Raylib aggregate ABI result" observation)))
     observation))
+
+(defn verify-export []
+  (verify!)
+  1)
+
+(ffi/export! "raylib_abi_verify" verify-export [] :int)

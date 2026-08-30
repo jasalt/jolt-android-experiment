@@ -6,13 +6,14 @@ The pinned Jolt direct aggregate implementation is numerically correct on
 x86_64 Linux for the selected Raylib aggregate shapes, including by-value
 arguments and Jolt's destination-pointer aggregate-return convention.
 
-The equivalent Android ARM64 built-library invocation is **blocked before the
-first aggregate call**. The process-symbol C oracle resolves and runs, but the
-translated API-35 process exits cleanly (status 255) while evaluating
-`ffi/layout-size` for the literal `Color` layout. It therefore does not prove
-or disprove AArch64 aggregate calling conventions. It is classified as a
-JOLT_FFI built-image/layout-initialization boundary and tracked by
-`jolt-android-lfu.2.6.1`; no unsafe pointer workaround was adopted.
+The original Android ARM64 built-library invocation exited cleanly (status
+255) because source-mode `jolt build --library` skipped the Clojure half of
+`jolt.ffi`: `layout-size` was interned but unbound in the distinct app image.
+The fix snapshots the runtime-image namespace set before the CLI loads
+`jolt.main`, and emits a regression gate for this source-mode ordering. With
+that workaround applied to the pinned Jolt revision, the translated API-35
+Android run reports `layout-size-bound=1`, `Color` size `4`, and the complete
+aggregate matrix succeeds. No unsafe pointer workaround was adopted.
 
 ## Pinned source declarations and literal Jolt layouts
 
@@ -59,10 +60,13 @@ stage=layouts
 stage=layout-color
 ```
 
-The process then exited cleanly before entering any C aggregate function. The
-C oracle symbol table confirms all `jolt_raylib_abi_*` symbols are exported by
-`libmain.so`. Exact command output is retained in
-[`evidence/android-attempt.txt`](evidence/android-attempt.txt).
+The process then exited cleanly before entering any C aggregate function. A
+minimal exported probe showed ordinary map access and the compiled layout value
+worked, while `bound? #'jolt.ffi/layout-size` was false. The C oracle symbol
+table confirms all `jolt_raylib_abi_*` symbols are exported by `libmain.so`.
+After applying the workaround patch, the same probe sequence emits
+`layout-size-bound=1`, `color-size=4`, and `aggregate matrix result=1`; see
+[`evidence/android-workaround-logcat.txt`](evidence/android-workaround-logcat.txt).
 
 ## Boundaries
 

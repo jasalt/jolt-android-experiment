@@ -1,0 +1,15 @@
+Workaround validation, 2026-08-30, API-35 x86_64 emulator with ARM64
+translation. The build used the immutable Jolt pin plus
+patches/jolt/0001-fix-source-mode-app-runtime-snapshot.patch.
+
+Key output:
+
+jolt_library_init result=0 thread=13999 owner=13999
+aggregate probe call name=raylib_abi_layout_size_bound result=1 thread=13999 owner=13999
+aggregate probe call name=raylib_abi_color_size result=4 thread=13999 owner=13999
+aggregate matrix result=1 thread=13999 owner=13999
+jolt_raylib_touch_state: ... :gallery-contract 1 ...
+jolt_library_shutdown thread=13999 owner=13999
+
+No fatal signal, FATAL EXCEPTION, or ANR marker was present. All probe and
+shutdown calls stayed on the Jolt/Raylib owner thread.
