@@ -6,7 +6,8 @@
             [poc.raylib.following-eyes-test]
             [poc.raylib.gallery-test]
             [poc.raylib.gallery-ui-test]
-            [poc.raylib.repl-queue-test]))
+            [poc.raylib.repl-queue-test]
+            [poc.raylib.touch-trail-test]))
 
 (defn -main [& _]
   (let [{:keys [fail error] :as result}
@@ -16,6 +17,7 @@
                         'poc.raylib.following-eyes-test
                         'poc.raylib.gallery-test
                         'poc.raylib.gallery-ui-test
-                        'poc.raylib.repl-queue-test)]
+                        'poc.raylib.repl-queue-test
+                        'poc.raylib.touch-trail-test)]
     (when (pos? (+ fail error))
       (throw (ex-info "Raylib pure tests failed" result)))))
