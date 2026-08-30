@@ -10,6 +10,7 @@
             [poc.raylib.touch-diagnostics :as touch-diagnostics]
             [poc.raylib.gesture-diagnostics :as gestures]
             [poc.raylib.voxel-siege :as voxel]
+            [poc.raylib.voxel-native-probe :as voxel-native]
             [poc.raylib.app :as app]
             [poc.raylib.gallery :as gallery]
             [poc.raylib.gallery-ui :as gallery-ui]
@@ -471,6 +472,11 @@
         start (System/currentTimeMillis)]
     (init-window 0 0 "Jolt Raylib Gallery")
     (set-target-fps target-fps)
+    (when (= "1" (System/getenv "VOXEL_NATIVE_PROBE"))
+      (android-log-write ANDROID-LOG-INFO "jolt_raylib_gallery"
+                         (pr-str (try (voxel-native/smoke)
+                                      (catch Throwable error
+                                        {:status :error :message (str error)})))))
     (try
       (loop [frame 0
              diagnostic-state diagnostics/initial-state

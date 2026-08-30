@@ -44,12 +44,13 @@ The bootstrap smoke log records `available=1`, `sample=1`, timestamp
 on owner thread `24063`; start/stop returned cleanly. The bounded poll waits
 up to 250 ms for the first event and never calls Jolt from a sensor callback.
 
-With the optional pinned Box3D source enabled, the same owner-thread log
-records `voxel Box3D probe world=65536 steps=10 thread=24063`. Box3D, the
-Voxel pointer/scalar shim and the Android main process therefore execute a
-10-step gravity-world smoke test on the emulator. This is a native C probe,
-not yet a Jolt FFI call or gameplay sample stream; the adapter remains
-scene-scoped when wired into Voxel Siege.
+With the optional pinned Box3D source enabled, the owner-thread log records
+`voxel Box3D probe world=65536 steps=10 thread=24541`. The Jolt library then
+looked up `raylib_voxel_native_probe` and recorded `Jolt FFI Box3D probe
+result=1 thread=24541 owner=24541`. Box3D, the Voxel pointer/scalar shim and
+the Jolt FFI call therefore execute on the same Android owner thread. This is
+a ten-step gravity-world smoke test, not yet a full gameplay physics stream;
+the adapter remains scene-scoped when wired into Voxel Siege.
 
 ## Runtime boundary
 

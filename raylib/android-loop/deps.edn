@@ -1,4 +1,7 @@
 {:paths ["src" "../src" "../../src/shared"]
  :jolt/native [{:name "Raylib main image"
                 :linux ["libmain.so"]
+                :optional true}
+               {:name "Voxel Box3D process symbols"
+                :linux ["libmain.so"]
                 :optional true}]}

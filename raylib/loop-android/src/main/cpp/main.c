@@ -104,6 +104,19 @@ int main(int argc, char *argv[]) {
          probe_names[i], probe(), thread_id(), owner);
   }
 
+#ifdef VOXEL_BOX3D_PROBE
+  probe_fn voxel_ffi_probe = (probe_fn)lookup("raylib_voxel_native_probe");
+  LOGI("jolt_lookup voxel native probe=%s thread=%d owner=%d",
+       voxel_ffi_probe ? "ok" : "missing", thread_id(), owner);
+  if (!voxel_ffi_probe) {
+    shutdown();
+    dlclose(library);
+    return 7;
+  }
+  LOGI("Jolt FFI Box3D probe result=%d thread=%d owner=%d",
+       voxel_ffi_probe(), thread_id(), owner);
+#endif
+
   probe_fn abi_verify = (probe_fn)lookup("raylib_abi_verify");
   LOGI("jolt_lookup aggregate verify=%s thread=%d owner=%d",
        abi_verify ? "ok" : "missing", thread_id(), owner);
