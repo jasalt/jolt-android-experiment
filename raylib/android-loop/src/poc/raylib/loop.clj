@@ -460,7 +460,7 @@
                      :gallery-mode (:mode next-gallery-state)
                      :selected-scene (:active-scene-id next-gallery-state)
                      :scene-state (when-let [scene-state (:scene-state next-gallery-state)]
-                                    (select-keys scene-state [:elapsed :score :over? :y :vy :target :phase :points]))}))
+                                    (select-keys scene-state [:elapsed :score :over? :y :vy :target :phase :points :last-code :point :log]))}))
           (when (or (zero? (mod frame 150))
                     (not= :idle phase)
                     (:back? input)
