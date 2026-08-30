@@ -11,7 +11,7 @@
 minimumLimaVersion: 2.0.0
 
 base:
-- template:_images/fedora
+  - template:_images/fedora
 
 # Do not set `arch`: Lima selects the host-native architecture. This produces
 # x86_64 Fedora guests on the Linux Android-integration host and aarch64 Fedora
@@ -35,8 +35,8 @@ disk: 100GiB
 # boundary: code in the guest can modify the host home. See docs/LIMA.md for a
 # stricter copy/clone-on-guest alternative.
 mounts:
-- location: "~"
-  writable: true
+  - location: "~"
+    writable: true
 mountInotify: true
 
 # There is no container runtime in this VM. Nix supplies the reproducible
@@ -46,268 +46,296 @@ containerd:
   user: false
 
 provision:
-- mode: system
-  script: |
-    #!/bin/bash
-    set -eux -o pipefail
+  - mode: system
+    script: |
+      #!/bin/bash
+      set -eux -o pipefail
 
-    # Keep the mutable VM base intentionally small. Android/Jolt versions and
-    # build dependencies must be pinned by the repository flake, not DNF.
-    dnf -y install \
-      ca-certificates curl git gzip bzip2 xz tar unzip which findutils iproute \
-      openssh-server xorg-x11-xauth \
-      tmux fd-find ripgrep jq socat nmap-ncat \
-      npm chromium kitty-terminfo \
-      xorg-x11-server-Xvfb openbox x11vnc ffmpeg-free xdotool \
-      xdpyinfo xprop glx-utils mesa-dri-drivers mesa-libGL\
-      policycoreutils-python-utils
+      # Keep the mutable VM base intentionally small. Android/Jolt versions and
+      # build dependencies must be pinned by the repository flake, not DNF.
+      dnf -y install \
+        ca-certificates curl git gzip bzip2 xz tar unzip which findutils iproute \
+        openssh-server xorg-x11-xauth \
+        tmux fd-find ripgrep jq socat nmap-ncat \
+        npm chromium kitty-terminfo \
+        xorg-x11-server-Xvfb openbox x11vnc ffmpeg-free xdotool \
+        xdpyinfo xprop glx-utils mesa-dri-drivers mesa-libGL\
+        policycoreutils-python-utils
 
-    # Nix is the project dependency boundary. Fedora's package sets up the
-    # build users and systemd daemon without running an unpinned curl installer.
-    dnf -y install nix nix-daemon
-    install -d -m 0755 /etc/nix
-    touch /etc/nix/nix.conf
-    if ! grep -q '^experimental-features[[:space:]]*=' /etc/nix/nix.conf; then
-      printf '%s\n' 'experimental-features = nix-command flakes' >>/etc/nix/nix.conf
-    fi
-    if ! grep -q '^sandbox[[:space:]]*=' /etc/nix/nix.conf; then
-      printf '%s\n' 'sandbox = true' >>/etc/nix/nix.conf
-    fi
-
-    # Fedora's Nix package leaves the daemon socket below a default_t path.
-    # systemd (init_t) cannot create that socket under SELinux enforcing mode
-    # unless its intended runtime-file label is registered first.
-    nix_socket=/nix/var/nix/daemon-socket/socket
-    if ! semanage fcontext -a -t var_run_t "$nix_socket" 2>/dev/null; then
-      semanage fcontext -m -t var_run_t "$nix_socket"
-    fi
-    if [[ -e "$nix_socket" ]]; then
-      restorecon -v "$nix_socket"
-    fi
-
-    systemctl enable --now nix-daemon.socket
-
-    # Optional host-display forwarding is useful for quick checks. The stable
-    # automation and inspection display is the loopback-only VNC desktop below.
-    install -d -m 0755 /etc/ssh/sshd_config.d
-    cat >/etc/ssh/sshd_config.d/99-lima-x11.conf <<'EOF'
-    X11Forwarding yes
-    X11UseLocalhost yes
-    XAuthLocation /usr/bin/xauth
-    EOF
-    sshd -t
-    systemctl restart sshd
-
-    # A direct X11 desktop is simpler and more observable than nesting Weston:
-    # Android emulator / GTK -> Xvfb -> FFmpeg or x11vnc -> SSH tunnel -> host.
-    # x11vnc never listens beyond guest loopback; the SSH tunnel is the access
-    # control and transport-security boundary.
-    cat >/usr/local/bin/lima-x11 <<'SCRIPT'
-    #!/bin/bash
-    set -euo pipefail
-
-    display="${LIMA_X11_DISPLAY:-:99}"
-    screen="${LIMA_X11_SCREEN:-1280x800x24}"
-    # Use a non-default VNC/X11 desktop port so this VM can coexist with
-    # another Lima instance whose desktop occupies port 5900.
-    vnc_port="${LIMA_VNC_PORT:-5901}"
-    display_number="${display#:}"
-    display_number="${display_number%%.*}"
-    # Use a stable user-owned location so the system unit (which has no
-    # XDG_RUNTIME_DIR) and interactive shells share state and logs.
-    state_dir="${LIMA_X11_STATE_DIR:-/tmp/lima-x11-${UID}}/lima-x11-${display_number}"
-
-    mkdir -p "$state_dir"
-    chmod 0700 "$state_dir"
-
-    running() {
-      local name="$1" pid_file="$state_dir/$1.pid" pid
-      [[ -r "$pid_file" ]] || return 1
-      read -r pid <"$pid_file"
-      [[ "$pid" =~ ^[0-9]+$ ]] && kill -0 "$pid" 2>/dev/null
-    }
-
-    start_process() {
-      local name="$1"
-      shift
-      if running "$name"; then
-        return 0
+      # Nix is the project dependency boundary. Fedora's package sets up the
+      # build users and systemd daemon without running an unpinned curl installer.
+      dnf -y install nix nix-daemon
+      install -d -m 0755 /etc/nix
+      touch /etc/nix/nix.conf
+      if ! grep -q '^experimental-features[[:space:]]*=' /etc/nix/nix.conf; then
+        printf '%s\n' 'experimental-features = nix-command flakes' >>/etc/nix/nix.conf
       fi
-      rm -f "$state_dir/$name.pid"
-      setsid "$@" </dev/null >"$state_dir/$name.log" 2>&1 &
-      echo "$!" >"$state_dir/$name.pid"
-    }
-
-    stop_process() {
-      local name="$1" pid_file="$state_dir/$1.pid" pid
-      [[ -r "$pid_file" ]] || return 0
-      read -r pid <"$pid_file"
-      if [[ "$pid" =~ ^[0-9]+$ ]] && kill -0 "$pid" 2>/dev/null; then
-        kill "$pid" 2>/dev/null || true
-        for _ in $(seq 1 30); do
-          kill -0 "$pid" 2>/dev/null || break
-          sleep 0.1
-        done
-        kill -KILL "$pid" 2>/dev/null || true
+      if ! grep -q '^sandbox[[:space:]]*=' /etc/nix/nix.conf; then
+        printf '%s\n' 'sandbox = true' >>/etc/nix/nix.conf
       fi
-      rm -f "$pid_file"
-    }
 
-    status() {
-      local failed=0 name
-      printf 'DISPLAY=%s screen=%s VNC=127.0.0.1:%s\n' \
-        "$display" "$screen" "$vnc_port"
-      printf 'logs=%s\n' "$state_dir"
-      for name in Xvfb openbox x11vnc; do
+      # Fedora's Nix package leaves the daemon socket below a default_t path.
+      # systemd (init_t) cannot create that socket under SELinux enforcing mode
+      # unless its intended runtime-file label is registered first.
+      nix_socket=/nix/var/nix/daemon-socket/socket
+      if ! semanage fcontext -a -t var_run_t "$nix_socket" 2>/dev/null; then
+        semanage fcontext -m -t var_run_t "$nix_socket"
+      fi
+      if [[ -e "$nix_socket" ]]; then
+        restorecon -v "$nix_socket"
+      fi
+
+      systemctl enable --now nix-daemon.socket
+
+      # Optional host-display forwarding is useful for quick checks. The stable
+      # automation and inspection display is the loopback-only VNC desktop below.
+      install -d -m 0755 /etc/ssh/sshd_config.d
+      cat >/etc/ssh/sshd_config.d/99-lima-x11.conf <<'EOF'
+      X11Forwarding yes
+      X11UseLocalhost yes
+      XAuthLocation /usr/bin/xauth
+      EOF
+      sshd -t
+      systemctl restart sshd
+
+      # A direct X11 desktop is simpler and more observable than nesting Weston:
+      # Android emulator / GTK -> Xvfb -> FFmpeg or x11vnc -> SSH tunnel -> host.
+      # x11vnc never listens beyond guest loopback; the SSH tunnel is the access
+      # control and transport-security boundary.
+      cat >/usr/local/bin/lima-x11 <<'SCRIPT'
+      #!/bin/bash
+      set -euo pipefail
+
+      display="${LIMA_X11_DISPLAY:-:99}"
+      screen="${LIMA_X11_SCREEN:-1280x800x24}"
+      # Use a non-default VNC/X11 desktop port so this VM can coexist with
+      # another Lima instance whose desktop occupies port 5900.
+      vnc_port="${LIMA_VNC_PORT:-5901}"
+      display_number="${display#:}"
+      display_number="${display_number%%.*}"
+      # Use a stable user-owned location so the system unit (which has no
+      # XDG_RUNTIME_DIR) and interactive shells share state and logs.
+      state_dir="${LIMA_X11_STATE_DIR:-/tmp/lima-x11-${UID}}/lima-x11-${display_number}"
+
+      mkdir -p "$state_dir"
+      chmod 0700 "$state_dir"
+
+      running() {
+        local name="$1" pid_file="$state_dir/$1.pid" pid
+        [[ -r "$pid_file" ]] || return 1
+        read -r pid <"$pid_file"
+        [[ "$pid" =~ ^[0-9]+$ ]] && kill -0 "$pid" 2>/dev/null
+      }
+
+      start_process() {
+        local name="$1"
+        shift
         if running "$name"; then
-          printf '%-8s running (pid %s)\n' \
-            "$name" "$(cat "$state_dir/$name.pid")"
-        else
-          printf '%-8s stopped\n' "$name"
-          failed=1
+          return 0
         fi
-      done
-      return "$failed"
-    }
+        rm -f "$state_dir/$name.pid"
+        setsid "$@" </dev/null >"$state_dir/$name.log" 2>&1 &
+        echo "$!" >"$state_dir/$name.pid"
+      }
 
-    case "${1:-}" in
-      start)
-        start_process Xvfb Xvfb "$display" -screen 0 "$screen" -nolisten tcp
-        ready=false
-        for _ in $(seq 1 100); do
-          if DISPLAY="$display" xdpyinfo >/dev/null 2>&1; then
-            ready=true
-            break
+      stop_process() {
+        local name="$1" pid_file="$state_dir/$1.pid" pid
+        [[ -r "$pid_file" ]] || return 0
+        read -r pid <"$pid_file"
+        if [[ "$pid" =~ ^[0-9]+$ ]] && kill -0 "$pid" 2>/dev/null; then
+          kill "$pid" 2>/dev/null || true
+          for _ in $(seq 1 30); do
+            kill -0 "$pid" 2>/dev/null || break
+            sleep 0.1
+          done
+          kill -KILL "$pid" 2>/dev/null || true
+        fi
+        rm -f "$pid_file"
+      }
+
+      status() {
+        local failed=0 name
+        printf 'DISPLAY=%s screen=%s VNC=127.0.0.1:%s\n' \
+          "$display" "$screen" "$vnc_port"
+        printf 'logs=%s\n' "$state_dir"
+        for name in Xvfb openbox x11vnc; do
+          if running "$name"; then
+            printf '%-8s running (pid %s)\n' \
+              "$name" "$(cat "$state_dir/$name.pid")"
+          else
+            printf '%-8s stopped\n' "$name"
+            failed=1
           fi
-          sleep 0.1
         done
-        if [[ "$ready" != true ]]; then
-          echo "Xvfb did not become ready; see $state_dir/Xvfb.log" >&2
-          stop_process Xvfb
+        return "$failed"
+      }
+
+      case "${1:-}" in
+        start)
+          start_process Xvfb Xvfb "$display" -screen 0 "$screen" -nolisten tcp
+          ready=false
+          for _ in $(seq 1 100); do
+            if DISPLAY="$display" xdpyinfo >/dev/null 2>&1; then
+              ready=true
+              break
+            fi
+            sleep 0.1
+          done
+          if [[ "$ready" != true ]]; then
+            echo "Xvfb did not become ready; see $state_dir/Xvfb.log" >&2
+            stop_process Xvfb
+            exit 1
+          fi
+          start_process openbox env DISPLAY="$display" openbox
+          start_process x11vnc x11vnc \
+            -display "$display" -localhost -forever -shared -nopw \
+            -rfbport "$vnc_port"
+          for _ in $(seq 1 50); do
+            if ss -ltn | grep -q "127.0.0.1:${vnc_port}"; then
+              status
+              exit 0
+            fi
+            sleep 0.1
+          done
+          echo "x11vnc did not listen; see $state_dir/x11vnc.log" >&2
           exit 1
-        fi
-        start_process openbox env DISPLAY="$display" openbox
-        start_process x11vnc x11vnc \
-          -display "$display" -localhost -forever -shared -nopw \
-          -rfbport "$vnc_port"
-        for _ in $(seq 1 50); do
-          if ss -ltn | grep -q "127.0.0.1:${vnc_port}"; then
-            status
-            exit 0
-          fi
-          sleep 0.1
-        done
-        echo "x11vnc did not listen; see $state_dir/x11vnc.log" >&2
-        exit 1
-        ;;
-      stop)
-        # Stop consumers before the X server. Never remove X lock/socket files
-        # manually while Xvfb is alive.
-        stop_process x11vnc
-        stop_process openbox
-        stop_process Xvfb
-        ;;
-      restart)
-        "$0" stop
-        "$0" start
-        ;;
-      status)
-        status
-        ;;
-      logs)
-        printf '%s\n' "$state_dir"
-        ;;
-      *)
-        echo "usage: lima-x11 {start|stop|restart|status|logs}" >&2
-        exit 2
-        ;;
-    esac
-    SCRIPT
-    chmod 0755 /usr/local/bin/lima-x11
+          ;;
+        stop)
+          # Stop consumers before the X server. Never remove X lock/socket files
+          # manually while Xvfb is alive.
+          stop_process x11vnc
+          stop_process openbox
+          stop_process Xvfb
+          ;;
+        restart)
+          "$0" stop
+          "$0" start
+          ;;
+        status)
+          status
+          ;;
+        logs)
+          printf '%s\n' "$state_dir"
+          ;;
+        *)
+          echo "usage: lima-x11 {start|stop|restart|status|logs}" >&2
+          exit 2
+          ;;
+      esac
+      SCRIPT
+      chmod 0755 /usr/local/bin/lima-x11
 
-    # Bring up the direct-X11 inspection desktop at every VM boot. It runs as
-    # the unprivileged Lima user and exposes VNC only on guest loopback.
-    cat >/etc/systemd/system/lima-x11.service <<'UNIT'
-    [Unit]
-    Description=Lima virtual X11 desktop for GUI inspection
-    After=network.target
+      # Bring up the direct-X11 inspection desktop at every VM boot. It runs as
+      # the unprivileged Lima user and exposes VNC only on guest loopback.
+      cat >/etc/systemd/system/lima-x11.service <<'UNIT'
+      [Unit]
+      Description=Lima virtual X11 desktop for GUI inspection
+      After=network.target
 
-    [Service]
-    Type=oneshot
-    User={{.User}}
-    Environment=LIMA_X11_DISPLAY=:99
-    Environment=LIMA_X11_SCREEN=1280x800x24
-    Environment=LIMA_VNC_PORT=5901
-    RemainAfterExit=yes
-    ExecStart=/usr/local/bin/lima-x11 start
-    ExecStop=/usr/local/bin/lima-x11 stop
+      [Service]
+      Type=oneshot
+      User={{.User}}
+      Environment=LIMA_X11_DISPLAY=:99
+      Environment=LIMA_X11_SCREEN=1280x800x24
+      Environment=LIMA_VNC_PORT=5901
+      RemainAfterExit=yes
+      ExecStart=/usr/local/bin/lima-x11 start
+      ExecStop=/usr/local/bin/lima-x11 stop
 
-    [Install]
-    WantedBy=multi-user.target
-    UNIT
-    systemctl daemon-reload
-    systemctl enable --now lima-x11.service
+      [Install]
+      WantedBy=multi-user.target
+      UNIT
+      systemctl daemon-reload
+      systemctl enable --now lima-x11.service
 
-- mode: user
-  script: |
-    #!/bin/bash
-    set -eux -o pipefail
-    mkdir -p "$HOME/.config" "$HOME/.local/bin"
-    export PATH="$HOME/.local/bin:$PATH"
-    grep -qxF 'export PATH="$HOME/.local/bin:$PATH"' "$HOME/.bashrc" 2>/dev/null || \
-      printf '%s\n' 'export PATH="$HOME/.local/bin:$PATH"' >>"$HOME/.bashrc"
+  - mode: user
+    script: |
+      #!/bin/bash
+      set -eux -o pipefail
+      mkdir -p "$HOME/.config" "$HOME/.local/bin"
+      export PATH="$HOME/.local/bin:$PATH"
+      grep -qxF 'export PATH="$HOME/.local/bin:$PATH"' "$HOME/.bashrc" 2>/dev/null || \
+        printf '%s\n' 'export PATH="$HOME/.local/bin:$PATH"' >>"$HOME/.bashrc"
 
-    # Beads is the durable project task tracker. Install the official release
-    # binaries for this guest architecture; both installers prefer ~/.local/bin
-    # for an unprivileged user and fall back to a verified source build only if
-    # a release asset is unavailable.
-    curl -fsSL https://raw.githubusercontent.com/gastownhall/beads/main/scripts/install.sh | bash
-    curl -fsSL https://raw.githubusercontent.com/Dicklesworthstone/beads_viewer/main/install.sh | bash
-    command -v bd
-    command -v bv
-    bd version
-    bv --version
+      # Beads is the durable project task tracker. Install the official release
+      # binaries for this guest architecture; both installers prefer ~/.local/bin
+      # for an unprivileged user and fall back to a verified source build only if
+      # a release asset is unavailable.
+      curl -fsSL https://raw.githubusercontent.com/gastownhall/beads/main/scripts/install.sh | bash
+      curl -fsSL https://raw.githubusercontent.com/Dicklesworthstone/beads_viewer/main/install.sh | bash
+      command -v bd
+      command -v bv
+      bd version
+      bv --version
 
-    # Pi is the user-facing coding harness, not a project dependency and not a
-    # system service. Keep its npm prefix and executable in the Lima user's
-    # home so `pi` works without root or a system-wide npm-prefix assumption.
-    node - <<'NODE'
-    const [major, minor] = process.versions.node.split('.').map(Number)
-    if (major < 22 || (major === 22 && minor < 19)) {
-      console.error(`Pi requires Node >=22.19; found ${process.version}`)
-      process.exit(1)
-    }
-    NODE
-    npm config set prefix '~/.local'
-    npm install --global --ignore-scripts \
-      agent-browser @earendil-works/pi-coding-agent
-    test -x "$HOME/.local/bin/pi"
-    "$HOME/.local/bin/pi" --version
+      # Pi is the user-facing coding harness, not a project dependency and not a
+      # system service. Keep its npm prefix and executable in the Lima user's
+      # home so `pi` works without root or a system-wide npm-prefix assumption.
+      node - <<'NODE'
+      const [major, minor] = process.versions.node.split('.').map(Number)
+      if (major < 22 || (major === 22 && minor < 19)) {
+        console.error(`Pi requires Node >=22.19; found ${process.version}`)
+        process.exit(1)
+      }
+      NODE
+      npm config set prefix '~/.local'
+      npm install --global --ignore-scripts \
+        agent-browser @earendil-works/pi-coding-agent
+      test -x "$HOME/.local/bin/pi"
+      "$HOME/.local/bin/pi" --version
+
+      # Babashka (`bb`) is the REPL driver for the independent Raylib host
+      # workflow. RAY-015 and docs/DEVELOPMENT.md launch the disposable raylib-jlt
+      # desktop session with `bb check` and `bb nrepl <port>`, following the
+      # upstream REPL-driven development guide:
+      #   https://jlt-commons.github.io/raylib-jlt/guide/repl-driven-development.html
+      # Install the official release binary into the Lima user's home so `bb`
+      # works without root and the editor-launched `bb nrepl` server is available.
+      curl -fsSL https://raw.githubusercontent.com/babashka/babashka/master/install \
+        | bash -s -- --dir "$HOME/.local/bin"
+      test -x "$HOME/.local/bin/bb"
+      "$HOME/.local/bin/bb" --version
+
+      # brepl (Bracket-fixing REPL) is an AI-assisted Clojure development tool that
+      # auto-fixes parenthesis/bracket mismatches and evaluates code in a running
+      # nREPL server. It is driven by `bb` (installed above) and is useful for
+      # hook-based agents from Claude Code / ECA. Install via Option 2: direct
+      # download of the Babashka script into the Lima user's home so `brepl` works
+      # without root. Upstream: https://github.com/licht1stein/brepl/
+      curl -fsSL https://raw.githubusercontent.com/licht1stein/brepl/master/brepl \
+        -o "$HOME/.local/bin/brepl"
+      chmod +x "$HOME/.local/bin/brepl"
+      test -x "$HOME/.local/bin/brepl"
+      "$HOME/.local/bin/brepl" --version
 
 probes:
-- script: |
-    #!/bin/bash
-    set -eux -o pipefail
-    command -v nix >/dev/null
-    test -x "$HOME/.local/bin/pi"
-    "$HOME/.local/bin/pi" --version
-    command -v Xvfb >/dev/null
-    command -v x11vnc >/dev/null
-    command -v ffmpeg >/dev/null
-    command -v xdotool >/dev/null
-    command -v lima-x11 >/dev/null
-    command -v bd >/dev/null
-    command -v bv >/dev/null
-    systemctl is-active --quiet nix-daemon.socket
-    systemctl is-active --quiet lima-x11.service
-    DISPLAY=:99 xdpyinfo >/dev/null
-    ss -ltn | grep -q '127.0.0.1:5901'
-    nix --extra-experimental-features 'nix-command flakes' --version
-  hint: |-
-    Guest provisioning failed. Inspect /var/log/cloud-init-output.log and run:
-      systemctl status nix-daemon.socket
-      command -v nix Xvfb x11vnc ffmpeg xdotool lima-x11
+  - script: |
+      #!/bin/bash
+      set -eux -o pipefail
+      command -v nix >/dev/null
+      test -x "$HOME/.local/bin/pi"
       "$HOME/.local/bin/pi" --version
+      command -v Xvfb >/dev/null
+      command -v x11vnc >/dev/null
+      command -v ffmpeg >/dev/null
+      command -v xdotool >/dev/null
+      command -v lima-x11 >/dev/null
+      command -v bd >/dev/null
+      command -v bv >/dev/null
+      test -x "$HOME/.local/bin/bb"
+      "$HOME/.local/bin/bb" --version
+      test -x "$HOME/.local/bin/brepl"
+      "$HOME/.local/bin/brepl" --version
+      systemctl is-active --quiet nix-daemon.socket
+      systemctl is-active --quiet lima-x11.service
+      DISPLAY=:99 xdpyinfo >/dev/null
+      ss -ltn | grep -q '127.0.0.1:5901'
+      nix --extra-experimental-features 'nix-command flakes' --version
+    hint: |-
+      Guest provisioning failed. Inspect /var/log/cloud-init-output.log and run:
+        systemctl status nix-daemon.socket
+        command -v nix Xvfb x11vnc ffmpeg xdotool lima-x11
+        "$HOME/.local/bin/pi" --version
 
 # Remote display via VNC
 # Do not enable Lima's SSH X11 forwarding here. Lima derives the forwarded X11
