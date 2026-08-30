@@ -3,6 +3,7 @@
             [poc.raylib.app-test]
             [poc.raylib.diagnostics-test]
             [poc.raylib.flappy-bird-test]
+            [poc.raylib.following-eyes-test]
             [poc.raylib.gallery-test]
             [poc.raylib.gallery-ui-test]
             [poc.raylib.repl-queue-test]))
@@ -12,6 +13,7 @@
         (test/run-tests 'poc.raylib.app-test
                         'poc.raylib.diagnostics-test
                         'poc.raylib.flappy-bird-test
+                        'poc.raylib.following-eyes-test
                         'poc.raylib.gallery-test
                         'poc.raylib.gallery-ui-test
                         'poc.raylib.repl-queue-test)]
