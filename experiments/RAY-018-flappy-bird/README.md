@@ -45,9 +45,19 @@ Activity.
   fatal-signal, fatal-exception, and ANR markers; none were found.
 
 The interaction evidence confirms touch gameplay entry and deterministic
-collision/restart rendering on the translated emulator. It does **not** prove a
-native ARM64 device, a physical keyboard/Linux smoke, or arbitrary safe nREPL
-calls into Raylib; those remain bounded by the gallery and RAY-017 contracts.
+collision/restart rendering on the translated emulator. A thin Linux desktop
+adapter is present at
+[`flappy_desktop_smoke.clj`](../../raylib/src/poc/raylib/flappy_desktop_smoke.clj):
+it maps Space press edges to the same pure state machine and stops safely if
+`IsWindowReady` is false. The attempted Xvfb/GLX smoke is retained in
+[`linux-xvfb-smoke.txt`](evidence/linux-xvfb-smoke.txt); this Lima environment
+reported no suitable GLX framebuffer configuration, and the adapter returned
+the explicit initialization failure rather than calling Raylib after failed
+window setup. Thus a Linux visual/keyboard smoke remains unproven.
+
+This experiment also does **not** prove a native ARM64 device or arbitrary safe
+nREPL calls into Raylib; those remain bounded by the gallery and RAY-017
+contracts.
 
 ## Development workflow
 
