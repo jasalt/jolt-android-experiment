@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Run the separate Raylib verification gates without touching primary REPORT.md.
+set -euo pipefail
+root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+: "${RAYLIB_SOURCE:?run through nix develop so pinned Raylib is selected}"
+cd "$root/raylib"
+jolt -M:test
+cd "$root"
+./scripts/raylib-abi-verify-linux
+test -s "$root/docs/RAYLIB-REPORT.md"
+printf 'Raylib verification gates passed; graphical/platform limits remain in docs/RAYLIB-REPORT.md\n'
