@@ -46,8 +46,14 @@
      :touches {:count touch-count
                :ids (vec (take touch-count (:touch-ids raw)))
                :point-0 point
+               :available-coordinates (if point :point-0 :none)
                :all-coordinates-available? false}
-     :back? (boolean (:back? raw))}))
+     :gesture {:code (int (or (:gesture-code raw) 0))}
+     :keyboard {:activate? (boolean (:keyboard-activate? raw))
+                :previous? (boolean (:keyboard-previous? raw))
+                :next? (boolean (:keyboard-next? raw))
+                :back? (boolean (:keyboard-back? raw))}
+     :back? (boolean (or (:back? raw) (:keyboard-back? raw)))}))
 
 (defn step
   "Apply one normalized frame. A press increments visible local state, holds

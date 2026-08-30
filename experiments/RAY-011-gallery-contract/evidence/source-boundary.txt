@@ -1,0 +1,1 @@
+gallery contract has no window/runtime/gamepad/native-pointer ownership

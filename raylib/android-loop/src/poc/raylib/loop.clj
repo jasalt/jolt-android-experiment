@@ -1,14 +1,16 @@
 (ns poc.raylib.loop
   "Jolt-owned persistent Raylib loop with touch-first adaptive diagnostics."
   (:require [jolt.ffi :as ffi]
-            [poc.raylib.diagnostics :as diagnostics]))
+            [poc.raylib.diagnostics :as diagnostics]
+            [poc.raylib.gallery :as gallery]))
 
 (declare init-window set-target-fps should-close-raw begin-drawing
          clear-background draw-text draw-circle end-drawing get-frame-time
          get-screen-width get-screen-height get-render-width get-render-height
          get-touch-point-count get-touch-point-id get-touch-x get-touch-y
-         get-mouse-x get-mouse-y mouse-pressed-raw mouse-down-raw
-         mouse-released-raw is-key-pressed-raw android-log-write close-window)
+         get-gesture-detected get-mouse-x get-mouse-y mouse-pressed-raw
+         mouse-down-raw mouse-released-raw is-key-pressed-raw
+         android-log-write close-window)
 (ffi/defcfn init-window "InitWindow" [:int :int :string] :void)
 (ffi/defcfn set-target-fps "SetTargetFPS" [:int] :void)
 (ffi/defcfn ^:private should-close-raw "WindowShouldClose" [] :int)
@@ -26,6 +28,7 @@
 (ffi/defcfn get-touch-point-id "GetTouchPointId" [:int] :int)
 (ffi/defcfn get-touch-x "GetTouchX" [] :int)
 (ffi/defcfn get-touch-y "GetTouchY" [] :int)
+(ffi/defcfn get-gesture-detected "GetGestureDetected" [] :int)
 (ffi/defcfn get-mouse-x "GetMouseX" [] :int)
 (ffi/defcfn get-mouse-y "GetMouseY" [] :int)
 (ffi/defcfn ^:private mouse-pressed-raw "IsMouseButtonPressed" [:int] :int)
@@ -37,6 +40,10 @@
 
 (def MOUSE-BUTTON-LEFT 0)
 (def KEY-BACK 4)
+(def KEY-ESCAPE 256)
+(def KEY-ENTER 257)
+(def KEY-RIGHT 262)
+(def KEY-LEFT 263)
 (def ANDROID-LOG-INFO 4)
 
 (defn rgba [r g b a]
@@ -68,6 +75,11 @@
       :pressed? (true-raw? (mouse-pressed-raw MOUSE-BUTTON-LEFT))
       :down? (or touch? (true-raw? (mouse-down-raw MOUSE-BUTTON-LEFT)))
       :released? (true-raw? (mouse-released-raw MOUSE-BUTTON-LEFT))
+      :gesture-code (get-gesture-detected)
+      :keyboard-activate? (true-raw? (is-key-pressed-raw KEY-ENTER))
+      :keyboard-previous? (true-raw? (is-key-pressed-raw KEY-LEFT))
+      :keyboard-next? (true-raw? (is-key-pressed-raw KEY-RIGHT))
+      :keyboard-back? (true-raw? (is-key-pressed-raw KEY-ESCAPE))
       :back? (or (true-raw? (is-key-pressed-raw KEY-BACK))
                  (true-raw? (should-close-raw)))})))
 
@@ -78,6 +90,9 @@
             :metrics (:metrics input)
             :pointer (:pointer input)
             :touches (:touches input)
+            :gesture (:gesture input)
+            :keyboard (:keyboard input)
+            :gallery-contract gallery/contract-version
             :tap-count (:tap-count state)
             :hold-frames (:hold-frames state)
             :drag-samples (:drag-samples state)

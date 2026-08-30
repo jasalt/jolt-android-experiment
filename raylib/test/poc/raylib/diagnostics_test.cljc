@@ -37,11 +37,18 @@
                         :pointer-x 150 :pointer-y 390 :released? true))]
     (is (= :press (get-in press [:pointer :phase])))
     (is (= {:count 2 :ids [7 11] :point-0 [120 340]
+            :available-coordinates :point-0
             :all-coordinates-available? false}
            (:touches press)))
     (is (= :down (get-in down [:pointer :phase])))
     (is (= :release (get-in release [:pointer :phase])))
-    (is (false? (get-in press [:touches :all-coordinates-available?])))))
+    (is (false? (get-in press [:touches :all-coordinates-available?])))
+    (let [keyboard (diagnostics/normalize-input
+                    (assoc portrait-raw :gesture-code 8
+                           :keyboard-activate? true :keyboard-back? true))]
+      (is (= {:code 8} (:gesture keyboard)))
+      (is (get-in keyboard [:keyboard :activate?]))
+      (is (:back? keyboard)))))
 
 (deftest deterministic-diagnostic-transition-test
   (let [press (diagnostics/normalize-input
