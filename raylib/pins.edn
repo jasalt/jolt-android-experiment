@@ -7,7 +7,7 @@
           :license "zlib"
           :version-floor "6.0"}
  :raylib-jlt {:url "https://github.com/jlt-commons/raylib-jlt.git"
-              :revision "15c4c6d5757c5c592983166626fd32341c6fc45e"
+              :revision "cf16df3d323726dc8b100225eeb1156607ae4a55"
               :license "zlib"
               :requires {:jolt "0.7.23"
                          :raylib "6.0"}}

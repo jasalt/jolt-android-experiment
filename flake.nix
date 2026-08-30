@@ -18,7 +18,7 @@
       flake = false;
     };
     raylib-jlt = {
-      url = "git+https://github.com/jlt-commons/raylib-jlt.git?rev=15c4c6d5757c5c592983166626fd32341c6fc45e";
+      url = "git+https://github.com/jlt-commons/raylib-jlt.git?rev=cf16df3d323726dc8b100225eeb1156607ae4a55";
       flake = false;
     };
   };
@@ -108,7 +108,7 @@
           raylib-source = pkgs.runCommand "raylib-source-9f3cadf" { } ''
             ln -s ${raylib} "$out"
           '';
-          raylib-jlt-source = pkgs.runCommand "raylib-jlt-source-15c4c6d" { } ''
+          raylib-jlt-source = pkgs.runCommand "raylib-jlt-source-cf16df3" { } ''
             ln -s ${raylib-jlt} "$out"
           '';
         } // pkgs.lib.optionalAttrs androidSupported {

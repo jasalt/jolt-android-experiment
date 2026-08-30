@@ -30,7 +30,7 @@ all external source by full revision rather than a moving branch:
 | --- | --- | --- | --- |
 | [Jolt](https://github.com/jolt-lang/jolt) | `ae5c5a6d5be263a883e9b4b53f255b8c0b493d3e` | project license; locked in [`../flake.lock`](../flake.lock) | Jolt/Chez application runtime |
 | [raylib](https://github.com/raysan5/raylib) | `9f3cadf1e618f125bd9b282c7759f8cb26ce17fc` | zlib | native graphics/platform backend |
-| [raylib-jlt](https://github.com/jlt-commons/raylib-jlt) | `15c4c6d5757c5c592983166626fd32341c6fc45e` | zlib | primary Jolt FFI binding reference |
+| [raylib-jlt](https://github.com/jlt-commons/raylib-jlt) | `cf16df3d323726dc8b100225eeb1156607ae4a55` | zlib | primary Jolt FFI binding and mobile-gallery example reference |
 | [raygui-jlt](https://github.com/jlt-commons/raygui-jlt) | `cdab5f97e1cd97e9ea4b7776b1dc0bd161ad4720` | zlib | R7-only immediate-mode UI reference |
 | [RayMob](https://github.com/Bigfoot71/RayMob) | `6ff85822872391f399c80771981d8ce25e0a4cfd` | MIT; includes raylib zlib notice | optional Android technique reference |
 
@@ -38,7 +38,10 @@ The raylib-jlt README at its pinned revision requires Jolt **0.7.23+** and a
 system Raylib **6.0+** shared library. Its pinned `deps.edn` declares desktop
 Darwin/Linux library names only. Therefore it is a desktop baseline and binding
 source reference, not proof of Android loading or a dependency to add directly
-to this manifest.
+to this manifest. This pin deliberately includes the upstream
+`input-gestures` example and the scalar touch/gesture bindings needed by the
+planned gallery. The gallery excludes `input-gamepad`; sensor-driven ball
+physics remains later conditional work.
 
 Raygui and RayMob are recorded now for reproducibility but are not active
 first-frame dependencies. Their implementation work is conditional on the

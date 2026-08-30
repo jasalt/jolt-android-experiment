@@ -117,16 +117,16 @@
     "raylib-jlt": {
       "flake": false,
       "locked": {
-        "lastModified": 1788001875,
-        "narHash": "sha256-TmQmPrVGvLvuG6p+/reBePJ5sXCROGiZeT4Pfy+ntIE=",
+        "lastModified": 1788072487,
+        "narHash": "sha256-BlcpzEMkyhVAGZ0qu78nJ27WheA+xL3uaCzZ3RZaCvQ=",
         "ref": "refs/heads/main",
-        "rev": "15c4c6d5757c5c592983166626fd32341c6fc45e",
-        "revCount": 109,
+        "rev": "cf16df3d323726dc8b100225eeb1156607ae4a55",
+        "revCount": 140,
         "type": "git",
         "url": "https://github.com/jlt-commons/raylib-jlt.git"
       },
       "original": {
-        "rev": "15c4c6d5757c5c592983166626fd32341c6fc45e",
+        "rev": "cf16df3d323726dc8b100225eeb1156607ae4a55",
         "type": "git",
         "url": "https://github.com/jlt-commons/raylib-jlt.git"
       }

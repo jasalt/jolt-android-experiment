@@ -38,7 +38,7 @@ successful asset experiment.
 ### Upstream Jolt bindings are desktop-declared
 
 **Observed source:** pinned raylib-jlt
-[`15c4c6d5757c5c592983166626fd32341c6fc45e`](../raylib/pins.edn), `deps.edn`
+[`cf16df3d323726dc8b100225eeb1156607ae4a55`](../raylib/pins.edn), `deps.edn`
 and README.
 
 Its `:jolt/native` declaration lists Darwin and Linux `libraylib` paths, and
@@ -47,7 +47,9 @@ binding/source baseline, not Android library-loading proof.
 
 **Consequence:** establish the Linux baseline first. Isolate an Android native
 library declaration only after plain-C Raylib Android evidence and without
-forking the complete binding suite.
+forking the complete binding suite. The refreshed pin includes
+`input-gestures`; its presence is source/binding evidence only until the
+Android gallery validates it through the existing process-symbol topology.
 
 ### The pinned Camera2D workaround is not valid on x86_64
 
