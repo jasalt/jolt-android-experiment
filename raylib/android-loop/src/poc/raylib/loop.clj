@@ -5,6 +5,7 @@
             [poc.raylib.abi]
             [poc.raylib.diagnostics :as diagnostics]
             [poc.raylib.flappy-bird :as flappy]
+            [poc.raylib.following-eyes :as eyes]
             [poc.raylib.app :as app]
             [poc.raylib.gallery :as gallery]
             [poc.raylib.gallery-ui :as gallery-ui]
@@ -66,6 +67,7 @@
 (def SKYBLUE (rgba 102 191 255 255))
 (def DARKGREEN (rgba 0 117 44 255))
 (def GOLD (rgba 255 203 0 255))
+(def LIGHTGRAY (rgba 200 200 200 255))
 
 (defn placeholder-scene [scene-id title]
   {:id scene-id
@@ -88,7 +90,7 @@
 ;; the shell's navigable targets; each leaf scene can later replace only its
 ;; descriptor without changing navigation or native window ownership.
 (def core-scenes
-  [(placeholder-scene :following-eyes "Following Eyes")
+  [(eyes/scene)
    (placeholder-scene :touch-trail "Touch Trail")
    (flappy/scene)
    (placeholder-scene :virtual-controls "Virtual Controls")
@@ -238,6 +240,24 @@
                  margin footer-y body-size DARKGRAY))
     (end-drawing)))
 
+(defn- draw-following-eyes! [input scene-state back sizes]
+  (let [{:keys [left right eye-radius pupil-radius]} (eyes/layout (:metrics input))
+        target (:target scene-state)
+        left-pupil (eyes/pupil left eye-radius pupil-radius target)
+        right-pupil (eyes/pupil right eye-radius pupil-radius target)
+        {:keys [margin title-size body-size line-gap]} sizes]
+    (clear-background RAYWHITE)
+    (draw-rectangle! back CARD-DARK RAYWHITE)
+    (draw-text "< Back to gallery" (+ (:x back) (quot margin 2))
+               (+ (:y back) (quot body-size 3)) body-size RAYWHITE)
+    (draw-text "Following Eyes" margin (+ margin title-size line-gap)
+               title-size CARD-DARK)
+    (draw-text "Touch and drag anywhere; release retains the last look"
+               margin (+ margin (* 2 line-gap) title-size) body-size DARKGRAY)
+    (doseq [[eye pupil] [[left left-pupil] [right right-pupil]]]
+      (draw-circle (int (first eye)) (int (second eye)) (double eye-radius) LIGHTGRAY)
+      (draw-circle (int (first pupil)) (int (second pupil)) (double pupil-radius) CARD-DARK))))
+
 (defn- draw-flappy-bird! [frame input scene-state back sizes]
   (let [{:keys [height bird-x bird-radius pipe-width gap-height]}
         (flappy/dimensions (:metrics input))
@@ -275,11 +295,16 @@
         [width height] (:screen metrics)
         back (:back layout)]
     (begin-drawing)
-    (if (= :flappy-bird scene-id)
+    (cond
+      (= :following-eyes scene-id)
+      (draw-following-eyes! input scene-state back
+                            {:margin margin :title-size title-size
+                             :body-size body-size :line-gap line-gap})
+      (= :flappy-bird scene-id)
       (draw-flappy-bird! frame input scene-state back
                           {:margin margin :title-size title-size
                            :body-size body-size :line-gap line-gap})
-      (do
+      :else (do
         (clear-background background)
         (draw-rectangle! back CARD-DARK RAYWHITE)
         (draw-text "< Back to gallery" (+ (:x back) (quot margin 2))
