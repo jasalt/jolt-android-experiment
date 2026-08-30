@@ -3,16 +3,17 @@ plugins {
 }
 
 android {
-  namespace = "net.joltlang.raylibloopprobe"
+  namespace = "net.joltlang.raylibgallery"
   compileSdk = 35
   ndkVersion = "29.0.14206865"
 
   defaultConfig {
-    applicationId = "net.joltlang.raylibloopprobe"
+    // This is the long-lived update identity for locally signed releases.
+    applicationId = "net.joltlang.raylibgallery"
     minSdk = 35
     targetSdk = 35
     versionCode = 1
-    versionName = "0.1"
+    versionName = "0.1.0"
 
     ndk { abiFilters += "arm64-v8a" }
     externalNativeBuild {

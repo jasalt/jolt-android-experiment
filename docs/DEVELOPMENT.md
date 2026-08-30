@@ -37,8 +37,12 @@ nix --extra-experimental-features 'nix-command flakes' develop -c gradle --no-da
 ```
 
 The command passes on the observed `aarch64-darwin` host and produces an APK
-with the ARM64 Jolt libraries. GTK remains Linux-only. On Apple Silicon,
-`scripts/emulator-start headless` selects the API 35 ARM64 image and host GPU;
+with the ARM64 Jolt libraries. GTK remains Linux-only. For the separately
+locally signed Raylib gallery distribution artifact, follow
+[APK-BUILD.md](APK-BUILD.md); its Android 15/ARM64 compatibility boundary and
+release signing identity are deliberate and distinct from the debug workflow.
+On Apple Silicon, `scripts/emulator-start headless` selects the API 35 ARM64
+image and host GPU;
 the observed machine could not boot it because it had 8.7 GiB free while the
 emulator required 12 GiB for userdata. Do not substitute another SDK or claim
 emulator validation until it boots on the host. See

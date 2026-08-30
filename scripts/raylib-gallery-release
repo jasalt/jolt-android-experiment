@@ -1,0 +1,143 @@
+#!/usr/bin/env bash
+# Build, locally sign, verify, and package the ARM64 Raylib gallery release APK.
+# Signing material intentionally stays outside the repository.
+set -euo pipefail
+
+usage() {
+  cat <<'EOF'
+Usage: scripts/raylib-gallery-release [--version VERSION]
+
+Builds the pinned Jolt/Raylib library, assembles an unsigned release APK, then
+aligns, signs, verifies, and writes public artifacts to dist/.
+
+Required environment:
+  ANDROID_RELEASE_KEYSTORE       Path to the local release keystore.
+  ANDROID_RELEASE_KEY_ALIAS      Alias of the release key in that keystore.
+
+Password handling:
+  ANDROID_RELEASE_STORE_PASSWORD and ANDROID_RELEASE_KEY_PASSWORD are optional.
+  When omitted, the script prompts on the controlling terminal. Passwords are
+  never accepted as command-line arguments or written to project files.
+EOF
+}
+
+version=""
+while (($#)); do
+  case "$1" in
+    --version)
+      (($# >= 2)) || { echo '--version requires a value' >&2; exit 2; }
+      version="$2"
+      shift 2
+      ;;
+    --help|-h)
+      usage
+      exit 0
+      ;;
+    *)
+      printf 'unknown argument: %s\n' "$1" >&2
+      usage >&2
+      exit 2
+      ;;
+  esac
+done
+
+root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+cd "$root"
+
+: "${ANDROID_HOME:?run through nix develop so Android tools are pinned}"
+: "${ANDROID_NDK_ROOT:?run through nix develop so the pinned NDK is available}"
+: "${JOLT_SOURCE:?set JOLT_SOURCE to a clean checkout at the pinned Jolt revision}"
+: "${RAYLIB_SOURCE:?run through nix develop so Raylib is pinned}"
+: "${ANDROID_RELEASE_KEYSTORE:?set the path to the local release keystore}"
+: "${ANDROID_RELEASE_KEY_ALIAS:?set the local release key alias}"
+[[ -r "$ANDROID_RELEASE_KEYSTORE" ]] || {
+  printf 'release keystore is not readable: %s\n' "$ANDROID_RELEASE_KEYSTORE" >&2
+  exit 1
+}
+
+if [[ -z "$version" ]]; then
+  version=$(awk -F '"' '/^[[:space:]]*versionName[[:space:]]*=/ { print $2; exit }' \
+    raylib/loop-android/build.gradle.kts)
+fi
+[[ "$version" =~ ^[0-9]+(\.[0-9]+)*([A-Za-z0-9._-]*)?$ ]] || {
+  printf 'invalid release version: %s\n' "$version" >&2
+  exit 2
+}
+
+prompt_password() {
+  local variable=$1 prompt=$2
+  if [[ -z ${!variable:-} ]]; then
+    [[ -t 0 ]] || {
+      printf '%s is unset and no terminal is available for a password prompt\n' "$variable" >&2
+      exit 1
+    }
+    read -r -s -p "$prompt" "$variable"
+    printf '\n' >&2
+    [[ -n ${!variable} ]] || { echo 'password must not be empty' >&2; exit 1; }
+  fi
+}
+prompt_password ANDROID_RELEASE_STORE_PASSWORD 'Keystore password: '
+prompt_password ANDROID_RELEASE_KEY_PASSWORD 'Key password: '
+
+build_tools="$ANDROID_HOME/build-tools/35.0.0"
+zipalign=${ZIPALIGN:-"$build_tools/zipalign"}
+apksigner=${APKSIGNER:-"$build_tools/apksigner"}
+for tool in "$zipalign" "$apksigner"; do
+  [[ -x "$tool" ]] || { printf 'missing Android Build Tools program: %s\n' "$tool" >&2; exit 1; }
+done
+
+# This reuses the proven Android-target Jolt library build and stages only the
+# generated library required by the NativeActivity module.
+./scripts/raylib-jolt-loop-build
+stage="$root/raylib/loop-android/src/main/jniLibs/arm64-v8a"
+rm -rf "$root/raylib/loop-android/src/main/jniLibs"
+mkdir -p "$stage"
+install -m 755 "$root/native/jolt/android-arm64/arm64-v8a/libjoltraylib-loop.so" \
+  "$stage/libjoltraylib-loop.so"
+
+gradle --no-daemon :raylib-loop-android:assembleRelease
+unsigned="$root/raylib/loop-android/build/outputs/apk/release/raylib-loop-android-release-unsigned.apk"
+[[ -s "$unsigned" ]] || { printf 'expected unsigned release APK was not produced: %s\n' "$unsigned" >&2; exit 1; }
+
+output_dir="$root/dist"
+artifact="jolt-raylib-gallery-v${version}-arm64-v8a.apk"
+mkdir -p "$output_dir"
+work=$(mktemp -d)
+trap 'rm -rf "$work"' EXIT
+aligned="$work/aligned.apk"
+signed="$output_dir/$artifact"
+
+"$zipalign" -f -p 4 "$unsigned" "$aligned"
+# Feed each password over standard input rather than via command-line arguments
+# or the apksigner child process environment.
+printf '%s\n%s\n' "$ANDROID_RELEASE_STORE_PASSWORD" "$ANDROID_RELEASE_KEY_PASSWORD" | \
+  "$apksigner" sign \
+    --ks "$ANDROID_RELEASE_KEYSTORE" \
+    --ks-key-alias "$ANDROID_RELEASE_KEY_ALIAS" \
+    --ks-pass stdin \
+    --key-pass stdin \
+    --out "$signed" \
+    "$aligned"
+"$zipalign" -c -v 4 "$signed"
+"$apksigner" verify --verbose --print-certs "$signed"
+
+checksum="$output_dir/$artifact.sha256"
+sha256sum "$signed" > "$checksum"
+info="$output_dir/jolt-raylib-gallery-v${version}-build-info.txt"
+{
+  printf 'artifact=%s\n' "$artifact"
+  printf 'sha256=%s\n' "$(awk '{print $1}' "$checksum")"
+  printf 'application_id=net.joltlang.raylibgallery\n'
+  printf 'version_name=%s\n' "$version"
+  printf 'abi=arm64-v8a\n'
+  printf 'min_sdk=35\n'
+  printf 'target_sdk=35\n'
+  printf 'git_revision=%s\n' "$(git rev-parse HEAD)"
+  printf 'git_dirty=%s\n' "$(if git diff --quiet && git diff --cached --quiet; then echo false; else echo true; fi)"
+  printf 'jolt_revision=%s\n' "$(git -C "$JOLT_SOURCE" rev-parse HEAD)"
+  printf 'android_ndk=%s\n' "${ANDROID_NDK_ROOT##*/}"
+  printf 'zipalign=%s\n' "$({ "$zipalign" -h 2>&1 || true; } | head -n 1)"
+  printf 'apksigner=%s\n' "$("$apksigner" --version)"
+} > "$info"
+
+printf 'Release artifacts:\n  %s\n  %s\n  %s\n' "$signed" "$checksum" "$info"

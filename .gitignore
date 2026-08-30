@@ -22,6 +22,12 @@ artifacts/abi-probe/
 .cache/
 target/
 
+# Public local release artifacts and private local Android signing material.
+dist/
+*.jks
+*.keystore
+*.keystore.properties
+
 # Generated Raylib Jolt packaging staging.
 raylib/jolt-android/src/main/jniLibs/
 raylib/topology-android/src/main/jniLibs/
