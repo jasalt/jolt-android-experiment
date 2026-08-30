@@ -21,9 +21,21 @@ No `FATAL EXCEPTION`, `SIGABRT`, `Fatal signal`, or `ANR in` signatures occurred
 Screenshot SHA-256:
 `56681e30656ddb6d7621326e5bb8f4c4c5a36bc290c804600e9964e7876320fe`.
 
+## Five-minute result
+
+A separate five-minute gallery run completed with no fatal or ANR signatures.
+Native heap PSS was 8,880 KiB at start and 9,116 KiB at end; total PSS was
+335,296 KiB and 355,709 KiB respectively. Total RSS was 487,200 KiB and
+511,480 KiB. The final direct 1080x2400 capture is below.
+
+![Raylib after five-minute stress run](assets/raylib-stress-5m.png)
+
+Five-minute screenshot SHA-256:
+`b00a7ead4c3f9904a30dc864b628026f9dd5f26b48de5e83e2314984810867f7`.
+
 ## Boundary
 
-This is a reproducible 30-second baseline slice, not completion of the
-required 5-minute/15-minute matrix or all three allocation workloads. No FPS
-histogram or collector-specific claim is made. Those longer runs remain open
-work and must be collected separately rather than inferred from this sample.
+This report covers reproducible 30-second and five-minute baseline gallery
+slices. It does not complete the required 15-minute run or all three distinct
+allocation workloads, and no FPS histogram or collector-specific claim is
+made. Those remain open work and must be collected separately.
