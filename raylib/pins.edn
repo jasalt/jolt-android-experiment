@@ -18,4 +18,13 @@
  :raymob {:url "https://github.com/Bigfoot71/RayMob.git"
           :revision "6ff85822872391f399c80771981d8ce25e0a4cfd"
           :license "MIT (repository also includes raylib zlib license text)"
-          :activation "Reference individual Android techniques only after a reduced core-Raylib need"}}
+          :activation "Reference individual Android techniques only after a reduced core-Raylib need"}
+ :voxel-siege {:url "https://github.com/yogthos/voxel-siege.git"
+               :revision "9d285987282b26b4dbd14a06838b01ed70c989f1"
+               :license "Author collaboration confirmed; written license or explicit distribution permission pending"
+               :activation "Selective gallery adaptation after provenance gate"}
+ :box3d {:url "https://github.com/erincatto/box3d.git"
+         :revision "8441b4a06d6d09dcfb0b0f704df4d847d1437b92"
+         :tag "v0.1.0"
+         :license "MIT"
+         :activation "Voxel Siege physics dependency; API compatibility must be probed"}}
