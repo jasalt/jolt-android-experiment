@@ -31,6 +31,29 @@ A deliberate exception returned `eval-error`; the next request returned `42`,
 so a bad form did not poison the process. Fifteen pure tests and 77 assertions
 passed, including the bounded owner-queue contract.
 
+## Screenshot evidence
+
+These ADB framebuffer captures show the same running gallery before and after
+REPL-driven changes. The presentation, colors, and title change without a
+rebuild or process restart; the resumed capture confirms the loaded presentation
+survives Android Home/background and NativeActivity resume.
+
+### Baseline
+
+![Baseline Android Raylib gallery](evidence/01-baseline.png)
+
+### After `eval` redefinition
+
+![Android gallery after nREPL eval redefinition](evidence/02-eval-v2.png)
+
+### After `load-file`
+
+![Android gallery after nREPL load-file](evidence/03-load-file-v3.png)
+
+### After background/resume
+
+![Android gallery after NativeActivity resume](evidence/04-resumed-v3.png)
+
 ## Thread boundary
 
 The Raylib/Jolt frame owner reported Jolt/Chez thread ID `0`; nREPL evaluation
