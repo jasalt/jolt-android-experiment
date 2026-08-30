@@ -22,7 +22,8 @@
          get-touch-point-count get-touch-point-id get-touch-x get-touch-y
          get-gesture-detected get-mouse-x get-mouse-y mouse-pressed-raw
          mouse-down-raw mouse-released-raw is-key-pressed-raw
-         android-log-write draw-rectangle draw-rectangle-lines close-window)
+         android-log-write draw-rectangle draw-rectangle-lines close-window
+         voxel-set-orientation)
 (ffi/defcfn init-window "InitWindow" [:int :int :string] :void)
 (ffi/defcfn set-target-fps "SetTargetFPS" [:int] :void)
 (ffi/defcfn ^:private should-close-raw "WindowShouldClose" [] :int)
@@ -51,6 +52,8 @@
 (ffi/defcfn ^:private is-key-pressed-raw "IsKeyPressed" [:int] :int)
 (ffi/defcfn android-log-write "__android_log_write" [:int :string :string] :int)
 (ffi/defcfn close-window "CloseWindow" [] :void)
+;; Implemented by the NativeActivity process host; calls stay on the frame owner.
+(ffi/defcfn voxel-set-orientation "voxel_set_orientation" [:int] :int)
 
 (def MOUSE-BUTTON-LEFT 0)
 (def KEY-BACK 4)
@@ -452,6 +455,13 @@
                      {:status :error :message (str error)}))]
       (swap! owner-work repl-queue/complete id result))))
 
+(defn- apply-orientation-events! [before after]
+  (let [old-count (count (:scene-events before))]
+    (doseq [[event orientation] (drop old-count (:scene-events after))
+            :when (= event :orientation/request)]
+      (voxel-set-orientation (if (= :landscape orientation) 1 0))))
+  after)
+
 (defn- advance-gallery [gallery-state input]
   (let [layout (gallery-layout input)
         phase (get-in input [:pointer :phase])
@@ -491,7 +501,8 @@
               [next-app-state emitted-effects] (app/step app-state event)
               effects (if event emitted-effects last-effects)
               next-diagnostic-state (diagnostics/step diagnostic-state input)
-              next-gallery-state (advance-gallery gallery-state input)
+              next-gallery-state (-> (advance-gallery gallery-state input)
+                                     (apply-orientation-events! gallery-state))
               presentation (gallery-ui/live-presentation)
               phase (get-in input [:pointer :phase])
               navigation? (or (not= (:mode gallery-state) (:mode next-gallery-state))
