@@ -113,9 +113,10 @@ this project's validated boundary.
 
 ## Linux Raylib live-layout development
 
-For the independent Raylib host, Linux desktop nREPL is the fast visual
-iteration path; Android remains an AOT build/install/run integration target.
-The completed desktop evidence is [RAY-015](../experiments/RAY-015-linux-raylib-nrepl),
+For the independent Raylib host, Linux desktop nREPL remains the fastest
+portable visual path, and Android debug builds now provide an on-device nREPL
+loop after the initial AOT build/install. The desktop evidence is
+[RAY-015](../experiments/RAY-015-linux-raylib-nrepl),
 with the complete disposable upstream capture in
 [`../../raylib-jlt/nrepl-results/`](../../raylib-jlt/nrepl-results/).
 
@@ -136,13 +137,50 @@ nREPL worker, and never retain a startup-captured draw function when it is
 intended to be redefined. Use an application-owned bounded owner-thread queue
 for any future evaluated work that needs to interact with the frame loop.
 
-The current Android gallery has **no** nREPL server. `scripts/android-repl` is
-a debug-only, one-form ADB-forwarded evaluator—not nREPL/CIDER or an established
-hot-reload facility. Keep Android development to Linux live iteration followed
-by the normal ARM64 library/APK rebuild and runtime validation. A future Android
-live-eval feature requires a separate debug-only, localhost/ADB-forwarded,
-bounded queue experiment on the existing Raylib/Jolt owner thread; it must not
-enter Jolt from a transport worker or be included in a release APK.
+### Android Raylib nREPL
+
+[RAY-017](../experiments/RAY-017-android-raylib-nrepl) proves the Android
+debug workflow on the translated API-35 emulator, including nREPL continuity
+through Home/background and NativeActivity resume. Build and install the
+dev-mode image once, launch it, then forward its loopback nREPL:
+
+```sh
+JOLT_SOURCE=/path/to/pinned-jolt nix develop -c \
+  ./scripts/raylib-persistent-loop-build-android debug
+nix develop -c adb -s emulator-5554 install \
+  raylib/loop-android/build/outputs/apk/debug/raylib-loop-android-debug.apk
+nix develop -c adb -s emulator-5554 shell am start -n \
+  net.joltlang.raylibgallery/android.app.NativeActivity
+nix develop -c ./scripts/raylib-android-nrepl forward
+```
+
+Connect a generic editor nREPL client to `127.0.0.1:7888`, or use
+`scripts/raylib-android-nrepl eval|load-file`. Pure definitions, reducers,
+layout, animation, input interpretation, and dynamically called drawing
+functions can be reevaluated without restarting the Activity/process or
+rebuilding the APK. `load-file` sends host source content; it does not require
+that source file to exist in the Android sandbox.
+
+The nREPL evaluator is a Jolt worker, not the Raylib context owner. Evaluating a
+`defn` that mentions Raylib is safe only because its body runs later when the
+frame owner calls the Var; do not invoke that function in the eval request. For
+a short one-off Raylib operation, submit a no-argument closure through
+`poc.raylib.loop/submit-owner!`, then poll `owner-result`. The queue is limited
+to 16 pending requests, executes one between frames, and retains 64 results.
+Never submit blocking or unbounded work.
+
+The server is the minimal built-in Jolt nREPL (`describe`, `clone`, `eval`,
+`load-file`, `close`, and built-in completion); optional CIDER middleware was
+not validated. Native C/Gradle/manifest/ABI/assets, new FFI signatures, captured
+startup values, and release artifacts still require rebuild or explicit
+component reset.
+
+This is separate from the primary Compose host's `scripts/android-repl` line
+protocol. The Raylib listener and `INTERNET` permission exist only in the debug
+variant. Release builds from the non-debug entry, contains no
+`raylib_gallery_debug` export, selects the direct-linked `raylib_gallery`, has
+no network permission, starts no listener, and did not answer the RAY-017 nREPL
+probe.
 
 ## Clean-room verification
 

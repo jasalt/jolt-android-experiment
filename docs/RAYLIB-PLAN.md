@@ -1598,16 +1598,17 @@ One of the purposes of this experiment is to determine whether direct CFFI is al
 
 # 36. REPL-driven development
 
-**Observed result (RAY-015):** desktop Raylib now provides the primary
-interactive layout-development environment. A Linux Jolt nREPL process visibly
-applied pure, dynamically called layout-function redefinitions to a running
-Raylib window without a rebuild or restart. The captured Raylib owner and
-nREPL request workers were distinct threads, so this supports only pure
-redefinition from nREPL—not direct Raylib FFI from an nREPL worker. See
+**Observed results (RAY-015 and RAY-017):** desktop Raylib and the Android
+debug gallery both support Jolt nREPL-driven iteration. Linux first proved pure,
+dynamically called layout-function replacement. Android then applied `eval` and
+`load-file` replacements to a running translated-ARM64 Raylib window without an
+APK build, install, Activity restart, or process restart. Both hosts observed
+distinct owner and evaluator threads, so direct Raylib FFI remains owner-only.
+Android supplies a bounded one-request-per-frame owner queue for the exceptional
+short FFI probe. See
 [`experiments/RAY-015-linux-raylib-nrepl/`](../experiments/RAY-015-linux-raylib-nrepl/)
-and its retained upstream capture. Android remains AOT build/run validation;
-Android nREPL/live reload is unproven and requires a separate debug-only,
-bounded owner-thread queue experiment.
+and
+[`experiments/RAY-017-android-raylib-nrepl/`](../experiments/RAY-017-android-raylib-nrepl/).
 
 Use:
 
@@ -1646,31 +1647,47 @@ If the render loop blocks nREPL servicing, treat that as a research problem.
 
 ---
 
-# 37. Android debug-eval
+# 37. Android debug nREPL
 
-Reuse the primary project's debug-eval infrastructure only if doing so does not require introducing Kotlin ownership into the Raylib host.
+**Observed result (RAY-017):** the debug AOT library is built in Jolt dev mode
+and starts Jolt's minimal bencoded nREPL server on Android `127.0.0.1:7888`.
+ADB forwarding supports generic editor clients and the deterministic
+`scripts/raylib-android-nrepl` client. Pure definitions sent by `eval` or
+`load-file` are observed by later owner frames through Var indirection.
 
-Possible approaches:
-
-## A. Native socket debug server
-
-Jolt or C opens a localhost socket reached through:
+The proven topology is:
 
 ```text
-adb forward
+host editor/client
+    │ standard nREPL over adb forward
+    ▼
+Android loopback listener + Jolt evaluator worker
+    │ redefine pure Var / inspect pure state
+    ▼
+Raylib/Jolt owner resolves Var on a later frame
 ```
 
-## B. Raylib-specific native command channel
+For a short operation that must call Raylib:
 
-Small C socket server posts evaluation requests to the same Raylib/Jolt thread.
+```text
+nREPL worker submits closure
+    │ bounded queue (16 pending)
+    ▼ one request between frames
+Raylib/Jolt owner executes FFI
+    │ bounded result store (64)
+    ▼
+nREPL polls owner-result
+```
 
-## C. No Android live eval initially
+Do not call Raylib FFI directly from an nREPL eval. Do not submit blocking or
+unbounded frame work. New native symbols, FFI declarations/topology, Android
+resources/assets, manifests, and release code still rebuild normally.
 
-Use desktop nREPL and Android rebuild/run.
-
-This is acceptable for the first success level.
-
-Do not compromise thread safety merely to preserve interactive eval.
+The debug manifest alone grants `INTERNET`, which Android requires even for the
+loopback socket. Release builds from the non-debug Jolt entry, contains no debug
+nREPL export, has no network permission, selects the direct-linked ordinary
+gallery export, starts no server, and answered no RAY-017 probe. Optional CIDER
+middleware and native ARM64-device behavior remain unproven.
 
 ---
 

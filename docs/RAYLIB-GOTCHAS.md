@@ -140,12 +140,35 @@ the process. The Raylib loop was on Jolt/Chez thread 48, while nREPL handlers
 ran on threads 49–51. A captured startup function value remained stale after a
 redefinition; the per-frame Var call observed it.
 
-**Consequence:** use desktop nREPL for pure layout/update/draw iteration, but
-never issue Raylib FFI from an nREPL worker. The server does not transfer a
-request onto the Raylib context owner. Any future request that must execute
-against the live application needs an application-owned bounded queue drained
-by the owner at frame boundaries. This evidence does not establish Android
-nREPL, CIDER, or hot reload.
+**Consequence:** use nREPL for pure layout/update/draw definition iteration,
+but never issue Raylib FFI from an nREPL worker. The server does not transfer a
+request onto the Raylib context owner.
+
+### Android nREPL needs a dev image, debug network permission, and owner queue
+
+**Observed experiment:** [RAY-017](../experiments/RAY-017-android-raylib-nrepl).
+
+The default Jolt library build is release/direct-linked; re-evaluating an
+ordinary definition does not change a direct call site. Android live development
+therefore builds the gallery library with `--dev`, and the debug NativeActivity
+selects `raylib_gallery_debug`. The server binds only `127.0.0.1:7888`; Android
+still rejected `socket(AF_INET, SOCK_STREAM, 0)` with `EPERM` until the
+`INTERNET` permission was added to the debug manifest.
+
+The Android frame owner was Jolt/Chez thread `0` and an nREPL evaluator was
+thread `5`. Pure Var replacement is safe because the worker only compiles the
+function and the owner calls it on a later frame. Direct drawing/input/lifecycle
+FFI in the eval request is unsafe. RAY-017 adds a 16-entry queue that executes at
+most one short closure between frames and retains 64 results; use
+`submit-owner!`/`owner-result` only when an operation truly needs owner-affine
+Raylib access. Blocking or unbounded requests can still destroy the frame
+budget.
+
+The release manifest has no `INTERNET` permission, its Jolt image is built from
+the non-debug entry and contains no `raylib_gallery_debug` export, release C
+selects the ordinary direct-linked gallery export, and a signed release probe
+answered no nREPL request. Do not move the permission to the main manifest or
+merge the debug entry into the release image.
 
 ### Primary Android facts do not automatically transfer
 
@@ -170,5 +193,4 @@ Add evidence-backed entries as the work reaches each boundary:
 - Android AArch64 Jolt FFI aggregate ABI;
 - audio and asset lifecycle;
 - Jolt GC/frame-time behavior;
-- debug-only Android live evaluation through a bounded owner-thread queue;
 - text input, accessibility, and Raygui mobile ergonomics.

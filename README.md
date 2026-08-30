@@ -34,6 +34,11 @@ native ARM64 Linux GTK host. The Android Compose diagnostic shell includes
 notification posting, URL/vibration/info adapters, and permission flow. Its
 debug-only ADB-forwarded eval/redefinition evidence is bounded and is not
 Android nREPL/CIDER ([EXP-015](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-015-android-fixed-debug-eval)).
+The independent Raylib NativeActivity host now has a separate debug-only Jolt
+nREPL workflow: pure `eval`/`load-file` replacements visibly update later owner
+frames without rebuild or restart, and short Raylib FFI probes use a bounded
+owner queue ([RAY-017](experiments/RAY-017-android-raylib-nrepl)). Its release
+variant has no debug nREPL export, network permission, or listener.
 
 A fail-fast `scripts/verify` now preserves supported clean-room validation
 outputs and explicit host-specific skips. The project reports graded outcomes,

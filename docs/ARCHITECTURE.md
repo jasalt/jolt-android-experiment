@@ -97,6 +97,9 @@ effects absent from the portable model.
 ## Explicitly not demonstrated
 
 - Native ARM64 Android-process and native ARM64 Linux GTK validation.
-- Android nREPL/CIDER or an unrestricted production eval protocol. The
-  debug-only ADB-forwarded eval/redefinition evidence in [EXP-015](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-015-android-fixed-debug-eval)
-  is deliberately narrower.
+- Compose-host Android nREPL/CIDER or any unrestricted production eval
+  protocol. Its debug-only ADB-forwarded line evaluator in
+  [EXP-015](https://github.com/jasalt/jolt-android-experiment/tree/master/experiments/EXP-015-android-fixed-debug-eval)
+  remains deliberately narrower. The independent Raylib host separately proves
+  minimal debug Jolt nREPL in [RAY-017](../experiments/RAY-017-android-raylib-nrepl),
+  but not optional CIDER middleware or a release listener.

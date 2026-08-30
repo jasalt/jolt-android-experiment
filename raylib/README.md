@@ -91,6 +91,30 @@ bootstrap probe, and `scripts/raylib-topology-build-android` plus
 `scripts/raylib-first-frame-build-android` for the topology/frame gates. Do not
 use host-installed Android Studio, SDK, NDK, or a floating upstream checkout.
 
+## Android nREPL development
+
+The gallery debug build is dynamically Var-routed and starts Jolt's minimal
+nREPL server on Android loopback. Build/install it once, then forward port 7888:
+
+```sh
+JOLT_SOURCE=/path/to/pinned-jolt nix develop -c \
+  ./scripts/raylib-persistent-loop-build-android debug
+nix develop -c ./scripts/raylib-android-nrepl forward
+```
+
+An editor can connect to `127.0.0.1:7888`; the script also provides
+`describe`, `clone`, `eval`, `load-file`, and `close` commands. Redefine pure
+functions or drawing function bodies without invoking them in the nREPL
+request—the frame owner resolves and calls the replacement later. Short
+owner-affine Raylib probes must use the bounded `submit-owner!` queue. See
+[RAY-017](../experiments/RAY-017-android-raylib-nrepl/) for the exact workflow,
+proof, limits, and release-exclusion gate.
+
+The release image builds from the non-debug entry, contains no debug nREPL
+export, remains direct-linked, requests no network permission, and starts no
+server. Native/Gradle/manifest/ABI/asset and release changes still require
+rebuilds.
+
 ## Evidence conventions
 
 New Raylib work stores reduced experiments below `../experiments/RAY-*/` and
