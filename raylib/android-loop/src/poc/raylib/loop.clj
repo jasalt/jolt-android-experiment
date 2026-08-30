@@ -7,6 +7,7 @@
             [poc.raylib.flappy-bird :as flappy]
             [poc.raylib.following-eyes :as eyes]
             [poc.raylib.touch-trail :as trail]
+            [poc.raylib.touch-diagnostics :as touch-diagnostics]
             [poc.raylib.app :as app]
             [poc.raylib.gallery :as gallery]
             [poc.raylib.gallery-ui :as gallery-ui]
@@ -95,7 +96,7 @@
    (trail/scene)
    (flappy/scene)
    (placeholder-scene :virtual-controls "Virtual Controls")
-   (placeholder-scene :touch-diagnostics "Touch Diagnostics")
+   (touch-diagnostics/scene)
    (placeholder-scene :gesture-diagnostics "Gesture Diagnostics")])
 (def scene-registry (gallery/make-registry core-scenes))
 (def scene-ids (mapv :id core-scenes))
@@ -241,6 +242,22 @@
                  margin footer-y body-size DARKGRAY))
     (end-drawing)))
 
+(defn- draw-touch-diagnostics! [scene-state back sizes]
+  (let [{:keys [count ids point-0 coordinates all-coordinates-available? phase]} scene-state
+        {:keys [margin title-size body-size line-gap]} sizes]
+    (clear-background RAYWHITE)
+    (draw-rectangle! back CARD-DARK RAYWHITE)
+    (draw-text "< Back to gallery" (+ (:x back) (quot margin 2))
+               (+ (:y back) (quot body-size 3)) body-size RAYWHITE)
+    (draw-text "Touch Diagnostics" margin (+ margin title-size line-gap) title-size CARD-DARK)
+    (draw-text (str "Active points: " count " | phase: " (name phase))
+               margin (+ margin (* 2 line-gap) title-size) body-size DARKGRAY)
+    (draw-text (str "IDs: " ids) margin (+ margin (* 3 line-gap) title-size) body-size DARKGRAY)
+    (draw-text (str "Point zero: " point-0 " | scalar availability: " coordinates)
+               margin (+ margin (* 4 line-gap) title-size) body-size DARKGRAY)
+    (draw-text (str "All point coordinates: " (if all-coordinates-available? "available" "unavailable"))
+               margin (+ margin (* 5 line-gap) title-size) body-size MAROON)))
+
 (defn- draw-touch-trail! [input scene-state back sizes]
   (let [{:keys [radius]} (trail/layout (:metrics input))
         {:keys [margin title-size body-size line-gap]} sizes
@@ -314,6 +331,10 @@
         back (:back layout)]
     (begin-drawing)
     (cond
+      (= :touch-diagnostics scene-id)
+      (draw-touch-diagnostics! scene-state back
+                               {:margin margin :title-size title-size
+                                :body-size body-size :line-gap line-gap})
       (= :touch-trail scene-id)
       (draw-touch-trail! input scene-state back
                          {:margin margin :title-size title-size
