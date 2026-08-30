@@ -1,26 +1,29 @@
 (ns poc.raylib.loop
   "Jolt-owned persistent Raylib loop with touch-first adaptive diagnostics."
   (:require [jolt.ffi :as ffi]
+            [poc.reducer :as reducer]
             [poc.raylib.abi]
             [poc.raylib.diagnostics :as diagnostics]
-            [poc.raylib.gallery :as gallery]))
+            [poc.raylib.app :as app]
+            [poc.raylib.gallery :as gallery]
+            [poc.raylib.gallery-ui :as gallery-ui]))
 
 (declare init-window set-target-fps should-close-raw begin-drawing
-         clear-background draw-text draw-circle end-drawing get-frame-time
+         clear-background draw-text end-drawing
          get-screen-width get-screen-height get-render-width get-render-height
          get-touch-point-count get-touch-point-id get-touch-x get-touch-y
          get-gesture-detected get-mouse-x get-mouse-y mouse-pressed-raw
          mouse-down-raw mouse-released-raw is-key-pressed-raw
-         android-log-write close-window)
+         android-log-write draw-rectangle draw-rectangle-lines close-window)
 (ffi/defcfn init-window "InitWindow" [:int :int :string] :void)
 (ffi/defcfn set-target-fps "SetTargetFPS" [:int] :void)
 (ffi/defcfn ^:private should-close-raw "WindowShouldClose" [] :int)
 (ffi/defcfn begin-drawing "BeginDrawing" [] :void)
 (ffi/defcfn clear-background "ClearBackground" [:uint] :void)
 (ffi/defcfn draw-text "DrawText" [:string :int :int :int :uint] :void)
-(ffi/defcfn draw-circle "DrawCircle" [:int :int :float :uint] :void)
+(ffi/defcfn draw-rectangle "DrawRectangle" [:int :int :int :int :uint] :void)
+(ffi/defcfn draw-rectangle-lines "DrawRectangleLines" [:int :int :int :int :uint] :void)
 (ffi/defcfn end-drawing "EndDrawing" [] :void)
-(ffi/defcfn get-frame-time "GetFrameTime" [] :float)
 (ffi/defcfn get-screen-width "GetScreenWidth" [] :int)
 (ffi/defcfn get-screen-height "GetScreenHeight" [] :int)
 (ffi/defcfn get-render-width "GetRenderWidth" [] :int)
@@ -55,7 +58,38 @@
 (def DARKBLUE (rgba 0 82 172 255))
 (def DARKGRAY (rgba 80 80 80 255))
 (def MAROON (rgba 190 33 55 255))
-(def SKYBLUE (rgba 102 191 255 255))
+(def CARD-BLUE (rgba 35 92 150 255))
+(def CARD-DARK (rgba 24 50 78 255))
+
+(defn placeholder-scene [scene-id title]
+  {:id scene-id
+   :title title
+   :init (fn [input]
+           [{:frame 0
+             :last-phase (get-in input [:pointer :phase])
+             :last-position (get-in input [:pointer :position])}
+            [[:scene/init scene-id]]])
+   :update (fn [state input]
+             [(assoc state
+                     :frame (inc (:frame state))
+                     :last-phase (get-in input [:pointer :phase])
+                     :last-position (get-in input [:pointer :position]))
+              []])
+   :draw (fn [state _] [state []])
+   :dispose (fn [state] [state [[:scene/dispose scene-id]]])})
+
+;; Keep the registration explicit and deterministic. These placeholders are
+;; the shell's navigable targets; each leaf scene can later replace only its
+;; descriptor without changing navigation or native window ownership.
+(def core-scenes
+  [(placeholder-scene :following-eyes "Following Eyes")
+   (placeholder-scene :touch-trail "Touch Trail")
+   (placeholder-scene :flappy-bird "Flappy Bird")
+   (placeholder-scene :virtual-controls "Virtual Controls")
+   (placeholder-scene :touch-diagnostics "Touch Diagnostics")
+   (placeholder-scene :gesture-diagnostics "Gesture Diagnostics")])
+(def scene-registry (gallery/make-registry core-scenes))
+(def scene-ids (mapv :id core-scenes))
 
 (defn true-raw? [value]
   (not (zero? (bit-and value 0xff))))
@@ -84,9 +118,9 @@
       :back? (or (true-raw? (is-key-pressed-raw KEY-BACK))
                  (true-raw? (should-close-raw)))})))
 
-(defn log-state! [frame input state]
+(defn log-state! [frame input diagnostic-state gallery-state app-state effects event]
   (android-log-write
-   ANDROID-LOG-INFO "jolt_raylib_touch_state"
+   ANDROID-LOG-INFO "jolt_raylib_gallery_state"
    (pr-str {:frame frame
             :metrics (:metrics input)
             :pointer (:pointer input)
@@ -94,69 +128,160 @@
             :gesture (:gesture input)
             :keyboard (:keyboard input)
             :gallery-contract gallery/contract-version
-            :tap-count (:tap-count state)
-            :hold-frames (:hold-frames state)
-            :drag-samples (:drag-samples state)
-            :close-requested? (:close-requested? state)})))
+            :gallery-mode (:mode gallery-state)
+            :selected-scene (:active-scene-id gallery-state)
+            :scene-frame (get-in gallery-state [:scene-state :frame])
+            :shared-model (reducer/view-model app-state)
+            :effects effects
+            :last-event event
+            :tap-count (:tap-count diagnostic-state)
+            :hold-frames (:hold-frames diagnostic-state)
+            :drag-samples (:drag-samples diagnostic-state)
+            :close-requested? (:close-requested? gallery-state)})))
 
-(defn draw-diagnostics! [frame frame-us input state]
+(defn- gallery-layout [input]
+  (gallery-ui/gallery-layout (:metrics input) scene-ids
+                             (diagnostics/layout (:metrics input))))
+
+(defn- scene-controls [input]
+  (gallery-ui/counter-controls (:metrics input)
+                               (diagnostics/layout (:metrics input))))
+
+(defn- draw-rectangle! [rect fill-color border-color]
+  (draw-rectangle (:x rect) (:y rect) (:width rect) (:height rect) fill-color)
+  (draw-rectangle-lines (:x rect) (:y rect) (:width rect) (:height rect)
+                        border-color))
+
+(defn- effects-label [effects]
+  (if-let [effect (first effects)]
+    (name (:type effect))
+    "none"))
+
+(defn draw-gallery! [frame input]
   (let [metrics (:metrics input)
-        {:keys [margin title-size body-size line-gap touch-radius]}
-        (diagnostics/layout metrics)
-        [screen-width screen-height] (:screen metrics)
-        [render-width render-height] (:render metrics)
-        [scale-x scale-y] (:dpi-scale metrics)
-        phase (get-in input [:pointer :phase])
-        point (get-in input [:pointer :position])
-        touches (:touches input)]
+        sizes (diagnostics/layout metrics)
+        {:keys [margin title-size body-size line-gap]} sizes
+        layout (gallery-layout input)
+        [width height] (:screen metrics)]
     (begin-drawing)
     (clear-background RAYWHITE)
-    (draw-text "Jolt + Raylib touch diagnostics" margin margin title-size DARKBLUE)
-    (draw-text (str "Screen " screen-width "x" screen-height
-                    " | render " render-width "x" render-height)
+    (draw-text "Jolt + Raylib Gallery" margin margin title-size DARKBLUE)
+    (draw-text (str "Choose a touch-first scene | " width "x" height
+                    " | " (name (:orientation metrics)))
                margin (+ margin title-size line-gap) body-size DARKGRAY)
-    (draw-text (str "Orientation " (name (:orientation metrics))
-                    " | DPI scale " scale-x "x" scale-y)
-               margin (+ margin title-size (* 2 line-gap)) body-size DARKGRAY)
-    (draw-text (str "Touches " (:count touches) " | IDs " (:ids touches)
-                    " | point-0 " (:point-0 touches))
-               margin (+ margin title-size (* 3 line-gap)) body-size MAROON)
-    (draw-text (str "Pointer " (name phase) " | taps " (:tap-count state)
-                    " | hold frames " (:hold-frames state)
-                    " | drag samples " (:drag-samples state))
-               margin (+ margin title-size (* 4 line-gap)) body-size MAROON)
-    (draw-text (str "Frame " frame " | frame time us " frame-us)
-               margin (+ margin title-size (* 5 line-gap)) body-size DARKGRAY)
-    (draw-text "Point-0 coordinates only | all-point Vector2 ABI unproven"
-               margin (+ margin title-size (* 6 line-gap)) body-size DARKGRAY)
-    (draw-text "Android Back closes | Linux mouse fallback"
-               margin (+ margin title-size (* 7 line-gap)) body-size DARKGRAY)
-    (when point
-      (draw-circle (first point) (second point) (float touch-radius) SKYBLUE))
+    (doseq [card (:cards layout)]
+      (draw-rectangle! card CARD-BLUE RAYWHITE)
+      (draw-text (get-in (gallery/scene-by-id scene-registry (:scene-id card))
+                         [:title])
+                 (+ (:x card) margin)
+                 (+ (:y card) (quot (:height card) 2) (- (quot body-size 2)))
+                 body-size RAYWHITE))
+    (let [footer-y (- height (+ margin body-size))]
+      (draw-text "Android Back: close | scene Back: gallery | mouse fallback"
+                 margin (- footer-y line-gap) body-size DARKGRAY)
+      (draw-text (str "Frame " frame " | six registered scenes | cards " (:columns layout)
+                      "x" (:rows layout))
+                 margin footer-y body-size DARKGRAY))
     (end-drawing)))
+
+(defn draw-scene! [frame input gallery-state app-state effects]
+  (let [metrics (:metrics input)
+        {:keys [margin title-size body-size line-gap]} (diagnostics/layout metrics)
+        layout (gallery-layout input)
+        scene-id (:active-scene-id gallery-state)
+        scene (gallery/scene-by-id scene-registry scene-id)
+        scene-state (:scene-state gallery-state)
+        controls (scene-controls input)
+        view (reducer/view-model app-state)
+        [width height] (:screen metrics)
+        back (:back layout)]
+    (begin-drawing)
+    (clear-background RAYWHITE)
+    (draw-rectangle! back CARD-DARK RAYWHITE)
+    (draw-text "< Back to gallery" (+ (:x back) (quot margin 2))
+               (+ (:y back) (quot body-size 3)) body-size RAYWHITE)
+    (draw-text (:title scene) margin (+ margin title-size line-gap)
+               title-size DARKBLUE)
+    (draw-text "Placeholder scene ready for its focused adaptation"
+               margin (+ margin (* 2 line-gap) title-size) body-size DARKGRAY)
+    (draw-text (str "Scene " (name scene-id) " | frame " (:frame scene-state))
+               margin (+ margin (* 3 line-gap) title-size) body-size MAROON)
+    (draw-text (str "Pointer " (name (get-in input [:pointer :phase]))
+                    " | position " (get-in input [:pointer :position]))
+               margin (+ margin (* 4 line-gap) title-size) body-size DARKGRAY)
+    (draw-text (str "Screen " width "x" height " | touch count "
+                    (get-in input [:touches :count]))
+               margin (+ margin (* 5 line-gap) title-size) body-size DARKGRAY)
+    (draw-text (str "Shared counter " (:counter view)
+                    " | effect data: " (effects-label effects))
+               margin (+ margin (* 6 line-gap) title-size) body-size MAROON)
+    (doseq [control controls]
+      (draw-rectangle! control CARD-BLUE RAYWHITE)
+      (draw-text (:label control)
+                 (+ (:x control) (quot margin 2))
+                 (+ (:y control) (quot body-size 3))
+                 body-size RAYWHITE))
+    (draw-text (str "Frame " frame " | Android Back or canvas Back returns to gallery")
+               margin (- height (+ margin line-gap)) body-size DARKGRAY)
+    (end-drawing)))
+
+(defn- advance-gallery [gallery-state input]
+  (let [layout (gallery-layout input)
+        phase (get-in input [:pointer :phase])
+        point (get-in input [:pointer :position])
+        hit (gallery-ui/hit-test layout point (:mode gallery-state))
+        canvas-back? (and (= :scene (:mode gallery-state)) (= :back hit))
+        input (assoc input :back? (or (:back? input) canvas-back?))]
+    (if (= :gallery (:mode gallery-state))
+      (if (and (not (:back? input)) (= :press phase) hit)
+        (gallery/open-scene scene-registry gallery-state hit input)
+        (gallery/run-frame scene-registry gallery-state input))
+      (gallery/run-frame scene-registry gallery-state input))))
+
 
 (defn run-loop []
   (let [duration-ms 905000
         target-fps 30
         start (System/currentTimeMillis)]
-    (init-window 0 0 "Jolt Raylib touch diagnostics")
+    (init-window 0 0 "Jolt Raylib Gallery")
     (set-target-fps target-fps)
     (try
-      (loop [frame 0 state diagnostics/initial-state]
+      (loop [frame 0
+             diagnostic-state diagnostics/initial-state
+             gallery-state gallery/initial-gallery-state
+             app-state reducer/initial-state
+             last-effects []]
         (let [elapsed (- (System/currentTimeMillis) start)
-              frame-us (int (* (get-frame-time) 1000000))
               input (poll-input)
-              next-state (diagnostics/step state input)
-              phase (get-in input [:pointer :phase])]
+              event (app/counter-event (:mode gallery-state) input
+                                        (scene-controls input))
+              [next-app-state emitted-effects] (app/step app-state event)
+              effects (if event emitted-effects last-effects)
+              next-diagnostic-state (diagnostics/step diagnostic-state input)
+              next-gallery-state (advance-gallery gallery-state input)
+              phase (get-in input [:pointer :phase])
+              navigation? (or (not= (:mode gallery-state) (:mode next-gallery-state))
+                              (not= (:active-scene-id gallery-state)
+                                    (:active-scene-id next-gallery-state)))]
           (when (or (zero? (mod frame 150))
                     (not= :idle phase)
-                    (:back? input))
-            (log-state! frame input next-state))
-          (if (or (>= elapsed duration-ms) (:close-requested? next-state))
+                    (:back? input)
+                    navigation?
+                    event)
+            (log-state! frame input next-diagnostic-state next-gallery-state
+                        next-app-state effects event))
+          (if (or (>= elapsed duration-ms)
+                  (:close-requested? next-gallery-state))
             frame
             (do
-              (draw-diagnostics! frame frame-us input next-state)
-              (recur (inc frame) next-state)))))
+              (if (= :gallery (:mode next-gallery-state))
+                (draw-gallery! frame input)
+                (draw-scene! frame input next-gallery-state next-app-state effects))
+              (recur (inc frame) next-diagnostic-state next-gallery-state
+                     next-app-state effects)))))
       (finally (close-window)))))
 
+;; Preserve the persistent-loop export consumed by the existing NativeActivity
+;; bootstrap while also giving gallery-specific tooling a descriptive symbol.
 (ffi/export! "raylib_persistent_loop" run-loop [] :int)
+(ffi/export! "raylib_gallery" run-loop [] :int)

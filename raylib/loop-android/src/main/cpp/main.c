@@ -3,7 +3,7 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-#define LOG_TAG "jolt_raylib_persistent_loop"
+#define LOG_TAG "jolt_raylib_gallery"
 #define LOGI(...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__)
 #define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
 
@@ -72,8 +72,8 @@ int main(int argc, char *argv[]) {
   LOGI("aggregate matrix result=%d thread=%d owner=%d", abi_verify(),
        thread_id(), owner);
 
-  loop_fn loop = (loop_fn)lookup("raylib_persistent_loop");
-  LOGI("jolt_lookup raylib_persistent_loop=%s thread=%d owner=%d",
+  loop_fn loop = (loop_fn)lookup("raylib_gallery");
+  LOGI("jolt_lookup raylib_gallery=%s thread=%d owner=%d",
        loop ? "ok" : "missing", thread_id(), owner);
   if (!loop) {
     shutdown();
@@ -82,12 +82,11 @@ int main(int argc, char *argv[]) {
   }
 
   int frames = loop();
-  LOGI("raylib_persistent_loop result=%d thread=%d owner=%d", frames,
+  LOGI("raylib_gallery result=%d thread=%d owner=%d", frames,
        thread_id(), owner);
   shutdown();
   LOGI("jolt_library_shutdown thread=%d owner=%d", thread_id(), owner);
   dlclose(library);
-  LOGI("persistent-loop bootstrap complete thread=%d owner=%d", thread_id(),
-       owner);
+  LOGI("gallery bootstrap complete thread=%d owner=%d", thread_id(), owner);
   return frames > 0 ? 0 : 5;
 }

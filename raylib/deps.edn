@@ -1,4 +1,4 @@
-{:paths ["src" "test"]
+{:paths ["src" "test" "../src/shared"]
 
  ;; This declaration is only the desktop run/build-image host. The reusable
  ;; namespace has no native declaration, so Android symbol topology remains a
