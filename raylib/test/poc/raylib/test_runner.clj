@@ -10,7 +10,8 @@
             [poc.raylib.repl-queue-test]
             [poc.raylib.touch-trail-test]
             [poc.raylib.touch-diagnostics-test]
-            [poc.raylib.voxel-siege-test]))
+            [poc.raylib.voxel-siege-test]
+            [poc.raylib.voxel-physics-test]))
 
 (defn -main [& _]
   (let [{:keys [fail error] :as result}
@@ -24,6 +25,7 @@
                         'poc.raylib.repl-queue-test
                         'poc.raylib.touch-trail-test
                         'poc.raylib.touch-diagnostics-test
-                        'poc.raylib.voxel-siege-test)]
+                        'poc.raylib.voxel-siege-test
+                        'poc.raylib.voxel-physics-test)]
     (when (pos? (+ fail error))
       (throw (ex-info "Raylib pure tests failed" result)))))
