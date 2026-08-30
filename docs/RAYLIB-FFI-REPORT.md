@@ -38,6 +38,17 @@ batching.
 The embedded image is a live Voxel scene-shell capture, not a performance
 claim. Its SHA-256 is recorded in `RAYLIB-VOXEL-SIEGE-SCENE.md`.
 
+## Android OpenURL probe
+
+Using the Android debug nREPL over a loopback ADB forward, the owner queue
+returned `{:status :ok, :value {:status :rejected, :reason :unsafe-url}}` for
+`http://unsafe`, and `{:status :ok, :value {:status :requested, :url
+"https://jolt-lang.net"}}` for the HTTPS URL. Both calls were queued from the
+REPL and invoked on the Raylib owner thread. The emulator transferred focus to
+the available Android handler; the return-to-gallery path was not claimed in
+this run. This proves URL validation and request dispatch only, not universal
+browser availability.
+
 ## Decision
 
 Do not add a command-buffer batching layer based on this measurement. Keep the

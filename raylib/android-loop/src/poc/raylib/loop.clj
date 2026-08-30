@@ -11,6 +11,7 @@
             [poc.raylib.gesture-diagnostics :as gestures]
             [poc.raylib.voxel-siege :as voxel]
             [poc.raylib.voxel-native-probe :as voxel-native]
+            [poc.raylib.sdk-probe :as sdk-probe]
             [poc.raylib.app :as app]
             [poc.raylib.gallery :as gallery]
             [poc.raylib.gallery-ui :as gallery-ui]
@@ -140,7 +141,9 @@
 
 (def debug-repl-functions
   {:submit-owner! submit-owner!
-   :owner-result owner-result})
+   :owner-result owner-result
+   :open-url-probe (fn [url]
+                     (submit-owner! #(sdk-probe/open-url-probe url)))})
 
 (defn current-runtime-state
   "Return a pure snapshot suitable for nREPL inspection."
