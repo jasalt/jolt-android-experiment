@@ -9,8 +9,9 @@ set(RAYLIB_SOURCE "$ENV{RAYLIB_SOURCE}")
 list(APPEND CMAKE_MODULE_PATH "${RAYLIB_SOURCE}/cmake")
 add_subdirectory("${RAYLIB_SOURCE}/src" raylib-build EXCLUDE_FROM_ALL)
 
-add_library(main SHARED main.c voxel_sensor.c "${CMAKE_CURRENT_LIST_DIR}/../../../../abi/aggregate_oracle.c")
-target_include_directories(main PRIVATE "${RAYLIB_SOURCE}/src")
+add_library(main SHARED main.c voxel_sensor.c voxel_orientation.c "${CMAKE_CURRENT_LIST_DIR}/../../../../abi/aggregate_oracle.c")
+target_include_directories(main PRIVATE "${RAYLIB_SOURCE}/src"
+                                         "${CMAKE_ANDROID_NDK}/sources/android/native_app_glue")
 
 # Optional Voxel Siege probe. Keep Box3D outside the default gallery build; the
 # reproducible probe supplies BOX3D_SOURCE pointing at the pinned checkout.
