@@ -16,33 +16,33 @@ trap 'rm -rf "$inspect_dir"' EXIT
 : "${JOLT_SOURCE:?set to a clean checkout at the pinned Jolt revision}"
 JOLT_SOURCE="$JOLT_SOURCE" ./scripts/raylib-persistent-loop-build-android \
   2>&1 | tee "$out/build.log"
-unzip -l "$apk" | grep -E 'lib/arm64-v8a/(libmain|libjoltraylib-loop)\.so$' \
-  | tee "$out/apk-libraries.txt"
-"$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$apk" \
-  | grep -E 'package:|launchable-activity:' | tee "$out/apk-badging.txt"
-unzip -p "$apk" lib/arm64-v8a/libmain.so > "$inspect_dir/libmain.so"
-unzip -p "$apk" lib/arm64-v8a/libjoltraylib-loop.so > "$inspect_dir/libjoltraylib-loop.so"
+unzip -l "$apk" | grep -E 'lib/arm64-v8a/(libmain|libjoltraylib-loop)\.so$' |
+  tee "$out/apk-libraries.txt"
+"$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$apk" |
+  grep -E 'package:|launchable-activity:' | tee "$out/apk-badging.txt"
+unzip -p "$apk" lib/arm64-v8a/libmain.so >"$inspect_dir/libmain.so"
+unzip -p "$apk" lib/arm64-v8a/libjoltraylib-loop.so >"$inspect_dir/libjoltraylib-loop.so"
 file "$inspect_dir/libmain.so" | tee "$out/libmain-file.txt"
 file "$inspect_dir/libjoltraylib-loop.so" | tee "$out/libjoltraylib-file.txt"
-nm -D --defined-only "$inspect_dir/libmain.so" \
-  | grep -E ' (ANativeActivity_onCreate|android_main)$' | tee "$out/libmain-symbols.txt"
-nm -D --defined-only "$inspect_dir/libjoltraylib-loop.so" \
-  | grep -E 'jolt_(library_init|lookup|library_shutdown)$' | tee "$out/jolt-symbols.txt"
+nm -D --defined-only "$inspect_dir/libmain.so" |
+  grep -E ' (ANativeActivity_onCreate|android_main)$' | tee "$out/libmain-symbols.txt"
+nm -D --defined-only "$inspect_dir/libjoltraylib-loop.so" |
+  grep -E 'jolt_(library_init|lookup|library_shutdown)$' | tee "$out/jolt-symbols.txt"
 
 ./scripts/emulator-start headless
 adb -s "$serial" install -r "$apk"
 adb -s "$serial" shell am force-stop "$package"
 adb -s "$serial" logcat -c
 adb -s "$serial" shell am start -W -n "$package/$activity" \
-  > "$out/first-launch.txt"
+  >"$out/first-launch.txt"
 
 capture_state() {
   local label="$1"
-  adb -s "$serial" exec-out screencap -p > "$out/$label.png"
-  identify "$out/$label.png" > "$out/$label-identify.txt"
-  adb -s "$serial" shell dumpsys meminfo "$package" > "$out/$label-meminfo.txt"
-  adb -s "$serial" shell dumpsys gfxinfo "$package" framestats > "$out/$label-framestats.txt" || true
-  adb -s "$serial" shell pidof "$package" | tr -d '\r' > "$out/$label-pid.txt"
+  adb -s "$serial" exec-out screencap -p >"$out/$label.png"
+  identify "$out/$label.png" >"$out/$label-identify.txt"
+  adb -s "$serial" shell dumpsys meminfo "$package" >"$out/$label-meminfo.txt"
+  adb -s "$serial" shell dumpsys gfxinfo "$package" framestats >"$out/$label-framestats.txt" || true
+  adb -s "$serial" shell pidof "$package" | tr -d '\r' >"$out/$label-pid.txt"
 }
 
 sleep 35
@@ -61,7 +61,7 @@ sleep 600
 capture_state 15m
 test -s "$out/15m-pid.txt"
 sleep 15
-adb -s "$serial" logcat -d -v threadtime > "$out/first-logcat.txt"
+adb -s "$serial" logcat -d -v threadtime >"$out/first-logcat.txt"
 ! grep -Eq 'Fatal signal|FATAL EXCEPTION|ANR in net\.joltlang\.raylibloopprobe' \
   "$out/first-logcat.txt"
 grep -Fq 'raylib_persistent_loop result=' "$out/first-logcat.txt"
@@ -73,11 +73,11 @@ grep -Fq 'Renderer: Android Emulator OpenGL ES Translator' "$out/first-logcat.tx
 adb -s "$serial" shell am force-stop "$package"
 adb -s "$serial" logcat -c
 adb -s "$serial" shell am start -W -n "$package/$activity" \
-  > "$out/relaunch-launch.txt"
+  >"$out/relaunch-launch.txt"
 sleep 35
 capture_state relaunch
 sleep 5
-adb -s "$serial" logcat -d -v threadtime > "$out/relaunch-logcat.txt"
+adb -s "$serial" logcat -d -v threadtime >"$out/relaunch-logcat.txt"
 ! grep -Eq 'Fatal signal|FATAL EXCEPTION|ANR in net\.joltlang\.raylibloopprobe' \
   "$out/relaunch-logcat.txt"
 grep -Fq 'jolt_lookup raylib_persistent_loop=ok' "$out/relaunch-logcat.txt"
@@ -96,8 +96,8 @@ grep -Eq "thread=$relaunch_owner( |$)" "$out/relaunch-logcat.txt"
 grep -Eq "owner=$relaunch_owner( |$)" "$out/relaunch-logcat.txt"
 
 adb -s "$serial" shell getprop ro.product.cpu.abi | tr -d '\r' \
-  > "$out/device-primary-abi.txt"
+  >"$out/device-primary-abi.txt"
 adb -s "$serial" shell getprop ro.product.cpu.abilist | tr -d '\r' \
-  > "$out/device-abi-list.txt"
-printf '15-minute Jolt-owned loop, background/resume, and relaunch passed without current-run crash or ANR\n' \
-  | tee "$out/result.txt"
+  >"$out/device-abi-list.txt"
+printf '15-minute Jolt-owned loop, background/resume, and relaunch passed without current-run crash or ANR\n' |
+  tee "$out/result.txt"

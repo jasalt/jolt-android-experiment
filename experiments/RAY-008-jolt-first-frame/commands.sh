@@ -17,39 +17,39 @@ trap 'rm -rf "$inspect_dir"' EXIT
 JOLT_SOURCE="$JOLT_SOURCE" ./scripts/raylib-first-frame-build-android \
   2>&1 | tee "$out/build.log"
 
-unzip -l "$apk" | grep -E 'lib/arm64-v8a/(libmain|libjoltraylib-frame)\.so$' \
-  | tee "$out/apk-libraries.txt"
-"$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$apk" \
-  | grep -E 'package:|launchable-activity:' | tee "$out/apk-badging.txt"
-unzip -p "$apk" lib/arm64-v8a/libmain.so > "$inspect_dir/libmain.so"
+unzip -l "$apk" | grep -E 'lib/arm64-v8a/(libmain|libjoltraylib-frame)\.so$' |
+  tee "$out/apk-libraries.txt"
+"$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$apk" |
+  grep -E 'package:|launchable-activity:' | tee "$out/apk-badging.txt"
+unzip -p "$apk" lib/arm64-v8a/libmain.so >"$inspect_dir/libmain.so"
 unzip -p "$apk" lib/arm64-v8a/libjoltraylib-frame.so \
-  > "$inspect_dir/libjoltraylib-frame.so"
+  >"$inspect_dir/libjoltraylib-frame.so"
 file "$inspect_dir/libmain.so" | tee "$out/libmain-file.txt"
 file "$inspect_dir/libjoltraylib-frame.so" | tee "$out/libjoltraylib-file.txt"
-nm -D --defined-only "$inspect_dir/libmain.so" \
-  | grep -E ' (ANativeActivity_onCreate|android_main)$' \
-  | tee "$out/libmain-symbols.txt"
+nm -D --defined-only "$inspect_dir/libmain.so" |
+  grep -E ' (ANativeActivity_onCreate|android_main)$' |
+  tee "$out/libmain-symbols.txt"
 readelf -d "$inspect_dir/libmain.so" | grep NEEDED | tee "$out/libmain-needed.txt"
-nm -D --defined-only "$inspect_dir/libjoltraylib-frame.so" \
-  | grep -E 'jolt_(library_init|lookup|library_shutdown)$' \
-  | tee "$out/jolt-symbols.txt"
+nm -D --defined-only "$inspect_dir/libjoltraylib-frame.so" |
+  grep -E 'jolt_(library_init|lookup|library_shutdown)$' |
+  tee "$out/jolt-symbols.txt"
 
 ./scripts/emulator-start headless
 adb -s "$serial" install -r "$apk"
 adb -s "$serial" shell am force-stop "$package"
 adb -s "$serial" logcat -c
 adb -s "$serial" shell am start -W -n "$package/$activity" \
-  > "$out/launch.txt"
+  >"$out/launch.txt"
 sleep 2
-adb -s "$serial" exec-out screencap -p > "$out/first-frame.png"
+adb -s "$serial" exec-out screencap -p >"$out/first-frame.png"
 mkdir -p "$root/artifacts/raylib/screenshots"
 cp "$out/first-frame.png" "$root/artifacts/raylib/screenshots/001-first-frame.png"
 identify "$out/first-frame.png" | tee "$out/first-frame-identify.txt"
 grep -Fq '1080x2400' "$out/first-frame-identify.txt"
 sleep 5
-adb -s "$serial" logcat -d -v threadtime > "$out/logcat.txt"
+adb -s "$serial" logcat -d -v threadtime >"$out/logcat.txt"
 grep -E 'jolt_raylib_first_frame|PLATFORM: ANDROID|GL: OpenGL device|Renderer:|Berberis' \
-  "$out/logcat.txt" > "$out/key-lines.txt"
+  "$out/logcat.txt" >"$out/key-lines.txt"
 ! grep -Eq 'Fatal signal|FATAL EXCEPTION|ANR in net\.joltlang\.raylibframeprobe' \
   "$out/logcat.txt"
 grep -Fq 'PLATFORM: ANDROID: Initialized successfully' "$out/logcat.txt"
@@ -63,18 +63,18 @@ test -n "$owner"
 grep -Eq "thread=$owner( |$)" "$out/logcat.txt"
 grep -Eq "owner=$owner( |$)" "$out/logcat.txt"
 adb -s "$serial" shell getprop ro.product.cpu.abi | tr -d '\r' \
-  > "$out/device-primary-abi.txt"
+  >"$out/device-primary-abi.txt"
 adb -s "$serial" shell getprop ro.product.cpu.abilist | tr -d '\r' \
-  > "$out/device-abi-list.txt"
+  >"$out/device-abi-list.txt"
 (
   cd "$out"
-  sha256sum first-frame.png > SHA256SUMS
+  sha256sum first-frame.png >SHA256SUMS
   sha256sum -c SHA256SUMS
 )
 (
   cd "$root/artifacts/raylib/screenshots"
-  sha256sum 001-first-frame.png > SHA256SUMS
+  sha256sum 001-first-frame.png >SHA256SUMS
   sha256sum -c SHA256SUMS
 )
-printf 'Jolt-generated Raylib frame passed with API-35 ARM64 translation and no current-run crash or ANR\n' \
-  | tee "$out/result.txt"
+printf 'Jolt-generated Raylib frame passed with API-35 ARM64 translation and no current-run crash or ANR\n' |
+  tee "$out/result.txt"

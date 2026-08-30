@@ -48,8 +48,8 @@ if ! grep -Fq 'PLATFORM: ANDROID: Initialized successfully' "$out/logcat.txt"; t
   printf 'Raylib Android backend initialization was not observed in logcat\n' >&2
   exit 1
 fi
-if ! grep -Fq 'GL: OpenGL device information:' "$out/logcat.txt" || \
-    ! grep -Fq 'Renderer: Android Emulator OpenGL ES Translator' "$out/logcat.txt"; then
+if ! grep -Fq 'GL: OpenGL device information:' "$out/logcat.txt" ||
+  ! grep -Fq 'Renderer: Android Emulator OpenGL ES Translator' "$out/logcat.txt"; then
   printf 'Raylib GLES renderer initialization was not observed in logcat\n' >&2
   exit 1
 fi
