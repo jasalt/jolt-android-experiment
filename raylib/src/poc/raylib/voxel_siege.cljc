@@ -1,0 +1,127 @@
+(ns poc.raylib.voxel-siege
+  "Pure Voxel Siege rules and mobile input adapter.
+
+  Box3D, Raylib, sensors and native handles stay outside this namespace. The
+  scene adapter supplies physics facts and consumes the commands returned by
+  `input-command`."
+  (:refer-clojure :exclude [reset])
+  (:require [clojure.set :as set]))
+
+(def balls-per-round 5)
+(def win-threshold 0.7)
+(def max-delta-seconds 0.033)
+(def yaw-range [(- (/ Math/PI 2)) (/ Math/PI 2)])
+(def pitch-range [(- (/ Math/PI 6)) (/ Math/PI 3)])
+
+(defn clamp [value [low high]]
+  (max low (min high (double value))))
+
+(defn direction [yaw pitch]
+  [(* (Math/cos pitch) (Math/sin yaw))
+   (Math/sin pitch)
+   (- (* (Math/cos pitch) (Math/cos yaw)))])
+
+(defn power-from-charge [seconds]
+  (clamp (+ 0.15 (* 0.75 (clamp (/ (double (or seconds 0.0)) 1.5) [0.0 1.0])))
+         [0.15 0.9]))
+
+(defn castle-cells
+  "Deterministic three-level castle fixture; a cell is [x y z]."
+  []
+  (set (for [x (range -3 4) y (range 0 5) z (range -1 2)
+             :when (or (zero? y) (zero? z) (zero? x) (= x 3) (= y 4))]
+         [x y z])))
+
+(defn new-game
+  ([] (new-game (castle-cells)))
+  ([cells]
+   {:phase :playing
+    :balls-left balls-per-round
+    :aim {:yaw 0.0 :pitch 0.4}
+    :charge-seconds 0.0
+    :charging? false
+    :baseline-pose nil
+    :orientation? false
+    :initial-cells (count cells)
+    :destroyed-cells #{ }
+    :cells (set cells)
+    :shots []}))
+
+(defn destruction [state]
+  (if (zero? (:initial-cells state))
+    0.0
+    (/ (double (count (:destroyed-cells state))) (:initial-cells state))))
+
+(defn phase-after-destruction [state]
+  (cond
+    (>= (destruction state) win-threshold) :won
+    (and (zero? (:balls-left state)) (not (:charging? state))) :lost
+    :else (:phase state)))
+
+(defn aim-drag [state dx dy]
+  (update state :aim (fn [{:keys [yaw pitch]}]
+                       {:yaw (clamp (+ yaw (* 0.008 (double dx))) yaw-range)
+                        :pitch (clamp (- pitch (* 0.008 (double dy))) pitch-range)})))
+
+(defn calibrate [state pose]
+  (assoc state :baseline-pose pose :orientation? true))
+
+(defn orientation-aim [state [yaw pitch]]
+  (let [[base-yaw base-pitch] (or (:baseline-pose state) [0.0 0.0])]
+    (assoc-in state [:aim]
+              {:yaw (clamp (- yaw base-yaw) yaw-range)
+               :pitch (clamp (+ 0.4 (- pitch base-pitch)) pitch-range)})))
+
+(defn press-fire [state]
+  (if (and (= :playing (:phase state)) (pos? (:balls-left state))
+           (not (:charging? state)))
+    (assoc state :charging? true :charge-seconds 0.0)
+    state))
+
+(defn release-fire [state]
+  (if (:charging? state)
+    (let [{:keys [yaw pitch]} (:aim state)]
+      (-> state
+          (assoc :charging? false :charge-seconds 0.0)
+          (update :balls-left dec)
+          (update :shots conj {:aim [yaw pitch]
+                               :direction (direction yaw pitch)
+                               :power (power-from-charge (:charge-seconds state))})
+          (update :phase phase-after-destruction)))
+    state))
+
+(defn tick [state dt]
+  (if (:charging? state)
+    (update state :charge-seconds + (min max-delta-seconds (max 0.0 (double dt))))
+    state))
+
+(defn reset [state]
+  (new-game (:initial-cells state)))
+
+(defn apply-destruction [state cells]
+  (let [destroyed (set/intersection (:cells state) (set cells))
+        next-state (-> state
+                       (update :destroyed-cells into destroyed)
+                       (update :cells #(set/difference % destroyed)))]
+    (assoc next-state :phase (phase-after-destruction next-state))))
+
+(defn control-rects [{:keys [width height]}]
+  {:back [12 12 64 48]
+   :reset [(- width 64) 12 48 40]
+   :mode [12 (- height 64) 116 48]
+   :fire [(- width 164) (- height 112) 148 96]})
+
+(defn inside? [[x y w h] [px py]]
+  (and (<= x px (+ x w)) (<= y py (+ y h))))
+
+(defn input-command
+  "Resolve one normalized pointer event with deterministic control precedence."
+  [metrics _state {:keys [phase position]}]
+  (let [rects (control-rects metrics)]
+    (cond
+      (= phase :back) {:command :back}
+      (and (= phase :press) (inside? (:reset rects) position)) {:command :reset}
+      (and (= phase :press) (inside? (:mode rects) position)) {:command :toggle-orientation}
+      (inside? (:fire rects) position) {:command (if (= phase :release) :release-fire :press-fire)}
+      :else {:command (if (= phase :drag) :aim-drag :none)
+             :position position})))
