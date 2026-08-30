@@ -128,14 +128,25 @@ bb check
 bb nrepl 17888
 ```
 
-Connect only over loopback, load its retained `nrepl-results` probe forms, and
+For desktop examples that create a window from an editor evaluation, use the
+upstream Raylib-Jolt `rl/run!` helper rather than calling `(-main)` directly:
+[REPL-driven development: why `(-main)` kills your editor connection](https://jlt-commons.github.io/raylib-jlt/guide/repl-driven-development.html).
+`rl/run!` schedules the entry on Jolt's main-thread pump asynchronously, keeping
+the editor responsive; the blocking `call-on-main-thread` form is for scripts
+that intentionally wait for window closure. This is especially important on
+macOS, where AppKit terminates the process when `InitWindow` runs off the main
+thread. Use the upstream
+[headless smoke guide](https://jlt-commons.github.io/raylib-jlt/guide/headless-smoke-testing.html)
+for timer-based exits.
+
+Connect only over loopback, load the retained `nrepl-results` probe forms, and
 redefine a pure `defn` called dynamically by the drawing loop. The captured
-experiment shows that visible layout replacement works without process restart,
-but the Raylib context owner and nREPL request workers are different Jolt/Chez
-threads. Never call Raylib drawing, lifecycle, input, or resource FFI from an
-nREPL worker, and never retain a startup-captured draw function when it is
-intended to be redefined. Use an application-owned bounded owner-thread queue
-for any future evaluated work that needs to interact with the frame loop.
+experiment and the upstream guide show visible replacement without process
+restart, but the Raylib context owner and nREPL request workers are different
+Jolt/Chez threads. Never call Raylib drawing, lifecycle, input, or resource FFI
+from an nREPL worker, and never retain a startup-captured draw function when it
+is intended to be redefined. Use an application-owned bounded owner-thread
+queue for any future evaluated work that needs to interact with the frame loop.
 
 ### Android Raylib nREPL
 

@@ -103,7 +103,11 @@ nix develop -c ./scripts/raylib-android-nrepl forward
 ```
 
 An editor can connect to `127.0.0.1:7888`; the script also provides
-`describe`, `clone`, `eval`, `load-file`, and `close` commands. Redefine pure
+`describe`, `clone`, `eval`, `load-file`, and `close` commands. For Linux/macOS
+desktop examples, use the upstream `rl/run!` entry helper instead of a bare
+`(-main)` when launching from nREPL; see the
+[Raylib-Jolt REPL guide](https://jlt-commons.github.io/raylib-jlt/guide/repl-driven-development.html).
+Redefine pure
 functions or drawing function bodies without invoking them in the nREPL
 request—the frame owner resolves and calls the replacement later. Short
 owner-affine Raylib probes must use the bounded `submit-owner!` queue. See

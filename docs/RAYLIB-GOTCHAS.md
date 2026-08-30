@@ -132,6 +132,11 @@ resize/lifecycle behavior remains a separate experiment.
 **Observed experiment:** [RAY-015](../experiments/RAY-015-linux-raylib-nrepl),
 with complete retained capture in
 [`../../raylib-jlt/nrepl-results/`](../../raylib-jlt/nrepl-results/).
+The upstream Raylib-Jolt
+[REPL guide](https://jlt-commons.github.io/raylib-jlt/guide/repl-driven-development.html)
+adds the concrete desktop launch rule: use `rl/run!` for an editor-launched
+window, not a bare `(-main)`, because the helper schedules entry on the main
+thread and keeps the nREPL responsive.
 
 On Linux desktop, a normal Jolt nREPL server remained responsive while a
 Raylib window rendered from a dynamically called Var. Two nREPL `defn`
