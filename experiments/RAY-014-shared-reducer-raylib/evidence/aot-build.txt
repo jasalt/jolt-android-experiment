@@ -1,0 +1,78 @@
+Preparing worktree (detached HEAD ae5c5a6d)
+Cloning into '/tmp/nix-shell.LLBHPP/tmp.dDJMGw51Le/jolt/vendor/clojure-test-suite'...
+Cloning into '/tmp/nix-shell.LLBHPP/tmp.dDJMGw51Le/jolt/vendor/fs'...
+Cloning into '/tmp/nix-shell.LLBHPP/tmp.dDJMGw51Le/jolt/vendor/grenadine'...
+Cloning into '/tmp/nix-shell.LLBHPP/tmp.dDJMGw51Le/jolt/vendor/irregex'...
+Cloning into '/tmp/nix-shell.LLBHPP/tmp.dDJMGw51Le/jolt/vendor/process'...
+Cloning into '/tmp/nix-shell.LLBHPP/tmp.dDJMGw51Le/jolt/vendor/sci'...
+Submodule path 'vendor/clojure-test-suite': checked out '489b6743e8421687ef96cec557830acf258d1886'
+Submodule path 'vendor/fs': checked out '5b273b8a943a622593fbc85fca6761c5a39d6d66'
+Submodule path 'vendor/grenadine': checked out '77992327c0b220c186ece61d74f7eb570978a6f5'
+Submodule path 'vendor/irregex': checked out 'c948a704fc732914a243c1643bfe359913d11c7b'
+Submodule path 'vendor/process': checked out '7d881f3a3ec6d273cf014c8172dea037abb31da3'
+Submodule path 'vendor/sci': checked out '32d62a5136ad3dc148588752f5bcc4cc30b14752'
+wrote target pack: /tmp/nix-shell.LLBHPP/tmp.dDJMGw51Le/tarm64le-pack
+  jolt build -m <ns> -o <out> --target tarm64le --target-pack /tmp/nix-shell.LLBHPP/tmp.dDJMGw51Le/tarm64le-pack
+jolt build: compiling poc.raylib.loop (release mode, shared library)
+loading tarm64le cross compiler
+compiling /tmp/nix-shell.LLBHPP/tmp.dDJMGw51Le/libjoltraylib-loop.so.build/flat.ss with output to /tmp/nix-shell.LLBHPP/tmp.dDJMGw51Le/libjoltraylib-loop.so.build/flat.so
+jolt build: wrote /tmp/nix-shell.LLBHPP/tmp.dDJMGw51Le/libjoltraylib-loop.so
+/home/user/dev/jail/jolt/jolt-android/native/jolt/android-arm64/arm64-v8a/libjoltraylib-loop.so: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, for Android 35, built by NDK r29 (14206865), not stripped
+ 0x0000000000000001 (NEEDED)             Shared library: [libc.so]
+Built Raylib persistent-loop Jolt library: /home/user/dev/jail/jolt/jolt-android/native/jolt/android-arm64/arm64-v8a/libjoltraylib-loop.so
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.4/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :raylib-loop-android:preBuild UP-TO-DATE
+> Task :raylib-loop-android:preDebugBuild UP-TO-DATE
+> Task :raylib-loop-android:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :raylib-loop-android:javaPreCompileDebug UP-TO-DATE
+> Task :raylib-loop-android:checkDebugAarMetadata UP-TO-DATE
+> Task :raylib-loop-android:generateDebugResValues UP-TO-DATE
+> Task :raylib-loop-android:mapDebugSourceSetPaths UP-TO-DATE
+> Task :raylib-loop-android:generateDebugResources UP-TO-DATE
+> Task :raylib-loop-android:mergeDebugResources UP-TO-DATE
+> Task :raylib-loop-android:packageDebugResources UP-TO-DATE
+> Task :raylib-loop-android:parseDebugLocalResources UP-TO-DATE
+> Task :raylib-loop-android:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :raylib-loop-android:extractDeepLinksDebug UP-TO-DATE
+> Task :raylib-loop-android:processDebugMainManifest UP-TO-DATE
+> Task :raylib-loop-android:processDebugManifest UP-TO-DATE
+> Task :raylib-loop-android:processDebugManifestForPackage UP-TO-DATE
+> Task :raylib-loop-android:processDebugResources UP-TO-DATE
+> Task :raylib-loop-android:compileDebugJavaWithJavac NO-SOURCE
+> Task :raylib-loop-android:mergeDebugShaders UP-TO-DATE
+> Task :raylib-loop-android:compileDebugShaders NO-SOURCE
+> Task :raylib-loop-android:generateDebugAssets UP-TO-DATE
+> Task :raylib-loop-android:mergeDebugAssets UP-TO-DATE
+> Task :raylib-loop-android:compressDebugAssets UP-TO-DATE
+> Task :raylib-loop-android:processDebugJavaRes NO-SOURCE
+> Task :raylib-loop-android:mergeDebugJavaResource UP-TO-DATE
+> Task :raylib-loop-android:checkDebugDuplicateClasses UP-TO-DATE
+> Task :raylib-loop-android:desugarDebugFileDependencies UP-TO-DATE
+> Task :raylib-loop-android:mergeExtDexDebug UP-TO-DATE
+> Task :raylib-loop-android:mergeLibDexDebug UP-TO-DATE
+> Task :raylib-loop-android:dexBuilderDebug UP-TO-DATE
+> Task :raylib-loop-android:mergeProjectDexDebug UP-TO-DATE
+> Task :raylib-loop-android:configureCMakeDebug[arm64-v8a]
+> Task :raylib-loop-android:buildCMakeDebug[arm64-v8a]
+> Task :raylib-loop-android:mergeDebugJniLibFolders
+> Task :raylib-loop-android:validateSigningDebug UP-TO-DATE
+> Task :raylib-loop-android:writeDebugAppMetadata UP-TO-DATE
+> Task :raylib-loop-android:writeDebugSigningConfigVersions UP-TO-DATE
+> Task :raylib-loop-android:mergeDebugNativeLibs
+> Task :raylib-loop-android:stripDebugDebugSymbols
+> Task :raylib-loop-android:packageDebug
+> Task :raylib-loop-android:createDebugApkListingFileRedirect UP-TO-DATE
+> Task :raylib-loop-android:assembleDebug
+
+[Incubating] Problems report is available at: file:///home/user/dev/jail/jolt/jolt-android/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.14.4/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 20s
+34 actionable tasks: 6 executed, 28 up-to-date
+Built /home/user/dev/jail/jolt/jolt-android/raylib/loop-android/build/outputs/apk/debug/raylib-loop-android-debug.apk

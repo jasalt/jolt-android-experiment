@@ -1,0 +1,24 @@
+--------- beginning of main
+08-30 15:01:42.800 16566 16585 I jolt_raylib_gallery: enter main thread=16585 owner=16585
+08-30 15:01:42.810 16566 16585 I jolt_raylib_gallery: dlopen ok thread=16585 owner=16585
+08-30 15:01:45.003 16566 16585 I jolt_raylib_gallery: jolt_library_init result=0 thread=16585 owner=16585
+08-30 15:01:45.004 16566 16585 I jolt_raylib_gallery: aggregate probe lookup name=raylib_abi_constant_size result=ok thread=16585 owner=16585
+08-30 15:01:45.004 16566 16585 I jolt_raylib_gallery: aggregate probe call name=raylib_abi_constant_size result=4 thread=16585 owner=16585
+08-30 15:01:45.004 16566 16585 I jolt_raylib_gallery: aggregate probe lookup name=raylib_abi_map_size result=ok thread=16585 owner=16585
+08-30 15:01:45.004 16566 16585 I jolt_raylib_gallery: aggregate probe call name=raylib_abi_map_size result=4 thread=16585 owner=16585
+08-30 15:01:45.004 16566 16585 I jolt_raylib_gallery: aggregate probe lookup name=raylib_abi_color_layout_map result=ok thread=16585 owner=16585
+08-30 15:01:45.004 16566 16585 I jolt_raylib_gallery: aggregate probe call name=raylib_abi_color_layout_map result=1 thread=16585 owner=16585
+08-30 15:01:45.004 16566 16585 I jolt_raylib_gallery: aggregate probe lookup name=raylib_abi_color_layout_marker result=ok thread=16585 owner=16585
+08-30 15:01:45.004 16566 16585 I jolt_raylib_gallery: aggregate probe call name=raylib_abi_color_layout_marker result=1 thread=16585 owner=16585
+08-30 15:01:45.004 16566 16585 I jolt_raylib_gallery: aggregate probe lookup name=raylib_abi_color_raw_size result=ok thread=16585 owner=16585
+08-30 15:01:45.004 16566 16585 I jolt_raylib_gallery: aggregate probe call name=raylib_abi_color_raw_size result=4 thread=16585 owner=16585
+08-30 15:01:45.004 16566 16585 I jolt_raylib_gallery: aggregate probe lookup name=raylib_abi_layout_size_bound result=ok thread=16585 owner=16585
+08-30 15:01:45.004 16566 16585 I jolt_raylib_gallery: aggregate probe call name=raylib_abi_layout_size_bound result=1 thread=16585 owner=16585
+08-30 15:01:45.004 16566 16585 I jolt_raylib_gallery: aggregate probe lookup name=raylib_abi_color_size result=ok thread=16585 owner=16585
+08-30 15:01:45.004 16566 16585 I jolt_raylib_gallery: aggregate probe call name=raylib_abi_color_size result=4 thread=16585 owner=16585
+08-30 15:01:45.004 16566 16585 I jolt_raylib_gallery: jolt_lookup aggregate verify=ok thread=16585 owner=16585
+08-30 15:01:45.017 16566 16585 I jolt_raylib_gallery: aggregate matrix result=1 thread=16585 owner=16585
+08-30 15:01:45.017 16566 16585 I jolt_raylib_gallery: jolt_lookup raylib_gallery=ok thread=16585 owner=16585
+08-30 15:01:51.022 16566 16585 I jolt_raylib_gallery: raylib_gallery result=164 thread=16585 owner=16585
+08-30 15:01:51.022 16566 16585 I jolt_raylib_gallery: jolt_library_shutdown thread=16585 owner=16585
+08-30 15:01:51.024 16566 16585 I jolt_raylib_gallery: gallery bootstrap complete thread=16585 owner=16585

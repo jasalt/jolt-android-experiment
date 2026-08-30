@@ -1,0 +1,2 @@
+emulator-5554 is already running
+Booted emulator-5554; wrote /home/user/dev/jail/jolt/jolt-android/artifacts/reports/emulator-jolt_api_35_x86_64.txt
