@@ -1,0 +1,1 @@
+/home/user/dev/jail/jolt/jolt-android/experiments/RAY-010-touch-adaptive-diagnostics/evidence/landscape.png PNG 2400x1080 2400x1080+0+0 8-bit sRGB 16050B 0.000u 0:00.001

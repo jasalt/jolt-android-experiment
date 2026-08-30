@@ -1,0 +1,1 @@
+/home/user/dev/jail/jolt/jolt-android/experiments/RAY-010-touch-adaptive-diagnostics/evidence/small-portrait.png PNG 720x1280 720x1280+0+0 8-bit sRGB 9317B 0.000u 0:00.001

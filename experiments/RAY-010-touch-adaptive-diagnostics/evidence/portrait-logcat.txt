@@ -1,0 +1,1151 @@
+--------- beginning of main
+08-30 11:41:55.404   941   941 D ControlsListingControllerImpl: ServiceConfig reloaded, count: 0
+08-30 11:41:55.417   451   451 E BpTransactionCompletedListener: Failed to transact (-32)
+08-30 11:41:55.417   941   941 D ControlsListingControllerImpl: ServiceConfig reloaded, count: 0
+08-30 11:41:55.429   941   941 D ControlsListingControllerImpl: ServiceConfig reloaded, count: 0
+08-30 11:41:55.430  1546  1546 I GsaVoiceInteractionSrv: (REDACTED) O received %s
+08-30 11:41:55.432   941   947 I ndroid.systemui: Background concurrent mark compact GC freed 7430KB AllocSpace bytes, 20(512KB) LOS objects, 49% free, 18MB/37MB, paused 456us,4.310ms total 538.345ms
+--------- beginning of system
+08-30 11:41:55.433   584  2008 W UserManagerService: Requested status bar icon for non-badged user 0
+08-30 11:41:55.434   584   602 W UserManagerService: Requested status bar icon for non-badged user 0
+08-30 11:41:55.442   584  1369 D ActivityManager: sync unfroze 1385 com.google.android.gms for 6
+08-30 11:41:55.454   941   949 W ndroid.systemui: ApkAssets: Deleting an ApkAssets object '<empty> and /data/app/~~MxnTDuniQH9mTpD8GdCShQ==/net.joltlang.raylibgallery-IlC_ED3MIPLH3M19iHLbtA==/base.apk' with 2 weak references
+08-30 11:41:55.464  1385  1385 D ActivityThread: Package [net.joltlang.raylibgallery] reported as REPLACED, but missing application info. Assuming REMOVED.
+08-30 11:41:55.474 23823 25495 I Fitness : FitCleanupIntentOperation received Intent android.intent.action.PACKAGE_REMOVED [CONTEXT service_id=17 ]
+08-30 11:41:55.521  1385 25510 I Auth    : [SupervisedAccountIntentOperation] onHandleIntent(): android.intent.action.PACKAGE_ADDED
+08-30 11:41:55.521  1385 25513 V Backup  : [PhotosPackagedAddedIO] Flag is disabled.
+08-30 11:41:55.522  1385 25510 I Auth    : [SupervisedAccountIntentOperation] This operation is disabled
+08-30 11:41:55.532 25446 25446 D CompatChangeReporter: Compat change id reported: 3400644; UID 10130; state: ENABLED
+08-30 11:41:55.532 23212 23263 W SearchServiceCore: Abort, client detached.
+08-30 11:41:55.533 23212 23263 W SearchServiceCore: Abort, client detached.
+08-30 11:41:55.534   584  1666 W ActivityTaskManager: callingPackage for (uid=2000, pid=25520) has no WPC
+08-30 11:41:55.538   584  1666 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_USER_ASPECT_RATIO_OVERRIDE
+08-30 11:41:55.539   584  1666 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_USER_ASPECT_RATIO_FULLSCREEN_OVERRIDE
+08-30 11:41:55.540   584  1666 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_ORIENTATION_OVERRIDE
+08-30 11:41:55.541   584  1666 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10235, packageName = null, attributionTag = null, token = android.os.Binder@6b5b2fd, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+08-30 11:41:55.543 23212 23263 W SearchServiceCore: Abort, client detached.
+08-30 11:41:55.546   584  1666 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_RESIZEABLE_ACTIVITY_OVERRIDES
+08-30 11:41:55.546   584  1666 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_MIN_ASPECT_RATIO_OVERRIDE
+08-30 11:41:55.547  1385 25500 W SQLiteLog: (28) double-quoted string literal: "net.joltlang.raylibgallery"
+08-30 11:41:55.554   941   978 W Looper  : Drained
+08-30 11:41:55.556   380 25532 I resolv  : GetAddrInfoHandler::run: {100 100 100 983140 10130 0}
+08-30 11:41:55.557   380 25533 I resolv  : res_nmkquery: (QUERY, IN, AAAA)
+08-30 11:41:55.557   380 25533 I resolv  : res_stats_usable_server: too many resolution errors, ignoring server
+08-30 11:41:55.557   380 25533 I resolv  : res_nsend: used send_dg 0 terrno: 101
+08-30 11:41:55.558   380 25533 I resolv  : res_nsend: used send_dg 0 terrno: 101
+08-30 11:41:55.558   380 25533 I resolv  : doQuery: rcode=0, ancount=0, return value=-111
+08-30 11:41:55.562   584  1666 V SplashScreenExceptionList: SplashScreen checking exception for package net.joltlang.raylibgallery (target sdk:35) -> false
+08-30 11:41:55.571   941   978 V WindowManagerShell: Transition requested (#442): android.os.BinderProxy@2dbbf67 TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=100 displayId=0 isRunning=true baseIntent=Intent { flg=0x10000000 cmp=net.joltlang.raylibgallery/android.app.NativeActivity } baseActivity=ComponentInfo{net.joltlang.raylibgallery/android.app.NativeActivity} topActivity=ComponentInfo{net.joltlang.raylibgallery/android.app.NativeActivity} origActivity=null realActivity=ComponentInfo{net.joltlang.raylibgallery/android.app.NativeActivity} numActivities=1 lastActiveTime=86534493 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@c8c1114} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 128 - 0, 0) topActivityInfo=ActivityInfo{e4f8dbd android.app.NativeActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=false isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=false appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= falseisLetterboxEducationEnabled= true isLetterboxDoubleTapEnabled= false topActivityEligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=1080 topActivityLetterboxHeight=2400 isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false cameraCompatTaskInfo=CameraCompatTaskInfo { cameraCompatControlState=hidden freeformCameraCompatMode=inactive}}}, pipTask = null, remoteTransition = null, displayChange = null, flags = 0, debugId = 442 }
+08-30 11:41:55.573   584  1666 I ActivityTaskManager: START u0 {flg=0x10000000 cmp=net.joltlang.raylibgallery/android.app.NativeActivity} with LAUNCH_MULTIPLE from uid 2000 (BAL_ALLOW_PERMISSION) result code=0
+08-30 11:41:55.575 13526 24977 I JoltRuntime: entering JNI on JoltRuntime
+08-30 11:41:55.575 13526 24977 I jolt_probe: {:error :closed}
+08-30 11:41:55.578   584  2008 I AppsFilter: interaction: PackageSetting{26ae19f net.joltlang.raylibjoltprobe/10231} -> PackageSetting{f12114e net.joltlang.raylibgallery/10235} BLOCKED
+08-30 11:41:55.578   584  2008 I AppsFilter: interaction: PackageSetting{20a46b5 com.android.microdroid.empty_payload/10199} -> PackageSetting{f12114e net.joltlang.raylibgallery/10235} BLOCKED
+08-30 11:41:55.578   584  2008 I AppsFilter: interaction: PackageSetting{4e9714a net.joltlang.raylibframeprobe/10233} -> PackageSetting{f12114e net.joltlang.raylibgallery/10235} BLOCKED
+08-30 11:41:55.578   584  2008 I AppsFilter: interaction: PackageSetting{125f8bb net.joltlang.raylibloopprobe/10234} -> PackageSetting{f12114e net.joltlang.raylibgallery/10235} BLOCKED
+08-30 11:41:55.578   584  2008 I AppsFilter: interaction: PackageSetting{a9611d8 net.joltlang.androidpoc.abiprobe/10229} -> PackageSetting{f12114e net.joltlang.raylibgallery/10235} BLOCKED
+08-30 11:41:55.578   584  2008 I AppsFilter: interaction: PackageSetting{659931 net.joltlang.raylibprobe/10230} -> PackageSetting{f12114e net.joltlang.raylibgallery/10235} BLOCKED
+08-30 11:41:55.578   584  2008 I AppsFilter: interaction: PackageSetting{cd55816 net.joltlang.raylibtopologyprobe/10232} -> PackageSetting{f12114e net.joltlang.raylibgallery/10235} BLOCKED
+08-30 11:41:55.582   584   608 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10235, packageName = null, attributionTag = null, token = android.os.Binder@6b5b2fd, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+08-30 11:41:55.582 23823 25492 I FontLog : Package net.joltlang.raylibgallery has no metadata [CONTEXT service_id=132 ]
+08-30 11:41:55.583  1257  1257 I TopTaskTracker: onTaskMovedToFront: (moved taskInfo to front) taskId=100, baseIntent=Intent { flg=0x10000000 cmp=net.joltlang.raylibgallery/android.app.NativeActivity }
+08-30 11:41:55.583   451   451 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+08-30 11:41:55.590   584  1021 D CompatChangeReporter: Compat change id reported: 309578419; UID 10235; state: ENABLED
+08-30 11:41:55.597   386   386 D Zygote  : Forked child process 25537
+08-30 11:41:55.606   584  2010 D CompatChangeReporter: Compat change id reported: 161145287; UID 10130; state: ENABLED
+08-30 11:41:55.607   584   891 I AppWidgetServiceImpl: Received broadcast: android.intent.action.PACKAGE_UNSTOPPED on user 0
+08-30 11:41:55.607   584   891 I AppWidgetServiceImpl: Updating package stopped masked state for uid 10235 package net.joltlang.raylibgallery isStopped false
+08-30 11:41:55.610   380   380 I netd    : tetherGetStats() -> {[]} <1.03ms>
+08-30 11:41:55.611  1385  1385 D BoundBrokerSvc: onBind: Intent { act=com.google.android.gms.common.BIND_SHARED_PREFS pkg=com.google.android.gms }
+08-30 11:41:55.611   584   618 I ActivityManager: Start proc 25537:net.joltlang.raylibgallery/u0a235 for next-top-activity {net.joltlang.raylibgallery/android.app.NativeActivity}
+08-30 11:41:55.618   941  1026 D SplashScreenView: Build android.window.SplashScreenView{15cfd47 V.E...... ......ID 0,0-0,0}
+08-30 11:41:55.618   941  1026 D SplashScreenView: Icon: view: android.widget.ImageView{5ada974 V.ED..... ......I. 0,0-0,0 #1020504 android:id/splashscreen_icon_view} drawable: com.android.wm.shell.startingsurface.SplashscreenIconDrawableFactory$ImmobileIconDrawable@84aae9d size: 420
+08-30 11:41:55.618   941  1026 D SplashScreenView: Branding: view: android.view.View{36e5f12 G.ED..... ......I. 0,0-0,0 #1020503 android:id/splashscreen_branding_view} drawable: null size w: 0 h: 0
+08-30 11:41:55.621   584  2011 D CoreBackPreview: Window{901f45a u0 Splash Screen net.joltlang.raylibgallery}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@b77db1d, mPriority=0, mIsAnimationCallback=false}
+08-30 11:41:55.621  1385  1385 D BoundBrokerSvc: Loading bound service for intent: Intent { act=com.google.android.gms.common.BIND_SHARED_PREFS pkg=com.google.android.gms }
+08-30 11:41:55.626  1520  1886 I AiAiTextClassifier: [VisualCortexAdapter]: provideRegistration: Registered Prominent Screen Entities for updates.
+08-30 11:41:55.627  1520  1886 I AiAiTextClassifier: [VisualCortexAdapter]: provideRegistration: Registered Prominent Screen Entities for updates.
+08-30 11:41:55.628 25537 25537 I g.raylibgallery: Late-enabling -Xcheck:jni
+08-30 11:41:55.629  1520  1886 I AiAiTextClassifier: [VisualCortexAdapter]: provideRegistration: Registered Prominent Screen Entities for updates.
+08-30 11:41:55.629  1520  1886 I AiAiTextClassifier: [VisualCortexAdapter]: provideRegistration: Registered Prominent Screen Entities for updates.
+08-30 11:41:55.630  1520  1886 I AiAiTextClassifier: [VisualCortexAdapter]: provideRegistration: Registered Prominent Screen Entities for updates.
+08-30 11:41:55.630  1520  1886 I AiAiTextClassifier: [VisualCortexAdapter]: provideRegistration: Registered Prominent Screen Entities for updates.
+08-30 11:41:55.646 25446 25501 E FirebaseInstanceId: Failed to get FIS auth token
+08-30 11:41:55.646 25446 25501 E FirebaseInstanceId: java.util.concurrent.ExecutionException: nww: Firebase Installations Service is unavailable. Please try again later.
+08-30 11:41:55.646 25446 25501 E FirebaseInstanceId: 	at hrg.K(PG:5)
+08-30 11:41:55.646 25446 25501 E FirebaseInstanceId: 	at hrg.m(PG:8)
+08-30 11:41:55.646 25446 25501 E FirebaseInstanceId: 	at nwk.a(PG:11)
+08-30 11:41:55.646 25446 25501 E FirebaseInstanceId: 	at qlg.v(PG:3)
+08-30 11:41:55.646 25446 25501 E FirebaseInstanceId: 	at nwh.a(PG:5)
+08-30 11:41:55.646 25446 25501 E FirebaseInstanceId: 	at dcr.run(PG:7)
+08-30 11:41:55.646 25446 25501 E FirebaseInstanceId: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+08-30 11:41:55.646 25446 25501 E FirebaseInstanceId: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644)
+08-30 11:41:55.646 25446 25501 E FirebaseInstanceId: 	at pt.run(PG:27)
+08-30 11:41:55.646 25446 25501 E FirebaseInstanceId: 	at java.lang.Thread.run(Thread.java:1012)
+08-30 11:41:55.646 25446 25501 E FirebaseInstanceId: Caused by: nww: Firebase Installations Service is unavailable. Please try again later.
+08-30 11:41:55.646 25446 25501 E FirebaseInstanceId: 	at nxi.b(PG:54)
+08-30 11:41:55.646 25446 25501 E FirebaseInstanceId: 	at nwt.run(PG:19)
+08-30 11:41:55.646 25446 25501 E FirebaseInstanceId: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+08-30 11:41:55.646 25446 25501 E FirebaseInstanceId: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644)
+08-30 11:41:55.646 25446 25501 E FirebaseInstanceId: 	... 1 more
+08-30 11:41:55.661  1520  1886 I AiAiTextClassifier: [VisualCortexAdapter]: provideRegistration: Registered Prominent Screen Entities for updates.
+08-30 11:41:55.662  1520  1886 I AiAiTextClassifier: [VisualCortexAdapter]: provideRegistration: Registered Prominent Screen Entities for updates.
+08-30 11:41:55.663  1520  1886 I AiAiTextClassifier: [VisualCortexAdapter]: provideRegistration: Registered Prominent Screen Entities for updates.
+08-30 11:41:55.681 25537 25537 I g.raylibgallery: Using CollectorTypeCMC GC.
+08-30 11:41:55.682 25537 25537 W g.raylibgallery: Unexpected CPU variant for x86: x86_64.
+08-30 11:41:55.682 25537 25537 W g.raylibgallery: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, default
+08-30 11:41:55.709  1385 15152 I Icing   : IndexChimeraService.getServiceInterface callingPackage=com.google.android.gms componentName=AppsCorpus serviceId=36
+08-30 11:41:55.713  1385  1385 D BoundBrokerSvc: onBind: Intent { act=com.google.android.gms.feedback.internal.IFeedbackService dat=chimera-action:/... cmp=com.google.android.gms/.chimera.GmsBoundBrokerService }
+08-30 11:41:55.713  1385  1385 D BoundBrokerSvc: Loading bound service for intent: Intent { act=com.google.android.gms.feedback.internal.IFeedbackService dat=chimera-action:/... cmp=com.google.android.gms/.chimera.GmsBoundBrokerService }
+08-30 11:41:55.721   584  2010 D CompatChangeReporter: Compat change id reported: 261072174; UID 10130; state: ENABLED
+08-30 11:41:55.728 25537 25537 I berberis: Initialized Berberis (aarch64), version 0.2.3
+08-30 11:41:55.736 23823 23823 D BoundBrokerSvc: onBind: Intent { act=com.google.android.gms.icing.LIGHTWEIGHT_INDEX_SERVICE dat=chimera-action:/... cmp=com.google.android.gms/.chimera.PersistentApiService }
+08-30 11:41:55.736 23823 23823 D BoundBrokerSvc: Loading bound service for intent: Intent { act=com.google.android.gms.icing.LIGHTWEIGHT_INDEX_SERVICE dat=chimera-action:/... cmp=com.google.android.gms/.chimera.PersistentApiService }
+08-30 11:41:55.758 25446 25498 E FirebaseInstanceId: Topic sync or token retrieval failed on hard failure exceptions: AUTHENTICATION_FAILED. Won't retry the operation.
+08-30 11:41:55.791   584  1023 D IntervalStats: Unable to parse usage stats packages: [228]
+08-30 11:41:55.797 23823 23823 D BoundBrokerSvc: onBind: Intent { act=com.google.android.gms.phenotype.service.START pkg=com.google.android.gms }
+08-30 11:41:55.797 23823 23823 D BoundBrokerSvc: Loading bound service for intent: Intent { act=com.google.android.gms.phenotype.service.START pkg=com.google.android.gms }
+08-30 11:41:55.810  1385 25525 I Icing   : Usage reports ok 1, Failed Usage reports 0, indexed 0, rejected 0
+08-30 11:41:55.816   460   472 I adbd    : jdwp connection from 25537
+08-30 11:41:55.829   941  1357 V WindowManagerShell: onTransitionReady(transaction=2508260912564)
+08-30 11:41:55.829   941   978 V WindowManagerShell: onTransitionReady (#442) android.os.BinderProxy@2dbbf67: {id=442 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{android.window.IWindowContainerToken$Stub$Proxy@1fca0d1} m=OPEN f=NONE leash=Surface(name=Task=100)/@0x3b2be6a sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0 taskParent=-1},{WCT{android.window.IWindowContainerToken$Stub$Proxy@4365736} m=TO_BACK f=NONE leash=Surface(name=Task=70)/@0x91b8f5b sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0 taskParent=-1}]}
+08-30 11:41:55.829   941   978 V WindowManagerShell: Playing animation for (#442) android.os.BinderProxy@2dbbf67@0
+08-30 11:41:55.829   941   978 V WindowManagerShell:  try handler com.android.wm.shell.transition.DefaultMixedHandler@ec31604
+08-30 11:41:55.829   941   978 V WindowManagerShell:  try handler com.android.wm.shell.keyguard.KeyguardTransitionHandler@4ddc7ed
+08-30 11:41:55.829   941   978 V WindowManagerShell:  try handler com.android.wm.shell.pip.PipTransition@3a68622
+08-30 11:41:55.829   941   978 V WindowManagerShell:  try handler com.android.wm.shell.activityembedding.ActivityEmbeddingController@b11a8b3
+08-30 11:41:55.829   941   978 V WindowManagerShell:  try handler com.android.wm.shell.recents.RecentsTransitionHandler@55d8e70
+08-30 11:41:55.829   941   978 V ShellRecents: RecentsTransitionHandler.startAnimation: no controller found
+08-30 11:41:55.829   941   978 V WindowManagerShell:  try handler com.android.wm.shell.splitscreen.StageCoordinator@4dbf5e9
+08-30 11:41:55.829   941   978 V WindowManagerShell:  try handler com.android.wm.shell.transition.RemoteTransitionHandler@1cae26e
+08-30 11:41:55.829   941   978 V WindowManagerShell: Transition doesn't have explicit remote, search filters for match for {id=442 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{android.window.IWindowContainerToken$Stub$Proxy@1fca0d1} m=OPEN f=NONE leash=Surface(name=Task=100)/@0x3b2be6a sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0 taskParent=-1},{WCT{android.window.IWindowContainerToken$Stub$Proxy@4365736} m=TO_BACK f=NONE leash=Surface(name=Task=70)/@0x91b8f5b sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0 taskParent=-1}]}
+08-30 11:41:55.829   941   978 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=undefined independent=true modes=[OPEN,TO_FRONT] flags=IN_TASK_WITH_EMBEDDED_ACTIVITY mustBeTask=false order=ANY topActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity} launchCookie=null},{atype=undefined independent=true modes=[CLOSE,TO_BACK] flags=IN_TASK_WITH_EMBEDDED_ACTIVITY mustBeTask=false order=ANY topActivity=null launchCookie=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@bce91a9, appThread = android.app.IApplicationThread$Stub$Proxy@90bb32e, debugName = OverlaySwipeBack }}
+08-30 11:41:55.829   941   978 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=dream independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null},{atype=home independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@97507a5, appThread = android.app.IApplicationThread$Stub$Proxy@dc6b77a, debugName = LauncherToDream }}
+08-30 11:41:55.829   941   978 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x100 checks=[{atype=home independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=TOP topActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity} launchCookie=null},{atype=standard independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@bdf7b2b, appThread = android.app.IApplicationThread$Stub$Proxy@3f0bb88, debugName = QuickstepLaunchHome }}
+08-30 11:41:55.829   941   978 V WindowManagerShell:  Delegate animation for (#442) to null
+08-30 11:41:55.829   941   978 V WindowManagerShell:  try handler com.android.wm.shell.transition.DefaultTransitionHandler@9d37921
+08-30 11:41:55.829   941   978 V WindowManagerShell: start default transition animation, info = {id=442 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{android.window.IWindowContainerToken$Stub$Proxy@1fca0d1} m=OPEN f=NONE leash=Surface(name=Task=100)/@0x3b2be6a sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0 taskParent=-1},{WCT{android.window.IWindowContainerToken$Stub$Proxy@4365736} m=TO_BACK f=NONE leash=Surface(name=Task=70)/@0x91b8f5b sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0 taskParent=-1}]}
+08-30 11:41:55.830   941   978 V WindowManagerShell: loadAnimation: anim=android.view.animation.AnimationSet@ed9790d animAttr=0x9 type=OPEN isEntrance=false
+08-30 11:41:55.840   584   605 V WindowManager: Sent Transition (#442) createdAt=08-30 11:41:55.547 via request=TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=100 displayId=0 isRunning=true baseIntent=Intent { flg=0x10000000 cmp=net.joltlang.raylibgallery/android.app.NativeActivity } baseActivity=ComponentInfo{net.joltlang.raylibgallery/android.app.NativeActivity} topActivity=ComponentInfo{net.joltlang.raylibgallery/android.app.NativeActivity} origActivity=null realActivity=ComponentInfo{net.joltlang.raylibgallery/android.app.NativeActivity} numActivities=1 lastActiveTime=86534493 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{RemoteToken{fd0411a Task{62f4976 #100 type=standard A=10235:net.joltlang.raylibgallery}}} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 128 - 0, 0) topActivityInfo=ActivityInfo{39dd44b android.app.NativeActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=false isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=false appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= falseisLetterboxEducationEnabled= true isLetterboxDoubleTapEnabled= false topActivityEligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=1080 topActivityLetterboxHeight=2400 isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false cameraCompatTaskInfo=CameraCompatTaskInfo { cameraCompatControlState=hidden freeformCameraCompatMode=inactive}}}, pipTask = null, remoteTransition = null, displayChange = null, flags = 0, debugId = 442 }
+08-30 11:41:55.840   584   605 V WindowManager:     startWCT=WindowContainerTransaction { changes = {} hops = [] errorCallbackToken=null taskFragmentOrganizer=null }
+08-30 11:41:55.840   584   605 V WindowManager:     info={id=442 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[
+08-30 11:41:55.840   584   605 V WindowManager:         {WCT{RemoteToken{fd0411a Task{62f4976 #100 type=standard A=10235:net.joltlang.raylibgallery}}} m=OPEN f=NONE leash=Surface(name=Task=100)/@0x11120e sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0 taskParent=-1},
+08-30 11:41:55.840   584   605 V WindowManager:         {WCT{RemoteToken{6723e84 Task{bc61145 #70 type=standard A=10229:net.joltlang.androidpoc.abiprobe}}} m=TO_BACK f=NONE leash=Surface(name=Task=70)/@0x11b6b16 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0 taskParent=-1}
+08-30 11:41:55.840   584   605 V WindowManager:     ]}
+08-30 11:41:55.856   941   978 V WindowManagerShell: loadAnimation: anim=android.view.animation.AnimationSet@82f961a animAttr=0x8 type=OPEN isEntrance=true
+08-30 11:41:55.859 25537 25537 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+08-30 11:41:55.860   584  1627 W UserManagerService: Requested status bar icon for non-badged user 0
+08-30 11:41:55.863   941   978 V WindowManagerShell:  animated by com.android.wm.shell.transition.DefaultTransitionHandler@9d37921
+08-30 11:41:55.864   941   978 W Looper  : Slow dispatch took 36ms wmshell.main h=android.os.Handler c=com.android.wm.shell.transition.Transitions$TransitionPlayerImpl$$ExternalSyntheticLambda0@d966041 m=0
+08-30 11:41:55.867   419  4478 I RanchuHwc: logCompositionFallbackIfChanged: layer 547 CompositionType fallback from 3 to 1
+08-30 11:41:55.878   584  2010 D FileUtils: Rounded bytes from 2593198080 to 4000000000
+08-30 11:41:55.889 25446 25530 D CompatChangeReporter: Compat change id reported: 263076149; UID 10130; state: ENABLED
+08-30 11:41:55.890 25446 25559 W TimedProcessReaper: Scheduling killing of process to refresh configuration
+08-30 11:41:55.926 25446 25530 D CompatChangeReporter: Compat change id reported: 253665015; UID 10130; state: ENABLED
+08-30 11:41:55.927   584  1627 D CompatChangeReporter: Compat change id reported: 253665015; UID 10130; state: ENABLED
+08-30 11:41:55.927   584  1023 W JobScheduler: Job didn't exist in JobStore: b2e5c7c #u0a130/6 com.google.android.apps.safetyhub/androidx.work.impl.background.systemjob.SystemJobService
+08-30 11:41:55.960 25537 25537 W System  : ClassLoader referenced unknown path:
+08-30 11:41:55.963  1385 21110 I Icing   : IndexChimeraService.getServiceInterface callingPackage=com.google.android.gms componentName=null serviceId=30
+08-30 11:41:55.968 25537 25537 D nativeloader: Configuring clns-7 for other apk . target_sdk_version=35, uses_libraries=, library_path=/data/app/~~yO-ahRSVHNgOD1FExZa5ww==/net.joltlang.raylibgallery-1qpKa649adLmxWvSwOrEuw==/lib/arm64:/data/app/~~yO-ahRSVHNgOD1FExZa5ww==/net.joltlang.raylibgallery-1qpKa649adLmxWvSwOrEuw==/base.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand:/data/user/0/net.joltlang.raylibgallery
+08-30 11:41:56.005 25537 25537 V GraphicsEnvironment: Currently set values for:
+08-30 11:41:56.005 25537 25537 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+08-30 11:41:56.005 25537 25537 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+08-30 11:41:56.005 25537 25537 V GraphicsEnvironment: Global.Settings values are invalid: number of packages: 0, number of values: 0
+08-30 11:41:56.006 25537 25537 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+08-30 11:41:56.007 25537 25537 D CompatChangeReporter: Compat change id reported: 202956589; UID 10235; state: ENABLED
+08-30 11:41:56.012   584  1023 D ConnectivityService: requestNetwork for uid/pid:10130/25446 activeRequest: null callbackRequest: 212 [NetworkRequest [ REQUEST id=213, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10130 RequestorUid: 10130 RequestorPkg: com.google.android.apps.safetyhub UnderlyingNetworks: Null] ]] callback flags: 0 order: 2147483647 isUidTracked: false
+08-30 11:41:56.021   584  1023 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ENABLE_FAKE_FOCUS
+08-30 11:41:56.021   584  1023 D CompatChangeReporter: Compat change id reported: 324203798; UID 10235; state: ENABLED
+08-30 11:41:56.035   584   860 D ConnectivityService: NetReassign [213 : null → 100] [c 1] [a 9] [i 12]
+08-30 11:41:56.049   584   853 D OemPaidWifiNetworkFactory: got request NetworkRequest [ REQUEST id=213, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10130 RequestorUid: 10130 RequestorPkg: com.google.android.apps.safetyhub UnderlyingNetworks: Null] ]
+08-30 11:41:56.050   584   853 D MultiInternetWifiNetworkFactory: got request NetworkRequest [ REQUEST id=213, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10130 RequestorUid: 10130 RequestorPkg: com.google.android.apps.safetyhub UnderlyingNetworks: Null] ]
+08-30 11:41:56.077   584   853 D WifiNetworkFactory: got request NetworkRequest [ REQUEST id=213, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10130 RequestorUid: 10130 RequestorPkg: com.google.android.apps.safetyhub UnderlyingNetworks: Null] ]
+08-30 11:41:56.080   584   853 D UntrustedWifiNetworkFactory: got request NetworkRequest [ REQUEST id=213, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10130 RequestorUid: 10130 RequestorPkg: com.google.android.apps.safetyhub UnderlyingNetworks: Null] ]
+08-30 11:41:56.097  1385 25525 I Icing   : Usage reports ok 0, Failed Usage reports 0, indexed 0, rejected 0
+08-30 11:41:56.129 25537 25537 D CompatChangeReporter: Compat change id reported: 279646685; UID 10235; state: ENABLED
+08-30 11:41:56.139 25537 25537 D CompatChangeReporter: Compat change id reported: 309578419; UID 10235; state: ENABLED
+08-30 11:41:56.303 25537 25537 D nativeloader: Load /data/app/~~yO-ahRSVHNgOD1FExZa5ww==/net.joltlang.raylibgallery-1qpKa649adLmxWvSwOrEuw==/base.apk!/lib/arm64-v8a/libmain.so using ns clns-7 from class loader (caller=<unknown>): ok
+08-30 11:41:56.307 25537 25537 V threaded_app: Creating: 0x779d86b5c4c0
+08-30 11:41:56.312 25537 25568 V threaded_app: Config: mcc=310 mnc=260 lang=en cnt=US orien=1 touch=3 dens=420 keys=2 nav=1 keysHid=1 navHid=0 sdk=35 size=2 long=2 modetype=1 modenight=1
+08-30 11:41:56.314 25537 25568 I jolt_raylib_persistent_loop: enter main thread=25568 owner=25568
+08-30 11:41:56.318 25537 25537 V threaded_app: Start: 0x779d86b5c4c0
+08-30 11:41:56.308 25537 25537 W g.raylibgallery: type=1400 audit(0.0:2216): avc:  denied  { getattr } for  path="/dev/pmsg0" dev="tmpfs" ino=747 scontext=u:r:untrusted_app:s0:c235,c256,c512,c768 tcontext=u:object_r:pmsg_device:s0 tclass=chr_file permissive=0 app=net.joltlang.raylibgallery
+08-30 11:41:56.330 25537 25568 I jolt_raylib_persistent_loop: dlopen ok thread=25568 owner=25568
+08-30 11:41:56.308 25537 25537 W g.raylibgallery: type=1400 audit(0.0:2217): avc:  denied  { getattr } for  path="/dev/pmsg0" dev="tmpfs" ino=747 scontext=u:r:untrusted_app:s0:c235,c256,c512,c768 tcontext=u:object_r:pmsg_device:s0 tclass=chr_file permissive=0 app=net.joltlang.raylibgallery
+08-30 11:41:56.308 25537 25537 W g.raylibgallery: type=1400 audit(0.0:2218): avc:  denied  { getattr } for  path="/dev/pmsg0" dev="tmpfs" ino=747 scontext=u:r:untrusted_app:s0:c235,c256,c512,c768 tcontext=u:object_r:pmsg_device:s0 tclass=chr_file permissive=0 app=net.joltlang.raylibgallery
+08-30 11:41:56.373   941   978 V WindowManagerShell: Transition animation finished (aborted=false), notifying core (#442) android.os.BinderProxy@2dbbf67@0
+08-30 11:41:56.379   584   605 V WindowManager: Finish Transition (#442): created at 08-30 11:41:55.547 collect-started=0.954ms request-sent=18.517ms started=28.128ms ready=216.989ms sent=274.593ms finished=826.228ms
+08-30 11:41:56.382   584  1627 W UserManagerService: Requested status bar icon for non-badged user 0
+08-30 11:41:56.384   941   978 V WindowManagerShell: Track 0 became idle
+08-30 11:41:56.384   941   978 V WindowManagerShell: All active transition animations finished
+08-30 11:41:56.387   584  1627 W UserManagerService: Requested status bar icon for non-badged user 0
+08-30 11:41:56.393 13526 13526 D VRI[MainActivity]: visibilityChanged oldVisibility=true newVisibility=false
+08-30 11:41:56.821  1385 25525 I Icing   : Indexing com.google.android.gms-apps from com.google.android.gms
+08-30 11:41:56.833  1385 25525 I Icing   : Indexing done com.google.android.gms-apps
+08-30 11:41:56.855  1385 25525 I Icing   : Indexing com.google.android.gms-internal.3p:MobileApplication from com.google.android.gms
+08-30 11:41:56.873  1385 25525 I Icing   : Indexing done com.google.android.gms-internal.3p:MobileApplication
+08-30 11:41:56.950   584   597 I system_server: Background concurrent mark compact GC freed 23MB AllocSpace bytes, 44(948KB) LOS objects, 47% free, 26MB/50MB, paused 727us,1.942ms total 160.637ms
+08-30 11:41:56.955   584   599 W system_server: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/LatinIMEGooglePrebuilt/LatinIMEGooglePrebuilt.apk' with 1 weak references
+08-30 11:41:56.956   584   599 W system_server: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/GoogleTTS/GoogleTTS.apk' with 1 weak references
+08-30 11:41:56.956   584   599 W system_server: ApkAssets: Deleting an ApkAssets object '<empty> and /system_ext/app/AccessibilityMenu/AccessibilityMenu.apk' with 1 weak references
+08-30 11:41:56.956   584   599 W system_server: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/InputDevices/InputDevices.apk' with 1 weak references
+08-30 11:41:56.956   584   599 W system_server: ApkAssets: Deleting an ApkAssets object '/product/overlay/AccessibilityMenu__sdk_gphone64_x86_64__auto_generated_rro_product.apk' with 1 weak references
+08-30 11:41:56.957   584   599 W system_server: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/talkback/talkback.apk' with 1 weak references
+08-30 11:41:56.957   584   599 W system_server: ApkAssets: Deleting an ApkAssets object '/vendor/overlay/EmulatorTalkBackOverlay/EmulatorTalkBackOverlay.apk' with 1 weak references
+08-30 11:41:56.957   584   599 W system_server: ApkAssets: Deleting an ApkAssets object '<empty> and /product/priv-app/PrebuiltGmsCore/PrebuiltGmsCore.apk' with 1 weak references
+08-30 11:41:56.957   584   599 W system_server: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/PrebuiltGmail/PrebuiltGmail.apk' with 1 weak references
+08-30 11:41:56.957   584   599 W system_server: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/Drive/Drive.apk' with 1 weak references
+08-30 11:41:56.958   584   599 W system_server: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/CalendarGooglePrebuilt/CalendarGooglePrebuilt.apk' with 1 weak references
+08-30 11:41:56.974  1385 25525 I Icing   : Indexing com.google.android.gms-internal.3p:MobileApplication from com.google.android.gms
+08-30 11:41:56.975  1385 25525 I Icing   : Indexing done com.google.android.gms-internal.3p:MobileApplication
+08-30 11:41:56.975  1385 25525 I Icing   : Indexing com.google.android.gms-apps from com.google.android.gms
+08-30 11:41:56.977  1385 25525 I Icing   : Indexing done com.google.android.gms-apps
+08-30 11:41:56.979  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/YouTube/YouTube.apk' with 1 weak references
+08-30 11:41:56.980  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/overlay/DisplayCutoutEmulationCorner/DisplayCutoutEmulationCornerOverlay.apk' with 1 weak references
+08-30 11:41:56.982  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /apex/com.android.extservices/priv-app/GoogleExtServices@350820300/GoogleExtServices.apk' with 1 weak references
+08-30 11:41:56.982  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/overlay/DisplayCutoutEmulationDouble/DisplayCutoutEmulationDoubleOverlay.apk' with 1 weak references
+08-30 11:41:56.983  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/TelephonyProvider/TelephonyProvider.apk' with 1 weak references
+08-30 11:41:56.983  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '/product/overlay/TelephonyProvider__sdk_gphone64_x86_64__auto_generated_rro_product.apk' with 1 weak references
+08-30 11:41:56.983  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/DynamicSystemInstallationService/DynamicSystemInstallationService.apk' with 1 weak references
+08-30 11:41:56.983  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/priv-app/Velvet/Velvet.apk' with 1 weak references
+08-30 11:41:56.984  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/CalendarProvider/CalendarProvider.apk' with 1 weak references
+08-30 11:41:56.984  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/priv-app/GoogleOneTimeInitializer/GoogleOneTimeInitializer.apk' with 1 weak references
+08-30 11:41:56.984  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/app/GoogleExtShared/GoogleExtShared.apk' with 1 weak references
+08-30 11:41:56.984  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/ExternalStorageProvider/ExternalStorageProvider.apk' with 1 weak references
+08-30 11:41:56.984  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/app/HTMLViewer/HTMLViewer.apk' with 1 weak references
+08-30 11:41:56.984  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/app/CompanionDeviceManager/CompanionDeviceManager.apk' with 1 weak references
+08-30 11:41:56.984  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/DownloadProvider/DownloadProvider.apk' with 1 weak references
+08-30 11:41:56.984  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/priv-app/PrebuiltBugle/PrebuiltBugle.apk' with 1 weak references
+08-30 11:41:56.986  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/SoundPickerPrebuilt/SoundPickerPrebuilt.apk' with 1 weak references
+08-30 11:41:56.986  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /apex/com.android.mediaprovider/priv-app/MediaProviderGoogle@350820300/MediaProviderGoogle.apk' with 1 weak references
+08-30 11:41:56.986  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/priv-app/SafetyHubPrebuilt/SafetyHubPrebuilt.apk' with 1 weak references
+08-30 11:41:56.986  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/DownloadProviderUi/DownloadProviderUi.apk' with 1 weak references
+08-30 11:41:56.986  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /apex/com.android.wifi/app/OsuLoginGoogle@350820300/OsuLoginGoogle.apk' with 1 weak references
+08-30 11:41:56.986  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/app/PacProcessor/PacProcessor.apk' with 1 weak references
+08-30 11:41:56.986  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/app/SimAppDialog/SimAppDialog.apk' with 1 weak references
+08-30 11:41:56.986  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '/product/overlay/SimAppDialog__sdk_gphone64_x86_64__auto_generated_rro_product.apk' with 1 weak references
+08-30 11:41:56.986  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /apex/com.android.adservices/priv-app/AdServicesApkGoogle@350820260/AdServicesApkGoogle.apk' with 1 weak references
+08-30 11:41:56.987  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/overlay/DisplayCutoutEmulationHole/DisplayCutoutEmulationHoleOverlay.apk' with 1 weak references
+08-30 11:41:56.987  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/overlay/DisplayCutoutEmulationTall/DisplayCutoutEmulationTallOverlay.apk' with 1 weak references
+08-30 11:41:56.987  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/app/CertInstaller/CertInstaller.apk' with 1 weak references
+08-30 11:41:56.987  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/talkback/talkback.apk' with 1 weak references
+08-30 11:41:56.988  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '/vendor/overlay/EmulatorTalkBackOverlay/EmulatorTalkBackOverlay.apk' with 1 weak references
+08-30 11:41:56.988  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/overlay/NavigationBarMode3Button/NavigationBarMode3ButtonOverlay.apk' with 1 weak references
+08-30 11:41:56.988  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/Camera2/Camera2.apk' with 1 weak references
+08-30 11:41:56.989  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/app/EasterEgg/EasterEgg.apk' with 1 weak references
+08-30 11:41:56.989  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/MtpService/MtpService.apk' with 1 weak references
+08-30 11:41:56.989  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /apex/com.android.nfcservices/priv-app/NfcNciApexGoogle@AE3A.240806.043/NfcNciApexGoogle.apk' with 1 weak references
+08-30 11:41:56.989  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/app/Stk/Stk.apk' with 1 weak references
+08-30 11:41:56.989  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/PrebuiltDeskClockGoogle/PrebuiltDeskClockGoogle.apk' with 1 weak references
+08-30 11:41:56.989  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/overlay/NavigationBarMode2Button/NavigationBarMode2ButtonOverlay.apk' with 1 weak references
+08-30 11:41:56.989  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/priv-app/DevicePersonalizationPrebuiltPixel2021-aiai_20240329.00_RC16/DevicePersonalizationPrebuiltPixel2021-aiai_20240329.00_RC16.apk' with 1 weak references
+08-30 11:41:56.989  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/PrebuiltGmail/PrebuiltGmail.apk' with 1 weak references
+08-30 11:41:56.990  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /apex/com.android.permission/priv-app/GooglePermissionController@350820360/GooglePermissionController.apk' with 1 weak references
+08-30 11:41:56.995  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '/product/overlay/GooglePermissionControllerOverlay.apk' with 1 weak references
+08-30 11:41:56.995  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /apex/com.android.btservices/app/BluetoothGoogle@342010060/BluetoothGoogle.apk' with 1 weak references
+08-30 11:41:56.995  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/SettingsProvider/SettingsProvider.apk' with 1 weak references
+08-30 11:41:56.995  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '/product/overlay/LargeScreenSettingsProviderOverlay.apk' with 1 weak references
+08-30 11:41:56.995  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '/product/overlay/SettingsProvider__sdk_gphone64_x86_64__auto_generated_rro_product.apk' with 1 weak references
+08-30 11:41:56.995  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/app/PrintSpooler/PrintSpooler.apk' with 1 weak references
+08-30 11:41:56.995  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/app/BasicDreams/BasicDreams.apk' with 1 weak references
+08-30 11:41:56.996  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/priv-app/DeviceIntelligenceNetworkPrebuilt-astrea_20240329.00_RC02/DeviceIntelligenceNetworkPrebuilt-astrea_20240329.00_RC02.apk' with 1 weak references
+08-30 11:41:56.996  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/InputDevices/InputDevices.apk' with 1 weak references
+08-30 11:41:56.996  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /apex/com.android.devicelock/priv-app/DeviceLockControllerGoogle@AE3A.240806.043/DeviceLockControllerGoogle.apk' with 1 weak references
+08-30 11:41:56.996  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/priv-app/GoogleDialer/GoogleDialer.apk' with 1 weak references
+08-30 11:41:56.996  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/BuiltInPrintService/BuiltInPrintService.apk' with 1 weak references
+08-30 11:41:56.996  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '/product/overlay/BuiltInPrintService__sdk_gphone64_x86_64__auto_generated_rro_product.apk' with 1 weak references
+08-30 11:41:56.996  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/app/CaptivePortalLoginGoogle/CaptivePortalLoginGoogle.apk' with 1 weak references
+08-30 11:41:56.996  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/MusicFX/MusicFX.apk' with 1 weak references
+08-30 11:41:56.996  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/Drive/Drive.apk' with 1 weak references
+08-30 11:41:56.997  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/Maps/Maps.apk' with 1 weak references
+08-30 11:41:56.997  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/ModuleMetadataGoogle/ModuleMetadataGoogle.apk' with 1 weak references
+08-30 11:41:56.997  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/overlay/DisplayCutoutEmulationEmu01/DisplayCutoutEmulationEmu01Overlay.apk' with 1 weak references
+08-30 11:41:56.997  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system_ext/priv-app/AvatarPickerGoogle/AvatarPickerGoogle.apk' with 1 weak references
+08-30 11:41:56.997  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/MarkupGoogle_v2/MarkupGoogle_v2.apk' with 1 weak references
+08-30 11:41:56.997  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/NetworkStackGoogle/NetworkStackGoogle.apk' with 1 weak references
+08-30 11:41:56.997  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /apex/com.android.rkpd/priv-app/rkpdapp.google@350820300/rkpdapp.google.apk' with 1 weak references
+08-30 11:41:56.997  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/GoogleContacts/GoogleContacts.apk' with 1 weak references
+08-30 11:41:56.997  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/Telecom/Telecom.apk' with 1 weak references
+08-30 11:41:56.997  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '/product/overlay/Telecom__sdk_gphone64_x86_64__auto_generated_rro_product.apk' with 1 weak references
+08-30 11:41:56.997  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/app/KeyChain/KeyChain.apk' with 1 weak references
+08-30 11:41:56.997  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /data/app/~~Nd02zGzfwjo_v483bth1qA==/com.android.chrome-xMoE_j1GKi6UvyiVBsntiQ==/Chrome.apk' with 1 weak references
+08-30 11:41:56.998  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /data/app/~~k99ALRGhrXiaFHgnxs76qw==/com.google.android.trichromelibrary_636771938-djoRiEuzwYQK_H_kCR1zIA==/TrichromeLibrary.apk' with 1 weak references
+08-30 11:41:56.998  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/GooglePackageInstaller/GooglePackageInstaller.apk' with 1 weak references
+08-30 11:41:56.998  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/PixelThemesStub/PixelThemesStub.apk' with 1 weak references
+08-30 11:41:56.998  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system_ext/priv-app/GoogleServicesFramework/GoogleServicesFramework.apk' with 1 weak references
+08-30 11:41:56.998  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/TagGoogle/TagGoogle.apk' with 1 weak references
+08-30 11:41:56.998  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/GoogleTTS/GoogleTTS.apk' with 1 weak references
+08-30 11:41:56.998  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/CallLogBackup/CallLogBackup.apk' with 1 weak references
+08-30 11:41:56.998  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/priv-app/PartnerSetupPrebuilt/PartnerSetupPrebuilt.apk' with 1 weak references
+08-30 11:41:56.998  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/app/CameraExtensionsProxy/CameraExtensionsProxy.apk' with 1 weak references
+08-30 11:41:56.998  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/NexusWallpapersStubPrebuilt2018/NexusWallpapersStubPrebuilt2018.apk' with 1 weak references
+08-30 11:41:56.998  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system_ext/priv-app/NexusLauncherRelease/NexusLauncherRelease.apk' with 1 weak references
+08-30 11:41:56.999  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/app/CarrierDefaultApp/CarrierDefaultApp.apk' with 1 weak references
+08-30 11:41:56.999  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/CredentialManager/CredentialManager.apk' with 1 weak references
+08-30 11:41:56.999  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/overlay/FontNotoSerifSource/FontNotoSerifSourceOverlay.apk' with 1 weak references
+08-30 11:41:56.999  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/DeviceAsWebcam/DeviceAsWebcam.apk' with 1 weak references
+08-30 11:41:56.999  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/ProxyHandler/ProxyHandler.apk' with 1 weak references
+08-30 11:41:56.999  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /apex/com.android.permission/priv-app/GoogleSafetyCenterResources@350820360/GoogleSafetyCenterResources.apk' with 1 weak references
+08-30 11:41:56.999  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/overlay/DisplayCutoutEmulationWaterfall/DisplayCutoutEmulationWaterfallOverlay.apk' with 1 weak references
+08-30 11:41:56.999  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/IntentResolver/IntentResolver.apk' with 1 weak references
+08-30 11:41:56.999  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/overlay/TransparentNavigationBar/TransparentNavigationBarOverlay.apk' with 1 weak references
+08-30 11:41:56.999  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/E2eeContactKeysProvider/E2eeContactKeysProvider.apk' with 1 weak references
+08-30 11:41:56.999  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /apex/com.android.tethering/priv-app/ServiceConnectivityResourcesGoogle@350820300/ServiceConnectivityResourcesGoogle.apk' with 1 weak references
+08-30 11:41:56.999  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '/vendor/overlay/goldfish_overlay_connectivity_google.apk' with 1 weak references
+08-30 11:41:56.999  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system_ext/priv-app/GoogleFeedback/GoogleFeedback.apk' with 1 weak references
+08-30 11:41:56.999  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/app/GooglePrintRecommendationService/GooglePrintRecommendationService.apk' with 1 weak references
+08-30 11:41:56.999  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/Photos/Photos.apk' with 1 weak references
+08-30 11:41:57.000  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/CalendarGooglePrebuilt/CalendarGooglePrebuilt.apk' with 1 weak references
+08-30 11:41:57.000  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/ManagedProvisioning/ManagedProvisioning.apk' with 1 weak references
+08-30 11:41:57.000  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/SoundPicker/SoundPicker.apk' with 1 weak references
+08-30 11:41:57.000  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/DocumentsUIGoogle/DocumentsUIGoogle.apk' with 1 weak references
+08-30 11:41:57.000  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/PrebuiltGoogleTelemetryTvp/PrebuiltGoogleTelemetryTvp.apk' with 1 weak references
+08-30 11:41:57.000  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system_ext/priv-app/MultiDisplayProvider/MultiDisplayProvider.apk' with 1 weak references
+08-30 11:41:57.001  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/DeviceDiagnostics/DeviceDiagnostics.apk' with 1 weak references
+08-30 11:41:57.001  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '/product/overlay/DeviceDiagnostics__sdk_gphone64_x86_64__auto_generated_rro_product.apk' with 1 weak references
+08-30 11:41:57.001  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/overlay/NotesRoleEnabled/NotesRoleEnabledOverlay.apk' with 1 weak references
+08-30 11:41:57.001  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/LiveWallpapersPicker/LiveWallpapersPicker.apk' with 1 weak references
+08-30 11:41:57.001  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/PrebuiltGoogleAdservicesTvp/PrebuiltGoogleAdservicesTvp.apk' with 1 weak references
+08-30 11:41:57.004  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /apex/com.android.healthfitness/priv-app/HealthConnectControllerGoogle@350820300/HealthConnectControllerGoogle.apk' with 1 weak references
+08-30 11:41:57.005  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/priv-app/KidsSupervisionStub/KidsSupervisionStub.apk' with 1 weak references
+08-30 11:41:57.005  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system_ext/priv-app/StorageManager/StorageManager.apk' with 1 weak references
+08-30 11:41:57.005  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '/product/overlay/StorageManager__sdk_gphone64_x86_64__auto_generated_rro_product.apk' with 1 weak references
+08-30 11:41:57.005  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/app/BookmarkProvider/BookmarkProvider.apk' with 1 weak references
+08-30 11:41:57.005  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system_ext/priv-app/SettingsGoogle/SettingsGoogle.apk' with 1 weak references
+08-30 11:41:57.005  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '/product/overlay/SettingsGoogle__sdk_gphone64_x86_64__auto_generated_rro_product.apk' with 1 weak references
+08-30 11:41:57.005  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/priv-app/SettingsIntelligenceGooglePrebuilt/SettingsIntelligenceGooglePrebuilt.apk' with 1 weak references
+08-30 11:41:57.005  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /apex/com.android.uwb/priv-app/ServiceUwbResourcesGoogle@350820300/ServiceUwbResourcesGoogle.apk' with 1 weak references
+08-30 11:41:57.005  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /apex/com.android.wifi/priv-app/ServiceWifiResourcesGoogle@350820300/ServiceWifiResourcesGoogle.apk' with 1 weak references
+08-30 11:41:57.006  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system_ext/priv-app/ThemePicker/ThemePicker.apk' with 1 weak references
+08-30 11:41:57.006  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system_ext/priv-app/WallpaperPickerGoogleRelease/WallpaperPickerGoogleRelease.apk' with 1 weak references
+08-30 11:41:57.006  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/priv-app/OdadPrebuilt/OdadPrebuilt.apk' with 1 weak references
+08-30 11:41:57.006  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/TeleService/TeleService.apk' with 1 weak references
+08-30 11:41:57.006  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '/vendor/overlay/TeleService__sdk_gphone64_x86_64__auto_generated_rro_vendor.apk' with 1 weak references
+08-30 11:41:57.006  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '/product/overlay/TeleService__sdk_gphone64_x86_64__auto_generated_rro_product.apk' with 1 weak references
+08-30 11:41:57.006  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/Shell/Shell.apk' with 1 weak references
+08-30 11:41:57.006  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/BlockedNumberProvider/BlockedNumberProvider.apk' with 1 weak references
+08-30 11:41:57.006  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/UserDictionaryProvider/UserDictionaryProvider.apk' with 1 weak references
+08-30 11:41:57.006  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system_ext/app/EmergencyInfoGoogleNoUi/EmergencyInfoGoogleNoUi.apk' with 1 weak references
+08-30 11:41:57.006  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/overlay/NavigationBarModeGestural/NavigationBarModeGesturalOverlay.apk' with 1 weak references
+08-30 11:41:57.006  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/FusedLocation/FusedLocation.apk' with 1 weak references
+08-30 11:41:57.006  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system_ext/priv-app/SystemUIGoogle/SystemUIGoogle.apk' with 1 weak references
+08-30 11:41:57.007  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '/vendor/overlay/SystemUIGoogle__sdk_gphone64_x86_64__auto_generated_rro_vendor.apk' with 1 weak references
+08-30 11:41:57.007  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '/product/overlay/SystemUIGoogle__sdk_gphone64_x86_64__auto_generated_rro_product.apk' with 1 weak references
+08-30 11:41:57.007  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '/product/overlay/SystemUIEmulationPixel6/SystemUIEmulationPixel6Overlay.apk' with 1 weak references
+08-30 11:41:57.008  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/YouTubeMusicPrebuilt/YouTubeMusicPrebuilt.apk' with 1 weak references
+08-30 11:41:57.009  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/app/BluetoothMidiService/BluetoothMidiService.apk' with 1 weak references
+08-30 11:41:57.009  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/app/Traceur/Traceur.apk' with 1 weak references
+08-30 11:41:57.009  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /apex/com.android.cellbroadcast/priv-app/GoogleCellBroadcastApp@350820300/GoogleCellBroadcastApp.apk' with 1 weak references
+08-30 11:41:57.009  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /system/priv-app/ContactsProvider/ContactsProvider.apk' with 1 weak references
+08-30 11:41:57.009  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '/product/overlay/ContactsProvider__sdk_gphone64_x86_64__auto_generated_rro_product.apk' with 1 weak references
+08-30 11:41:57.009  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/LatinIMEGooglePrebuilt/LatinIMEGooglePrebuilt.apk' with 1 weak references
+08-30 11:41:57.010  9804  9814 W .apps.wellbeing: ApkAssets: Deleting an ApkAssets object '<empty> and /product/priv-app/GoogleRestorePrebuilt-v526684/GoogleRestorePrebuilt-v526684.apk' with 1 weak references
+08-30 11:41:58.203   584   853 W BestClock: java.time.DateTimeException: Missing network time fix
+08-30 11:41:58.204   584   853 W BestClock: java.time.DateTimeException: Missing network time fix
+08-30 11:41:58.204   584   853 W BestClock: java.time.DateTimeException: Missing network time fix
+08-30 11:41:58.204   584   853 W BestClock: java.time.DateTimeException: Missing network time fix
+08-30 11:41:58.204   584   853 W BestClock: java.time.DateTimeException: Missing network time fix
+08-30 11:41:58.443 25537 25568 I jolt_raylib_persistent_loop: jolt_library_init result=0 thread=25568 owner=25568
+08-30 11:41:58.443 25537 25568 I jolt_raylib_persistent_loop: jolt_lookup raylib_persistent_loop=ok thread=25568 owner=25568
+08-30 11:41:58.444 25537 25568 I raylib  : Initializing raylib 6.1-dev
+08-30 11:41:58.444 25537 25568 I raylib  : Platform backend: ANDROID
+08-30 11:41:58.444 25537 25568 I raylib  : Supported raylib modules:
+08-30 11:41:58.445 25537 25568 I raylib  :     > rcore:..... loaded (mandatory)
+08-30 11:41:58.445 25537 25568 I raylib  :     > rlgl:...... loaded (mandatory)
+08-30 11:41:58.445 25537 25568 I raylib  :     > rshapes:... loaded (optional)
+08-30 11:41:58.445 25537 25568 I raylib  :     > rtextures:. loaded (optional)
+08-30 11:41:58.445 25537 25568 I raylib  :     > rtext:..... loaded (optional)
+08-30 11:41:58.445 25537 25568 I raylib  :     > rmodels:... loaded (optional)
+08-30 11:41:58.445 25537 25568 I raylib  :     > raudio:.... loaded (optional)
+08-30 11:41:58.445 25537 25568 I raylib  : ANDROID: Window orientation set as portrait
+08-30 11:41:58.445 25537 25568 W raylib  : ANDROID: Window orientation changed to portrait
+08-30 11:41:58.445 25537 25568 I raylib  : PLATFORM: ANDROID: Initialized successfully
+08-30 11:41:58.446 25537 25568 V threaded_app: activityState=10
+08-30 11:41:58.447 25537 25537 V threaded_app: Resume: 0x779d86b5c4c0
+08-30 11:41:58.448 25537 25568 V threaded_app: activityState=11
+08-30 11:41:58.451   584  2010 W WindowManager: Failed looking up window session=Session{8ed3e46 25537:u0a10235} callers=com.android.server.wm.WindowManagerService.windowForClientLocked:6311 com.android.server.wm.Session.updateRequestedVisibleTypes:755 android.view.IWindowSession$Stub.onTransact:1078
+08-30 11:41:58.458 25537 25537 V threaded_app: InputQueueCreated: 0x779d86b5c4c0 -- 0x779e96b69d10
+08-30 11:41:58.458 25537 25568 V threaded_app: APP_CMD_INPUT_CHANGED
+08-30 11:41:58.458 25537 25568 V threaded_app: Attaching input queue to looper
+08-30 11:41:58.482   584  2010 D CoreBackPreview: Window{8ecbd34 u0 net.joltlang.raylibgallery/android.app.NativeActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@9aef8d2, mPriority=0, mIsAnimationCallback=false}
+08-30 11:41:58.491 25537 25537 V threaded_app: NativeWindowCreated: 0x779d86b5c4c0 -- 0x779d36b70d00
+08-30 11:41:58.493 25537 25568 V threaded_app: APP_CMD_INIT_WINDOW
+08-30 11:41:58.494 25537 25568 I EGL_emulation: Opening libGLESv1_CM_emulation.so
+08-30 11:41:58.494 25537 25537 V threaded_app: NativeWindowResized: 0x779d86b5c4c0 -- 0x779d36b70d00
+08-30 11:41:58.495 25537 25537 V threaded_app: ContentRectChanged: l=0,t=0,r=1080,b=2400
+08-30 11:41:58.495 25537 25568 I EGL_emulation: Opening libGLESv2_emulation.so
+08-30 11:41:58.497 25537 25537 V threaded_app: NativeWindowRedrawNeeded: 0x779d86b5c4c0 -- 0x779d36b70d00
+08-30 11:41:58.500   584   605 W system_server: Failed to determine oat file name for dex location /data/app/~~yO-ahRSVHNgOD1FExZa5ww==/net.joltlang.raylibgallery-1qpKa649adLmxWvSwOrEuw==/base.apk: Dalvik cache directory does not exist
+08-30 11:41:58.504   584   605 W ziparchive: Unable to open '/data/app/~~yO-ahRSVHNgOD1FExZa5ww==/net.joltlang.raylibgallery-1qpKa649adLmxWvSwOrEuw==/base.dm': No such file or directory
+08-30 11:41:58.508   584   605 I ActivityTaskManager: Displayed net.joltlang.raylibgallery/android.app.NativeActivity for user 0: +2s980ms
+08-30 11:41:58.514 25537 25568 I raylib  : DISPLAY: Upscaling required: Screen size (0x0) smaller than display size (1080x2400)
+08-30 11:41:58.524   168   168 I hwservicemanager: getTransport: Cannot find entry android.hardware.graphics.mapper@4.0::IMapper/default in either framework or device VINTF manifest.
+--------- beginning of kernel
+08-30 11:41:58.780     0     0 I servicemanager: Caller(pid=25537,uid=10235,sid=u:r:untrusted_app:s0:c235,c256,c512,c768) Could not find android.hardware.graphics.allocator.IAllocator/default in the VINTF manifest. No alternative instances declared in VINTF.
+08-30 11:41:58.525 25537 25568 I Gralloc4: mapper 4.x is not supported
+08-30 11:41:58.525 25537 25537 V threaded_app: NativeWindowRedrawNeeded: 0x779d86b5c4c0 -- 0x779d36b70d00
+08-30 11:41:58.526 25537 25537 V threaded_app: WindowFocusChanged: 0x779d86b5c4c0 -- 1
+08-30 11:41:58.551   584   710 I ImeTracker: net.joltlang.raylibgallery:50d463a9: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+08-30 11:41:58.551   584   710 I ImeTracker: net.joltlang.raylibgallery:50d463a9: onCancelled at PHASE_SERVER_SHOULD_HIDE
+08-30 11:41:58.570  1370  1370 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():3157
+08-30 11:41:58.574  1370  1370 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 0, locked = false
+08-30 11:41:58.574  1370  1370 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1986 onStartInput(EditorInfo{EditorInfo{packageName=net.joltlang.raylibgallery, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+08-30 11:41:58.575  1370  1370 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 1, locked = false
+08-30 11:41:58.575  1370  1370 I AndroidIME: InputBundleManager.loadActiveInputBundleId():450 loadActiveInputBundleId: und-Latn-x-password, password
+08-30 11:41:58.575   584  2010 W PackageConfigPersister: App-specific configuration not found for packageName: net.joltlang.raylibgallery and userId: 0
+08-30 11:41:58.589   584  2481 E TaskPersister: File error accessing recents directory (directory doesn't exist?).
+08-30 11:41:58.598   380   380 I netd    : tetherGetStats() -> {[]} <0.39ms>
+08-30 11:41:58.598 13526 24977 I JoltRuntime: entering JNI on JoltRuntime
+08-30 11:41:58.598 13526 24977 I jolt_probe: {:error :closed}
+08-30 11:41:58.679 25537 25552 I g.raylibgallery: Compiler allocated 5174KB to compile void android.view.ViewRootImpl.performTraversals()
+08-30 11:41:58.685 25537 25568 I raylib  : DISPLAY: Device initialized successfully
+08-30 11:41:58.685 25537 25568 I raylib  :     > Display size: 1080 x 2400
+08-30 11:41:58.686 25537 25568 I raylib  :     > Screen size:  1080 x 2400
+08-30 11:41:58.686 25537 25568 I raylib  :     > Render size:  1080 x 2400
+08-30 11:41:58.686 25537 25568 I raylib  :     > Viewport offsets: 0, 0
+08-30 11:41:58.686 25537 25568 I raylib  : GL: Supported extensions count: 53
+08-30 11:41:58.693 25537 25568 I raylib  : GL: OpenGL device information:
+08-30 11:41:58.694 25537 25568 I raylib  :     > Vendor:   Google (Google Inc. (Mesa))
+08-30 11:41:58.694 25537 25568 I raylib  :     > Renderer: Android Emulator OpenGL ES Translator (ANGLE (Mesa, Vulkan 1.4.318 (llvmpipe (LLVM 21.0.0 256 bits) (0x00000000)), llvmpipe-25.2.4))
+08-30 11:41:58.694 25537 25568 I raylib  :     > Version:  OpenGL ES 3.1 (OpenGL ES 3.1.0 (ANGLE 2.1.17841 git hash: 5fa2e61da947))
+08-30 11:41:58.694 25537 25568 I raylib  :     > GLSL:     OpenGL ES GLSL ES 3.10
+08-30 11:41:58.695 25537 25568 I raylib  : GL: VAO extension detected, VAO functions loaded successfully
+08-30 11:41:58.695 25537 25568 I raylib  : GL: NPOT textures extension detected, full NPOT textures supported
+08-30 11:41:58.695 25537 25568 I raylib  : GL: ETC1 compressed textures supported
+08-30 11:41:58.696 25537 25568 I raylib  : TEXTURE: [ID 1] Texture loaded successfully (1x1 | R8G8B8A8 | 1 mipmaps)
+08-30 11:41:58.696 25537 25568 I raylib  : TEXTURE: [ID 1] Default texture loaded successfully
+08-30 11:41:58.697 25537 25568 I raylib  : SHADER: [ID 1] Vertex shader compiled successfully
+08-30 11:41:58.698 25537 25568 I raylib  : SHADER: [ID 2] Fragment shader compiled successfully
+08-30 11:41:58.736 25537 25568 I raylib  : SHADER: [ID 3] Program shader loaded successfully
+08-30 11:41:58.736 25537 25568 I raylib  : SHADER: [ID 3] Default shader loaded successfully
+08-30 11:41:58.751 25537 25568 I raylib  : RLGL: Render batch vertex buffers loaded successfully in RAM (CPU)
+08-30 11:41:58.790 25537 25568 I raylib  : RLGL: Render batch vertex buffers loaded successfully in VRAM (GPU)
+08-30 11:41:58.793 25537 25568 I raylib  : RLGL: Default OpenGL state initialized successfully
+08-30 11:41:58.797 25537 25568 I raylib  : TEXTURE: [ID 2] Texture loaded successfully (128x128 | GRAY_ALPHA | 1 mipmaps)
+08-30 11:41:58.799 25537 25568 I raylib  : FONT: Default font loaded successfully (224 glyphs)
+08-30 11:41:58.801 25537 25568 I raylib  : TEXTURE: [ID 3] Texture loaded successfully (1x1 | R8G8B8A8 | 1 mipmaps)
+08-30 11:41:58.801 25537 25568 I raylib  : TEXTURE: [ID 3] Default texture loaded successfully
+08-30 11:41:58.810 25537 25568 I raylib  : SHADER: [ID 4] Vertex shader compiled successfully
+08-30 11:41:58.811 25537 25568 I raylib  : SHADER: [ID 5] Fragment shader compiled successfully
+08-30 11:41:58.817 25537 25568 I raylib  : SHADER: [ID 6] Program shader loaded successfully
+08-30 11:41:58.818 25537 25568 I raylib  : SHADER: [ID 6] Default shader loaded successfully
+08-30 11:41:58.829 25537 25568 I raylib  : RLGL: Render batch vertex buffers loaded successfully in RAM (CPU)
+08-30 11:41:58.835 25537 25568 I raylib  : RLGL: Render batch vertex buffers loaded successfully in VRAM (GPU)
+08-30 11:41:58.840 25537 25568 I raylib  : RLGL: Default OpenGL state initialized successfully
+08-30 11:41:58.841 25537 25568 I raylib  : SYSTEM: Working Directory: /
+08-30 11:41:58.842 25537 25568 I raylib  : TIMER: Target time per frame: 33.333 milliseconds
+08-30 11:41:58.870 25537 25568 I jolt_raylib_touch_state: {:frame 0, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :idle, :position nil}, :touches {:count 0, :ids [], :point-0 nil, :all-coordinates-available? false}, :tap-count 0, :hold-frames 0, :drag-samples 0, :close-requested? false}
+08-30 11:41:58.889 25537 25572 W InteractionJankMonitor: Initializing without READ_DEVICE_CONFIG permission. enabled=true, interval=1, missedFrameThreshold=3, frameTimeThreshold=64, package=net.joltlang.raylibgallery
+08-30 11:41:58.977   941  1024 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@da89799
+08-30 11:41:58.978   584  2010 D CoreBackPreview: Window{901f45a u0 Splash Screen net.joltlang.raylibgallery EXITING}: Setting back callback null
+08-30 11:41:58.979   584  1666 W InputManager-JNI: Input channel object '901f45a Splash Screen net.joltlang.raylibgallery (client)' was disposed without first being removed with the input manager!
+08-30 11:41:59.027   941  1024 W FrameTracker: Missed App frame:UNKNOWN: 24, 378302, 0, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 11:41:59.027   941  1024 W FrameTracker: Missed SF frame:UNKNOWN: 24, 378302, 0, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 11:41:59.027   941  1024 W FrameTracker: Missing HWUI jank callback for vsyncId: 378302, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 11:41:59.027   941  1024 W FrameTracker: Missed SF frame:UNKNOWN: 80, 378352, 0, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 11:41:59.027   941  1024 W FrameTracker: Missing HWUI jank callback for vsyncId: 378352, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 11:41:59.027   941  1024 W FrameTracker: Missed App frame:UNKNOWN: 88, 378396, 52384021, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 11:41:59.027   941  1024 W FrameTracker: Missed SF frame:UNKNOWN: 88, 378396, 52384021, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 11:41:59.027   941  1024 W FrameTracker: Missed SF frame:UNKNOWN: 80, 378418, 65385215, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 11:41:59.027   941  1024 W FrameTracker: Missed App frame:UNKNOWN: 88, 378447, 0, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 11:41:59.027   941  1024 W FrameTracker: Missed SF frame:UNKNOWN: 88, 378447, 0, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 11:41:59.027   941  1024 W FrameTracker: Missing HWUI jank callback for vsyncId: 378447, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 11:41:59.027   941  1024 W FrameTracker: Missed SF frame:UNKNOWN: 80, 378491, 0, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 11:41:59.027   941  1024 W FrameTracker: Missing HWUI jank callback for vsyncId: 378491, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 11:41:59.027   941  1024 W FrameTracker: Missed App frame:UNKNOWN: 88, 378506, 0, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 11:41:59.027   941  1024 W FrameTracker: Missed SF frame:UNKNOWN: 88, 378506, 0, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 11:41:59.027   941  1024 W FrameTracker: Missing HWUI jank callback for vsyncId: 378506, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 11:41:59.027   941  1024 W FrameTracker: Missed App frame:UNKNOWN: 88, 378565, 67114410, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 11:41:59.027   941  1024 W FrameTracker: Missed SF frame:UNKNOWN: 88, 378565, 67114410, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 11:41:59.027   941  1024 W FrameTracker: Missed App frame:UNKNOWN: 88, 378580, 76902677, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 11:41:59.027   941  1024 W FrameTracker: Missed SF frame:UNKNOWN: 88, 378580, 76902677, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 11:41:59.027   941  1024 W FrameTracker: Missed SF frame:UNKNOWN: 80, 378639, 66899540, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 11:41:59.027   941  1024 W FrameTracker: Missed App frame:UNKNOWN: 88, 378676, 53090894, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 11:41:59.027   941  1024 W FrameTracker: Missed SF frame:UNKNOWN: 88, 378676, 53090894, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 11:41:59.027   941  1024 W FrameTracker: Missed App frame:UNKNOWN: 74, 378698, 0, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 11:41:59.027   941  1024 W FrameTracker: Missed SF frame:UNKNOWN: 74, 378698, 0, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 11:41:59.027   941  1024 W FrameTracker: Missing HWUI jank callback for vsyncId: 378698, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 11:41:59.027   941  1024 W FrameTracker: Missing SF jank callback for vsyncId: 378720, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+08-30 11:41:59.027   941   988 V PerfettoTrigger: Triggering /system/bin/trigger_perfetto com.android.telemetry.interaction-jank-monitor-39
+08-30 11:41:59.058  1257  1711 D EGL_emulation: app_time_stats: avg=17822.26ms min=1.55ms max=139720.19ms count=8
+08-30 11:41:59.919  3122  3125 W gs.intelligence: Missing inline cache for boolean bvx.handleMessage(android.os.Message)
+08-30 11:41:59.985 25537 25568 D EGL_emulation: app_time_stats: avg=32.76ms min=16.01ms max=94.74ms count=31
+08-30 11:42:00.005  1520  1657 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+08-30 11:42:00.005  1520  1657 I AiAiEcho: EchoTargets:
+08-30 11:42:00.005  1520  1657 I AiAiEcho: Filtered by AiAi flag check:
+08-30 11:42:00.005  1520  1657 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+08-30 11:42:00.005  1520  1657 I AiAiEcho: Ranked targets strategy: SORT, count: 0, ranking metadata:  [CONTEXT ratelimit_period="10 SECONDS" ]
+08-30 11:42:00.005  1520  1657 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+08-30 11:42:00.005  1520  1657 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+08-30 11:42:00.005  1520  1657 I AiAiEcho: EchoTargets:
+08-30 11:42:00.005  1520  1657 I AiAiEcho: Filtered by AiAi flag check:
+08-30 11:42:00.005  1520  1657 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+08-30 11:42:00.005  1520  1657 I AiAiEcho: Ranked targets strategy: SORT, count: 0, ranking metadata:  [CONTEXT ratelimit_period="10 SECONDS" ]
+08-30 11:42:00.005  1520  1657 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+08-30 11:42:00.006  1520  1657 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface lockscreen with targets# 0 (types=[])
+08-30 11:42:00.006  1520  1657 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface home with targets# 0 (types=[])
+08-30 11:42:00.032   941   941 W PageIndicator: Total number of pages invalid: 0. Assuming 1 page.
+08-30 11:42:00.047   941  1110 D EGL_emulation: app_time_stats: avg=29997.62ms min=533.45ms max=59461.79ms count=2
+08-30 11:42:00.566   584  1666 W IPCThreadState: Sending oneway calls to frozen process.
+08-30 11:42:01.018 25537 25568 D EGL_emulation: app_time_stats: avg=33.30ms min=24.56ms max=41.50ms count=31
+08-30 11:42:01.208   584   853 W BestClock: java.time.DateTimeException: Missing network time fix
+08-30 11:42:01.209   584   853 W BestClock: java.time.DateTimeException: Missing network time fix
+08-30 11:42:01.209   584   853 W BestClock: java.time.DateTimeException: Missing network time fix
+08-30 11:42:01.209   584   853 W BestClock: java.time.DateTimeException: Missing network time fix
+08-30 11:42:01.209   584   853 W BestClock: java.time.DateTimeException: Missing network time fix
+08-30 11:42:01.448   380 25578 I resolv  : GetAddrInfoHandler::run: {100 786532 100 983140 10143 0}
+08-30 11:42:01.449   380 25579 I resolv  : res_nmkquery: (QUERY, IN, AAAA)
+08-30 11:42:01.449   380 25579 I resolv  : res_stats_usable_server: too many resolution errors, ignoring server
+08-30 11:42:01.449   380 25579 I resolv  : res_nsend: used send_dg 0 terrno: 101
+08-30 11:42:01.449   380 25579 I resolv  : res_nsend: used send_dg 0 terrno: 101
+08-30 11:42:01.449   380 25579 I resolv  : doQuery: rcode=0, ancount=0, return value=-111
+08-30 11:42:01.450 23823 25389 W gclk    : [{0}] Failed to resolve name. status={1}
+08-30 11:42:02.051 25537 25568 D EGL_emulation: app_time_stats: avg=33.31ms min=27.31ms max=38.54ms count=31
+08-30 11:42:02.445   380   380 I netd    : tetherGetStats() -> {[]} <0.45ms>
+08-30 11:42:03.054 25537 25568 D EGL_emulation: app_time_stats: avg=33.41ms min=31.26ms max=34.58ms count=30
+08-30 11:42:03.577   584   860 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-30 11:42:03.578   584   860 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-30 11:42:03.578   584   860 D InetDiagMessage: Destroyed live tcp sockets for uids={10229} in 1ms
+08-30 11:42:03.578   584   860 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-30 11:42:03.579   584   860 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-30 11:42:03.579   584   860 D InetDiagMessage: Destroyed live tcp sockets for uids={20229} in 1ms
+08-30 11:42:03.587 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:03.594 25537 25568 I jolt_raylib_touch_state: {:frame 139, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :press, :position [540 1200]}, :touches {:count 1, :ids [0], :point-0 [540 1200], :all-coordinates-available? false}, :tap-count 1, :hold-frames 1, :drag-samples 0, :close-requested? false}
+08-30 11:42:03.620 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:03.622 25537 25568 I jolt_raylib_touch_state: {:frame 140, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :release, :position [540 1200]}, :touches {:count 0, :ids [], :point-0 [540 1200], :all-coordinates-available? false}, :tap-count 1, :hold-frames 0, :drag-samples 0, :close-requested? false}
+08-30 11:42:03.957 25537 25568 I jolt_raylib_touch_state: {:frame 150, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :idle, :position nil}, :touches {:count 0, :ids [], :point-0 nil, :all-coordinates-available? false}, :tap-count 1, :hold-frames 0, :drag-samples 0, :close-requested? false}
+08-30 11:42:04.059 25537 25568 D EGL_emulation: app_time_stats: avg=33.46ms min=26.75ms max=41.84ms count=30
+08-30 11:42:04.213   584   853 W BestClock: java.time.DateTimeException: Missing network time fix
+08-30 11:42:04.214   584   853 W BestClock: java.time.DateTimeException: Missing network time fix
+08-30 11:42:04.214   584   853 W BestClock: java.time.DateTimeException: Missing network time fix
+08-30 11:42:04.214   584   853 W BestClock: java.time.DateTimeException: Missing network time fix
+08-30 11:42:04.214   584   853 W BestClock: java.time.DateTimeException: Missing network time fix
+08-30 11:42:04.658 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:04.661   584   690 D ActivityManager: freezing 13857 com.android.providers.calendar
+08-30 11:42:04.662 25537 25568 I jolt_raylib_touch_state: {:frame 171, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :press, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 1, :drag-samples 0, :close-requested? false}
+08-30 11:42:04.662   584   860 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-30 11:42:04.662   584   860 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-30 11:42:04.662   584   860 D InetDiagMessage: Destroyed live tcp sockets for uids={10100} in 1ms
+08-30 11:42:04.691 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:04.694 25537 25568 I jolt_raylib_touch_state: {:frame 172, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 2, :drag-samples 0, :close-requested? false}
+08-30 11:42:04.725 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:04.727 25537 25568 I jolt_raylib_touch_state: {:frame 173, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 3, :drag-samples 0, :close-requested? false}
+08-30 11:42:04.758 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:04.759 25537 25568 I jolt_raylib_touch_state: {:frame 174, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 4, :drag-samples 0, :close-requested? false}
+08-30 11:42:04.792 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:04.793 25537 25568 I jolt_raylib_touch_state: {:frame 175, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 5, :drag-samples 0, :close-requested? false}
+08-30 11:42:04.825 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:04.827 25537 25568 I jolt_raylib_touch_state: {:frame 176, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 6, :drag-samples 0, :close-requested? false}
+08-30 11:42:04.858 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:04.860 25537 25568 I jolt_raylib_touch_state: {:frame 177, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 7, :drag-samples 0, :close-requested? false}
+08-30 11:42:04.892 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:04.893 25537 25568 I jolt_raylib_touch_state: {:frame 178, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 8, :drag-samples 0, :close-requested? false}
+08-30 11:42:04.925 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:04.927 25537 25568 I jolt_raylib_touch_state: {:frame 179, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 9, :drag-samples 0, :close-requested? false}
+08-30 11:42:04.958 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:04.959 25537 25568 I jolt_raylib_touch_state: {:frame 180, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 10, :drag-samples 0, :close-requested? false}
+08-30 11:42:04.991 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:04.994 25537 25568 I jolt_raylib_touch_state: {:frame 181, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 11, :drag-samples 0, :close-requested? false}
+08-30 11:42:05.025 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:05.026 25537 25568 I jolt_raylib_touch_state: {:frame 182, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 12, :drag-samples 0, :close-requested? false}
+08-30 11:42:05.058 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:05.063 25537 25568 I jolt_raylib_touch_state: {:frame 183, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 13, :drag-samples 0, :close-requested? false}
+08-30 11:42:05.066 25537 25568 D EGL_emulation: app_time_stats: avg=33.56ms min=31.62ms max=36.06ms count=30
+08-30 11:42:05.091 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:05.094 25537 25568 I jolt_raylib_touch_state: {:frame 184, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 14, :drag-samples 0, :close-requested? false}
+08-30 11:42:05.125 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:05.127 25537 25568 I jolt_raylib_touch_state: {:frame 185, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 15, :drag-samples 0, :close-requested? false}
+08-30 11:42:05.158 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:05.160 25537 25568 I jolt_raylib_touch_state: {:frame 186, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 16, :drag-samples 0, :close-requested? false}
+08-30 11:42:05.192 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:05.195 25537 25568 I jolt_raylib_touch_state: {:frame 187, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 17, :drag-samples 0, :close-requested? false}
+08-30 11:42:05.225 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:05.227 25537 25568 I jolt_raylib_touch_state: {:frame 188, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 18, :drag-samples 0, :close-requested? false}
+08-30 11:42:05.258 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:05.260 25537 25568 I jolt_raylib_touch_state: {:frame 189, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 19, :drag-samples 0, :close-requested? false}
+08-30 11:42:05.292 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:05.293 25537 25568 I jolt_raylib_touch_state: {:frame 190, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 20, :drag-samples 0, :close-requested? false}
+08-30 11:42:05.325 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:05.327 25537 25568 I jolt_raylib_touch_state: {:frame 191, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 21, :drag-samples 0, :close-requested? false}
+08-30 11:42:05.358 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:05.361 25537 25568 I jolt_raylib_touch_state: {:frame 192, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 22, :drag-samples 0, :close-requested? false}
+08-30 11:42:05.392 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:05.393 25537 25568 I jolt_raylib_touch_state: {:frame 193, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 23, :drag-samples 0, :close-requested? false}
+08-30 11:42:05.425 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:05.427 25537 25568 I jolt_raylib_touch_state: {:frame 194, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 24, :drag-samples 0, :close-requested? false}
+08-30 11:42:05.458 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:05.460 25537 25568 I jolt_raylib_touch_state: {:frame 195, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 25, :drag-samples 0, :close-requested? false}
+08-30 11:42:05.492 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:05.493 25537 25568 I jolt_raylib_touch_state: {:frame 196, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 26, :drag-samples 0, :close-requested? false}
+08-30 11:42:05.525 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:05.526 25537 25568 I jolt_raylib_touch_state: {:frame 197, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 27, :drag-samples 0, :close-requested? false}
+08-30 11:42:05.558 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:05.561 25537 25568 I jolt_raylib_touch_state: {:frame 198, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 28, :drag-samples 0, :close-requested? false}
+08-30 11:42:05.592 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:05.593 25537 25568 I jolt_raylib_touch_state: {:frame 199, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 29, :drag-samples 0, :close-requested? false}
+08-30 11:42:05.625 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:05.628 25537 25568 I jolt_raylib_touch_state: {:frame 200, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 30, :drag-samples 0, :close-requested? false}
+08-30 11:42:05.658 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:05.660 25537 25568 I jolt_raylib_touch_state: {:frame 201, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 31, :drag-samples 0, :close-requested? false}
+08-30 11:42:05.692 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:05.693 25537 25568 I jolt_raylib_touch_state: {:frame 202, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 32, :drag-samples 0, :close-requested? false}
+08-30 11:42:05.725 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:05.726 25537 25568 I jolt_raylib_touch_state: {:frame 203, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 33, :drag-samples 0, :close-requested? false}
+08-30 11:42:05.758 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:05.759 25537 25568 I jolt_raylib_touch_state: {:frame 204, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 34, :drag-samples 0, :close-requested? false}
+08-30 11:42:05.792 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:05.796 25537 25568 I jolt_raylib_touch_state: {:frame 205, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 35, :drag-samples 0, :close-requested? false}
+08-30 11:42:05.825 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:05.826 25537 25568 I jolt_raylib_touch_state: {:frame 206, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 36, :drag-samples 0, :close-requested? false}
+08-30 11:42:05.858 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:05.860 25537 25568 I jolt_raylib_touch_state: {:frame 207, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 37, :drag-samples 0, :close-requested? false}
+08-30 11:42:05.892 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:05.894 25537 25568 I jolt_raylib_touch_state: {:frame 208, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 38, :drag-samples 0, :close-requested? false}
+08-30 11:42:05.925 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:05.927 25537 25568 I jolt_raylib_touch_state: {:frame 209, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 39, :drag-samples 0, :close-requested? false}
+08-30 11:42:05.945   584   690 D ActivityManager: freezing 25446 com.google.android.apps.safetyhub
+08-30 11:42:05.945 25592 25592 W BpBinder: Linking to death on android.gui.ISurfaceComposer but there are no threads (yet?) listening to incoming transactions. See ProcessState::startThreadPool and ProcessState::setThreadPoolMaxThreadCount. Generally you should setup the binder threadpool before other initialization steps.
+08-30 11:42:05.946 25592 25592 W ProcessState: Extra binder thread started, but 0 threads requested. Do not use *startThreadPool when zero threads are requested.
+08-30 11:42:05.952   584   860 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-30 11:42:05.952   584   860 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-30 11:42:05.952   584   860 D InetDiagMessage: Destroyed live tcp sockets for uids={10130} in 7ms
+08-30 11:42:05.958 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:05.961 25537 25568 I jolt_raylib_touch_state: {:frame 210, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 40, :drag-samples 0, :close-requested? false}
+08-30 11:42:05.982   168   168 I hwservicemanager: getTransport: Cannot find entry android.hardware.graphics.mapper@4.0::IMapper/default in either framework or device VINTF manifest.
+08-30 11:42:05.983 25592 25593 I Gralloc4: mapper 4.x is not supported
+08-30 11:42:06.240     0     0 I servicemanager: Caller(pid=25592,uid=2000,sid=u:r:shell:s0) Could not find android.hardware.graphics.allocator.IAllocator/default in the VINTF manifest. No alternative instances declared in VINTF.
+08-30 11:42:05.993 25537 25568 I jolt_raylib_touch_state: {:frame 211, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 41, :drag-samples 0, :close-requested? false}
+08-30 11:42:06.025 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:06.030 25537 25568 I jolt_raylib_touch_state: {:frame 212, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 42, :drag-samples 0, :close-requested? false}
+08-30 11:42:06.059 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:06.061 25537 25568 I jolt_raylib_touch_state: {:frame 213, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 43, :drag-samples 0, :close-requested? false}
+08-30 11:42:06.092 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:06.094 25537 25568 I jolt_raylib_touch_state: {:frame 214, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 44, :drag-samples 0, :close-requested? false}
+08-30 11:42:06.097 25537 25568 D EGL_emulation: app_time_stats: avg=32.22ms min=9.81ms max=56.57ms count=31
+08-30 11:42:06.125 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:06.126 25537 25568 I jolt_raylib_touch_state: {:frame 215, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 45, :drag-samples 0, :close-requested? false}
+08-30 11:42:06.159 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:06.161 25537 25568 I jolt_raylib_touch_state: {:frame 216, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 46, :drag-samples 0, :close-requested? false}
+08-30 11:42:06.192 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:06.195 25537 25568 I jolt_raylib_touch_state: {:frame 217, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 47, :drag-samples 0, :close-requested? false}
+08-30 11:42:06.225 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:06.228 25537 25568 I jolt_raylib_touch_state: {:frame 218, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 48, :drag-samples 0, :close-requested? false}
+08-30 11:42:06.259 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:06.260 25537 25568 I jolt_raylib_touch_state: {:frame 219, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 49, :drag-samples 0, :close-requested? false}
+08-30 11:42:06.292 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:06.295 25537 25568 I jolt_raylib_touch_state: {:frame 220, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 50, :drag-samples 0, :close-requested? false}
+08-30 11:42:06.325 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:06.330 25537 25568 I jolt_raylib_touch_state: {:frame 221, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 51, :drag-samples 0, :close-requested? false}
+08-30 11:42:06.359 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:06.362 25537 25568 I jolt_raylib_touch_state: {:frame 222, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 52, :drag-samples 0, :close-requested? false}
+08-30 11:42:06.392 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:06.394 25537 25568 I jolt_raylib_touch_state: {:frame 223, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 53, :drag-samples 0, :close-requested? false}
+08-30 11:42:06.426 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:06.428 25537 25568 I jolt_raylib_touch_state: {:frame 224, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 54, :drag-samples 0, :close-requested? false}
+08-30 11:42:06.459 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:06.461 25537 25568 I jolt_raylib_touch_state: {:frame 225, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 55, :drag-samples 0, :close-requested? false}
+08-30 11:42:06.492 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:06.494 25537 25568 I jolt_raylib_touch_state: {:frame 226, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 56, :drag-samples 0, :close-requested? false}
+08-30 11:42:06.526 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:06.528 25537 25568 I jolt_raylib_touch_state: {:frame 227, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 57, :drag-samples 0, :close-requested? false}
+08-30 11:42:06.559 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:06.561 25537 25568 I jolt_raylib_touch_state: {:frame 228, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 58, :drag-samples 0, :close-requested? false}
+08-30 11:42:06.592 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:06.595 25537 25568 I jolt_raylib_touch_state: {:frame 229, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 59, :drag-samples 0, :close-requested? false}
+08-30 11:42:06.626 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:06.627 25537 25568 I jolt_raylib_touch_state: {:frame 230, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 60, :drag-samples 0, :close-requested? false}
+08-30 11:42:06.659 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:06.660 25537 25568 I jolt_raylib_touch_state: {:frame 231, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 61, :drag-samples 0, :close-requested? false}
+08-30 11:42:06.692 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:06.694 25537 25568 I jolt_raylib_touch_state: {:frame 232, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 62, :drag-samples 0, :close-requested? false}
+08-30 11:42:06.726 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:06.727 25537 25568 I jolt_raylib_touch_state: {:frame 233, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 63, :drag-samples 0, :close-requested? false}
+08-30 11:42:06.759 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:06.761 25537 25568 I jolt_raylib_touch_state: {:frame 234, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 64, :drag-samples 0, :close-requested? false}
+08-30 11:42:06.792 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:06.794 25537 25568 I jolt_raylib_touch_state: {:frame 235, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 65, :drag-samples 0, :close-requested? false}
+08-30 11:42:06.826 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:06.827 25537 25568 I jolt_raylib_touch_state: {:frame 236, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 66, :drag-samples 0, :close-requested? false}
+08-30 11:42:06.859 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:06.861 25537 25568 I jolt_raylib_touch_state: {:frame 237, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 67, :drag-samples 0, :close-requested? false}
+08-30 11:42:06.892 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:06.894 25537 25568 I jolt_raylib_touch_state: {:frame 238, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 68, :drag-samples 0, :close-requested? false}
+08-30 11:42:06.926 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:06.928 25537 25568 I jolt_raylib_touch_state: {:frame 239, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 69, :drag-samples 0, :close-requested? false}
+08-30 11:42:06.959 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:06.960 25537 25568 I jolt_raylib_touch_state: {:frame 240, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 70, :drag-samples 0, :close-requested? false}
+08-30 11:42:06.992 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:06.994 25537 25568 I jolt_raylib_touch_state: {:frame 241, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 71, :drag-samples 0, :close-requested? false}
+08-30 11:42:07.026 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:07.027 25537 25568 I jolt_raylib_touch_state: {:frame 242, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 72, :drag-samples 0, :close-requested? false}
+08-30 11:42:07.059 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:07.061 25537 25568 I jolt_raylib_touch_state: {:frame 243, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 73, :drag-samples 0, :close-requested? false}
+08-30 11:42:07.093 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:07.094 25537 25568 I jolt_raylib_touch_state: {:frame 244, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 74, :drag-samples 0, :close-requested? false}
+08-30 11:42:07.097 25537 25568 D EGL_emulation: app_time_stats: avg=33.32ms min=31.15ms max=37.61ms count=30
+08-30 11:42:07.126 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:07.127 25537 25568 I jolt_raylib_touch_state: {:frame 245, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 75, :drag-samples 0, :close-requested? false}
+08-30 11:42:07.159 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:07.160 25537 25568 I jolt_raylib_touch_state: {:frame 246, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [400 1000]}, :touches {:count 1, :ids [0], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 76, :drag-samples 0, :close-requested? false}
+08-30 11:42:07.192 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:07.194 25537 25568 I jolt_raylib_touch_state: {:frame 247, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :release, :position [400 1000]}, :touches {:count 0, :ids [], :point-0 [400 1000], :all-coordinates-available? false}, :tap-count 2, :hold-frames 0, :drag-samples 0, :close-requested? false}
+08-30 11:42:07.219   584   853 W BestClock: java.time.DateTimeException: Missing network time fix
+08-30 11:42:07.219   584   853 W BestClock: java.time.DateTimeException: Missing network time fix
+08-30 11:42:07.220   584   853 W BestClock: java.time.DateTimeException: Missing network time fix
+08-30 11:42:07.220   584   853 W BestClock: java.time.DateTimeException: Missing network time fix
+08-30 11:42:07.220   584   853 W BestClock: java.time.DateTimeException: Missing network time fix
+08-30 11:42:07.259 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:07.261 25537 25568 I jolt_raylib_touch_state: {:frame 249, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :press, :position [250 1000]}, :touches {:count 1, :ids [0], :point-0 [250 1000], :all-coordinates-available? false}, :tap-count 3, :hold-frames 1, :drag-samples 0, :close-requested? false}
+08-30 11:42:07.293 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:07.294 25537 25568 I jolt_raylib_touch_state: {:frame 250, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [265 1013]}, :touches {:count 1, :ids [0], :point-0 [265 1013], :all-coordinates-available? false}, :tap-count 3, :hold-frames 2, :drag-samples 1, :close-requested? false}
+08-30 11:42:07.326 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:07.327 25537 25568 I jolt_raylib_touch_state: {:frame 251, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [280 1027]}, :touches {:count 1, :ids [0], :point-0 [280 1027], :all-coordinates-available? false}, :tap-count 3, :hold-frames 3, :drag-samples 2, :close-requested? false}
+08-30 11:42:07.359 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:07.362 25537 25568 I jolt_raylib_touch_state: {:frame 252, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [295 1041]}, :touches {:count 1, :ids [0], :point-0 [295 1041], :all-coordinates-available? false}, :tap-count 3, :hold-frames 4, :drag-samples 3, :close-requested? false}
+08-30 11:42:07.393 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:07.395 25537 25568 I jolt_raylib_touch_state: {:frame 253, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [311 1055]}, :touches {:count 1, :ids [0], :point-0 [311 1055], :all-coordinates-available? false}, :tap-count 3, :hold-frames 5, :drag-samples 4, :close-requested? false}
+08-30 11:42:07.426 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:07.428 25537 25568 I jolt_raylib_touch_state: {:frame 254, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [326 1069]}, :touches {:count 1, :ids [0], :point-0 [326 1069], :all-coordinates-available? false}, :tap-count 3, :hold-frames 6, :drag-samples 5, :close-requested? false}
+08-30 11:42:07.445   584   860 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-30 11:42:07.446   584   860 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-30 11:42:07.446   584   860 D InetDiagMessage: Destroyed live tcp sockets for uids={10142} in 2ms
+08-30 11:42:07.446   584   860 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+08-30 11:42:07.447   584   860 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+08-30 11:42:07.447   584   860 D InetDiagMessage: Destroyed live tcp sockets for uids={20142} in 1ms
+08-30 11:42:07.459 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:07.462 25537 25568 I jolt_raylib_touch_state: {:frame 255, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [342 1083]}, :touches {:count 1, :ids [0], :point-0 [342 1083], :all-coordinates-available? false}, :tap-count 3, :hold-frames 7, :drag-samples 6, :close-requested? false}
+08-30 11:42:07.493 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:07.494 25537 25568 I jolt_raylib_touch_state: {:frame 256, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [357 1097]}, :touches {:count 1, :ids [0], :point-0 [357 1097], :all-coordinates-available? false}, :tap-count 3, :hold-frames 8, :drag-samples 7, :close-requested? false}
+08-30 11:42:07.526 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:07.527 25537 25568 I jolt_raylib_touch_state: {:frame 257, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [372 1111]}, :touches {:count 1, :ids [0], :point-0 [372 1111], :all-coordinates-available? false}, :tap-count 3, :hold-frames 9, :drag-samples 8, :close-requested? false}
+08-30 11:42:07.559 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:07.561 25537 25568 I jolt_raylib_touch_state: {:frame 258, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [387 1125]}, :touches {:count 1, :ids [0], :point-0 [387 1125], :all-coordinates-available? false}, :tap-count 3, :hold-frames 10, :drag-samples 9, :close-requested? false}
+08-30 11:42:07.593 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:07.594 25537 25568 I jolt_raylib_touch_state: {:frame 259, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [403 1139]}, :touches {:count 1, :ids [0], :point-0 [403 1139], :all-coordinates-available? false}, :tap-count 3, :hold-frames 11, :drag-samples 10, :close-requested? false}
+08-30 11:42:07.626 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:07.627 25537 25568 I jolt_raylib_touch_state: {:frame 260, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [418 1152]}, :touches {:count 1, :ids [0], :point-0 [418 1152], :all-coordinates-available? false}, :tap-count 3, :hold-frames 12, :drag-samples 11, :close-requested? false}
+08-30 11:42:07.659 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:07.660 25537 25568 I jolt_raylib_touch_state: {:frame 261, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [433 1166]}, :touches {:count 1, :ids [0], :point-0 [433 1166], :all-coordinates-available? false}, :tap-count 3, :hold-frames 13, :drag-samples 12, :close-requested? false}
+08-30 11:42:07.693 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:07.694 25537 25568 I jolt_raylib_touch_state: {:frame 262, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [448 1180]}, :touches {:count 1, :ids [0], :point-0 [448 1180], :all-coordinates-available? false}, :tap-count 3, :hold-frames 14, :drag-samples 13, :close-requested? false}
+08-30 11:42:07.726 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:07.727 25537 25568 I jolt_raylib_touch_state: {:frame 263, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [464 1194]}, :touches {:count 1, :ids [0], :point-0 [464 1194], :all-coordinates-available? false}, :tap-count 3, :hold-frames 15, :drag-samples 14, :close-requested? false}
+08-30 11:42:07.759 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:07.760 25537 25568 I jolt_raylib_touch_state: {:frame 264, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [479 1208]}, :touches {:count 1, :ids [0], :point-0 [479 1208], :all-coordinates-available? false}, :tap-count 3, :hold-frames 16, :drag-samples 15, :close-requested? false}
+08-30 11:42:07.793 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:07.794 25537 25568 I jolt_raylib_touch_state: {:frame 265, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [494 1222]}, :touches {:count 1, :ids [0], :point-0 [494 1222], :all-coordinates-available? false}, :tap-count 3, :hold-frames 17, :drag-samples 16, :close-requested? false}
+08-30 11:42:07.826 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:07.827 25537 25568 I jolt_raylib_touch_state: {:frame 266, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [510 1236]}, :touches {:count 1, :ids [0], :point-0 [510 1236], :all-coordinates-available? false}, :tap-count 3, :hold-frames 18, :drag-samples 17, :close-requested? false}
+08-30 11:42:07.860 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:07.861 25537 25568 I jolt_raylib_touch_state: {:frame 267, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [525 1250]}, :touches {:count 1, :ids [0], :point-0 [525 1250], :all-coordinates-available? false}, :tap-count 3, :hold-frames 19, :drag-samples 18, :close-requested? false}
+08-30 11:42:07.893 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:07.895 25537 25568 I jolt_raylib_touch_state: {:frame 268, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [540 1263]}, :touches {:count 1, :ids [0], :point-0 [540 1263], :all-coordinates-available? false}, :tap-count 3, :hold-frames 20, :drag-samples 19, :close-requested? false}
+08-30 11:42:07.926 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:07.928 25537 25568 I jolt_raylib_touch_state: {:frame 269, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [555 1277]}, :touches {:count 1, :ids [0], :point-0 [555 1277], :all-coordinates-available? false}, :tap-count 3, :hold-frames 21, :drag-samples 20, :close-requested? false}
+08-30 11:42:07.959 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:07.961 25537 25568 I jolt_raylib_touch_state: {:frame 270, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [570 1291]}, :touches {:count 1, :ids [0], :point-0 [570 1291], :all-coordinates-available? false}, :tap-count 3, :hold-frames 22, :drag-samples 21, :close-requested? false}
+08-30 11:42:07.993 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:07.994 25537 25568 I jolt_raylib_touch_state: {:frame 271, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [586 1305]}, :touches {:count 1, :ids [0], :point-0 [586 1305], :all-coordinates-available? false}, :tap-count 3, :hold-frames 23, :drag-samples 22, :close-requested? false}
+08-30 11:42:08.026 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:08.027 25537 25568 I jolt_raylib_touch_state: {:frame 272, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [601 1319]}, :touches {:count 1, :ids [0], :point-0 [601 1319], :all-coordinates-available? false}, :tap-count 3, :hold-frames 24, :drag-samples 23, :close-requested? false}
+08-30 11:42:08.059 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:08.062 25537 25568 I jolt_raylib_touch_state: {:frame 273, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [616 1333]}, :touches {:count 1, :ids [0], :point-0 [616 1333], :all-coordinates-available? false}, :tap-count 3, :hold-frames 25, :drag-samples 24, :close-requested? false}
+08-30 11:42:08.093 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:08.094 25537 25568 I jolt_raylib_touch_state: {:frame 274, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [632 1347]}, :touches {:count 1, :ids [0], :point-0 [632 1347], :all-coordinates-available? false}, :tap-count 3, :hold-frames 26, :drag-samples 25, :close-requested? false}
+08-30 11:42:08.126 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:08.127 25537 25568 I jolt_raylib_touch_state: {:frame 275, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [647 1361]}, :touches {:count 1, :ids [0], :point-0 [647 1361], :all-coordinates-available? false}, :tap-count 3, :hold-frames 27, :drag-samples 26, :close-requested? false}
+08-30 11:42:08.130 25537 25568 D EGL_emulation: app_time_stats: avg=33.31ms min=30.46ms max=34.98ms count=31
+08-30 11:42:08.159 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:08.160 25537 25568 I jolt_raylib_touch_state: {:frame 276, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [662 1375]}, :touches {:count 1, :ids [0], :point-0 [662 1375], :all-coordinates-available? false}, :tap-count 3, :hold-frames 28, :drag-samples 27, :close-requested? false}
+08-30 11:42:08.193 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:08.194 25537 25568 I jolt_raylib_touch_state: {:frame 277, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [678 1389]}, :touches {:count 1, :ids [0], :point-0 [678 1389], :all-coordinates-available? false}, :tap-count 3, :hold-frames 29, :drag-samples 28, :close-requested? false}
+08-30 11:42:08.226 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:08.227 25537 25568 I jolt_raylib_touch_state: {:frame 278, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [693 1403]}, :touches {:count 1, :ids [0], :point-0 [693 1403], :all-coordinates-available? false}, :tap-count 3, :hold-frames 30, :drag-samples 29, :close-requested? false}
+08-30 11:42:08.259 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:08.260 25537 25568 I jolt_raylib_touch_state: {:frame 279, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [708 1417]}, :touches {:count 1, :ids [0], :point-0 [708 1417], :all-coordinates-available? false}, :tap-count 3, :hold-frames 31, :drag-samples 30, :close-requested? false}
+08-30 11:42:08.293 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:08.295 25537 25568 I jolt_raylib_touch_state: {:frame 280, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [723 1430]}, :touches {:count 1, :ids [0], :point-0 [723 1430], :all-coordinates-available? false}, :tap-count 3, :hold-frames 32, :drag-samples 31, :close-requested? false}
+08-30 11:42:08.326 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:08.327 25537 25568 I jolt_raylib_touch_state: {:frame 281, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [739 1444]}, :touches {:count 1, :ids [0], :point-0 [739 1444], :all-coordinates-available? false}, :tap-count 3, :hold-frames 33, :drag-samples 32, :close-requested? false}
+08-30 11:42:08.359 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:08.363 25537 25568 I jolt_raylib_touch_state: {:frame 282, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [754 1458]}, :touches {:count 1, :ids [0], :point-0 [754 1458], :all-coordinates-available? false}, :tap-count 3, :hold-frames 34, :drag-samples 33, :close-requested? false}
+08-30 11:42:08.393 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:08.394 25537 25568 I jolt_raylib_touch_state: {:frame 283, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [769 1472]}, :touches {:count 1, :ids [0], :point-0 [769 1472], :all-coordinates-available? false}, :tap-count 3, :hold-frames 35, :drag-samples 34, :close-requested? false}
+08-30 11:42:08.426 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:08.428 25537 25568 I jolt_raylib_touch_state: {:frame 284, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :down, :position [784 1486]}, :touches {:count 1, :ids [0], :point-0 [784 1486], :all-coordinates-available? false}, :tap-count 3, :hold-frames 36, :drag-samples 35, :close-requested? false}
+08-30 11:42:08.459 25537 25568 V threaded_app: New input event: type=2
+08-30 11:42:08.461 25537 25568 I jolt_raylib_touch_state: {:frame 285, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :release, :position [784 1486]}, :touches {:count 0, :ids [], :point-0 [784 1486], :all-coordinates-available? false}, :tap-count 3, :hold-frames 0, :drag-samples 35, :close-requested? false}
+08-30 11:42:08.960 25537 25568 I jolt_raylib_touch_state: {:frame 300, :metrics {:screen [1080 2400], :render [1080 2400], :dpi-scale [1 1], :orientation :portrait}, :pointer {:phase :idle, :position nil}, :touches {:count 0, :ids [], :point-0 nil, :all-coordinates-available? false}, :tap-count 3, :hold-frames 0, :drag-samples 35, :close-requested? false}
+08-30 11:42:09.163 25537 25568 D EGL_emulation: app_time_stats: avg=33.32ms min=31.59ms max=35.27ms count=31
+08-30 11:42:09.495   584   617 D CompatChangeReporter: Compat change id reported: 151861875; UID 10176; state: ENABLED
+08-30 11:42:09.495   584   617 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10176, packageName = null, attributionTag = null, token = android.os.Binder@6b5b2fd, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+08-30 11:42:09.506   386   386 D Zygote  : Forked child process 25599
+08-30 11:42:09.508   584   618 I ActivityManager: Start proc 25599:com.google.android.apps.wallpaper/u0a176 for broadcast {com.google.android.apps.wallpaper/com.android.wallpaper.module.DailyLoggingAlarmReceiver}
+08-30 11:42:09.509   380   380 I netd    : tetherGetStats() -> {[]} <0.28ms>
+08-30 11:42:09.515 23212 23212 I BgTaskExecutorImpl: (REDACTED) Starting %s background task %s.
+08-30 11:42:09.519 23212 23212 I BgTaskExecutorImpl: (REDACTED) Starting %s background task %s.
+08-30 11:42:09.519 25599 25599 I .apps.wallpaper: Using CollectorTypeCMC GC.
+08-30 11:42:09.519 23212 23212 I BgTaskExecutorImpl: (REDACTED) Starting %s background task %s.
+08-30 11:42:09.519 25599 25599 W .apps.wallpaper: Unexpected CPU variant for x86: x86_64.
+08-30 11:42:09.519 25599 25599 W .apps.wallpaper: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, default
+08-30 11:42:09.520 23212 23212 I BgTaskExecutorImpl: (REDACTED) Starting %s background task %s.
+08-30 11:42:09.520 23212 23212 I BgTaskExecutorImpl: (REDACTED) Starting %s background task %s.
+08-30 11:42:09.521 23212 23212 I BgTaskExecutorImpl: (REDACTED) Starting %s background task %s.
+08-30 11:42:09.521 25599 25599 E .apps.wallpaper: Not starting debugger since process cannot load the jdwp agent.
+08-30 11:42:09.523 25599 25599 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+08-30 11:42:09.543 25599 25599 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+08-30 11:42:09.543 25599 25599 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+08-30 11:42:09.543 25599 25599 D ApplicationLoaders: Returning zygote-cached class loader: /system/framework/org.apache.http.legacy.jar
+08-30 11:42:09.545 23823 25366 I NetworkScheduler.Stats: Task com.google.android.gms/com.google.android.gms.droidguard.DroidGuardGcmTaskService started execution. cause:4 exec_start_elapsed_seconds: 86548 [CONTEXT service_id=218 ]
+08-30 11:42:09.546 23212 23263 W SearchServiceCore: Abort, client detached.
+08-30 11:42:09.546 23212 23263 W SearchServiceCore: Abort, client detached.
+08-30 11:42:09.546 23212 25614 E SingleDataFileGroupPop: Failed to add file group
+08-30 11:42:09.546 23212 23263 W SearchServiceCore: Abort, client detached.
+08-30 11:42:09.546 23212 23263 W SearchServiceCore: Abort, client detached.
+08-30 11:42:09.546 23212 23263 W SearchServiceCore: Abort, client detached.
+08-30 11:42:09.549 23212 23242 W CAMPeriodicRefresh: Refreshing not complete, unable to upload top contacts.
+08-30 11:42:09.551 24824 24824 D ActivityThread: Package [net.joltlang.raylibgallery] reported as REPLACED, but missing application info. Assuming REMOVED.
+08-30 11:42:09.552   584  1666 D ActivityManager: sync unfroze 24824 com.google.android.gms.unstable for 6
+08-30 11:42:09.555 23212 23263 W SearchServiceCore: Abort, client detached.
+08-30 11:42:09.556 25599 25599 D nativeloader: Configuring clns-shared-7 for other apk /system_ext/priv-app/WallpaperPickerGoogleRelease/WallpaperPickerGoogleRelease.apk. target_sdk_version=35, uses_libraries=, library_path=/system_ext/priv-app/WallpaperPickerGoogleRelease/lib/x86_64:/system/lib64:/system_ext/lib64, permitted_path=/data:/mnt/expand:/data/user/0/com.google.android.apps.wallpaper:/system_ext/priv-app/WallpaperPickerGoogleRelease:/system/lib64:/system_ext/lib64
+08-30 11:42:09.556 25599 25599 D CompatChangeReporter: Compat change id reported: 202956589; UID 10176; state: ENABLED
+08-30 11:42:09.559 23212 23263 W SearchServiceCore: Abort, client detached.
+08-30 11:42:09.559 23212 23263 W SearchServiceCore: Abort, client detached.
+08-30 11:42:09.559 23212 23263 W SearchServiceCore: Abort, client detached.
+08-30 11:42:09.562 23212 23263 W SearchServiceCore: Abort, client detached.
+08-30 11:42:09.563 23212 23263 W SearchServiceCore: Abort, client detached.
+08-30 11:42:09.563 23212 23263 W SearchServiceCore: Abort, client detached.
+08-30 11:42:09.586 25599 25599 V GraphicsEnvironment: Currently set values for:
+08-30 11:42:09.586 25599 25599 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+08-30 11:42:09.586 25599 25599 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+08-30 11:42:09.586 25599 25599 V GraphicsEnvironment: Global.Settings values are invalid: number of packages: 0, number of values: 0
+08-30 11:42:09.587 25599 25599 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+08-30 11:42:09.591 23823 24396 I NetworkScheduler.Stats: Task com.google.android.gms/com.google.android.gms.droidguard.DroidGuardGcmTaskService finished executing. cause:4 result: 1 elapsed_millis: 63 uptime_millis: 63 exec_start_elapsed_seconds: 86548 [CONTEXT service_id=218 ]
+08-30 11:42:09.599   380 25619 I resolv  : GetAddrInfoHandler::run: {100 786532 100 983140 10143 0}
+08-30 11:42:09.599   380 25620 I resolv  : res_nmkquery: (QUERY, IN, AAAA)
+08-30 11:42:09.600   380 25620 I resolv  : res_stats_usable_server: too many resolution errors, ignoring server
+08-30 11:42:09.601   380 25620 I resolv  : res_nsend: used send_dg 0 terrno: 101
+08-30 11:42:09.601   380 25620 I resolv  : res_nsend: used send_dg 0 terrno: 101
+08-30 11:42:09.601   380 25620 I resolv  : doQuery: rcode=0, ancount=0, return value=-111
+08-30 11:42:09.602   380 25621 I resolv  : GetAddrInfoHandler::run: {100 786532 100 983140 10143 0}
+08-30 11:42:09.605   380 25622 I resolv  : res_nmkquery: (QUERY, IN, AAAA)
+08-30 11:42:09.605   380 25622 I resolv  : res_stats_usable_server: too many resolution errors, ignoring server
+08-30 11:42:09.605   380 25622 I resolv  : res_nsend: used send_dg 0 terrno: 101
+08-30 11:42:09.605   380 25622 I resolv  : res_nsend: used send_dg 0 terrno: 101
+08-30 11:42:09.605   380 25622 I resolv  : doQuery: rcode=0, ancount=0, return value=-111
+08-30 11:42:09.612 24824 25616 E DG      : FSC error [CONTEXT service_id=25 ]
+08-30 11:42:09.612 24824 25616 E DG      : java.io.IOException: Couldn't fetch response.
+08-30 11:42:09.612 24824 25616 E DG      : 	at aryl.a(:com.google.android.gms@242335041@24.23.35 (190800-646585959):182)
+08-30 11:42:09.612 24824 25616 E DG      : 	at arwi.c(:com.google.android.gms@242335041@24.23.35 (190800-646585959):41)
+08-30 11:42:09.612 24824 25616 E DG      : 	at arwi.b(:com.google.android.gms@242335041@24.23.35 (190800-646585959):2)
+08-30 11:42:09.612 24824 25616 E DG      : 	at arwp.a(:com.google.android.gms@242335041@24.23.35 (190800-646585959):463)
+08-30 11:42:09.612 24824 25616 E DG      : 	at com.google.android.gms.droidguard.DroidGuardChimeraService.a(:com.google.android.gms@242335041@24.23.35 (190800-646585959):52)
+08-30 11:42:09.612 24824 25616 E DG      : 	at com.google.android.gms.framework.tracing.wrapper.TracingIntentService.onHandleIntent(:com.google.android.gms@242335041@24.23.35 (190800-646585959):13)
+08-30 11:42:09.612 24824 25616 E DG      : 	at peu.handleMessage(:com.google.android.gms@242335041@24.23.35 (190800-646585959):7)
+08-30 11:42:09.612 24824 25616 E DG      : 	at android.os.Handler.dispatchMessage(Handler.java:107)
+08-30 11:42:09.612 24824 25616 E DG      : 	at android.os.Looper.loopOnce(Looper.java:232)
+08-30 11:42:09.612 24824 25616 E DG      : 	at android.os.Looper.loop(Looper.java:317)
+08-30 11:42:09.612 24824 25616 E DG      : 	at android.os.HandlerThread.run(HandlerThread.java:85)
+08-30 11:42:09.612 24824 25616 E DG      : Caused by: java.util.concurrent.ExecutionException: bpcw: Failed to process request
+08-30 11:42:09.612 24824 25616 E DG      : 	at hhq.n(:com.google.android.gms@242335041@24.23.35 (190800-646585959):21)
+08-30 11:42:09.612 24824 25616 E DG      : 	at hhq.get(:com.google.android.gms@242335041@24.23.35 (190800-646585959):28)
+08-30 11:42:09.612 24824 25616 E DG      : 	at hhw.get(:com.google.android.gms@242335041@24.23.35 (190800-646585959):2)
+08-30 11:42:09.612 24824 25616 E DG      : 	at aryl.a(:com.google.android.gms@242335041@24.23.35 (190800-646585959):166)
+08-30 11:42:09.612 24824 25616 E DG      : 	... 10 more
+08-30 11:42:09.612 24824 25616 E DG      : Caused by: bpcw: Failed to process request
+08-30 11:42:09.612 24824 25616 E DG      : 	at bpgb.b(:com.google.android.gms@242335041@24.23.35 (190800-646585959):19)
+08-30 11:42:09.612 24824 25616 E DG      : 	at bpgp.onFailed(:com.google.android.gms@242335041@24.23.35 (190800-646585959):13)
+08-30 11:42:09.612 24824 25616 E DG      : 	at m.mw.onFailed(:com.google.android.gms.dynamite_cronetdynamite@242335041@24.23.35 (190800-0):3)
+08-30 11:42:09.612 24824 25616 E DG      : 	at m.lw.run(:com.google.android.gms.dynamite_cronetdynamite@242335041@24.23.35 (190800-0):9)
+08-30 11:42:09.612 24824 25616 E DG      : 	at angs.c(:com.google.android.gms@242335041@24.23.35 (190800-646585959):50)
+08-30 11:42:09.612 24824 25616 E DG      : 	at angs.run(:com.google.android.gms@242335041@24.23.35 (190800-646585959):76)
+08-30 11:42:09.612 24824 25616 E DG      : 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+08-30 11:42:09.612 24824 25616 E DG      : 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644)
+08-30 11:42:09.612 24824 25616 E DG      : 	at anmg.run(:com.google.android.gms@242335041@24.23.35 (190800-646585959):8)
+08-30 11:42:09.612 24824 25616 E DG      : 	at java.lang.Thread.run(Thread.java:1012)
+08-30 11:42:09.612 24824 25616 E DG      : Caused by: m.mg: Exception in CronetUrlRequest: net::ERR_NAME_NOT_RESOLVED, ErrorCode=1, InternalErrorCode=-105, Retryable=false
+08-30 11:42:09.612 24824 25616 E DG      : 	at org.chromium.net.impl.CronetUrlRequest.onError(:com.google.android.gms.dynamite_cronetdynamite@242335041@24.23.35 (190800-0):4)
+08-30 11:42:09.629   380 25623 I resolv  : GetAddrInfoHandler::run: {100 786532 100 983140 10143 0}
+08-30 11:42:09.630   380 25624 I resolv  : res_nmkquery: (QUERY, IN, AAAA)
+08-30 11:42:09.630   380 25624 I resolv  : res_stats_usable_server: too many resolution errors, ignoring server
+08-30 11:42:09.630   380 25624 I resolv  : res_nsend: used send_dg 0 terrno: 101
+08-30 11:42:09.630   380 25624 I resolv  : res_nsend: used send_dg 0 terrno: 101
+08-30 11:42:09.630   380 25624 I resolv  : doQuery: rcode=0, ancount=0, return value=-111
+08-30 11:42:09.651 23212 25614 I A       : Scheduling next refresh
+08-30 11:42:09.651 23212 25614 I A       : Scheduling next refresh
+08-30 11:42:09.651 23212 25614 I A       : Scheduling next refresh
+08-30 11:42:09.652 23212 25614 I A       : Scheduling next refresh
+08-30 11:42:09.670 23212 25614 I A       : Scheduling next refresh
+08-30 11:42:09.676 23212 25614 E SingleDataFileGroupPop: Failed to add file group
+08-30 11:42:09.679 23823 23863 I NetworkScheduler.Stats: Task com.google.android.gms/com.google.android.gms.auth.account.be.legacy.AuthCronService started execution. cause:5 exec_start_elapsed_seconds: 86548 [CONTEXT service_id=218 ]
+08-30 11:42:09.682 23212 25614 I ZipLPPopulator: #scheduleLanguagePackDeletion
+08-30 11:42:09.682 23212 25614 I ZipLPPopulator: com.google.common.f.w: MEDIUM
+08-30 11:42:09.682 23212 25614 I ZipLPPopulator: 	at com.google.android.libraries.speech.b.b.k.aj.b(PG:22)
+08-30 11:42:09.682 23212 25614 I ZipLPPopulator: 	at com.google.android.libraries.mdi.download.gg.y(PG:24)
+08-30 11:42:09.682 23212 25614 I ZipLPPopulator: 	at com.google.android.libraries.mdi.download.gg.i(PG:95)
+08-30 11:42:09.682 23212 25614 I ZipLPPopulator: 	at com.google.android.apps.gsa.staticplugins.at.a.a(PG:9)
+08-30 11:42:09.682 23212 25614 I ZipLPPopulator: 	at com.google.android.libraries.gsa.h.a.i.apply(PG:9)
+08-30 11:42:09.682 23212 25614 I ZipLPPopulator: 	at com.google.common.util.concurrent.h.e(PG:3)
+08-30 11:42:09.682 23212 25614 I ZipLPPopulator: 	at com.google.common.util.concurrent.j.run(PG:42)
+08-30 11:42:09.682 23212 25614 I ZipLPPopulator: 	at com.google.android.libraries.k.x.run(PG:3)
+08-30 11:42:09.682 23212 25614 I ZipLPPopulator: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+08-30 11:42:09.682 23212 25614 I ZipLPPopulator: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644)
+08-30 11:42:09.682 23212 25614 I ZipLPPopulator: 	at com.google.android.libraries.k.b.run(PG:6)
+08-30 11:42:09.682 23212 25614 I ZipLPPopulator: 	at java.lang.Thread.run(Thread.java:1012)
+08-30 11:42:09.682 23212 25614 I ZipLPPopulator: 	at com.google.android.libraries.k.d.b.run(PG:74)
+08-30 11:42:09.682 23212 25614 I ZipLPPopulator: #addNewFileGroups
+08-30 11:42:09.689 23212 25614 I A       : #getDownloadableLanguagePacks
+08-30 11:42:09.690 23212 25614 I A       : (REDACTED) Loaded languagepack (LP) flag value from latest config %s: %s
+08-30 11:42:09.690 23212 25614 I A       : (REDACTED) Download file group for language pack: %s
+08-30 11:42:09.690 23212 25614 W A       : (REDACTED) Locale %s is not compatible, please check manifest exists
+08-30 11:42:09.691 23212 25614 I A       : getLocaleToModelSpecsMap
+08-30 11:42:09.691 23212 25614 I A       : Proto config empty. Exit merge.
+08-30 11:42:09.697 23212 23268 I LPRequestState: (REDACTED) [%s] #resolveDesiredLanguagePacks
+08-30 11:42:09.703 23212 25614 I HotwordModelPopulator: (REDACTED) #updateHotwordFileGroup group name: %s, raw locale: %s, locale: %s
+08-30 11:42:09.712   380 25627 I resolv  : GetAddrInfoHandler::run: {100 262244 100 983140 10144 0}
+08-30 11:42:09.712   380 25628 I resolv  : res_nmkquery: (QUERY, IN, AAAA)
+08-30 11:42:09.712   380 25628 I resolv  : res_stats_usable_server: too many resolution errors, ignoring server
+08-30 11:42:09.713   380 25628 I resolv  : res_nsend: used send_dg 0 terrno: 101
+08-30 11:42:09.713   380 25628 I resolv  : res_nsend: used send_dg 0 terrno: 101
+08-30 11:42:09.713   380 25628 I resolv  : doQuery: rcode=0, ancount=0, return value=-111
+08-30 11:42:09.714   584  1627 D FileUtils: Rounded bytes from 2593198080 to 4000000000
+08-30 11:42:09.716 23212 25614 I A       : getLocaleToModelSpecsMap
+08-30 11:42:09.716 23212 25614 I A       : Proto config empty. Exit merge.
+08-30 11:42:09.716 23212 25614 I HotwordModelPopulator: (REDACTED) #updateHotwordFileGroup group name: %s, raw locale: %s, locale: %s
+08-30 11:42:09.719   380 25629 I resolv  : GetAddrInfoHandler::run: {100 262244 100 983140 10144 0}
+08-30 11:42:09.719   380 25630 I resolv  : res_nmkquery: (QUERY, IN, AAAA)
+08-30 11:42:09.719   380 25630 I resolv  : res_stats_usable_server: too many resolution errors, ignoring server
+08-30 11:42:09.719   380 25630 I resolv  : res_nsend: used send_dg 0 terrno: 101
+08-30 11:42:09.719   380 25630 I resolv  : res_nsend: used send_dg 0 terrno: 101
+08-30 11:42:09.719   380 25630 I resolv  : doQuery: rcode=0, ancount=0, return value=-111
+08-30 11:42:09.723 23823 25366 I NetworkScheduler.Stats: Task com.google.android.gms/com.google.android.gms.gass.chimera.SchedulePeriodicTasksService started execution. cause:5 exec_start_elapsed_seconds: 86548 [CONTEXT service_id=218 ]
+08-30 11:42:09.727   380 25633 I resolv  : GetAddrInfoHandler::run: {100 262244 100 983140 10144 0}
+08-30 11:42:09.729 24824 25615 W DG      : [flow devicekey] DroidGuardRunner.newVmProcessForFastSignalCollection(): Fast program not found [CONTEXT service_id=25 ]
+08-30 11:42:09.729   380 25634 I resolv  : res_nmkquery: (QUERY, IN, AAAA)
+08-30 11:42:09.729   380 25634 I resolv  : res_stats_usable_server: too many resolution errors, ignoring server
+08-30 11:42:09.729   380 25634 I resolv  : res_nsend: used send_dg 0 terrno: 101
+08-30 11:42:09.730   380 25634 I resolv  : res_nsend: used send_dg 0 terrno: 101
+08-30 11:42:09.730   380 25634 I resolv  : doQuery: rcode=0, ancount=0, return value=-111
+08-30 11:42:09.736   380 25635 I resolv  : GetAddrInfoHandler::run: {100 262244 100 983140 10144 0}
+08-30 11:42:09.736   380 25636 I resolv  : res_nmkquery: (QUERY, IN, AAAA)
+08-30 11:42:09.736   380 25636 I resolv  : res_stats_usable_server: too many resolution errors, ignoring server
+08-30 11:42:09.736   380 25636 I resolv  : res_nsend: used send_dg 0 terrno: 101
+08-30 11:42:09.736   380 25636 I resolv  : res_nsend: used send_dg 0 terrno: 101
+08-30 11:42:09.736   380 25636 I resolv  : doQuery: rcode=0, ancount=0, return value=-111
+08-30 11:42:09.747   380 25637 I resolv  : GetAddrInfoHandler::run: {100 786532 100 983140 10143 0}
+08-30 11:42:09.748   380 25638 I resolv  : res_nmkquery: (QUERY, IN, AAAA)
+08-30 11:42:09.748   380 25638 I resolv  : res_stats_usable_server: too many resolution errors, ignoring server
+08-30 11:42:09.748   380 25638 I resolv  : res_nsend: used send_dg 0 terrno: 101
+08-30 11:42:09.748   380 25638 I resolv  : res_nsend: used send_dg 0 terrno: 101
+08-30 11:42:09.748   380 25638 I resolv  : doQuery: rcode=0, ancount=0, return value=-111
+08-30 11:42:09.752   380 25639 I resolv  : GetAddrInfoHandler::run: {100 786532 100 983140 10143 0}
+08-30 11:42:09.752   380 25640 I resolv  : res_nmkquery: (QUERY, IN, AAAA)
+08-30 11:42:09.752   380 25640 I resolv  : res_stats_usable_server: too many resolution errors, ignoring server
+08-30 11:42:09.752   380 25640 I resolv  : res_nsend: used send_dg 0 terrno: 101
+08-30 11:42:09.752   380 25640 I resolv  : res_nsend: used send_dg 0 terrno: 101
+08-30 11:42:09.752   380 25640 I resolv  : doQuery: rcode=0, ancount=0, return value=-111
+08-30 11:42:09.774 23212 23216 W earchbox:search: Suspending all threads took: 16.198ms
+08-30 11:42:09.781 23212 23232 I LPDownloadSettingsState: (REDACTED) Defaulting LP download condition to %s as user has not edited settings.
+08-30 11:42:09.782   584  1023 I RemoteProvisionSysSvc: getRegistration(android.hardware.security.keymint.IRemotelyProvisionedComponent/default)
+08-30 11:42:10.032     0     0 I servicemanager: Caller(pid=190,uid=1017,sid=u:r:keystore:s0) Found android.hardware.security.keymint.IRemotelyProvisionedComponent/default in device VINTF manifest.
+08-30 11:42:09.785   380 25642 I resolv  : GetAddrInfoHandler::run: {100 786532 100 983140 10143 0}
+08-30 11:42:09.785   380 25643 I resolv  : res_nmkquery: (QUERY, IN, AAAA)
+08-30 11:42:09.785   380 25643 I resolv  : res_stats_usable_server: too many resolution errors, ignoring server
+08-30 11:42:09.786   380 25643 I resolv  : res_nsend: used send_dg 0 terrno: 101
+08-30 11:42:09.786   380 25643 I resolv  : res_nsend: used send_dg 0 terrno: 101
+08-30 11:42:09.786   380 25643 I resolv  : doQuery: rcode=0, ancount=0, return value=-111
+08-30 11:42:09.791 23212 25487 I A       : (REDACTED) No accounts found for %s, not syncing anything.
+08-30 11:42:09.793 23212 23263 W SearchServiceCore: Abort, client detached.
+08-30 11:42:09.793 23212 23263 W SearchServiceCore: Abort, client detached.
+08-30 11:42:09.800   584  1023 D ActivityManager: sync unfroze 2656 com.google.android.rkpdapp for 6
+08-30 11:42:09.802  2656  2656 D ActivityThread: Package [net.joltlang.raylibgallery] reported as REPLACED, but missing application info. Assuming REMOVED.
+08-30 11:42:09.803 23823 24396 I NetworkScheduler.Stats: Task com.google.android.gms/com.google.android.gms.gass.chimera.SchedulePeriodicTasksService finished executing. cause:5 result: 3 elapsed_millis: 101 uptime_millis: 101 exec_start_elapsed_seconds: 86548 [CONTEXT service_id=218 ]
+08-30 11:42:09.804  2656  2926 D WM-NetworkStateTracker: Network capabilities changed: [ Transports: WIFI Capabilities: NOT_METERED&INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VPN&NOT_ROAMING&FOREGROUND&NOT_CONGESTED&NOT_SUSPENDED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED LinkUpBandwidth>=12000Kbps LinkDnBandwidth>=30000Kbps TransportInfo: <SSID: <unknown ssid>, BSSID: 02:00:00:00:00:00, MAC: 02:00:00:00:00:00, IP: /10.0.2.16, Security type: 0, Supplicant state: COMPLETED, Wi-Fi standard: legacy, RSSI: -50, Link speed: 2Mbps, Tx Link speed: 2Mbps, Max Supported Tx Link speed: 54Mbps, Rx Link speed: 2Mbps, Max Supported Rx Link speed: 54Mbps, Frequency: 2437MHz, Net ID: -1, Metered hint: false, score: 60, isUsable: true, CarrierMerged: false, SubscriptionId: -1, IsPrimary: -1, Trusted: true, Restricted: false, Ephemeral: false, OEM paid: false, OEM private: false, OSU AP: false, FQDN: <none>, Provider friendly name: <none>, Requesting package name: <none><none>MLO Information: , Is TID-To-Link negotiation supported by the AP: false, AP MLD Address: <none>, AP MLO Link Id: <none>, AP MLO Affiliated links: <none>, Vendor Data: <none>> SignalStrength: -50 UnderlyingNetworks: Null]
+08-30 11:42:09.811 24824 24827 W id.gms.unstable: Missing inline cache for int fkid.a(java.lang.Object)
+08-30 11:42:09.812   584   584 I RegistrationProxy: onServiceConnected: com.android.rkpdapp.service.RemoteProvisioningService
+08-30 11:42:09.812   584  1627 W ProcessStats: Tracking association SourceState{ccec28f system/1000 ImpFg #18094} whose proc state 5 is better than process ProcessState{7fbbf32 com.google.android.rkpdapp/10208 pkg=com.google.android.rkpdapp} proc state 14 (4 skipped)
+08-30 11:42:09.814  2656  2926 D WM-NetworkStateTracker: Network capabilities changed: [ Transports: WIFI Capabilities: NOT_METERED&INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VPN&NOT_ROAMING&FOREGROUND&NOT_CONGESTED&NOT_SUSPENDED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED LinkUpBandwidth>=12000Kbps LinkDnBandwidth>=30000Kbps TransportInfo: <SSID: <unknown ssid>, BSSID: 02:00:00:00:00:00, MAC: 02:00:00:00:00:00, IP: /10.0.2.16, Security type: 0, Supplicant state: COMPLETED, Wi-Fi standard: legacy, RSSI: -50, Link speed: 18Mbps, Tx Link speed: 18Mbps, Max Supported Tx Link speed: 54Mbps, Rx Link speed: 2Mbps, Max Supported Rx Link speed: 54Mbps, Frequency: 2437MHz, Net ID: -1, Metered hint: false, score: 60, isUsable: true, CarrierMerged: false, SubscriptionId: -1, IsPrimary: -1, Trusted: true, Restricted: false, Ephemeral: false, OEM paid: false, OEM private: false, OSU AP: false, FQDN: <none>, Provider friendly name: <none>, Requesting package name: <none><none>MLO Information: , Is TID-To-Link negotiation supported by the AP: false, AP MLD Address: <none>, AP MLO Link Id: <none>, AP MLO Affiliated links: <none>, Vendor Data: <none>> SignalStrength: -50 UnderlyingNetworks: Null]
+08-30 11:42:09.819 23823 23828 I .gms.persistent: Background concurrent mark compact GC freed 17MB AllocSpace bytes, 9(376KB) LOS objects, 49% free, 11MB/22MB, paused 485us,1.444ms total 152.910ms
+08-30 11:42:09.826   584  2011 I RegistrationProxy: IGetRegistrationCallback.onSuccess
+08-30 11:42:09.828   584  2011 I RemoteProvisionSysSvc: Fetching key 10143 for client 122537272
+08-30 11:42:10.080     0     0 I servicemanager: Caller(pid=2656,uid=10208,sid=u:r:rkpdapp:s0:c208,c256,c512,c768) Found android.hardware.security.keymint.IRemotelyProvisionedComponent/default in device VINTF manifest.
+08-30 11:42:09.828   584  2011 I RegistrationProxy: getKeyAsync operation started with callback 260323601
+08-30 11:42:09.829  2656 25645 I RkpdRegistrationBinder: Key requested for : android.hardware.security.keymint.IRemotelyProvisionedComponent/default, clientUid: 1017, keyId: 10143, callback: 83486667
+08-30 11:42:09.830  2656 25645 I RkpdRegistrationBinder: No key assigned, looking for an available key with expiry of 2026-09-02T08:42:09.830183Z
+08-30 11:42:09.830  2656 25645 I RkpdRegistrationBinder: No key assigned, looking for an available key with expiry of 2026-08-30T09:42:09.829493Z
+08-30 11:42:09.830  2656 25645 I RkpdRegistrationBinder: No keys are available, kicking off provisioning
+08-30 11:42:09.833   584  1369 I RegistrationProxy: Provisioning required before keys are available for android.security.rkp.service.RegistrationProxy$2@f843911
+08-30 11:42:09.836 23823 23830 W .gms.persistent: ApkAssets: Deleting an ApkAssets object '<empty> and /product/priv-app/SafetyHubPrebuilt/SafetyHubPrebuilt.apk' with 1 weak references
+08-30 11:42:09.838  2656 25645 E RkpdRegistrationBinder: RKPD failed to provision keys
+08-30 11:42:09.838  2656 25645 E RkpdRegistrationBinder: com.android.rkpdapp.RkpdException: No network detected.
+08-30 11:42:09.838  2656 25645 E RkpdRegistrationBinder: 	at com.android.rkpdapp.interfaces.ServerInterface.fetchGeek(ServerInterface.java:242)
+08-30 11:42:09.838  2656 25645 E RkpdRegistrationBinder: 	at com.android.rkpdapp.interfaces.ServerInterface.fetchGeekAndUpdate(ServerInterface.java:317)
+08-30 11:42:09.838  2656 25645 E RkpdRegistrationBinder: 	at com.android.rkpdapp.service.RegistrationBinder.fetchGeekAndProvisionKeys(RegistrationBinder.java:144)
+08-30 11:42:09.838  2656 25645 E RkpdRegistrationBinder: 	at com.android.rkpdapp.service.RegistrationBinder.getKeyWorker(RegistrationBinder.java:117)
+08-30 11:42:09.838  2656 25645 E RkpdRegistrationBinder: 	at com.android.rkpdapp.service.RegistrationBinder.getKeyThreadWorker(RegistrationBinder.java:235)
+08-30 11:42:09.838  2656 25645 E RkpdRegistrationBinder: 	at com.android.rkpdapp.service.RegistrationBinder.lambda$getKey$3(RegistrationBinder.java:223)
+08-30 11:42:09.838  2656 25645 E RkpdRegistrationBinder: 	at com.android.rkpdapp.service.RegistrationBinder.$r8$lambda$3tjqw_fbETEHa8OE8G7aQdQksF8(RegistrationBinder.java:0)
+08-30 11:42:09.838  2656 25645 E RkpdRegistrationBinder: 	at com.android.rkpdapp.service.RegistrationBinder$$ExternalSyntheticLambda12.run(R8$$SyntheticClass:0)
+08-30 11:42:09.838  2656 25645 E RkpdRegistrationBinder: 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:487)
+08-30 11:42:09.838  2656 25645 E RkpdRegistrationBinder: 	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+08-30 11:42:09.838  2656 25645 E RkpdRegistrationBinder: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+08-30 11:42:09.838  2656 25645 E RkpdRegistrationBinder: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644)
+08-30 11:42:09.838  2656 25645 E RkpdRegistrationBinder: 	at java.lang.Thread.run(Thread.java:1012)
+08-30 11:42:09.838   584   584 E RemoteProvisionSysSvc: RKP error fetching key for client 122537272: ERROR_PENDING_INTERNET_CONNECTIVITY: No network detected.
+08-30 11:42:09.838   190   190 E keystore2: system/security/keystore2/rkpd_client/src/lib.rs:193 - IGetKeyCallback failed: ERROR_PENDING_INTERNET_CONNECTIVITY: No network detected.
+08-30 11:42:09.838   190   201 W keystore2: system/security/keystore2/src/remote_provisioning.rs:98 - Error occurred: system/security/keystore2/rkpd_client/src/lib.rs:194: GetKeyCallback failed: r#ERROR_PENDING_INTERNET_CONNECTIVITY "ERROR_PENDING_INTERNET_CONNECTIVITY: No network detected."
+08-30 11:42:09.838   190   201 W keystore2:
+08-30 11:42:09.838   190   201 W keystore2: Caused by:
+08-30 11:42:09.838   190   201 W keystore2:     Failed to get key: r#ERROR_PENDING_INTERNET_CONNECTIVITY
+08-30 11:42:09.839   195   195 D SoftKeymaster: system/keymaster/km_openssl/certificate_utils.cpp, Line 148: Using TAG_CERTIFICATE_NOT_BEFORE: 0
+08-30 11:42:09.839   195   195 D SoftKeymaster: system/keymaster/km_openssl/certificate_utils.cpp, Line 154: Using TAG_CERTIFICATE_NOT_AFTER: 2461449600000
+08-30 11:42:09.839   195   195 D SoftKeymaster: system/keymaster/km_openssl/certificate_utils.cpp, Line 159: Got certificate date params:  NotBefore = 0, NotAfter = 2461449600000
+08-30 11:42:09.839   195   195 D SoftKeymaster: system/keymaster/km_openssl/certificate_utils.cpp, Line 273: Setting notBefore to 0
+08-30 11:42:09.839   195   195 D SoftKeymaster: system/keymaster/km_openssl/certificate_utils.cpp, Line 282: Setting notAfter to 2461449600
+08-30 11:42:09.856 23212 23216 I earchbox:search: Background concurrent mark compact GC freed 6982KB AllocSpace bytes, 7(136KB) LOS objects, 49% free, 10MB/21MB, paused 18.403ms,2.163ms total 231.061ms
+08-30 11:42:09.860 23212 23218 W earchbox:search: ApkAssets: Deleting an ApkAssets object '<empty> and /data/app/~~VsKOG2VmrfOAO7-8JYysEA==/com.google.android.webview-FPqrgz3a3EKdOustQlpLqA==/WebViewGoogle.apk' with 2 weak references
+08-30 11:42:09.921 23212 23268 I ZipLPPopulator: (REDACTED) Updated file group for group '%s' from location: %s
+08-30 11:42:09.921 23212 23268 I A       : (REDACTED) NGA Sync: MDD Task: %s done.
+08-30 11:42:09.921 23212 23232 I A       : #getInstalledPackages
+08-30 11:42:09.921 23212 23268 I A       : (REDACTED) NGA Sync: isNgaSyncEnabled: %s; enableFileGroupPopulator: %s; requiresMddAssets: %s
+08-30 11:42:09.922 23212 23263 W SearchServiceCore: Abort, client detached.
+08-30 11:42:09.923 23212 23237 I HotwordModelPopulator: (REDACTED) Updated file group for locale '%s' from location: %s. Download pending. Version: %d
+08-30 11:42:09.923 23212 23237 I HotwordModelPopulator: (REDACTED) Updated file group for locale '%s' from location: %s. Download pending. Version: %d
+08-30 11:42:09.923 23823 24388 W GmsUrlRequestImpl: Content-Type header is overwritten.
+08-30 11:42:09.924 23212 23232 I LPRequestState: (REDACTED) [%s] #resolveUnusedLanguagePacks
+08-30 11:42:09.924 23212 23232 I LPRequestState: (REDACTED) [%s] #resolveDesiredLanguagePacks
+08-30 11:42:09.925   380 25650 I resolv  : GetAddrInfoHandler::run: {100 786532 100 983140 10143 0}
+08-30 11:42:09.925   380 25651 I resolv  : res_nmkquery: (QUERY, IN, AAAA)
+08-30 11:42:09.925   380 25651 I resolv  : res_stats_usable_server: too many resolution errors, ignoring server
+08-30 11:42:09.926   380 25651 I resolv  : res_nsend: used send_dg 0 terrno: 101
+08-30 11:42:09.926   380 25651 I resolv  : res_nsend: used send_dg 0 terrno: 101
+08-30 11:42:09.926   380 25651 I resolv  : doQuery: rcode=0, ancount=0, return value=-111
+08-30 11:42:09.928   380 25652 I resolv  : GetAddrInfoHandler::run: {100 786532 100 983140 10143 0}
+08-30 11:42:09.929   380 25653 I resolv  : res_nmkquery: (QUERY, IN, AAAA)
+08-30 11:42:09.929   380 25653 I resolv  : res_stats_usable_server: too many resolution errors, ignoring server
+08-30 11:42:09.929   380 25653 I resolv  : res_nsend: used send_dg 0 terrno: 101
+08-30 11:42:09.930   380 25653 I resolv  : res_nsend: used send_dg 0 terrno: 101
+08-30 11:42:09.930   380 25653 I resolv  : doQuery: rcode=0, ancount=0, return value=-111
+08-30 11:42:09.932 23823 24388 W GLSUser : [AppCertManager] Exception while requesting key:
+08-30 11:42:09.932 23823 24388 W GLSUser : java.util.concurrent.ExecutionException: bpcw: Failed to process request
+08-30 11:42:09.932 23823 24388 W GLSUser : 	at etvr.s(:com.google.android.gms@242335041@24.23.35 (190800-646585959):21)
+08-30 11:42:09.932 23823 24388 W GLSUser : 	at etvr.get(:com.google.android.gms@242335041@24.23.35 (190800-646585959):10)
+08-30 11:42:09.932 23823 24388 W GLSUser : 	at yfw.b(:com.google.android.gms@242335041@24.23.35 (190800-646585959):477)
+08-30 11:42:09.932 23823 24388 W GLSUser : 	at yfu.b(:com.google.android.gms@242335041@24.23.35 (190800-646585959):31)
+08-30 11:42:09.932 23823 24388 W GLSUser : 	at yfp.a(:com.google.android.gms@242335041@24.23.35 (190800-646585959):1)
+08-30 11:42:09.932 23823 24388 W GLSUser : 	at yfs.a(:com.google.android.gms@242335041@24.23.35 (190800-646585959):58)
+08-30 11:42:09.932 23823 24388 W GLSUser : 	at uou.call(:com.google.android.gms@242335041@24.23.35 (190800-646585959):56)
+08-30 11:42:09.932 23823 24388 W GLSUser : 	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+08-30 11:42:09.932 23823 24388 W GLSUser : 	at angs.c(:com.google.android.gms@242335041@24.23.35 (190800-646585959):50)
+08-30 11:42:09.932 23823 24388 W GLSUser : 	at angs.run(:com.google.android.gms@242335041@24.23.35 (190800-646585959):76)
+08-30 11:42:09.932 23823 24388 W GLSUser : 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+08-30 11:42:09.932 23823 24388 W GLSUser : 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644)
+08-30 11:42:09.932 23823 24388 W GLSUser : 	at anmg.run(:com.google.android.gms@242335041@24.23.35 (190800-646585959):8)
+08-30 11:42:09.932 23823 24388 W GLSUser : 	at java.lang.Thread.run(Thread.java:1012)
+08-30 11:42:09.932 23823 24388 W GLSUser : Caused by: bpcw: Failed to process request
+08-30 11:42:09.932 23823 24388 W GLSUser : 	at bpgb.b(:com.google.android.gms@242335041@24.23.35 (190800-646585959):19)
+08-30 11:42:09.932 23823 24388 W GLSUser : 	at bpgp.onFailed(:com.google.android.gms@242335041@24.23.35 (190800-646585959):13)
+08-30 11:42:09.932 23823 24388 W GLSUser : 	at m.mw.onFailed(:com.google.android.gms.dynamite_cronetdynamite@242335041@24.23.35 (190800-0):3)
+08-30 11:42:09.932 23823 24388 W GLSUser : 	at m.lw.run(:com.google.android.gms.dynamite_cronetdynamite@242335041@24.23.35 (190800-0):9)
+08-30 11:42:09.932 23823 24388 W GLSUser : 	... 6 more
+08-30 11:42:09.932 23823 24388 W GLSUser : Caused by: m.mg: Exception in CronetUrlRequest: net::ERR_NAME_NOT_RESOLVED, ErrorCode=1, InternalErrorCode=-105, Retryable=false
+08-30 11:42:09.932 23823 24388 W GLSUser : 	at org.chromium.net.impl.CronetUrlRequest.onError(:com.google.android.gms.dynamite_cronetdynamite@242335041@24.23.35 (190800-0):4)
+08-30 11:42:09.935 23823 23863 I NetworkScheduler.Stats: Task com.google.android.gms/com.google.android.gms.auth.account.be.legacy.AuthCronService finished executing. cause:5 result: 3 elapsed_millis: 281 uptime_millis: 281 exec_start_elapsed_seconds: 86548 [CONTEXT service_id=218 ]
+08-30 11:42:10.195 25537 25568 D EGL_emulation: app_time_stats: avg=33.30ms min=30.52ms max=36.85ms count=31
+08-30 11:42:10.222   584   853 W BestClock: java.time.DateTimeException: Missing network time fix
+08-30 11:42:10.222   584   853 W BestClock: java.time.DateTimeException: Missing network time fix
+08-30 11:42:10.222   584   853 W BestClock: java.time.DateTimeException: Missing network time fix
+08-30 11:42:10.223   584   853 W BestClock: java.time.DateTimeException: Missing network time fix
+08-30 11:42:10.223   584   853 W BestClock: java.time.DateTimeException: Missing network time fix
+08-30 11:42:10.549  1385 15152 E WakeLock: DG:service ** IS FORCE-RELEASED ON TIMEOUT **
+08-30 11:42:10.556 25656 25656 W BpBinder: Linking to death on android.gui.ISurfaceComposer but there are no threads (yet?) listening to incoming transactions. See ProcessState::startThreadPool and ProcessState::setThreadPoolMaxThreadCount. Generally you should setup the binder threadpool before other initialization steps.
+08-30 11:42:10.556 25656 25656 W ProcessState: Extra binder thread started, but 0 threads requested. Do not use *startThreadPool when zero threads are requested.
+08-30 11:42:10.577   584  1369 W IPCThreadState: Sending oneway calls to frozen process.
+08-30 11:42:10.838     0     0 I servicemanager: Caller(pid=25656,uid=2000,sid=u:r:shell:s0) Could not find android.hardware.graphics.allocator.IAllocator/default in the VINTF manifest. No alternative instances declared in VINTF.
+08-30 11:42:10.580   168   168 I hwservicemanager: getTransport: Cannot find entry android.hardware.graphics.mapper@4.0::IMapper/default in either framework or device VINTF manifest.
+08-30 11:42:10.580 25656 25657 I Gralloc4: mapper 4.x is not supported
+08-30 11:42:10.652 23212 23268 I A       : Running throttled refresh
+08-30 11:42:10.653 23212 23268 I A       : Running throttled refresh
+08-30 11:42:10.653 23212 23268 I A       : Running throttled refresh
+08-30 11:42:10.653 23212 23268 I A       : Running throttled refresh
+08-30 11:42:10.672 23212 23268 I A       : Running throttled refresh
+08-30 11:42:10.672 23212 23268 I SettingsDataLayer.ML: (REDACTED) #shouldMigrate(): allowMobileLocaleSettingsDataMigration = %b,
+08-30 11:42:10.674 23212 23237 W MDD     : GddFileGroupPopulator: Account was not provided, skipping private sync for corpus: GDD_APA_HEAD_SUGGEST, configuration: GddAgsaApaHeadSuggest
+08-30 11:42:10.675 23212 23238 W MDD     : GddFileGroupPopulator: Account was not provided, skipping private sync for corpus: GDD_AIP_TOAST_QUALITY, configuration: GddAipToastQuality
+08-30 11:42:10.685 23212 23237 D nativeloader: Load libgeller_jni_lib_split.so using ns product-clns-7 from class loader (caller=/product/priv-app/Velvet/Velvet.apk!classes6.dex): dlopen failed: library "libgeller_jni_lib_split.so" not found
+08-30 11:42:10.708 23212 23237 D nativeloader: Load /product/priv-app/Velvet/Velvet.apk!/lib/x86_64/libgeller_jni_lib.so using ns product-clns-7 from class loader (caller=/product/priv-app/Velvet/Velvet.apk!classes6.dex): ok
+08-30 11:42:10.712 23212 23239 W MDD     : GddFileGroupPopulator: Account was not provided, skipping private sync for corpus: GDD_APA_HOTWORD_MODEL, configuration: GddAgsaApaHotword
+08-30 11:42:10.712 23212 23239 W MDD     : GddFileGroupPopulator: Account was not provided, skipping private sync for corpus: GDD_APA_BISTO, configuration: GddAgsaApaBisto
+08-30 11:42:10.716 23212 23268 I A       : (REDACTED) Starting batch sync for corpora: %s
+08-30 11:42:10.717 23212 23239 W A       : (REDACTED) Corpus: %s is disabled
+08-30 11:42:10.719 23212 23232 I A       : (REDACTED) Starting batch sync for corpora: %s
+08-30 11:42:10.719 23212 23268 I A       : (REDACTED) Starting batch sync for corpora: %s
+08-30 11:42:10.721 23212 23237 W MDD     : GddFileGroupPopulator: Account was not provided, skipping private sync for corpus: GDD_APA_LIGHTWEIGHT_TOKENS, configuration: GddAgsaApaLightweightTokens
+08-30 11:42:10.732 23212 23238 I DPContextParams: Building Device Properties.
+08-30 11:42:10.735 23212 23237 I AppStateUtil: (REDACTED) getting App Capabilities %s
+08-30 11:42:10.737 23212 23237 I DPContextParams: Building Device Properties.
+08-30 11:42:10.739 23212 23239 I AppStateUtil: (REDACTED) getting App Capabilities %s
+08-30 11:42:10.750 23212 23232 I A       : (REDACTED) Starting batch sync for corpora: %s
+08-30 11:42:10.755 23212 23237 I A       : (REDACTED) Setting isLegacySQLite mode to %s.
+08-30 11:42:10.766 23212 23239 I AppStateUtil: (REDACTED) getting App Capabilities %s
+08-30 11:42:10.766 23212 23239 I DPContextParams: Building Device Properties.
+08-30 11:42:10.782 23212 23238 W A       : Couldn't calculate ClientInstanceId, no account name
+08-30 11:42:10.783 23212 23238 W A       : Couldn't calculate ClientInstanceId, no AndroidId
+08-30 11:42:10.784 23212 25614 I A       : The GellerConfig is not present, returning null.
+08-30 11:42:10.785 23212 25614 I A       : (REDACTED) The GellerConfig is not present, defaulting isUploadEnabled for corpus %s to true.
+08-30 11:42:10.787 23212 25519 I A       : (REDACTED) No previous syncToken for corpus %s found.
+08-30 11:42:10.840   445  3029 W APM::HwModule: getDeviceDescriptor: could not find HW module for device  (AUDIO_DEVICE_OUT_WIRED_HEADSET, 00000004) address
+08-30 11:42:10.840   445   473 W APM::HwModule: getDeviceDescriptor: could not find HW module for device  (AUDIO_DEVICE_OUT_WIRED_HEADPHONE, 00000008) address
+08-30 11:42:10.841   445 10254 W APM::HwModule: getDeviceDescriptor: could not find HW module for device  (AUDIO_DEVICE_OUT_WIRED_HEADSET, 00000004) address
+08-30 11:42:10.841   445 10831 W APM::HwModule: getDeviceDescriptor: could not find HW module for device  (AUDIO_DEVICE_OUT_USB_HEADSET, 04000000) address
+08-30 11:42:10.841   445   473 W APM::HwModule: getDeviceDescriptor: could not find HW module for device  (AUDIO_DEVICE_OUT_WIRED_HEADPHONE, 00000008) address
+08-30 11:42:10.842   445   473 W APM::HwModule: getDeviceDescriptor: could not find HW module for device  (AUDIO_DEVICE_OUT_USB_HEADSET, 04000000) address
+08-30 11:42:10.842   445   471 W APM::HwModule: getDeviceDescriptor: could not find HW module for device  (AUDIO_DEVICE_OUT_WIRED_HEADSET, 00000004) address
+08-30 11:42:10.842   445   471 W APM::HwModule: getDeviceDescriptor: could not find HW module for device  (AUDIO_DEVICE_OUT_WIRED_HEADPHONE, 00000008) address
+08-30 11:42:10.843   445   471 W APM::HwModule: getDeviceDescriptor: could not find HW module for device  (AUDIO_DEVICE_OUT_USB_HEADSET, 04000000) address
+08-30 11:42:10.869 23212 23239 W io.grpc.a.d: Failed to create JWT helper. This is unexpected
+08-30 11:42:10.869 23212 23239 W io.grpc.a.d: java.lang.NoSuchMethodException: com.google.i.a.l.getScopes []
+08-30 11:42:10.869 23212 23239 W io.grpc.a.d: 	at java.lang.Class.getMethod(Class.java:2950)
+08-30 11:42:10.869 23212 23239 W io.grpc.a.d: 	at java.lang.Class.getMethod(Class.java:2450)
+08-30 11:42:10.869 23212 23239 W io.grpc.a.d: 	at io.grpc.a.b.<init>(PG:15)
+08-30 11:42:10.869 23212 23239 W io.grpc.a.d: 	at io.grpc.a.d.<clinit>(PG:27)
+08-30 11:42:10.869 23212 23239 W io.grpc.a.d: 	at com.google.android.libraries.geller.h.bk.d(PG:99)
+08-30 11:42:10.869 23212 23239 W io.grpc.a.d: 	at com.google.android.libraries.geller.h.be.a(PG:32)
+08-30 11:42:10.869 23212 23239 W io.grpc.a.d: 	at com.google.apps.tiktok.tracing.ew.a(PG:18)
+08-30 11:42:10.869 23212 23239 W io.grpc.a.d: 	at com.google.common.util.concurrent.ac.apply(PG:14)
+08-30 11:42:10.869 23212 23239 W io.grpc.a.d: 	at com.google.common.util.concurrent.h.e(PG:3)
+08-30 11:42:10.869 23212 23239 W io.grpc.a.d: 	at com.google.common.util.concurrent.j.run(PG:42)
+08-30 11:42:10.869 23212 23239 W io.grpc.a.d: 	at com.google.android.libraries.k.x.run(PG:3)
+08-30 11:42:10.869 23212 23239 W io.grpc.a.d: 	at com.google.common.n.c.c.run(PG:50)
+08-30 11:42:10.869 23212 23239 W io.grpc.a.d: 	at com.google.android.libraries.k.e.run(PG:8)
+08-30 11:42:10.869 23212 23239 W io.grpc.a.d: 	at java.lang.Thread.run(Thread.java:1012)
+08-30 11:42:10.869 23212 23239 W io.grpc.a.d: 	at com.google.android.libraries.k.d.b.run(PG:74)
+08-30 11:42:10.875   380 25660 I resolv  : GetAddrInfoHandler::run: {100 262244 100 983140 10144 0}
+08-30 11:42:10.875   380 25661 I resolv  : res_nmkquery: (QUERY, IN, AAAA)
+08-30 11:42:10.876   380 25661 I resolv  : res_stats_usable_server: too many resolution errors, ignoring server
+08-30 11:42:10.877   380 25661 I resolv  : res_nsend: used send_dg 0 terrno: 101
+08-30 11:42:10.877   380 25661 I resolv  : res_nsend: used send_dg 0 terrno: 101
+08-30 11:42:10.877   380 25661 I resolv  : doQuery: rcode=0, ancount=0, return value=-111
+08-30 11:42:10.878 23212 25659 W io.grpc.f.gq: [{0}] Failed to resolve name. status={1}
+08-30 11:42:10.887 23212 23239 E MDD     : GddFileGroupPopulator: GDD Sync failed for corpus: GDD_APA_HEAD_SUGGEST, configuration: GddAgsaApaHeadSuggest
+08-30 11:42:10.909  1385  1385 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.gms.feedback.internal.IFeedbackService dat=chimera-action:/... cmp=com.google.android.gms/.chimera.GmsBoundBrokerService }
+08-30 11:42:10.923 23212 25614 I A       : The GellerConfig is not present, returning null.
+08-30 11:42:10.923 23212 25614 I A       : (REDACTED) The GellerConfig is not present, defaulting isUploadEnabled for corpus %s to true.
+08-30 11:42:10.923 23212 25614 I A       : The GellerConfig is not present, returning null.
+08-30 11:42:10.923 23212 25614 I A       : (REDACTED) The GellerConfig is not present, defaulting isUploadEnabled for corpus %s to true.
+08-30 11:42:10.924 23212 25614 I A       : The GellerConfig is not present, returning null.
+08-30 11:42:10.924 23212 25614 I A       : (REDACTED) The GellerConfig is not present, defaulting isUploadEnabled for corpus %s to true.
+08-30 11:42:10.924 23212 25614 I A       : (REDACTED) No previous syncToken for corpus %s found.
+08-30 11:42:10.925 23212 25487 I A       : (REDACTED) No previous syncToken for corpus %s found.
+08-30 11:42:10.926 23212 25659 W io.grpc.f.gq: [{0}] Failed to resolve name. status={1}
+08-30 11:42:10.926 23212 25519 I A       : (REDACTED) No previous syncToken for corpus %s found.
+08-30 11:42:10.927 23212 25662 W io.grpc.f.gq: [{0}] Failed to resolve name. status={1}
+08-30 11:42:10.927 23212 25663 W io.grpc.f.gq: [{0}] Failed to resolve name. status={1}
+08-30 11:42:10.929 23212 23237 E MDD     : GddFileGroupPopulator: GDD Sync failed for corpus: GDD_APA_HOTWORD_MODEL, configuration: GddAgsaApaHotword
+08-30 11:42:10.931 23212 23237 E MDD     : GddFileGroupPopulator: GDD Sync failed for corpus: GDD_APA_LIGHTWEIGHT_TOKENS, configuration: GddAgsaApaLightweightTokens
+08-30 11:42:10.931 23212 23238 E MDD     : GddFileGroupPopulator: GDD Sync failed for corpus: GDD_APA_BISTO, configuration: GddAgsaApaBisto
+08-30 11:42:10.935 23212 23268 I A       : (REDACTED) NGA Sync: MDD Task: %s done.
+08-30 11:42:10.935 23212 23268 I A       : (REDACTED) NGA Sync: isNgaSyncEnabled: %s; enableFileGroupPopulator: %s; requiresMddAssets: %s
+08-30 11:42:10.957   380   380 I netd    : tetherGetStats() -> {[]} <0.40ms>
+08-30 11:42:10.989 23823 23823 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.gms.icing.LIGHTWEIGHT_INDEX_SERVICE dat=chimera-action:/... cmp=com.google.android.gms/.chimera.PersistentApiService }
+08-30 11:42:11.268     0     0 I logd    : logdr: UID=2000 GID=2000 PID=25670 n tail=0 logMask=99 pid=0 start=0ns deadline=0ns

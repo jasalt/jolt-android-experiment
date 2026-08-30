@@ -2,7 +2,7 @@
 
 This document records **observed** constraints and explicitly labels future
 work. It applies only to the independent Raylib NativeActivity research track
-in [`RAYLIB-PLAN.md`](RAYLIB-PLAN.md). Primary Compose/JNI constraints remain
+in the [Raylib research plan](../docs/RAYLIB-PLAN.md). Primary Compose/JNI constraints remain
 in [`GOTCHAS.md`](GOTCHAS.md).
 
 ## Observed during baseline pinning
@@ -38,8 +38,8 @@ successful asset experiment.
 ### Upstream Jolt bindings are desktop-declared
 
 **Observed source:** pinned raylib-jlt
-[`cf16df3d323726dc8b100225eeb1156607ae4a55`](../raylib/pins.edn), `deps.edn`
-and README.
+[`cf16df3d323726dc8b100225eeb1156607ae4a55`](../raylib/pins.edn), its
+dependency manifest, and README.
 
 Its `:jolt/native` declaration lists Darwin and Linux `libraylib` paths, and
 its README requires Jolt 0.7.23+ with Raylib 6.0+. It is consequently a useful
@@ -81,6 +81,29 @@ but this current visual-host route has an explicit host-Mesa compatibility
 boundary. It is not Android evidence and must not be described as a fully
 self-contained Nix display server result.
 
+### Scalar touch works, but all-point coordinates remain ABI-gated
+
+**Observed experiment:** [RAY-010](../experiments/RAY-010-touch-adaptive-diagnostics).
+
+On the translated API-35 emulator, ADB tap/hold/drag reached Raylib as both one
+active touch (`GetTouchPointCount`/`GetTouchPointId`) and mouse-compatible
+press/down/release edges. `GetTouchX`/`GetTouchY` provided point-zero
+coordinates. The Jolt loop visibly rendered the active point and logged
+portable state; Back produced an orderly close request and same-thread shutdown.
+
+Raylib exposes all active IDs through scalar calls, but per-index coordinates
+require `GetTouchPosition`, whose `Vector2` by-value return belongs to the
+separate Android AArch64 aggregate-ABI gate. The host therefore reports that
+all-point coordinates are unavailable rather than constructing or leaking a
+native value. Standard ADB input evidenced one active pointer, not real
+multitouch.
+
+A fresh launch after selecting 1080×2400 portrait, 2400×1080 landscape, or the
+720×1280 size override reported matching live screen/render metrics and readable
+layout. With the current `configChanges` declaration, rotation can briefly
+stretch the old Raylib surface before host recreation; detailed in-process
+resize/lifecycle behavior remains a separate experiment.
+
 ### Primary Android facts do not automatically transfer
 
 The API-35 x86_64 emulator's ARM64 translation,
@@ -102,7 +125,6 @@ Add evidence-backed entries as the work reaches each boundary:
 - EGL/OpenGL ES under ARM64 translation;
 - static versus dynamic Raylib symbol topology;
 - Android AArch64 Jolt FFI aggregate ABI;
-- touch/mouse mapping and screen metrics;
 - audio and asset lifecycle;
 - Jolt GC/frame-time behavior;
 - nREPL interaction with the frame loop;

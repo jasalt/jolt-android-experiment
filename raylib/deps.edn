@@ -8,4 +8,5 @@
 
  :aliases
  {:check {:main-opts ["-e" "(println \"Raylib host dependency manifest parsed\")"]}
+  :test {:main-opts ["-m" "poc.raylib.test-runner"]}
   :minimal-smoke {:main-opts ["-m" "poc.raylib.minimal"]}}}

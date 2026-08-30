@@ -1,0 +1,1 @@
+Touch edges/state, point-0, adaptive portrait/landscape/two-size layout, and deterministic Back passed.

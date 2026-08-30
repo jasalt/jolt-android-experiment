@@ -1,0 +1,7 @@
+Starting: Intent { cmp=net.joltlang.raylibgallery/android.app.NativeActivity }
+Status: ok
+LaunchState: COLD
+Activity: net.joltlang.raylibgallery/android.app.NativeActivity
+TotalTime: 2706
+WaitTime: 2739
+Complete

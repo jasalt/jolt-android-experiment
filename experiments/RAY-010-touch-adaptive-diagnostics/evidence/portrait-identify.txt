@@ -1,0 +1,2 @@
+/home/user/dev/jail/jolt/jolt-android/experiments/RAY-010-touch-adaptive-diagnostics/evidence/portrait-hold.png PNG 1080x2400 1080x2400+0+0 8-bit sRGB 19254B 0.000u 0:00.002
+/home/user/dev/jail/jolt/jolt-android/experiments/RAY-010-touch-adaptive-diagnostics/evidence/portrait-after-drag.png PNG 1080x2400 1080x2400+0+0 8-bit sRGB 18789B 0.000u 0:00.001
