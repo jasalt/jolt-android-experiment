@@ -1598,7 +1598,16 @@ One of the purposes of this experiment is to determine whether direct CFFI is al
 
 # 36. REPL-driven development
 
-Desktop Raylib should provide the primary interactive development environment.
+**Observed result (RAY-015):** desktop Raylib now provides the primary
+interactive layout-development environment. A Linux Jolt nREPL process visibly
+applied pure, dynamically called layout-function redefinitions to a running
+Raylib window without a rebuild or restart. The captured Raylib owner and
+nREPL request workers were distinct threads, so this supports only pure
+redefinition from nREPL—not direct Raylib FFI from an nREPL worker. See
+[`experiments/RAY-015-linux-raylib-nrepl/`](../experiments/RAY-015-linux-raylib-nrepl/)
+and its retained upstream capture. Android remains AOT build/run validation;
+Android nREPL/live reload is unproven and requires a separate debug-only,
+bounded owner-thread queue experiment.
 
 Use:
 
@@ -1889,7 +1898,7 @@ The objective is architectural understanding, not a benchmark contest.
 A useful table:
 
 | Measurement | Compose/JNI host | Raylib/Jolt host |
-|---|---:|---:|
+| --- | ---: | ---: |
 | APK size | | |
 | cold startup | | |
 | native heap | | |
@@ -1952,7 +1961,7 @@ This is one of the experiment's most important outputs.
 Document the three host models side by side.
 
 | Concern | Compose Android | GTK/Glimmer | Raylib |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | UI ownership | Kotlin | Jolt/Glimmer | Jolt |
 | Rendering | Android native widgets | GTK native widgets | Raylib/OpenGL |
 | Jolt→platform | effects/JNI | CFFI/Glib/GTK | CFFI/Raylib |

@@ -111,6 +111,39 @@ Linux x86_64 evidence, not native ARM64 Linux, Android, or macOS GTK support.
 Upstream `glimmer-gtk` contains additional platform support, but it is outside
 this project's validated boundary.
 
+## Linux Raylib live-layout development
+
+For the independent Raylib host, Linux desktop nREPL is the fast visual
+iteration path; Android remains an AOT build/install/run integration target.
+The completed desktop evidence is [RAY-015](../experiments/RAY-015-linux-raylib-nrepl),
+with the complete disposable upstream capture in
+[`../../raylib-jlt/nrepl-results/`](../../raylib-jlt/nrepl-results/).
+
+Start a disposable `raylib-jlt` desktop session using its normal server:
+
+```sh
+cd ../raylib-jlt
+bb check
+bb nrepl 17888
+```
+
+Connect only over loopback, load its retained `nrepl-results` probe forms, and
+redefine a pure `defn` called dynamically by the drawing loop. The captured
+experiment shows that visible layout replacement works without process restart,
+but the Raylib context owner and nREPL request workers are different Jolt/Chez
+threads. Never call Raylib drawing, lifecycle, input, or resource FFI from an
+nREPL worker, and never retain a startup-captured draw function when it is
+intended to be redefined. Use an application-owned bounded owner-thread queue
+for any future evaluated work that needs to interact with the frame loop.
+
+The current Android gallery has **no** nREPL server. `scripts/android-repl` is
+a debug-only, one-form ADB-forwarded evaluator—not nREPL/CIDER or an established
+hot-reload facility. Keep Android development to Linux live iteration followed
+by the normal ARM64 library/APK rebuild and runtime validation. A future Android
+live-eval feature requires a separate debug-only, localhost/ADB-forwarded,
+bounded queue experiment on the existing Raylib/Jolt owner thread; it must not
+enter Jolt from a transport worker or be included in a release APK.
+
 ## Clean-room verification
 
 From a clean generated state, use the pinned shell and a Jolt checkout at the

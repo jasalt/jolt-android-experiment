@@ -127,6 +127,26 @@ layout. With the current `configChanges` declaration, rotation can briefly
 stretch the old Raylib surface before host recreation; detailed in-process
 resize/lifecycle behavior remains a separate experiment.
 
+### Desktop nREPL redefinition needs a Raylib owner-thread boundary
+
+**Observed experiment:** [RAY-015](../experiments/RAY-015-linux-raylib-nrepl),
+with complete retained capture in
+[`../../raylib-jlt/nrepl-results/`](../../raylib-jlt/nrepl-results/).
+
+On Linux desktop, a normal Jolt nREPL server remained responsive while a
+Raylib window rendered from a dynamically called Var. Two nREPL `defn`
+replacements visibly changed subsequent frames without rebuilding or restarting
+the process. The Raylib loop was on Jolt/Chez thread 48, while nREPL handlers
+ran on threads 49–51. A captured startup function value remained stale after a
+redefinition; the per-frame Var call observed it.
+
+**Consequence:** use desktop nREPL for pure layout/update/draw iteration, but
+never issue Raylib FFI from an nREPL worker. The server does not transfer a
+request onto the Raylib context owner. Any future request that must execute
+against the live application needs an application-owned bounded queue drained
+by the owner at frame boundaries. This evidence does not establish Android
+nREPL, CIDER, or hot reload.
+
 ### Primary Android facts do not automatically transfer
 
 The API-35 x86_64 emulator's ARM64 translation,
@@ -150,5 +170,5 @@ Add evidence-backed entries as the work reaches each boundary:
 - Android AArch64 Jolt FFI aggregate ABI;
 - audio and asset lifecycle;
 - Jolt GC/frame-time behavior;
-- nREPL interaction with the frame loop;
+- debug-only Android live evaluation through a bounded owner-thread queue;
 - text input, accessibility, and Raygui mobile ergonomics.
