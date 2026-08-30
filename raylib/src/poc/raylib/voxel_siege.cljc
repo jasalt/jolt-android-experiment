@@ -4,7 +4,6 @@
   Box3D, Raylib, sensors and native handles stay outside this namespace. The
   scene adapter supplies physics facts and consumes the commands returned by
   `input-command`."
-  (:refer-clojure :exclude [reset])
   (:require [clojure.set :as set]))
 
 (def balls-per-round 5)
@@ -80,14 +79,14 @@
 
 (defn release-fire [state]
   (if (:charging? state)
-    (let [{:keys [yaw pitch]} (:aim state)]
-      (-> state
-          (assoc :charging? false :charge-seconds 0.0)
-          (update :balls-left dec)
-          (update :shots conj {:aim [yaw pitch]
-                               :direction (direction yaw pitch)
-                               :power (power-from-charge (:charge-seconds state))})
-          (update :phase phase-after-destruction)))
+    (let [{:keys [yaw pitch]} (:aim state)
+          next-state (-> state
+                         (assoc :charging? false :charge-seconds 0.0)
+                         (update :balls-left dec)
+                         (update :shots conj {:aim [yaw pitch]
+                                              :direction (direction yaw pitch)
+                                              :power (power-from-charge (:charge-seconds state))}))]
+      (assoc next-state :phase (phase-after-destruction next-state)))
     state))
 
 (defn tick [state dt]
@@ -125,3 +124,16 @@
       (inside? (:fire rects) position) {:command (if (= phase :release) :release-fire :press-fire)}
       :else {:command (if (= phase :drag) :aim-drag :none)
              :position position})))
+
+(defn apply-command
+  "Apply a normalized command; platform adapters do hit testing only once and
+  pass drag deltas or orientation samples as command data."
+  [state {:keys [command dx dy pose]}]
+  (case command
+    :reset (reset state)
+    :press-fire (press-fire state)
+    :release-fire (release-fire state)
+    :aim-drag (aim-drag state dx dy)
+    :calibrate (calibrate state pose)
+    :orientation-aim (orientation-aim state pose)
+    state))

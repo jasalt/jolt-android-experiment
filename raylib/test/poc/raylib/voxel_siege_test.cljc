@@ -1,5 +1,5 @@
 (ns poc.raylib.voxel-siege-test
-  (:require [clojure.test :refer [deftest is testing]]
+  (:require [clojure.test :refer [deftest is]]
             [poc.raylib.voxel-siege :as siege]))
 
 (deftest deterministic-round-fixture
@@ -38,8 +38,17 @@
                   (siege/calibrate [1.0 0.2])
                   (siege/orientation-aim [1.1 0.3]))]
     (is (:orientation? state))
-    (is (= 0.1 (get-in state [:aim :yaw])))
-    (is (= 0.5 (get-in state [:aim :pitch])))))
+    (is (< (Math/abs (- 0.1 (get-in state [:aim :yaw]))) 1e-9))
+    (is (< (Math/abs (- 0.5 (get-in state [:aim :pitch]))) 1e-9))))
+
+(deftest command-application
+  (let [state (-> (siege/new-game)
+                  (siege/apply-command {:command :aim-drag :dx 10 :dy -10})
+                  (siege/apply-command {:command :press-fire})
+                  (siege/apply-command {:command :release-fire}))]
+    (is (= 4 (:balls-left state)))
+    (is (= 0.08 (get-in state [:aim :yaw])))
+    (is (< (Math/abs (- 0.48 (get-in state [:aim :pitch]))) 1e-9))))
 
 (deftest destruction-threshold
   (let [state (siege/new-game #{[0 0 0] [1 0 0] [2 0 0]})
