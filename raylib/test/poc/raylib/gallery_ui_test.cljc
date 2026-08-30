@@ -9,6 +9,15 @@
                                :render-width 1080 :render-height 2400}))
 (def sizes (diagnostics/layout portrait-metrics))
 
+(deftest live-presentation-is-pure-data-test
+  (is (= {:revision :baseline
+          :title "Jolt + Raylib Gallery"
+          :subtitle "Choose a touch-first scene"
+          :background [245 245 245 255]
+          :accent [0 82 172 255]
+          :card [35 92 150 255]}
+         (gallery-ui/live-presentation))))
+
 (deftest adaptive-card-layout-test
   (let [portrait (gallery-ui/gallery-layout portrait-metrics scene-ids sizes)
         landscape-metrics (diagnostics/screen-metrics

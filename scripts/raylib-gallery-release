@@ -88,7 +88,7 @@ done
 
 # This reuses the proven Android-target Jolt library build and stages only the
 # generated library required by the NativeActivity module.
-./scripts/raylib-jolt-loop-build
+./scripts/raylib-jolt-loop-build release
 stage="$root/raylib/loop-android/src/main/jniLibs/arm64-v8a"
 rm -rf "$root/raylib/loop-android/src/main/jniLibs"
 mkdir -p "$stage"

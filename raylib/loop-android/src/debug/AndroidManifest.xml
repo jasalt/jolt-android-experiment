@@ -1,0 +1,5 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+  <!-- Debug-only loopback nREPL reached through adb forward. The release
+       manifest deliberately has no INTERNET permission or active listener. -->
+  <uses-permission android:name="android.permission.INTERNET" />
+</manifest>

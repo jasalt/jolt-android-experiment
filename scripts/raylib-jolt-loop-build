@@ -9,6 +9,12 @@ revision="ae5c5a6d5be263a883e9b4b53f255b8c0b493d3e"
 jolt_patch="$root/patches/jolt/0001-fix-source-mode-app-runtime-snapshot.patch"
 fixture="$root/raylib/android-loop"
 output="$root/native/jolt/android-arm64/arm64-v8a/libjoltraylib-loop.so"
+mode=${1:-debug}
+case "$mode" in
+  debug) build_flags=(--dev); entry=poc.raylib.loop-debug ;;
+  release) build_flags=(); entry=poc.raylib.loop ;;
+  *) echo "usage: $0 [debug|release]" >&2; exit 2 ;;
+esac
 
 [[ "$(git -C "$jolt_source" rev-parse HEAD)" == "$revision" ]] || {
   echo "JOLT_SOURCE must be at $revision" >&2
@@ -43,8 +49,9 @@ JOLT_CHEZ_CSV="$chez_source/ta6le/boot/ta6le" \
 SCHEMEHEAPDIRS="$chez_source/ta6le/boot/ta6le" \
 JOLT_TARGET_CC="$ndk_clang" \
 JOLT_TARGET_LINK_LIBS="-L$pack/lib -llz4 -lz -lm -ldl" \
-"$work/jolt/bin/jolt" build --library -m poc.raylib.loop \
-  -o "$work/libjoltraylib-loop.so" --target tarm64le --target-pack "$pack"
+"$work/jolt/bin/jolt" build --library -m "$entry" \
+  -o "$work/libjoltraylib-loop.so" "${build_flags[@]}" \
+  --target tarm64le --target-pack "$pack"
 
 install -Dm755 "$work/libjoltraylib-loop.so" "$output"
 file "$output"
@@ -55,4 +62,4 @@ for symbol in jolt_library_init jolt_lookup jolt_library_shutdown; do
     exit 1
   }
 done
-printf 'Built Raylib persistent-loop Jolt library: %s\n' "$output"
+printf 'Built Raylib persistent-loop Jolt library (%s): %s\n' "$mode" "$output"

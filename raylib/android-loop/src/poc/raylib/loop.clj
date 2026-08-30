@@ -6,7 +6,8 @@
             [poc.raylib.diagnostics :as diagnostics]
             [poc.raylib.app :as app]
             [poc.raylib.gallery :as gallery]
-            [poc.raylib.gallery-ui :as gallery-ui]))
+            [poc.raylib.gallery-ui :as gallery-ui]
+            [poc.raylib.repl-queue :as repl-queue]))
 
 (declare init-window set-target-fps should-close-raw begin-drawing
          clear-background draw-text end-drawing
@@ -55,7 +56,6 @@
           (bit-shift-left (int b) 16) (bit-shift-left (int a) 24)))
 
 (def RAYWHITE (rgba 245 245 245 255))
-(def DARKBLUE (rgba 0 82 172 255))
 (def DARKGRAY (rgba 80 80 80 255))
 (def MAROON (rgba 190 33 55 255))
 (def CARD-BLUE (rgba 35 92 150 255))
@@ -90,6 +90,47 @@
    (placeholder-scene :gesture-diagnostics "Gesture Diagnostics")])
 (def scene-registry (gallery/make-registry core-scenes))
 (def scene-ids (mapv :id core-scenes))
+(def runtime-state
+  (atom {:status :not-started
+         :frame 0
+         :presentation :baseline}))
+(def owner-work (atom repl-queue/initial-state))
+(def owner-request-sequence (atom 0))
+
+(defn submit-owner!
+  "Queue bounded no-argument work for the Raylib frame owner.
+
+  The nREPL worker only stores the closure. One request is executed between
+  frames; query its eventual data result with owner-result."
+  [work]
+  (when-not (fn? work)
+    (throw (ex-info "owner work must be a no-argument function" {})))
+  (let [request-id (swap! owner-request-sequence inc)
+        request {:id request-id :work work}]
+    (loop []
+      (let [before @owner-work
+            [after accepted?] (repl-queue/enqueue before request)]
+        (cond
+          (not accepted?) {:status :queue-full :id request-id}
+          (compare-and-set! owner-work before after)
+          {:status :queued :id request-id}
+          :else (recur))))))
+
+(defn owner-result
+  "Return a completed owner request result, or nil while queued/unknown."
+  [request-id]
+  (repl-queue/result @owner-work request-id))
+
+(def debug-repl-functions
+  {:submit-owner! submit-owner!
+   :owner-result owner-result})
+
+(defn current-runtime-state
+  "Return a pure snapshot suitable for nREPL inspection."
+  []
+  (assoc @runtime-state
+         :owner-queue {:pending (count (:pending @owner-work))
+                       :operations (vec (keys debug-repl-functions))}))
 
 (defn true-raw? [value]
   (not (zero? (bit-and value 0xff))))
@@ -137,7 +178,8 @@
             :tap-count (:tap-count diagnostic-state)
             :hold-frames (:hold-frames diagnostic-state)
             :drag-samples (:drag-samples diagnostic-state)
-            :close-requested? (:close-requested? gallery-state)})))
+            :close-requested? (:close-requested? gallery-state)
+            :runtime-state (current-runtime-state)})))
 
 (defn- gallery-layout [input]
   (gallery-ui/gallery-layout (:metrics input) scene-ids
@@ -146,6 +188,9 @@
 (defn- scene-controls [input]
   (gallery-ui/counter-controls (:metrics input)
                                (diagnostics/layout (:metrics input))))
+
+(defn- presentation-color [presentation key fallback]
+  (apply rgba (get presentation key fallback)))
 
 (defn- draw-rectangle! [rect fill-color border-color]
   (draw-rectangle (:x rect) (:y rect) (:width rect) (:height rect) fill-color)
@@ -157,20 +202,23 @@
     (name (:type effect))
     "none"))
 
-(defn draw-gallery! [frame input]
+(defn draw-gallery! [frame input presentation]
   (let [metrics (:metrics input)
         sizes (diagnostics/layout metrics)
         {:keys [margin title-size body-size line-gap]} sizes
         layout (gallery-layout input)
+        background (presentation-color presentation :background [245 245 245 255])
+        accent (presentation-color presentation :accent [0 82 172 255])
+        card-color (presentation-color presentation :card [35 92 150 255])
         [width height] (:screen metrics)]
     (begin-drawing)
-    (clear-background RAYWHITE)
-    (draw-text "Jolt + Raylib Gallery" margin margin title-size DARKBLUE)
-    (draw-text (str "Choose a touch-first scene | " width "x" height
+    (clear-background background)
+    (draw-text (:title presentation) margin margin title-size accent)
+    (draw-text (str (:subtitle presentation) " | " width "x" height
                     " | " (name (:orientation metrics)))
                margin (+ margin title-size line-gap) body-size DARKGRAY)
     (doseq [card (:cards layout)]
-      (draw-rectangle! card CARD-BLUE RAYWHITE)
+      (draw-rectangle! card card-color RAYWHITE)
       (draw-text (get-in (gallery/scene-by-id scene-registry (:scene-id card))
                          [:title])
                  (+ (:x card) margin)
@@ -184,7 +232,7 @@
                  margin footer-y body-size DARKGRAY))
     (end-drawing)))
 
-(defn draw-scene! [frame input gallery-state app-state effects]
+(defn draw-scene! [frame input gallery-state app-state effects presentation]
   (let [metrics (:metrics input)
         {:keys [margin title-size body-size line-gap]} (diagnostics/layout metrics)
         layout (gallery-layout input)
@@ -193,15 +241,17 @@
         scene-state (:scene-state gallery-state)
         controls (scene-controls input)
         view (reducer/view-model app-state)
+        background (presentation-color presentation :background [245 245 245 255])
+        accent (presentation-color presentation :accent [0 82 172 255])
         [width height] (:screen metrics)
         back (:back layout)]
     (begin-drawing)
-    (clear-background RAYWHITE)
+    (clear-background background)
     (draw-rectangle! back CARD-DARK RAYWHITE)
     (draw-text "< Back to gallery" (+ (:x back) (quot margin 2))
                (+ (:y back) (quot body-size 3)) body-size RAYWHITE)
     (draw-text (:title scene) margin (+ margin title-size line-gap)
-               title-size DARKBLUE)
+               title-size accent)
     (draw-text "Placeholder scene ready for its focused adaptation"
                margin (+ margin (* 2 line-gap) title-size) body-size DARKGRAY)
     (draw-text (str "Scene " (name scene-id) " | frame " (:frame scene-state))
@@ -224,6 +274,23 @@
     (draw-text (str "Frame " frame " | Android Back or canvas Back returns to gallery")
                margin (- height (+ margin line-gap)) body-size DARKGRAY)
     (end-drawing)))
+
+(defn- take-owner-request! []
+  (loop []
+    (let [before @owner-work
+          [after request] (repl-queue/take-next before)]
+      (cond
+        (nil? request) nil
+        (compare-and-set! owner-work before after) request
+        :else (recur)))))
+
+(defn- process-one-owner-request! []
+  (when-let [{:keys [id work]} (take-owner-request!)]
+    (let [result (try
+                   {:status :ok :value (work)}
+                   (catch Throwable error
+                     {:status :error :message (str error)}))]
+      (swap! owner-work repl-queue/complete id result))))
 
 (defn- advance-gallery [gallery-state input]
   (let [layout (gallery-layout input)
@@ -253,16 +320,26 @@
              last-effects []]
         (let [elapsed (- (System/currentTimeMillis) start)
               input (poll-input)
+              _ (process-one-owner-request!)
               event (app/counter-event (:mode gallery-state) input
                                         (scene-controls input))
               [next-app-state emitted-effects] (app/step app-state event)
               effects (if event emitted-effects last-effects)
               next-diagnostic-state (diagnostics/step diagnostic-state input)
               next-gallery-state (advance-gallery gallery-state input)
+              presentation (gallery-ui/live-presentation)
               phase (get-in input [:pointer :phase])
               navigation? (or (not= (:mode gallery-state) (:mode next-gallery-state))
                               (not= (:active-scene-id gallery-state)
                                     (:active-scene-id next-gallery-state)))]
+          (when (zero? (mod frame 30))
+            (reset! runtime-state
+                    {:status :running
+                     :frame frame
+                     :owner-thread-id (.getId (Thread/currentThread))
+                     :presentation (:revision presentation)
+                     :gallery-mode (:mode next-gallery-state)
+                     :selected-scene (:active-scene-id next-gallery-state)}))
           (when (or (zero? (mod frame 150))
                     (not= :idle phase)
                     (:back? input)
@@ -275,11 +352,15 @@
             frame
             (do
               (if (= :gallery (:mode next-gallery-state))
-                (draw-gallery! frame input)
-                (draw-scene! frame input next-gallery-state next-app-state effects))
+                (draw-gallery! frame input presentation)
+                (draw-scene! frame input next-gallery-state next-app-state effects
+                             presentation))
               (recur (inc frame) next-diagnostic-state next-gallery-state
                      next-app-state effects)))))
-      (finally (close-window)))))
+      (finally
+        (reset! runtime-state
+                (assoc @runtime-state :status :stopped))
+        (close-window)))))
 
 ;; Preserve the persistent-loop export consumed by the existing NativeActivity
 ;; bootstrap while also giving gallery-specific tooling a descriptive symbol.

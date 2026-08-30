@@ -5,6 +5,20 @@
   rectangles are plain data so navigation can be tested without opening a
   Raylib window or depending on a particular emulator resolution.")
 
+(defn ^:export live-presentation
+  "Return the pure presentation data read by every gallery frame.
+
+  Android debug builds call this Var dynamically, so evaluating a replacement
+  definition through nREPL changes subsequent frames without entering Raylib on
+  the nREPL worker. Release builds may direct-link it."
+  []
+  {:revision :baseline
+   :title "Jolt + Raylib Gallery"
+   :subtitle "Choose a touch-first scene"
+   :background [245 245 245 255]
+   :accent [0 82 172 255]
+   :card [35 92 150 255]})
+
 (defn- columns-for [width height]
   (if (>= (* width 3) (* height 2)) 3 2))
 

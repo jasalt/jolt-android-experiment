@@ -72,9 +72,26 @@ int main(int argc, char *argv[]) {
   LOGI("aggregate matrix result=%d thread=%d owner=%d", abi_verify(),
        thread_id(), owner);
 
-  loop_fn loop = (loop_fn)lookup("raylib_gallery");
-  LOGI("jolt_lookup raylib_gallery=%s thread=%d owner=%d",
-       loop ? "ok" : "missing", thread_id(), owner);
+#ifdef NDEBUG
+  const char *loop_name = "raylib_gallery";
+  const char *build_mode = "release";
+#else
+  const char *loop_name = "raylib_gallery_debug";
+  const char *build_mode = "debug-nrepl";
+#endif
+#ifdef NDEBUG
+  loop_fn debug_loop = (loop_fn)lookup("raylib_gallery_debug");
+  LOGI("jolt_lookup raylib_gallery_debug=%s mode=release thread=%d owner=%d",
+       debug_loop ? "unexpected" : "missing", thread_id(), owner);
+  if (debug_loop) {
+    shutdown();
+    dlclose(library);
+    return 6;
+  }
+#endif
+  loop_fn loop = (loop_fn)lookup(loop_name);
+  LOGI("jolt_lookup %s=%s mode=%s thread=%d owner=%d", loop_name,
+       loop ? "ok" : "missing", build_mode, thread_id(), owner);
   if (!loop) {
     shutdown();
     dlclose(library);
@@ -82,8 +99,8 @@ int main(int argc, char *argv[]) {
   }
 
   int frames = loop();
-  LOGI("raylib_gallery result=%d thread=%d owner=%d", frames,
-       thread_id(), owner);
+  LOGI("%s result=%d mode=%s thread=%d owner=%d", loop_name, frames,
+       build_mode, thread_id(), owner);
   shutdown();
   LOGI("jolt_library_shutdown thread=%d owner=%d", thread_id(), owner);
   dlclose(library);

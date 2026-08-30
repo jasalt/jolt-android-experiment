@@ -9,17 +9,26 @@ cd "$root"
 : "${JOLT_SOURCE:?set to a clean checkout at the pinned Jolt revision}"
 : "${RAYLIB_SOURCE:?run through nix develop so Raylib is pinned}"
 
-./scripts/raylib-jolt-loop-build
+mode=${1:-debug}
+case "$mode" in
+  debug) gradle_task=:raylib-loop-android:assembleDebug
+         apk_name=debug/raylib-loop-android-debug.apk ;;
+  release) gradle_task=:raylib-loop-android:assembleRelease
+           apk_name=release/raylib-loop-android-release-unsigned.apk ;;
+  *) echo "usage: $0 [debug|release]" >&2; exit 2 ;;
+esac
+
+./scripts/raylib-jolt-loop-build "$mode"
 stage="$root/raylib/loop-android/src/main/jniLibs/arm64-v8a"
 rm -rf "$root/raylib/loop-android/src/main/jniLibs"
 mkdir -p "$stage"
 cp "$root/native/jolt/android-arm64/arm64-v8a/libjoltraylib-loop.so" \
   "$stage/libjoltraylib-loop.so"
 
-gradle --no-daemon :raylib-loop-android:assembleDebug
-apk="$root/raylib/loop-android/build/outputs/apk/debug/raylib-loop-android-debug.apk"
+gradle --no-daemon "$gradle_task"
+apk="$root/raylib/loop-android/build/outputs/apk/$apk_name"
 test -s "$apk" || {
   printf 'expected persistent-loop APK was not produced: %s\n' "$apk" >&2
   exit 1
 }
-printf 'Built %s\n' "$apk"
+printf 'Built %s gallery APK: %s\n' "$mode" "$apk"

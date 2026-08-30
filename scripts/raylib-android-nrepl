@@ -1,0 +1,153 @@
+#!/usr/bin/env bash
+# Forward and exercise the debug-only Android Raylib Jolt nREPL server.
+set -euo pipefail
+
+: "${ANDROID_HOME:?run through nix develop so ANDROID_HOME is set}"
+serial="emulator-${JOLT_ANDROID_EMULATOR_PORT:-5554}"
+local_port=${JOLT_RAYLIB_NREPL_PORT:-7888}
+device_port=7888
+
+usage() {
+  cat <<'EOF'
+Usage:
+  scripts/raylib-android-nrepl forward
+  scripts/raylib-android-nrepl describe
+  scripts/raylib-android-nrepl clone
+  scripts/raylib-android-nrepl close
+  scripts/raylib-android-nrepl eval FORM [NAMESPACE]
+  scripts/raylib-android-nrepl load-file PATH [NAMESPACE]
+
+The server exists only in the Raylib gallery debug workflow and binds Android
+127.0.0.1:7888. `forward` leaves an ADB forwarding rule suitable for an editor;
+the other commands send one standard bencoded nREPL request and print every
+response as JSON. Never evaluate Raylib drawing/lifecycle FFI on an nREPL
+worker; redefine pure functions that the owner frame loop calls later.
+EOF
+}
+
+op=${1:-}
+case "$op" in
+  forward|describe|clone|close) [[ $# -eq 1 ]] || { usage >&2; exit 2; } ;;
+  eval|load-file) [[ $# -ge 2 && $# -le 3 ]] || { usage >&2; exit 2; } ;;
+  -h|--help) usage; exit 0 ;;
+  *) usage >&2; exit 2 ;;
+esac
+
+[[ "$(adb -s "$serial" get-state 2>/dev/null)" == device ]] || {
+  echo "AVD unavailable: $serial" >&2
+  exit 1
+}
+adb -s "$serial" forward "tcp:$local_port" "tcp:$device_port" >/dev/null
+if [[ "$op" == forward ]]; then
+  printf 'Forwarded host 127.0.0.1:%s to Android Raylib nREPL 127.0.0.1:%s\n' \
+    "$local_port" "$device_port"
+  exit 0
+fi
+
+command -v python3 >/dev/null || { echo 'missing python3 nREPL client runtime' >&2; exit 1; }
+python3 - "$local_port" "$op" "${@:2}" <<'PY'
+import json
+import pathlib
+import socket
+import sys
+import time
+
+port = int(sys.argv[1])
+op = sys.argv[2]
+args = sys.argv[3:]
+
+
+def encode(value):
+    if isinstance(value, int):
+        return b"i" + str(value).encode("ascii") + b"e"
+    if isinstance(value, str):
+        raw = value.encode("utf-8")
+        return str(len(raw)).encode("ascii") + b":" + raw
+    if isinstance(value, (list, tuple)):
+        return b"l" + b"".join(encode(item) for item in value) + b"e"
+    if isinstance(value, dict):
+        pairs = []
+        for key in sorted(value):
+            pairs.extend((encode(str(key)), encode(value[key])))
+        return b"d" + b"".join(pairs) + b"e"
+    raise TypeError(f"unsupported bencode value: {type(value)!r}")
+
+
+class NeedMore(Exception):
+    pass
+
+
+def decode(data, index=0):
+    if index >= len(data):
+        raise NeedMore
+    marker = data[index:index + 1]
+    if marker == b"i":
+        end = data.find(b"e", index + 1)
+        if end < 0:
+            raise NeedMore
+        return int(data[index + 1:end]), end + 1
+    if marker in (b"l", b"d"):
+        cursor = index + 1
+        items = []
+        while True:
+            if cursor >= len(data):
+                raise NeedMore
+            if data[cursor:cursor + 1] == b"e":
+                cursor += 1
+                if marker == b"l":
+                    return items, cursor
+                if len(items) % 2:
+                    raise ValueError("odd dictionary item count")
+                return {items[i]: items[i + 1] for i in range(0, len(items), 2)}, cursor
+            item, cursor = decode(data, cursor)
+            items.append(item)
+    if b"0" <= marker <= b"9":
+        colon = data.find(b":", index)
+        if colon < 0:
+            raise NeedMore
+        length = int(data[index:colon])
+        start = colon + 1
+        end = start + length
+        if end > len(data):
+            raise NeedMore
+        return data[start:end].decode("utf-8", "replace"), end
+    raise ValueError(f"invalid bencode marker at {index}: {marker!r}")
+
+
+request = {"op": op, "id": f"android-{time.monotonic_ns()}"}
+if op == "eval":
+    request["code"] = args[0]
+    if len(args) == 2:
+        request["ns"] = args[1]
+elif op == "load-file":
+    path = pathlib.Path(args[0])
+    request.update({"file": path.read_text(encoding="utf-8"),
+                    "file-name": path.name,
+                    "file-path": str(path)})
+    if len(args) == 2:
+        request["ns"] = args[1]
+
+with socket.create_connection(("127.0.0.1", port), timeout=5) as connection:
+    connection.settimeout(10)
+    connection.sendall(encode(request))
+    buffered = b""
+    done = False
+    while not done:
+        chunk = connection.recv(65536)
+        if not chunk:
+            break
+        buffered += chunk
+        while buffered:
+            try:
+                response, consumed = decode(buffered)
+            except NeedMore:
+                break
+            buffered = buffered[consumed:]
+            print(json.dumps(response, ensure_ascii=False, sort_keys=True))
+            status = response.get("status", []) if isinstance(response, dict) else []
+            done = "done" in status
+            if done:
+                break
+    if not done:
+        raise SystemExit("nREPL response ended without done status")
+PY
