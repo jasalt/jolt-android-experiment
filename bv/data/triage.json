@@ -1,46 +1,46 @@
 {
   "meta": {
     "version": "1.0.0",
-    "generated_at": "2026-08-30T08:55:40.925002474Z",
+    "generated_at": "2026-08-30T09:27:42.579421447Z",
     "phase2_ready": true,
-    "issue_count": 123,
+    "issue_count": 124,
     "compute_time_ms": 0
   },
   "status": {
     "PageRank": {
       "state": "computed",
-      "ms": 0.083225
+      "ms": 0.112494
     },
     "Betweenness": {
       "state": "computed",
-      "ms": 1.506131
+      "ms": 0.879246
     },
     "Eigenvector": {
       "state": "computed",
-      "ms": 0.05338
+      "ms": 0.055599
     },
     "HITS": {
       "state": "computed",
-      "ms": 0.111869
+      "ms": 0.089725
     },
     "Critical": {
       "state": "computed",
-      "ms": 0.070432
+      "ms": 0.05976
     },
     "Cycles": {
       "state": "computed",
-      "ms": 0.036979
+      "ms": 0.044434
     },
     "KCore": {
       "state": "computed",
-      "ms": 0.07494
+      "ms": 0.060806
     },
     "Articulation": {
       "state": "computed"
     },
     "Slack": {
       "state": "computed",
-      "ms": 0.019947
+      "ms": 0.018821
     }
   },
   "quick_ref": {
@@ -50,7 +50,18 @@
     "in_progress_count": 1,
     "not_closed_count": 34,
     "not_actionable_count": 20,
-    "top_picks": []
+    "top_picks": [
+      {
+        "id": "jolt-android-lfu.2.6.1",
+        "title": "Investigate Android AArch64 built-image FFI layout initialization failure",
+        "score": 0.1071555914450281,
+        "reasons": [
+          "✅ Currently unclaimed - available for work",
+          "🚨 High priority (P1) - prioritize this work"
+        ],
+        "unblocks": 0
+      }
+    ]
   },
   "recommendations": [
     {
@@ -72,23 +83,23 @@
         "research",
         "touch"
       ],
-      "score": 0.5114826403112,
+      "score": 0.5416476907566686,
       "breakdown": {
-        "pagerank": 0.10271497725914445,
+        "pagerank": 0.10271498067110503,
         "betweenness": 0.06801517067003793,
         "blocker_ratio": 0.13,
-        "staleness": 0.00011161120760945218,
+        "staleness": 0.00014868015859272765,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.08225,
-        "urgency": 0.0004760529940317615,
+        "urgency": 0.0006331576257568917,
         "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.46688626026883845,
+        "pagerank_norm": 0.4668862757777501,
         "betweenness_norm": 0.34007585335018964,
         "blocker_ratio_norm": 1,
-        "staleness_norm": 0.0022322241521890436,
+        "staleness_norm": 0.0029736031718545527,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.8225,
-        "urgency_norm": 0.004760529940317615,
+        "urgency_norm": 0.006331576257568916,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "Deep in critical path (depth 8), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -103,7 +114,7 @@
       },
       "action": "Contact medium if you want to help",
       "reasons": [
-        "🎯 Completing this unblocks 4 downstream issues (jolt-android-lfu.6.3, jolt-android-lfu.6.4, +2 more)",
+        "🎯 Completing this unblocks 5 downstream issues (jolt-android-lfu.6.3, jolt-android-lfu.6.4, +3 more)",
         "📊 High centrality in dependency graph (PageRank: 47%)",
         "⚡ Low effort, high impact - good starting point",
         "👤 Claimed by medium",
@@ -113,6 +124,7 @@
         "jolt-android-lfu.6.3",
         "jolt-android-lfu.6.4",
         "jolt-android-lfu.6.5",
+        "jolt-android-lfu.6.7",
         "jolt-android-lfu.6.8"
       ]
     },
@@ -135,23 +147,23 @@
         "research",
         "shared"
       ],
-      "score": 0.30872881270996844,
+      "score": 0.3088820857947909,
       "breakdown": {
-        "pagerank": 0.06058522738264232,
+        "pagerank": 0.060585229816315714,
         "betweenness": 0.03375474083438685,
         "blocker_ratio": 0.065,
-        "staleness": 0.0011886945409427855,
+        "staleness": 0.001225763491926061,
         "priority_boost": 0.05,
         "time_to_impact": 0.07525,
-        "urgency": 0.004843469841990928,
+        "urgency": 0.004986719733595968,
         "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.2753873971938287,
+        "pagerank_norm": 0.2753874082559805,
         "betweenness_norm": 0.16877370417193424,
         "blocker_ratio_norm": 0.5,
-        "staleness_norm": 0.023773890818855708,
+        "staleness_norm": 0.02451526983852122,
         "priority_boost_norm": 0.5,
         "time_to_impact_norm": 0.7525,
-        "urgency_norm": 0.04843469841990927,
+        "urgency_norm": 0.04986719733595968,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "Deep in critical path (depth 7), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -193,23 +205,23 @@
         "raylib",
         "research"
       ],
-      "score": 0.2765726675665914,
+      "score": 0.3067169248349549,
       "breakdown": {
-        "pagerank": 0.050893075409354185,
+        "pagerank": 0.050893077441653584,
         "betweenness": 0.04437420986093553,
         "blocker_ratio": 0.08666666666666667,
-        "staleness": 0.0011886366705724152,
+        "staleness": 0.0012257056215556905,
         "priority_boost": 0.05,
         "time_to_impact": 0.06825,
-        "urgency": 0.004843245850710404,
+        "urgency": 0.00498649645288215,
         "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.23133216095160994,
+        "pagerank_norm": 0.23133217018933447,
         "betweenness_norm": 0.22187104930467763,
         "blocker_ratio_norm": 0.6666666666666666,
-        "staleness_norm": 0.023772733411448303,
+        "staleness_norm": 0.02451411243111381,
         "priority_boost_norm": 0.5,
         "time_to_impact_norm": 0.6825,
-        "urgency_norm": 0.04843245850710404,
+        "urgency_norm": 0.0498649645288215,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "Deep in critical path (depth 6), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -224,68 +236,16 @@
       },
       "action": "Work on jolt-android-lfu.2.3 first to unblock this",
       "reasons": [
-        "🔓 Unblocks 1 item(s): jolt-android-lfu.2.12",
+        "🔓 Unblocks 2 item(s): jolt-android-lfu.2.12, jolt-android-lfu.2.7",
         "👤 Claimed by medium",
         "⏳ Blocked by jolt-android-lfu.2.3 - complete that first"
       ],
       "unblocks_ids": [
-        "jolt-android-lfu.2.12"
+        "jolt-android-lfu.2.12",
+        "jolt-android-lfu.2.7"
       ],
       "blocked_by": [
         "jolt-android-lfu.2.3"
-      ]
-    },
-    {
-      "id": "jolt-android-lfu.2.6",
-      "title": "Verify Raylib CFFI aggregate ABI on Android AArch64",
-      "type": "task",
-      "status": "open",
-      "assignee": "hard",
-      "priority": 2,
-      "labels": [
-        "abi",
-        "alternate-host",
-        "android",
-        "ffi",
-        "hard",
-        "post-gate",
-        "r6",
-        "raylib",
-        "research",
-        "structs"
-      ],
-      "score": 0.25808899233034405,
-      "breakdown": {
-        "pagerank": 0.04348543923737045,
-        "betweenness": 0.05486725663716814,
-        "blocker_ratio": 0.065,
-        "staleness": 0.0011885402199551312,
-        "priority_boost": 0.05,
-        "time_to_impact": 0.08225,
-        "urgency": 0.004842872529440484,
-        "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.19766108744259295,
-        "betweenness_norm": 0.2743362831858407,
-        "blocker_ratio_norm": 0.5,
-        "staleness_norm": 0.023770804399102622,
-        "priority_boost_norm": 0.5,
-        "time_to_impact_norm": 0.8225,
-        "urgency_norm": 0.04842872529440484,
-        "risk_norm": 0.020000000000000004,
-        "time_to_impact_explanation": "Deep in critical path (depth 8), median estimate 60m",
-        "risk_explanation": "Low risk - stable dependency structure",
-        "risk_signals": {
-          "fan_variance": 0,
-          "activity_churn": 0,
-          "cross_repo_risk": 0,
-          "status_risk": 0.1,
-          "composite_risk": 0.020000000000000004,
-          "explanation": "Low risk - stable dependency structure"
-        }
-      },
-      "action": "Contact hard if you want to help",
-      "reasons": [
-        "👤 Claimed by hard"
       ]
     },
     {
@@ -306,23 +266,23 @@
         "raylib",
         "research"
       ],
-      "score": 0.23793319189211842,
+      "score": 0.23808646580254073,
       "breakdown": {
-        "pagerank": 0.048456910712043576,
+        "pagerank": 0.048456912695873995,
         "betweenness": 0.02551622418879056,
         "blocker_ratio": 0.08666666666666667,
-        "staleness": 0.0011885788002020448,
+        "staleness": 0.0012256477511853204,
         "priority_boost": 0.05,
         "time_to_impact": 0.061250000000000006,
-        "urgency": 0.004843021858318808,
+        "urgency": 0.0049862731710607795,
         "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.22025868505474352,
+        "pagerank_norm": 0.2202586940721545,
         "betweenness_norm": 0.1275811209439528,
         "blocker_ratio_norm": 0.6666666666666666,
-        "staleness_norm": 0.023771576004040895,
+        "staleness_norm": 0.024512955023706404,
         "priority_boost_norm": 0.5,
         "time_to_impact_norm": 0.6125,
-        "urgency_norm": 0.04843021858318808,
+        "urgency_norm": 0.04986273171060779,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "Deep in critical path (depth 5), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -359,23 +319,23 @@
         "touch",
         "validation"
       ],
-      "score": 0.2003353467088341,
+      "score": 0.20047127452107225,
       "breakdown": {
-        "pagerank": 0.03729077576255142,
+        "pagerank": 0.037290777235448505,
         "betweenness": 0.04306784660766962,
         "blocker_ratio": 0.065,
-        "staleness": 0.00011105179402920525,
+        "staleness": 0.0001481207450124807,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.05425,
-        "urgency": 0.00047367827694132507,
+        "urgency": 0.0006307904419725952,
         "risk": 0.011000000000000001,
-        "pagerank_norm": 0.16950352619341555,
+        "pagerank_norm": 0.16950353288840228,
         "betweenness_norm": 0.2153392330383481,
         "blocker_ratio_norm": 0.5,
-        "staleness_norm": 0.002221035880584105,
+        "staleness_norm": 0.002962414900249614,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.5425,
-        "urgency_norm": 0.00473678276941325,
+        "urgency_norm": 0.0063079044197259515,
         "risk_norm": 0.11,
         "time_to_impact_explanation": "Deep in critical path (depth 4), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -418,23 +378,23 @@
         "research",
         "storage"
       ],
-      "score": 0.18196628124298725,
+      "score": 0.18210152315873465,
       "breakdown": {
-        "pagerank": 0.031590050679824865,
+        "pagerank": 0.0315900517861379,
         "betweenness": 0.013274336283185842,
         "blocker_ratio": 0.043333333333333335,
-        "staleness": 0.0011884823495847607,
+        "staleness": 0.0012255513005680362,
         "priority_boost": 0.05,
         "time_to_impact": 0.05425,
-        "urgency": 0.004842648535197092,
+        "urgency": 0.004985901032230605,
         "risk": 0.004142857142857143,
-        "pagerank_norm": 0.14359113945374938,
+        "pagerank_norm": 0.143591144482445,
         "betweenness_norm": 0.06637168141592921,
         "blocker_ratio_norm": 0.3333333333333333,
-        "staleness_norm": 0.023769646991695214,
+        "staleness_norm": 0.024511026011360723,
         "priority_boost_norm": 0.5,
         "time_to_impact_norm": 0.5425,
-        "urgency_norm": 0.048426485351970916,
+        "urgency_norm": 0.04985901032230605,
         "risk_norm": 0.041428571428571426,
         "time_to_impact_explanation": "Deep in critical path (depth 4), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -451,14 +411,13 @@
       "reasons": [
         "🔓 Unblocks 1 item(s): jolt-android-lfu.4.1",
         "👤 Claimed by hard",
-        "⏳ Blocked by 2 items - need to clear dependencies"
+        "⏳ Blocked by jolt-android-lfu.2.4 - complete that first"
       ],
       "unblocks_ids": [
         "jolt-android-lfu.4.1"
       ],
       "blocked_by": [
-        "jolt-android-lfu.2.4",
-        "jolt-android-lfu.2.6"
+        "jolt-android-lfu.2.4"
       ]
     },
     {
@@ -480,23 +439,23 @@
         "research",
         "touch"
       ],
-      "score": 0.1803957824016526,
+      "score": 0.18055112599827772,
       "breakdown": {
-        "pagerank": 0.027960292512289146,
+        "pagerank": 0.02796029348978857,
         "betweenness": 0.021365360303413402,
         "blocker_ratio": 0.043333333333333335,
-        "staleness": 0.00011124469526377316,
+        "staleness": 0.0001483136462470486,
         "priority_boost": 0.05,
         "time_to_impact": 0.07525,
-        "urgency": 0.0004744971577660851,
+        "urgency": 0.0006316067250647817,
         "risk": 0.007000000000000001,
-        "pagerank_norm": 0.12709223869222339,
+        "pagerank_norm": 0.1270922431354026,
         "betweenness_norm": 0.106826801517067,
         "blocker_ratio_norm": 0.3333333333333333,
-        "staleness_norm": 0.002224893905275463,
+        "staleness_norm": 0.0029662729249409717,
         "priority_boost_norm": 0.5,
         "time_to_impact_norm": 0.7525,
-        "urgency_norm": 0.00474497157766085,
+        "urgency_norm": 0.006316067250647817,
         "risk_norm": 0.07,
         "time_to_impact_explanation": "Deep in critical path (depth 7), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -509,13 +468,12 @@
           "explanation": "Low risk - stable dependency structure"
         }
       },
-      "action": "Work on jolt-android-lfu.2.6 first to unblock this",
+      "action": "Work on jolt-android-lfu.6.2 first to unblock this",
       "reasons": [
         "👤 Claimed by medium",
-        "⏳ Blocked by 2 items - need to clear dependencies"
+        "⏳ Blocked by jolt-android-lfu.6.2 - complete that first"
       ],
       "blocked_by": [
-        "jolt-android-lfu.2.6",
         "jolt-android-lfu.6.2"
       ]
     },
@@ -527,32 +485,32 @@
       "assignee": "easy",
       "priority": 2,
       "labels": null,
-      "score": 0.1649805525383637,
+      "score": 0.16509442794561133,
       "breakdown": {
-        "pagerank": 0.02248732447682314,
+        "pagerank": 0.022487325240000182,
         "betweenness": 0,
         "blocker_ratio": 0.021666666666666667,
-        "staleness": 0.001479280960695872,
+        "staleness": 0.0015163499116791473,
         "priority_boost": 0.05,
         "time_to_impact": 0.04025,
-        "urgency": 0.007002221132303388,
-        "risk": 0.015915156808644724,
-        "pagerank_norm": 0.102215111258287,
+        "urgency": 0.007138622825270103,
+        "risk": 0.015875656468867818,
+        "pagerank_norm": 0.10221511472727356,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0.16666666666666666,
-        "staleness_norm": 0.029585619213917436,
+        "staleness_norm": 0.030326998233582945,
         "priority_boost_norm": 0.5,
         "time_to_impact_norm": 0.40249999999999997,
-        "urgency_norm": 0.07002221132303388,
-        "risk_norm": 0.15915156808644723,
+        "urgency_norm": 0.07138622825270102,
+        "risk_norm": 0.1587565646886782,
         "time_to_impact_explanation": "On dependency chain (depth 2), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
         "risk_signals": {
           "fan_variance": 0,
-          "activity_churn": 0.06383856028815751,
+          "activity_churn": 0.06252188229559398,
           "cross_repo_risk": 0,
           "status_risk": 0.7,
-          "composite_risk": 0.15915156808644723,
+          "composite_risk": 0.1587565646886782,
           "explanation": "Low risk - stable dependency structure"
         }
       },
@@ -585,23 +543,23 @@
         "research",
         "touch"
       ],
-      "score": 0.16055478582327462,
+      "score": 0.16069071282873487,
       "breakdown": {
-        "pagerank": 0.03162914905807825,
+        "pagerank": 0.03162915041753367,
         "betweenness": 0.05221238938053098,
         "blocker_ratio": 0.021666666666666667,
-        "staleness": 0.00011112895452303242,
+        "staleness": 0.0001481979055063079,
         "priority_boost": 0.05,
         "time_to_impact": 0.061250000000000006,
-        "urgency": 0.00047400583089599605,
+        "urgency": 0.000631116956829081,
         "risk": 0.012020639856840277,
-        "pagerank_norm": 0.14376885935490114,
+        "pagerank_norm": 0.14376886553424395,
         "betweenness_norm": 0.2610619469026549,
         "blocker_ratio_norm": 0.16666666666666666,
-        "staleness_norm": 0.0022225790904606482,
+        "staleness_norm": 0.002963958110126158,
         "priority_boost_norm": 0.5,
         "time_to_impact_norm": 0.6125,
-        "urgency_norm": 0.00474005830895996,
+        "urgency_norm": 0.006311169568290809,
         "risk_norm": 0.12020639856840276,
         "time_to_impact_explanation": "Deep in critical path (depth 5), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -628,18 +586,84 @@
         "jolt-android-lfu.6.7",
         "jolt-android-lfu.6.8"
       ]
+    },
+    {
+      "id": "jolt-android-lfu.3.1",
+      "title": "Implement a separate clean-room Raylib verification pipeline",
+      "type": "feature",
+      "status": "open",
+      "assignee": "hard",
+      "priority": 1,
+      "labels": [
+        "alternate-host",
+        "android",
+        "automation",
+        "clean-room",
+        "hard",
+        "raylib",
+        "reporting",
+        "research",
+        "validation"
+      ],
+      "score": 0.15854760451733116,
+      "breakdown": {
+        "pagerank": 0.028188050689310785,
+        "betweenness": 0.03746312684365782,
+        "blocker_ratio": 0.021666666666666667,
+        "staleness": 0.0012252040783458141,
+        "priority_boost": 0.07500000000000001,
+        "time_to_impact": 0.04725000000000001,
+        "urgency": 0.004984561306967894,
+        "risk": 0.010718968296952645,
+        "pagerank_norm": 0.12812750313323085,
+        "betweenness_norm": 0.18731563421828906,
+        "blocker_ratio_norm": 0.16666666666666666,
+        "staleness_norm": 0.024504081566916282,
+        "priority_boost_norm": 0.75,
+        "time_to_impact_norm": 0.47250000000000003,
+        "urgency_norm": 0.04984561306967894,
+        "risk_norm": 0.10718968296952645,
+        "time_to_impact_explanation": "Deep in critical path (depth 3), median estimate 60m",
+        "risk_explanation": "Low risk - stable dependency structure",
+        "risk_signals": {
+          "fan_variance": 0.29063227656508817,
+          "activity_churn": 0,
+          "cross_repo_risk": 0,
+          "status_risk": 0.1,
+          "composite_risk": 0.10718968296952645,
+          "explanation": "Low risk - stable dependency structure"
+        }
+      },
+      "action": "Work on jolt-android-lfu.2.10 first to unblock this",
+      "reasons": [
+        "👤 Claimed by hard",
+        "⏳ Blocked by 9 items - need to clear dependencies",
+        "🚨 High priority (P1) - prioritize this work"
+      ],
+      "blocked_by": [
+        "jolt-android-lfu.2.10",
+        "jolt-android-lfu.2.11",
+        "jolt-android-lfu.2.12",
+        "jolt-android-lfu.2.4",
+        "jolt-android-lfu.2.5",
+        "jolt-android-lfu.2.7",
+        "jolt-android-lfu.2.8",
+        "jolt-android-lfu.2.9",
+        "jolt-android-lfu.6.10"
+      ]
     }
   ],
   "quick_wins": [
     {
       "id": "jolt-android-lfu.6.2",
       "title": "Render the adaptive gallery shell and navigation",
-      "score": 1.028771237954945,
-      "reason": "Unblocks 4 items, high priority",
+      "score": 1.1339850002884626,
+      "reason": "Unblocks 5 items, high priority",
       "unblocks_ids": [
         "jolt-android-lfu.6.3",
         "jolt-android-lfu.6.4",
         "jolt-android-lfu.6.5",
+        "jolt-android-lfu.6.7",
         "jolt-android-lfu.6.8"
       ]
     },
@@ -672,12 +696,13 @@
       ]
     },
     {
-      "id": "jolt-android-lfu.2.7",
-      "title": "Load packaged assets and writable state through the Raylib host",
-      "score": 0.6000000000000001,
-      "reason": "Unblocks 1 items",
+      "id": "jolt-android-lfu.2.4",
+      "title": "Verify one shared Raylib application on Linux and Android",
+      "score": 0.6339850002884626,
+      "reason": "Unblocks 2 items",
       "unblocks_ids": [
-        "jolt-android-lfu.4.1"
+        "jolt-android-lfu.2.12",
+        "jolt-android-lfu.2.7"
       ]
     }
   ],
@@ -685,11 +710,12 @@
     {
       "id": "jolt-android-lfu.6.2",
       "title": "Render the adaptive gallery shell and navigation",
-      "unblocks_count": 4,
+      "unblocks_count": 5,
       "unblocks_ids": [
         "jolt-android-lfu.6.3",
         "jolt-android-lfu.6.4",
         "jolt-android-lfu.6.5",
+        "jolt-android-lfu.6.7",
         "jolt-android-lfu.6.8"
       ],
       "actionable": true
@@ -705,6 +731,19 @@
       "actionable": true
     },
     {
+      "id": "jolt-android-lfu.2.4",
+      "title": "Verify one shared Raylib application on Linux and Android",
+      "unblocks_count": 2,
+      "unblocks_ids": [
+        "jolt-android-lfu.2.12",
+        "jolt-android-lfu.2.7"
+      ],
+      "actionable": false,
+      "blocked_by": [
+        "jolt-android-lfu.2.3"
+      ]
+    },
+    {
       "id": "jolt-android-jkb.2",
       "title": "Provision native Linux GTK validation host",
       "unblocks_count": 1,
@@ -712,18 +751,6 @@
         "jolt-android-csj.4"
       ],
       "actionable": true
-    },
-    {
-      "id": "jolt-android-lfu.2.4",
-      "title": "Verify one shared Raylib application on Linux and Android",
-      "unblocks_count": 1,
-      "unblocks_ids": [
-        "jolt-android-lfu.2.12"
-      ],
-      "actionable": false,
-      "blocked_by": [
-        "jolt-android-lfu.2.3"
-      ]
     },
     {
       "id": "jolt-android-lfu.2.7",
@@ -734,28 +761,27 @@
       ],
       "actionable": false,
       "blocked_by": [
-        "jolt-android-lfu.2.4",
-        "jolt-android-lfu.2.6"
+        "jolt-android-lfu.2.4"
       ]
     }
   ],
   "project_health": {
     "counts": {
-      "total": 123,
+      "total": 124,
       "open": 30,
-      "closed": 89,
+      "closed": 90,
       "blocked": 3,
       "actionable": 14,
       "not_closed": 34,
       "dependency_blocked": 20,
       "by_status": {
         "blocked": 3,
-        "closed": 89,
+        "closed": 90,
         "in_progress": 1,
         "open": 30
       },
       "by_type": {
-        "bug": 4,
+        "bug": 5,
         "decision": 2,
         "epic": 19,
         "feature": 32,
@@ -763,27 +789,27 @@
       },
       "by_priority": {
         "0": 1,
-        "1": 59,
+        "1": 60,
         "2": 56,
         "3": 5,
         "4": 2
       }
     },
     "graph": {
-      "node_count": 123,
+      "node_count": 124,
       "edge_count": 140,
-      "density": 0.009329601492736239,
+      "density": 0.00917912404930501,
       "has_cycles": false,
       "phase2_ready": true
     },
     "velocity": {
-      "closed_last_7_days": 89,
-      "closed_last_30_days": 89,
-      "avg_days_to_close": 0.14602957240948813,
+      "closed_last_7_days": 90,
+      "closed_last_30_days": 90,
+      "avg_days_to_close": 0.15256712962962965,
       "weekly": [
         {
           "week_start": "2026-08-24T00:00:00Z",
-          "closed": 89
+          "closed": 90
         },
         {
           "week_start": "2026-08-17T00:00:00Z",
@@ -817,8 +843,8 @@
     }
   },
   "commands": {
-    "claim_top": "CI=1 br ready --json  # No top pick available",
-    "show_top": "CI=1 br ready --json  # No top pick available",
+    "claim_top": "CI=1 br update jolt-android-lfu.2.6.1 --status in_progress --json",
+    "show_top": "CI=1 br show jolt-android-lfu.2.6.1 --json",
     "list_ready": "CI=1 br ready --json",
     "list_blocked": "CI=1 br blocked --json",
     "refresh_triage": "bv --robot-triage"
