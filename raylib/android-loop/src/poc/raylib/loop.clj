@@ -331,6 +331,40 @@
     (draw-text (str "Frame " frame " | elapsed " (int (* 1000 (:elapsed scene-state))) " ms")
                margin (- (int height) (+ margin line-gap)) body-size DARKGRAY)))
 
+(defn- draw-voxel-siege! [frame input scene-state back sizes]
+  (let [{:keys [margin title-size body-size line-gap]} sizes
+        {:keys [width height]} (voxel/control-rects
+                                {:width (first (:screen (:metrics input)))
+                                 :height (second (:screen (:metrics input)))})
+        scale (max 12 (quot (min width height) 28))
+        origin-x (quot width 2)
+        origin-y (+ margin (* 7 line-gap))]
+    (clear-background CARD-DARK)
+    (draw-rectangle! back CARD-BLUE RAYWHITE)
+    (draw-text "< Back to gallery" (+ (:x back) (quot margin 2))
+               (+ (:y back) (quot body-size 3)) body-size RAYWHITE)
+    (draw-text "Voxel Siege" margin (+ margin title-size line-gap)
+               title-size RAYWHITE)
+    (draw-text (str "Aim " (format "%.2f" (get-in scene-state [:aim :yaw]))
+                    "," (format "%.2f" (get-in scene-state [:aim :pitch]))
+                    " | shots left " (:balls-left scene-state))
+               margin (+ margin (* 2 line-gap) title-size) body-size RAYWHITE)
+    (doseq [[x y z] (:cells scene-state)]
+      (draw-rectangle (+ origin-x (* x scale))
+                      (- origin-y (* y scale))
+                      (max 2 (- scale 2)) (max 2 (- scale 2))
+                      (if (zero? z) GOLD SKYBLUE)))
+    (draw-rectangle (- width 164) (- height 112) 148 96 CARD-BLUE)
+    (draw-text "FIRE" (- width 120) (- height 70) title-size RAYWHITE)
+    (draw-rectangle 12 (- height 64) 116 48 CARD-BLUE)
+    (draw-text (if (:orientation? scene-state) "AIM MODE" "DRAG AIM")
+               20 (- height 36) body-size RAYWHITE)
+    (draw-rectangle (- width 64) 12 48 40 CARD-BLUE)
+    (draw-text "R" (- width 48) 20 body-size RAYWHITE)
+    (draw-text (str "Destruction " (int (* 100.0 (voxel/destruction scene-state)))
+                    "% | frame " frame)
+               margin (- height (+ margin line-gap)) body-size LIGHTGRAY)))
+
 (defn draw-scene! [frame input gallery-state app-state effects presentation]
   (let [metrics (:metrics input)
         {:keys [margin title-size body-size line-gap]} (diagnostics/layout metrics)
@@ -367,20 +401,9 @@
                           {:margin margin :title-size title-size
                            :body-size body-size :line-gap line-gap})
       (= :voxel-siege scene-id)
-      (do
-        (clear-background CARD-DARK)
-        (draw-rectangle! back CARD-BLUE RAYWHITE)
-        (draw-text "< Back to gallery" (+ (:x back) (quot margin 2))
-                   (+ (:y back) (quot body-size 3)) body-size RAYWHITE)
-        (draw-text "Voxel Siege" margin (+ margin title-size line-gap)
-                   title-size RAYWHITE)
-        (draw-text (str "Drag to aim | FIRE to charge/release | shots left "
-                        (:balls-left scene-state))
-                   margin (+ margin (* 2 line-gap) title-size) body-size RAYWHITE)
-        (draw-text (str "AIM MODE: " (if (:orientation? scene-state) "orientation" "drag"))
-                   margin (+ margin (* 3 line-gap) title-size) body-size LIGHTGRAY)
-        (draw-text (str "Destruction " (int (* 100.0 (voxel/destruction scene-state))) "%")
-                   margin (+ margin (* 4 line-gap) title-size) body-size LIGHTGRAY))
+      (draw-voxel-siege! frame input scene-state back
+                          {:margin margin :title-size title-size
+                           :body-size body-size :line-gap line-gap})
       :else (do
         (clear-background background)
         (draw-rectangle! back CARD-DARK RAYWHITE)

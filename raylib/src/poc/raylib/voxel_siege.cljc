@@ -137,17 +137,24 @@
    :init (fn [_] [(new-game) [[:scene/init :voxel-siege]]])
    :update (fn [state input]
              (let [pointer (:pointer input)
+                   position (:position pointer)
+                   previous (:last-position state)
+                   [dx dy] (if (and position previous)
+                             [(- (first position) (first previous))
+                              (- (second position) (second previous))]
+                             [0 0])
                    routed (input-command (scene-metrics input) state
                                          {:phase (:phase pointer)
-                                          :position (:position pointer)})
+                                          :position position})
                    command (case (:command routed)
                              :reset {:command :reset}
                              :press-fire {:command :press-fire}
                              :release-fire {:command :release-fire}
                              :toggle-orientation {:command :toggle-orientation :pose [0 0]}
-                             :aim-drag {:command :aim-drag :dx 0 :dy 0}
-                             nil)]
-               [(if command (apply-command state command) state) []]))
+                             :aim-drag {:command :aim-drag :dx dx :dy dy}
+                             nil)
+                   next-state (if command (apply-command state command) state)]
+               [(assoc next-state :last-position position) []]))
    :draw (fn [state _] [state []])
    :dispose (fn [state] [state [[:scene/dispose :voxel-siege]]])})
 
@@ -178,7 +185,9 @@
       (inside? (:fire rects) position) {:command (if (= phase :release) :release-fire :press-fire)}
       (and (:orientation? state) (= phase :press)) {:command :press-fire}
       (and (:orientation? state) (= phase :release)) {:command :release-fire}
-      :else {:command (if (= phase :drag) :aim-drag :none)
+      :else {:command (if (and (not (:orientation? state))
+                               (contains? #{:drag :down} phase))
+                         :aim-drag :none)
              :position position})))
 
 (defn apply-command
