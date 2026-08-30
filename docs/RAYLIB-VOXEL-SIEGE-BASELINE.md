@@ -26,13 +26,14 @@ No host library or generated native binary is committed to this repository.
 
 ## Interactive baseline limitation
 
-The normal game entry was attempted with `jolt -M:run`. Raylib initialized, but
-this sandbox has no supported display backend (`GLFW: Failed to initialize
-GLFW`), then the upstream loop raised an invalid-memory-reference exception at
-`src/voxel/main.clj:177`. Therefore no interactive FPS, auto-fire, or runtime
-screenshot is claimed here. This is a host/display limitation to reproduce in
-a graphical Linux environment before gallery adaptation, not a test failure
-that should be hidden.
+The normal game entry was attempted with `jolt -M:run`, both without a display
+and under Xvfb with the GLX extension and Mesa llvmpipe. Raylib initialized,
+but GLFW reported `GLX: No GLXFBConfigs returned` and `Failed to initialize
+Window`; the upstream loop then raised an invalid-memory-reference exception
+at `src/voxel/main.clj:177`. Therefore no interactive FPS, auto-fire, or
+runtime screenshot is claimed here. This is a host/display limitation to
+reproduce in a graphical Linux environment before gallery adaptation, not a
+test failure that should be hidden.
 
 ## Upstream reference screenshot
 
