@@ -81,6 +81,17 @@
             [:dispose :voxel] [:orientation/request :portrait]]
            (:scene-events closed)))))
 
+(deftest repeated-enter-back-cycles-are-deterministic
+  (let [registry (gallery/make-registry [landscape-scene])
+        final (reduce (fn [state _]
+                        (let [opened (gallery/open-scene registry state :voxel input)]
+                          (gallery/back registry opened)))
+                      gallery/initial-gallery-state
+                      (range 25))]
+    (is (= :gallery (:mode final)))
+    (is (nil? (:active-scene-id final)))
+    (is (= 100 (count (:scene-events final))))))
+
 (deftest no-window-or-runtime-ownership-in-contract-test
   (is (= #{:id :title :init :update :draw :dispose}
          (set gallery/required-scene-keys)))
