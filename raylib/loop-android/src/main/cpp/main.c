@@ -5,6 +5,8 @@
 #include <sys/types.h>
 #include <unistd.h>
 
+#include "voxel_sensor.h"
+
 #define LOG_TAG "jolt_raylib_gallery"
 #define LOGI(...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__)
 #define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
@@ -20,6 +22,19 @@ static pid_t thread_id(void) { return gettid(); }
 int main(int argc, char *argv[]) {
   pid_t owner = thread_id();
   LOGI("enter main thread=%d owner=%d", owner, owner);
+  int sensor_available = voxel_sensor_start();
+  float sensor_quaternion[4] = {0};
+  long long sensor_timestamp = 0;
+  int sensor_sample = 0;
+  for (int attempt = 0; attempt < 25 && !sensor_sample; attempt++) {
+    sensor_sample = voxel_sensor_poll(sensor_quaternion, &sensor_timestamp);
+    if (!sensor_sample) usleep(10000);
+  }
+  LOGI("voxel sensor probe available=%d sample=%d timestamp=%lld q=%f,%f,%f,%f thread=%d",
+       sensor_available, sensor_sample, sensor_timestamp,
+       sensor_quaternion[0], sensor_quaternion[1], sensor_quaternion[2],
+       sensor_quaternion[3], thread_id());
+  voxel_sensor_stop();
   int socket_fd = socket(AF_INET, SOCK_STREAM | SOCK_CLOEXEC, 0);
   LOGI("native socket probe fd=%d errno=%d", socket_fd, errno);
   if (socket_fd >= 0) close(socket_fd);

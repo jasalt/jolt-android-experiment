@@ -36,6 +36,14 @@ scene and no sensor sample is claimed.
 The captured 1080x2400 frame has SHA-256
 `6ef63f3b7e67f6218bd083f79022d7d472c0db9086e91222c5399b37fd775eda`.
 
+The bootstrap smoke log records `available=1`, `sample=1`, timestamp
+`125622492828895`, and quaternion `0.478851,-0.478851,-0.520290,0.520290`
+on owner thread `23601`; start/stop returned cleanly. The bounded poll waits
+up to 250 ms for the first event and never calls Jolt from a sensor callback.
+This proves the scalar sample seam and resource setup/teardown, not a gameplay
+sample stream. The adapter must remain scene-scoped when wired into Voxel
+Siege.
+
 ## Runtime boundary
 
 This sandbox has no `adb` executable or running Android emulator/device, so the
