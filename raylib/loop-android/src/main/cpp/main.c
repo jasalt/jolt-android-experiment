@@ -6,6 +6,7 @@
 #include <unistd.h>
 
 #include "voxel_sensor.h"
+#include "voxel_orientation.h"
 
 #ifdef VOXEL_BOX3D_PROBE
 #include <stdint.h>
@@ -42,6 +43,15 @@ int main(int argc, char *argv[]) {
        sensor_quaternion[0], sensor_quaternion[1], sensor_quaternion[2],
        sensor_quaternion[3], thread_id());
   voxel_sensor_stop();
+#ifdef VOXEL_ORIENTATION_PROBE
+  int landscape_request = voxel_set_orientation(1);
+  LOGI("voxel orientation probe landscape=%d thread=%d", landscape_request,
+       thread_id());
+  usleep(500000);
+  int portrait_request = voxel_set_orientation(0);
+  LOGI("voxel orientation probe portrait=%d thread=%d", portrait_request,
+       thread_id());
+#endif
 #ifdef VOXEL_BOX3D_PROBE
   uint32_t probe_world = vb3_world_create(0.0, -9.8, 0.0, 1);
   for (int step = 0; step < 10; step++) vb3_world_step(probe_world, 0.016f, 1);

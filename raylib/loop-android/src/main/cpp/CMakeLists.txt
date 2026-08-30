@@ -29,5 +29,9 @@ if(DEFINED ENV{BOX3D_SOURCE} AND DEFINED ENV{VOXEL_SOURCE})
   target_link_libraries(main PRIVATE box3d)
 endif()
 
+if(DEFINED ENV{VOXEL_ORIENTATION_PROBE})
+  target_compile_definitions(main PRIVATE VOXEL_ORIENTATION_PROBE=1)
+endif()
+
 target_link_options(main PRIVATE "-u" "ANativeActivity_onCreate")
 target_link_libraries(main PRIVATE raylib log android EGL GLESv2 OpenSLES atomic c dl)
