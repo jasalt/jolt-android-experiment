@@ -57,10 +57,21 @@ KiB; total PSS was 642,945 → 644,146 KiB. The direct capture is embedded below
 Allocation screenshot SHA-256:
 `b2976d1ff8977ef169390146f6fb24f2bffb03e73463967ad4e101429b7ba4a3`.
 
+## Five-minute deliberate-allocation result
+
+The same live `brepl` allocation workload completed five minutes without fatal
+or ANR signatures. Native heap PSS was 8,924 → 9,024 KiB; total PSS was
+374,029 → 386,685 KiB; RSS was 551,332 → 567,648 KiB.
+
+![Raylib five-minute deliberate allocation run](assets/raylib-stress-alloc5.png)
+
+Screenshot SHA-256:
+`4c5a915bf77787e0e4e070e481a9bd04432bd6fb01482d8d998dc4af22d352fc`.
+
 ## Boundary
 
-The baseline workload now has reproducible 30-second, five-minute and
-fifteen-minute runs, and the deliberate-allocation workload has a 30-second
-slice. A complete matrix of 5m/15m runs for each of three allocation workloads,
+The baseline workload has reproducible 30-second, five-minute and
+fifteen-minute runs. The deliberate-allocation workload now has 30-second and
+five-minute runs. A complete 15-minute run for each deliberate/normal workload,
 plus FPS distributions and collector-specific metrics, remains open; no such
 claim is made here.
