@@ -8,6 +8,7 @@
             [poc.raylib.following-eyes :as eyes]
             [poc.raylib.touch-trail :as trail]
             [poc.raylib.touch-diagnostics :as touch-diagnostics]
+            [poc.raylib.gesture-diagnostics :as gestures]
             [poc.raylib.app :as app]
             [poc.raylib.gallery :as gallery]
             [poc.raylib.gallery-ui :as gallery-ui]
@@ -97,7 +98,7 @@
    (flappy/scene)
    (placeholder-scene :virtual-controls "Virtual Controls")
    (touch-diagnostics/scene)
-   (placeholder-scene :gesture-diagnostics "Gesture Diagnostics")])
+   (gestures/scene)])
 (def scene-registry (gallery/make-registry core-scenes))
 (def scene-ids (mapv :id core-scenes))
 (def runtime-state
@@ -242,6 +243,18 @@
                  margin footer-y body-size DARKGRAY))
     (end-drawing)))
 
+(defn- draw-gesture-diagnostics! [scene-state back sizes]
+  (let [{:keys [last-code point log]} scene-state
+        {:keys [margin title-size body-size line-gap]} sizes]
+    (clear-background RAYWHITE)
+    (draw-rectangle! back CARD-DARK RAYWHITE)
+    (draw-text "< Back to gallery" (+ (:x back) (quot margin 2)) (+ (:y back) (quot body-size 3)) body-size RAYWHITE)
+    (draw-text "Gesture Diagnostics" margin (+ margin title-size line-gap) title-size CARD-DARK)
+    (draw-text "Raylib rgestures observes at most two touch points" margin (+ margin (* 2 line-gap) title-size) body-size DARKGRAY)
+    (draw-text (str "Current code: " last-code " | point-zero: " point) margin (+ margin (* 3 line-gap) title-size) body-size DARKGRAY)
+    (doseq [[index entry] (map-indexed vector log)]
+      (draw-text entry margin (+ margin (* (+ 4 index) line-gap) title-size) body-size (if (= index (dec (count log))) MAROON DARKGRAY)))))
+
 (defn- draw-touch-diagnostics! [scene-state back sizes]
   (let [{:keys [count ids point-0 coordinates all-coordinates-available? phase]} scene-state
         {:keys [margin title-size body-size line-gap]} sizes]
@@ -331,6 +344,10 @@
         back (:back layout)]
     (begin-drawing)
     (cond
+      (= :gesture-diagnostics scene-id)
+      (draw-gesture-diagnostics! scene-state back
+                                 {:margin margin :title-size title-size
+                                  :body-size body-size :line-gap line-gap})
       (= :touch-diagnostics scene-id)
       (draw-touch-diagnostics! scene-state back
                                {:margin margin :title-size title-size
