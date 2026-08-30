@@ -60,6 +60,16 @@
       (is (false? (:close-requested? scene-back)))
       (is (:close-requested? gallery-back)))))
 
+(deftest orientation-transition-consumes-stale-pointer-test
+  (let [registry (gallery/make-registry [landscape-scene])
+        opened (gallery/open-scene registry gallery/initial-gallery-state
+                                   :voxel input)
+        framed (gallery/run-frame registry opened
+                                   (assoc input :pointer {:phase :press
+                                                          :position [500 500]}))]
+    (is (= :idle (get-in framed [:scene-state :last-input :pointer :phase])))
+    (is (false? (:orientation-transition? framed)))))
+
 (deftest scene-orientation-is-host-event-test
   (let [registry (gallery/make-registry [landscape-scene])
         opened (gallery/open-scene registry gallery/initial-gallery-state

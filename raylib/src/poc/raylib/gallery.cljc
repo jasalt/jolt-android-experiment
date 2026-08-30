@@ -9,6 +9,7 @@
    :active-scene-id nil
    :scene-state nil
    :scene-events []
+   :orientation-transition? false
    :close-requested? false})
 
 (defn valid-scene? [scene]
@@ -47,6 +48,7 @@
           (assoc :mode :scene
                  :active-scene-id scene-id
                  :scene-state scene-state
+                 :orientation-transition? (boolean (:orientation scene))
                  :close-requested? false)
           (append-events events)
           (append-events (or (orientation-event scene) []))))
@@ -85,7 +87,8 @@
   (if (= :scene (:mode gallery-state))
     (let [scene (scene-by-id registry (:active-scene-id gallery-state))
           closed (-> (dispose-active registry gallery-state)
-                     (assoc :mode :gallery :active-scene-id nil :scene-state nil))]
+                     (assoc :mode :gallery :active-scene-id nil :scene-state nil
+               :orientation-transition? false))]
       (append-events closed (if (:orientation scene)
                               [[:orientation/request :portrait]]
                               [])))
@@ -108,6 +111,11 @@
   (if (:back? input)
     (back registry gallery-state)
     (if (= :scene (:mode gallery-state))
-      (let [updated (update-active registry gallery-state input)]
-        (draw-active registry updated input))
+      (let [transition? (:orientation-transition? gallery-state)
+            safe-input (if transition?
+                         (assoc input :pointer {:phase :idle :position nil})
+                         input)
+            updated (update-active registry gallery-state safe-input)
+            drawn (draw-active registry updated safe-input)]
+        (assoc drawn :orientation-transition? false))
       gallery-state)))
