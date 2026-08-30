@@ -1,7 +1,6 @@
 (ns poc.raylib.gallery
   "Pure, explicit scene lifecycle for one persistent Jolt/Raylib host loop.")
 
-(def contract-version 1)
 (def required-scene-keys [:id :title :init :update :draw :dispose])
 
 (def initial-gallery-state
@@ -35,6 +34,11 @@
 (defn append-events [gallery-state events]
   (update gallery-state :scene-events into events))
 
+(defn- orientation-event [scene]
+  (when-let [orientation (:orientation scene)]
+    (when (contains? #{:portrait :landscape} orientation)
+      [[:orientation/request orientation]])))
+
 (defn open-scene [registry gallery-state scene-id input]
   (if-let [scene (scene-by-id registry scene-id)]
     (let [[scene-state events] ((:init scene) input)]
@@ -43,7 +47,8 @@
                  :active-scene-id scene-id
                  :scene-state scene-state
                  :close-requested? false)
-          (append-events events)))
+          (append-events events)
+          (append-events (or (orientation-event scene) []))))
     gallery-state))
 
 (defn update-active [registry gallery-state input]
@@ -77,8 +82,12 @@
   host-loop closure; it never creates or destroys a window/runtime."
   [registry gallery-state]
   (if (= :scene (:mode gallery-state))
-    (-> (dispose-active registry gallery-state)
-        (assoc :mode :gallery :active-scene-id nil :scene-state nil))
+    (let [scene (scene-by-id registry (:active-scene-id gallery-state))
+          closed (-> (dispose-active registry gallery-state)
+                     (assoc :mode :gallery :active-scene-id nil :scene-state nil))]
+      (append-events closed (if (:orientation scene)
+                              [[:orientation/request :portrait]]
+                              [])))
     (assoc gallery-state :close-requested? true)))
 
 (defn reset-active [registry gallery-state input]

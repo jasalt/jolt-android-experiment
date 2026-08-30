@@ -19,6 +19,9 @@
   [(fake-scene :eyes "Following Eyes")
    (fake-scene :trail "Touch Trail")])
 
+(def landscape-scene
+  (assoc (fake-scene :voxel "Voxel Siege") :orientation :landscape))
+
 (def fake-registry (gallery/make-registry fake-scenes))
 (def input {:back? false :pointer {:phase :idle} :metrics {:screen [720 1280]}})
 
@@ -56,6 +59,17 @@
       (is (= [[:init :trail] [:dispose :trail]] (:scene-events scene-back)))
       (is (false? (:close-requested? scene-back)))
       (is (:close-requested? gallery-back)))))
+
+(deftest scene-orientation-is-host-event-test
+  (let [registry (gallery/make-registry [landscape-scene])
+        opened (gallery/open-scene registry gallery/initial-gallery-state
+                                   :voxel input)
+        closed (gallery/back registry opened)]
+    (is (= [[:init :voxel] [:orientation/request :landscape]]
+           (:scene-events opened)))
+    (is (= [[:init :voxel] [:orientation/request :landscape]
+            [:dispose :voxel] [:orientation/request :portrait]]
+           (:scene-events closed)))))
 
 (deftest no-window-or-runtime-ownership-in-contract-test
   (is (= #{:id :title :init :update :draw :dispose}
