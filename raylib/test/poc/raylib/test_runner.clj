@@ -5,6 +5,7 @@
             [poc.raylib.flappy-bird-test]
             [poc.raylib.following-eyes-test]
             [poc.raylib.gallery-test]
+            [poc.raylib.gesture-diagnostics-test]
             [poc.raylib.gallery-ui-test]
             [poc.raylib.repl-queue-test]
             [poc.raylib.touch-trail-test]
@@ -17,6 +18,7 @@
                         'poc.raylib.flappy-bird-test
                         'poc.raylib.following-eyes-test
                         'poc.raylib.gallery-test
+                        'poc.raylib.gesture-diagnostics-test
                         'poc.raylib.gallery-ui-test
                         'poc.raylib.repl-queue-test
                         'poc.raylib.touch-trail-test
