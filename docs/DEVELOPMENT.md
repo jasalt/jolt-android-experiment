@@ -166,9 +166,18 @@ nix develop -c ./scripts/raylib-android-nrepl forward
 ```
 
 Connect a generic editor nREPL client to `127.0.0.1:7888`, or use
-`scripts/raylib-android-nrepl eval|load-file`. Pure definitions, reducers,
-layout, animation, input interpretation, and dynamically called drawing
-functions can be reevaluated without restarting the Activity/process or
+`scripts/raylib-android-nrepl eval|load-file`. `brepl` is a verified generic
+client after forwarding; it evaluates in its default namespace, so fully
+qualify project symbols:
+
+```sh
+nix develop -c brepl -p 7888 \
+  '(poc.raylib.loop/current-runtime-state)'
+```
+
+Pure definitions, reducers, layout, animation, input interpretation, and
+dynamically called drawing functions can be reevaluated without restarting the
+Activity/process or
 rebuilding the APK. `load-file` sends host source content; it does not require
 that source file to exist in the Android sandbox.
 

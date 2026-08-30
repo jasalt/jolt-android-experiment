@@ -108,6 +108,17 @@ nix develop -c ./scripts/raylib-android-nrepl \
   load-file raylib/src/poc/raylib/gallery_ui.cljc
 ```
 
+`brepl` is also a convenient generic nREPL client after forwarding. It evaluates
+in its own default namespace, so use fully qualified project symbols unless the
+form explicitly requires a namespace:
+
+```sh
+nix develop -c brepl -p 7888 \
+  '(poc.raylib.loop/current-runtime-state)'
+nix develop -c brepl -p 7888 \
+  '(poc.raylib.gallery-ui/live-presentation)'
+```
+
 The built-in server is the standard minimal Jolt nREPL surface. This experiment
 did not package or validate optional CIDER middleware, completion beyond the
 built-in operation, interruptible evaluation, or concurrent editor sessions.

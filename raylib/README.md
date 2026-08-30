@@ -103,9 +103,16 @@ nix develop -c ./scripts/raylib-android-nrepl forward
 ```
 
 An editor can connect to `127.0.0.1:7888`; the script also provides
-`describe`, `clone`, `eval`, `load-file`, and `close` commands. For Linux/macOS
-desktop examples, use the upstream `rl/run!` entry helper instead of a bare
-`(-main)` when launching from nREPL; see the
+`describe`, `clone`, `eval`, `load-file`, and `close` commands. `brepl` also
+works after forwarding; use fully qualified symbols because it does not select
+the project namespace automatically:
+
+```sh
+nix develop -c brepl -p 7888 '(poc.raylib.loop/current-runtime-state)'
+```
+
+For Linux/macOS desktop examples, use the upstream `rl/run!` entry helper
+instead of a bare `(-main)` when launching from nREPL; see the
 [Raylib-Jolt REPL guide](https://jlt-commons.github.io/raylib-jlt/guide/repl-driven-development.html).
 Redefine pure
 functions or drawing function bodies without invoking them in the nREPL
