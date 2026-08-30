@@ -118,21 +118,24 @@ See the Jolt [documentation](https://jolt-lang.net/docs/), especially
 [Differences from Clojure](https://jolt-lang.net/docs/differences.html) and
 [Native Interop](https://jolt-lang.net/docs/native-interop.html).
 
-### Native and Android unknowns
+### Native and Android boundaries
 
-Android uses Bionic rather than desktop glibc. Generated libraries must be
-checked for architecture, exported symbols, PIC/linker behavior, and accidental
-desktop dependencies. Pointer and string ownership across Jolt, C, JNI, and
-Kotlin remains unproven until tested under allocation and GC pressure.
+Android uses Bionic rather than desktop glibc. The tested generated libraries
+have the required architecture, exported symbols, PIC/linker behavior, and no
+accidental desktop dependencies. The bounded EDN ABI copies returned strings
+through C/JNI-owned storage; its pointer and string ownership is covered by the
+allocation, compaction, and lifecycle experiments. This does not establish a
+general ownership contract for arbitrary native values.
 
 Current Jolt embedded-library use requires initialization, symbol lookup, and
 exported calls to occur on the same operating-system thread. Android callbacks
 therefore queue work onto a dedicated Jolt runtime thread rather than entering
-Jolt directly.
+Jolt directly; this invariant is covered by the handler-thread and callback
+experiments.
 
-The initial Android target is an ARM64 library. Whether an ARM64-only APK runs
-through translation on an API-35 x86_64 emulator is an early experiment, not an
-assumption.
+The ARM64 library runs on the API-35 x86_64 emulator through Android's ARM64
+translation path, as demonstrated by the emulator and application experiments.
+That is translation evidence, not native ARM64 Android-device execution.
 
 ## Development approach
 
@@ -195,8 +198,11 @@ nix --extra-experimental-features 'nix-command flakes' develop -c gradle --no-da
 ```
 
 The Android build is exercised through the deterministic API 35 AVD and the
-command sequences stored with each experiment. `scripts/bootstrap` and
-`scripts/verify` remain future automation; do not treat them as implemented.
+command sequences stored with each experiment. `scripts/bootstrap` records the
+reproducible environment, and `scripts/verify` is the fail-fast clean-room
+verifier. Its supported host-specific tiers and skips are documented in
+[EXP-016](experiments/EXP-016-clean-room-validation); a skipped tier is not a
+failed or unimplemented script.
 
 ## Repository documentation
 
