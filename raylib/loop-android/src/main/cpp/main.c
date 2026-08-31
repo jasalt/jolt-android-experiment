@@ -1,6 +1,7 @@
 #include <android/log.h>
 #include <dlfcn.h>
 #include <errno.h>
+#include <math.h>
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <unistd.h>
@@ -27,6 +28,64 @@ typedef int (*loop_fn)(void);
 typedef int (*probe_fn)(void);
 
 static pid_t thread_id(void) { return gettid(); }
+
+/*
+ * The Jolt scene owns input and HUD state; this function owns no state and is
+ * called only by that scene's Raylib owner thread between BeginDrawing and
+ * EndDrawing. Keeping Camera3D and Vector3 here avoids passing Raylib ABI
+ * aggregates through the Jolt FFI boundary.
+ */
+void voxel_draw_scene(int width, int height, float yaw, float pitch,
+                      float destruction, float charge, int shots) {
+  int portrait = height > width;
+  float camera_radius = portrait ? 24.0f : 15.0f;
+  float camera_height = (portrait ? 8.0f : 6.0f) + pitch * 5.0f;
+  Camera3D camera = {0};
+  camera.position = (Vector3){sinf(yaw) * camera_radius, camera_height,
+                              cosf(yaw) * camera_radius};
+  camera.target = (Vector3){0.0f, 2.0f, 0.0f};
+  camera.up = (Vector3){0.0f, 1.0f, 0.0f};
+  camera.fovy = portrait ? 62.0f : 45.0f;
+  camera.projection = CAMERA_PERSPECTIVE;
+
+  ClearBackground((Color){113, 188, 235, 255});
+  BeginMode3D(camera);
+  DrawPlane((Vector3){0.0f, -0.51f, 0.0f}, (Vector2){28.0f, 28.0f},
+            (Color){91, 141, 78, 255});
+  DrawGrid(28, 1.0f);
+
+  int cell_index = 0;
+  const int cell_total = 7 * 5 * 3;
+  const int destroyed = (int)(destruction * cell_total);
+  for (int x = -3; x <= 3; x++) {
+    for (int y = 0; y < 5; y++) {
+      for (int z = -1; z <= 1; z++) {
+        int solid = y == 0 || z == 0 || x == 0 || x == 3 || y == 4;
+        if (!solid) continue;
+        int remove = (cell_index++ % cell_total) < destroyed;
+        if (remove) continue;
+        Vector3 center = {(float)x, (float)y + 0.5f, (float)z};
+        Color block = y == 0 ? (Color){110, 83, 54, 255}
+                             : (Color){200, 163, 103, 255};
+        DrawCube(center, 0.94f, 0.94f, 0.94f, block);
+        DrawCubeWires(center, 0.95f, 0.95f, 0.95f,
+                      (Color){67, 47, 30, 255});
+      }
+    }
+  }
+
+  DrawCube((Vector3){-6.0f, 0.25f, 4.0f}, 2.5f, 0.5f, 1.8f,
+           (Color){76, 72, 67, 255});
+  DrawSphere((Vector3){-5.2f, 1.05f + charge * 0.5f, 3.6f},
+             0.28f + charge * 0.12f, (Color){42, 42, 47, 255});
+  for (int shot = 0; shot < shots; shot++) {
+    float progress = 2.0f + (float)shot * 0.8f;
+    DrawSphere((Vector3){-5.0f + progress, 1.4f + progress * 0.30f,
+                          3.4f - progress * 0.55f},
+               0.13f, (Color){48, 45, 43, 255});
+  }
+  EndMode3D();
+}
 
 int voxel_asset_visual_probe(void) {
   Image image = LoadImage("raylib-gallery/voxel-marker.png");

@@ -24,7 +24,7 @@
          get-gesture-detected get-mouse-x get-mouse-y mouse-pressed-raw
          mouse-down-raw mouse-released-raw is-key-pressed-raw
          android-log-write draw-rectangle draw-rectangle-lines close-window
-         voxel-asset-visual-probe)
+         voxel-draw-scene voxel-asset-visual-probe)
 (ffi/defcfn init-window "InitWindow" [:int :int :string] :void)
 (ffi/defcfn set-target-fps "SetTargetFPS" [:int] :void)
 (ffi/defcfn ^:private should-close-raw "WindowShouldClose" [] :int)
@@ -53,6 +53,9 @@
 (ffi/defcfn ^:private is-key-pressed-raw "IsKeyPressed" [:int] :int)
 (ffi/defcfn android-log-write "__android_log_write" [:int :string :string] :int)
 (ffi/defcfn close-window "CloseWindow" [] :void)
+;; Takes scalar values only; Camera3D and all Raylib ABI aggregates remain C-local.
+(ffi/defcfn voxel-draw-scene "voxel_draw_scene"
+  [:int :int :float :float :float :float :int] :void)
 (ffi/defcfn voxel-asset-visual-probe "voxel_asset_visual_probe" [] :int)
 
 (def MOUSE-BUTTON-LEFT 0)
@@ -339,11 +342,13 @@
 
 (defn- draw-voxel-siege! [frame input scene-state back sizes]
   (let [{:keys [margin title-size body-size line-gap]} sizes
-        [width height] (:screen (:metrics input))
-        scale (max 12 (quot (min width height) 28))
-        origin-x (quot width 2)
-        origin-y (+ margin (* 7 line-gap))]
-    (clear-background CARD-DARK)
+        [width height] (:screen (:metrics input))]
+    (voxel-draw-scene width height
+                      (float (get-in scene-state [:aim :yaw]))
+                      (float (get-in scene-state [:aim :pitch]))
+                      (float (voxel/destruction scene-state))
+                      (float (:charge-seconds scene-state))
+                      (count (:shots scene-state)))
     (draw-rectangle! back CARD-BLUE RAYWHITE)
     (draw-text "< Back to gallery" (+ (:x back) (quot margin 2))
                (+ (:y back) (quot body-size 3)) body-size RAYWHITE)
@@ -353,11 +358,6 @@
                     "," (format "%.2f" (get-in scene-state [:aim :pitch]))
                     " | shots left " (:balls-left scene-state))
                margin (+ margin (* 2 line-gap) title-size) body-size RAYWHITE)
-    (doseq [[x y z] (:cells scene-state)]
-      (draw-rectangle (+ origin-x (* x scale))
-                      (- origin-y (* y scale))
-                      (max 2 (- scale 2)) (max 2 (- scale 2))
-                      (if (zero? z) GOLD SKYBLUE)))
     (draw-rectangle (- width 164) (- height 112) 148 96 CARD-BLUE)
     (draw-text "FIRE" (- width 120) (- height 70) title-size RAYWHITE)
     (draw-rectangle 12 (- height 64) 116 48 CARD-BLUE)
