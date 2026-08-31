@@ -472,11 +472,11 @@
         point (get-in input [:pointer :position])
         hit (gallery-ui/hit-test layout point (:mode gallery-state))
         canvas-back? (and (= :scene (:mode gallery-state)) (= :back hit))
-        input (assoc input :back? (or (:back? input) canvas-back?))]
-    (if (= :gallery (:mode gallery-state))
-      (if (and (not (:back? input)) (= :press phase) hit)
-        (gallery/open-scene scene-registry gallery-state hit input)
-        (gallery/run-frame scene-registry gallery-state input))
+        input (assoc input :back? (or (:back? input) canvas-back?))
+        open? (and (= :gallery (:mode gallery-state))
+                   (not (:back? input)) (= :press phase) hit)]
+    (if open?
+      (gallery/open-scene scene-registry gallery-state hit input)
       (gallery/run-frame scene-registry gallery-state input))))
 
 
@@ -507,8 +507,9 @@
               [next-app-state emitted-effects] (app/step app-state event)
               effects (if event emitted-effects last-effects)
               next-diagnostic-state (diagnostics/step diagnostic-state input)
-              next-gallery-state (-> (advance-gallery gallery-state input)
-                                     (apply-orientation-events! gallery-state))
+              advanced-gallery-state (advance-gallery gallery-state input)
+              next-gallery-state (apply-orientation-events! gallery-state
+                                                         advanced-gallery-state)
               presentation (gallery-ui/live-presentation)
               phase (get-in input [:pointer :phase])
               navigation? (or (not= (:mode gallery-state) (:mode next-gallery-state))
