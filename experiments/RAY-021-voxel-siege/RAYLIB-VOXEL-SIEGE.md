@@ -1,12 +1,17 @@
 # Voxel Siege gallery handoff
 
-## Result
+## Status: Alpha / requires substantial further work
 
-Voxel Siege is integrated as a separate seventh scene in the existing
-single-window Jolt/Raylib gallery. The verified deliverable is a bounded
-scene-shell/MVP: deterministic pure rules, touch controls, calibrated
-orientation math, owner-thread sensor/Box3D probes, and procedural HUD/castle
-rendering. Dynamic Android orientation requests are currently disabled in the
+Voxel Siege is a separate seventh scene in the existing single-window
+Jolt/Raylib gallery, but it is **not gameplay-ready**. On the live device it
+barely launches: the current renderer is an isolated procedural 3D experiment,
+not the upstream game. Projectile flight, impact, destructible-body simulation,
+controls, scene composition, and polished presentation all require further
+work before this can be called a working Voxel Siege port.
+
+The bounded implementation has deterministic pure rules, touch controls,
+calibrated orientation math, owner-thread sensor/Box3D probes, and procedural
+HUD/castle rendering. Dynamic Android orientation requests are currently disabled in the
 host: pinned Raylib marks the NativeActivity for destruction during the request
 and the Jolt runtime then exits. Keeping the scene portrait is the safe
 fallback until restart-safe orientation handoff is implemented.
@@ -71,5 +76,5 @@ commands, direct screenshots, hashes and limitations:
 
 [Voxel Siege landscape evidence (screenshot)](evidence/voxel-landscape-orientation.png)
 
-The screenshots are embedded directly; they are runtime emulator captures and
-are not runtime game assets.
+The screenshots are linked evidence only; they are diagnostic runtime captures,
+not runtime game assets or proof of gameplay fidelity.

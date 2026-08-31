@@ -1,4 +1,8 @@
-# RAY-021 — Voxel Siege gallery experiment
+# RAY-021 — Voxel Siege gallery experiment (Alpha)
+
+> **Alpha / not gameplay-ready.** The scene barely launches and its controls,
+> projectile behavior, destruction, and presentation need substantial further
+> work. Treat it as an isolated rendering experiment, not a usable game.
 
 This folder contains the Voxel Siege gallery experiment's reports and captured
 evidence. It supersedes the post-`87c9a48` report files that were temporarily

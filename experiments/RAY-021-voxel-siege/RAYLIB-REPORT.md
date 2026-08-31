@@ -5,12 +5,14 @@ change the primary host's claims.
 
 ## Current level
 
-**R5 bounded / R6 not claimed.** The alternate host has a Jolt-owned Android
-NativeActivity frame loop, ARM64 emulator build, touch gallery, Voxel scene
-shell, sensor/Box3D/OpenURL probes, lifecycle evidence, and shared pure tests.
-A complete production-quality Voxel gameplay renderer, full workload matrix,
-physical-device sensor evidence, audio, accessibility semantics and Linux
-rendered-frame parity are not proven.
+**Voxel Siege: Alpha / R5 not claimed as gameplay.** The alternate host has a
+Jolt-owned Android NativeActivity frame loop, ARM64 emulator build, touch
+gallery, Voxel scene shell, sensor/Box3D/OpenURL probes, lifecycle evidence,
+and shared pure tests. The live device shows that the current scene barely
+launches and is not a usable game; its 3D output is a procedural experiment.
+A complete production-quality Voxel gameplay renderer, flight/impact and
+destruction behavior, full workload matrix, physical-device sensor evidence,
+audio, accessibility semantics and Linux rendered-frame parity are not proven.
 
 | Level | Result | Evidence |
 | --- | --- | --- |
@@ -19,7 +21,7 @@ rendered-frame parity are not proven.
 | R2 | pass | Jolt-owned Android loop, scalar FFI and ABI probes |
 | R3 | pass | Touch gallery, lifecycle, OpenURL, assets and sensor probes |
 | R4 | pass | Shared pure scene/model tests and Android screenshots |
-| R5 | bounded | Android translated emulator integration with explicit limitations |
+| R5 | Alpha only | Android translated emulator integration; Voxel Siege is not gameplay-ready |
 | R6 | not claimed | Linux rendered parity, complete Voxel gameplay and full stress matrix remain incomplete |
 
 ## Direct visual evidence
