@@ -114,7 +114,7 @@
       (assoc next-state :phase (phase-after-destruction next-state)))
     state))
 
-(defn tick [state dt]
+(defn ^:export tick [state dt]
   (if (:charging? state)
     (update state :charge-seconds + (min max-delta-seconds (max 0.0 (double dt))))
     state))
@@ -154,11 +154,13 @@
                              :aim-drag {:command :aim-drag :dx dx :dy dy}
                              nil)
                    next-state (if command (apply-command state command) state)]
-               [(assoc next-state :last-position position) []]))
+               [(assoc (tick next-state (:delta-seconds input))
+                       :last-position position)
+                []]))
    :draw (fn [state _] [state []])
    :dispose (fn [state] [state [[:scene/dispose :voxel-siege]]])})
 
-(defn apply-destruction [state cells]
+(defn ^:export apply-destruction [state cells]
   (let [destroyed (set/intersection (:cells state) (set cells))
         next-state (-> state
                        (update :destroyed-cells into destroyed)
@@ -171,8 +173,11 @@
    :mode [12 (- height 64) 116 48]
    :fire [(- width 164) (- height 112) 148 96]})
 
-(defn inside? [[x y w h] [px py]]
-  (and (<= x px (+ x w)) (<= y py (+ y h))))
+(defn inside? [rect point]
+  (when (and rect point)
+    (let [[x y w h] rect
+          [px py] point]
+      (and (<= x px (+ x w)) (<= y py (+ y h))))))
 
 (defn input-command
   "Resolve one normalized pointer event with deterministic control precedence."

@@ -34,10 +34,11 @@ request landscape without creating a second Activity or window.
 
 Landscape screenshot SHA-256:
 `a9124b6dd0bab8b1b55ab792607fd81fcc88a5f0325e03622b489c44cac7904e`.
-The screenshot is host evidence; the Voxel scene still needs full gameplay
-rendering. The owner-thread nREPL call `(poc.raylib.loop/voxel-set-orientation
-0)` returned `1`; after the request the display returned to a direct 1080x2400
-portrait frame, embedded below.
+The earlier orientation helper probe returned `1` and produced a 2400x1080
+frame, but applying that request during the running Jolt/Raylib loop reproduced
+an immediate NativeActivity exit. The current safe host build therefore keeps
+Voxel in portrait and records the orientation event without applying it. The
+restart-safe landscape handoff remains unimplemented.
 
 ![Portrait restoration evidence](assets/voxel-portrait-restore.png)
 

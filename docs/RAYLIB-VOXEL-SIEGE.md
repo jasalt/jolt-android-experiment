@@ -5,8 +5,11 @@
 Voxel Siege is integrated as a separate seventh scene in the existing
 single-window Jolt/Raylib gallery. The verified deliverable is a bounded
 scene-shell/MVP: deterministic pure rules, touch controls, calibrated
-orientation math, owner-thread sensor/Box3D probes, procedural HUD/castle
-rendering, Android landscape requests and portrait restoration.
+orientation math, owner-thread sensor/Box3D probes, and procedural HUD/castle
+rendering. Dynamic Android orientation requests are currently disabled in the
+host: pinned Raylib marks the NativeActivity for destruction during the request
+and the Jolt runtime then exits. Keeping the scene portrait is the safe
+fallback until restart-safe orientation handoff is implemented.
 
 The complete upstream destructible-body flight/impact renderer is not claimed.
 Linux graphical parity and physical-device sensor evidence are also not claimed.
@@ -19,9 +22,10 @@ These are explicit lower-outcome limitations, not silent substitutions.
   top-right `R` resets; bottom-left toggles `AIM MODE`.
 - Orientation mode calibrates the current pose on activation. Press/release on
   the non-control surface fires; control hits never fire.
-- Back has precedence and returns to the gallery. Scene entry requests fixed
-  landscape; scene exit requests portrait. The first transition frame consumes
-  pointer input to prevent stale taps.
+- Back has precedence and returns to the gallery. The scene emits landscape /
+  portrait capability events, but the current Android host deliberately does
+  not apply them to avoid the verified NativeActivity crash. The first
+  transition frame consumes pointer input to prevent stale taps.
 
 ## Architecture and reproducibility
 

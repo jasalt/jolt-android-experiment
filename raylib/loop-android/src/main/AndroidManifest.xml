@@ -5,7 +5,7 @@
       android:theme="@android:style/Theme.DeviceDefault.NoActionBar.Fullscreen">
     <activity
         android:name="android.app.NativeActivity"
-        android:configChanges="orientation|screenSize|keyboardHidden"
+        android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|uiMode|keyboardHidden"
         android:exported="true">
       <meta-data android:name="android.app.lib_name" android:value="main" />
       <intent-filter>

@@ -24,7 +24,7 @@
          get-gesture-detected get-mouse-x get-mouse-y mouse-pressed-raw
          mouse-down-raw mouse-released-raw is-key-pressed-raw
          android-log-write draw-rectangle draw-rectangle-lines close-window
-         voxel-set-orientation voxel-asset-visual-probe)
+         voxel-asset-visual-probe)
 (ffi/defcfn init-window "InitWindow" [:int :int :string] :void)
 (ffi/defcfn set-target-fps "SetTargetFPS" [:int] :void)
 (ffi/defcfn ^:private should-close-raw "WindowShouldClose" [] :int)
@@ -53,8 +53,6 @@
 (ffi/defcfn ^:private is-key-pressed-raw "IsKeyPressed" [:int] :int)
 (ffi/defcfn android-log-write "__android_log_write" [:int :string :string] :int)
 (ffi/defcfn close-window "CloseWindow" [] :void)
-;; Implemented by the NativeActivity process host; calls stay on the frame owner.
-(ffi/defcfn voxel-set-orientation "voxel_set_orientation" [:int] :int)
 (ffi/defcfn voxel-asset-visual-probe "voxel_asset_visual_probe" [] :int)
 
 (def MOUSE-BUTTON-LEFT 0)
@@ -341,9 +339,7 @@
 
 (defn- draw-voxel-siege! [frame input scene-state back sizes]
   (let [{:keys [margin title-size body-size line-gap]} sizes
-        {:keys [width height]} (voxel/control-rects
-                                {:width (first (:screen (:metrics input)))
-                                 :height (second (:screen (:metrics input)))})
+        [width height] (:screen (:metrics input))
         scale (max 12 (quot (min width height) 28))
         origin-x (quot width 2)
         origin-y (+ margin (* 7 line-gap))]
@@ -459,13 +455,6 @@
                      {:status :error :message (str error)}))]
       (swap! owner-work repl-queue/complete id result))))
 
-(defn- apply-orientation-events! [before after]
-  (let [old-count (count (:scene-events before))]
-    (doseq [[event orientation] (drop old-count (:scene-events after))
-            :when (= event :orientation/request)]
-      (voxel-set-orientation (if (= :landscape orientation) 1 0))))
-  after)
-
 (defn- advance-gallery [gallery-state input]
   (let [layout (gallery-layout input)
         phase (get-in input [:pointer :phase])
@@ -507,9 +496,15 @@
               [next-app-state emitted-effects] (app/step app-state event)
               effects (if event emitted-effects last-effects)
               next-diagnostic-state (diagnostics/step diagnostic-state input)
-              advanced-gallery-state (advance-gallery gallery-state input)
-              next-gallery-state (apply-orientation-events! gallery-state
-                                                         advanced-gallery-state)
+              next-gallery-state (try
+                                   (advance-gallery gallery-state input)
+                                   (catch Throwable error
+                                     (let [_ (android-log-write
+                                              ANDROID-LOG-INFO
+                                              "jolt_raylib_gallery_error"
+                                              (str "update frame=" frame
+                                                   " error=" error))]
+                                       gallery-state)))
               presentation (gallery-ui/live-presentation)
               phase (get-in input [:pointer :phase])
               navigation? (or (not= (:mode gallery-state) (:mode next-gallery-state))
@@ -538,10 +533,19 @@
                   (:close-requested? next-gallery-state))
             frame
             (do
-              (if (= :gallery (:mode next-gallery-state))
-                (draw-gallery! frame input presentation)
-                (draw-scene! frame input next-gallery-state next-app-state effects
-                             presentation))
+              (android-log-write ANDROID-LOG-INFO "jolt_raylib_gallery_frame"
+                                 (str "draw-start frame=" frame " scene="
+                                      (:active-scene-id next-gallery-state)))
+              (try
+                (if (= :gallery (:mode next-gallery-state))
+                  (draw-gallery! frame input presentation)
+                  (draw-scene! frame input next-gallery-state next-app-state effects
+                               presentation))
+                (catch Throwable error
+                  (android-log-write ANDROID-LOG-INFO "jolt_raylib_gallery_error"
+                                     (str "draw frame=" frame " error=" error))))
+              (android-log-write ANDROID-LOG-INFO "jolt_raylib_gallery_frame"
+                                 (str "draw-end frame=" frame))
               (recur (inc frame) next-diagnostic-state next-gallery-state
                      next-app-state effects)))))
       (finally
