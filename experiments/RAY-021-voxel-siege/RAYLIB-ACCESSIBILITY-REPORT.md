@@ -12,7 +12,7 @@ support claim is made. Touch target sizing remains a visual responsibility of
 the renderer, and future semantic/accessibility work would require a separate
 host adapter rather than pretending Raylib text is native Android text.
 
-![Raylib Android accessibility probe frame](assets/raylib-assets-runtime.png)
+[Raylib Android accessibility probe frame (screenshot)](evidence/raylib-assets-runtime.png)
 
 The screenshot is embedded directly and is the same runtime frame used for the
 asset probe; it is visual evidence, not an accessibility success claim.

@@ -67,9 +67,9 @@ commands, direct screenshots, hashes and limitations:
 - `RAYLIB-LIFECYCLE-REPORT.md`
 - `RAYLIB-REPORT.md`
 
-![Voxel Siege scene evidence](assets/voxel-scene-live.png)
+[Voxel Siege scene evidence (screenshot)](evidence/voxel-scene-live.png)
 
-![Voxel Siege landscape evidence](assets/voxel-landscape-orientation.png)
+[Voxel Siege landscape evidence (screenshot)](evidence/voxel-landscape-orientation.png)
 
 The screenshots are embedded directly; they are runtime emulator captures and
 are not runtime game assets.

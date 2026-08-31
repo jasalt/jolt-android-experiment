@@ -17,7 +17,7 @@ resumed screenshot: 1080x2400 PNG
 sha256: cfe83a2d8b4c127e7ffa09e2cee12e8799e0ae0f744e4ba7704c4aaa810598fe
 ```
 
-![Raylib NativeActivity after lifecycle resume](assets/raylib-lifecycle-resume.png)
+[Raylib NativeActivity after lifecycle resume (screenshot)](evidence/raylib-lifecycle-resume.png)
 
 This proves the exercised Home/resume/process-relaunch path for the current
 host build. It does not claim physical-device behavior, surface destruction

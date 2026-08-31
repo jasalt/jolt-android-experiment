@@ -18,7 +18,7 @@ assets/raylib-gallery/voxel-state.edn     84 bytes
 APK SHA-256: ec1fc725f91c613b8fac2ea751f0fc17b358caf49c4349135c95b16aee42b9f3
 ```
 
-![Android gallery asset packaging context](assets/voxel-gallery-registered.png)
+[Android gallery asset packaging context (screenshot)](evidence/voxel-gallery-registered.png)
 
 The embedded image is a direct emulator capture. An asset-probe APK built with
 `-Wl,--wrap=fopen` logged `loaded=1 saved=1 writable-readback=1` on the Android
@@ -29,9 +29,9 @@ logged `voxel visual assets=1` on the emulator owner thread. This proves decode
 and GPU resource creation; the scene still uses procedural text/cells rather
 than the marker/font as its primary visual.
 
-![Runtime asset probe frame](assets/raylib-assets-runtime.png)
+[Runtime asset probe frame (screenshot)](evidence/raylib-assets-runtime.png)
 
-![Runtime PNG/font decode frame](assets/raylib-assets-visual.png)
+[Runtime PNG/font decode frame (screenshot)](evidence/raylib-assets-visual.png)
 
 Runtime probe screenshot SHA-256:
 `ee01c1f94d4d1b9da8e6a2c5e672b8be2d13eca401e43c76df5df923ee824a54`.

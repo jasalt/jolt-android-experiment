@@ -19,9 +19,9 @@ The Android ARM64 debug gallery builds and launches on the API-35 emulator. A
 live Voxel scene-shell frame and the landscape orientation frame are embedded
 below rather than referenced only by links.
 
-![Android Voxel scene shell](assets/voxel-scene-live.png)
+[Android Voxel scene shell (screenshot)](evidence/voxel-scene-live.png)
 
-![Android landscape host](assets/voxel-landscape-orientation.png)
+[Android landscape host (screenshot)](evidence/voxel-landscape-orientation.png)
 
 ## Linux boundary
 

@@ -34,7 +34,7 @@ APK containing the adapter rebuilt successfully and installed/launched as
 has not yet been registered as a scene, so the adapter was not started by a
 scene and no sensor sample is claimed.
 
-![API-35 emulator gallery frame](assets/voxel-sensor-emulator-gallery.png)
+[API-35 emulator gallery frame (screenshot)](evidence/voxel-sensor-emulator-gallery.png)
 
 The captured 1080x2400 frame has SHA-256
 `6ef63f3b7e67f6218bd083f79022d7d472c0db9086e91222c5399b37fd775eda`.
@@ -63,7 +63,7 @@ and compare it with the desktop `b3probe` result. A separate shared object is
 not assumed until that topology is tested; linking the shim and Box3D into
 `libmain.so` remains the preferred first experiment.
 
-![Voxel Siege upstream visual reference](assets/voxel-siege-upstream-baseline.png)
+[Voxel Siege upstream visual reference (screenshot)](evidence/voxel-siege-upstream-baseline.png)
 
 The embedded image is documentation evidence only, not an Android runtime
 asset.

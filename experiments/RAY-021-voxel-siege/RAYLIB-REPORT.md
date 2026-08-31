@@ -24,11 +24,11 @@ rendered-frame parity are not proven.
 
 ## Direct visual evidence
 
-![Voxel Siege Android scene shell](assets/voxel-scene-live.png)
+[Voxel Siege Android scene shell (screenshot)](evidence/voxel-scene-live.png)
 
-![Voxel Siege Android landscape host](assets/voxel-landscape-orientation.png)
+[Voxel Siege Android landscape host (screenshot)](evidence/voxel-landscape-orientation.png)
 
-![Raylib Android after lifecycle resume](assets/raylib-lifecycle-resume.png)
+[Raylib Android after lifecycle resume (screenshot)](evidence/raylib-lifecycle-resume.png)
 
 The images are embedded directly. Detailed hashes and commands are recorded in
 the linked task reports in this directory; those reports also distinguish

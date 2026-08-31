@@ -15,7 +15,7 @@ without inventing impact timing.
 - Pure Voxel fixture: 75 deterministic castle cells, five shots, bounded
   `0.033 s` simulation delta and 240-cell render fixture capacity.
 
-![Voxel scene performance visual context](assets/voxel-scene-live.png)
+[Voxel scene performance visual context (screenshot)](evidence/voxel-scene-live.png)
 
 The image is embedded directly and is a runtime scene-shell capture. It is not
 an impact-FPS measurement.

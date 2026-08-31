@@ -9,7 +9,7 @@ pure scene shell pending the Box3D/render adapter.
 - Launch state: gallery mode, portrait, one NativeActivity/Jolt loop
 - Screenshot SHA-256: `d2d39aeeb88c2f6a4077e8777cb614eb07f2c9fa1701438a64ab18f8adb97074`
 
-![Android gallery with registered Voxel Siege scene](assets/voxel-gallery-registered.png)
+[Android gallery with registered Voxel Siege scene (screenshot)](evidence/voxel-gallery-registered.png)
 
 This screenshot is direct evidence of the current gallery host only. It does
 not claim that the Box3D gameplay renderer or landscape transition is complete.
@@ -18,7 +18,7 @@ selected `:voxel-siege`; the state log recorded `:gallery-mode :scene` and
 `:selected-scene :voxel-siege` at frame 69. The live scene screenshot is shown
 below.
 
-![Live Voxel Siege scene shell](assets/voxel-scene-live.png)
+[Live Voxel Siege scene shell (screenshot)](evidence/voxel-scene-live.png)
 
 Live scene screenshot SHA-256:
 `cf3f2aba16fb64f74f7e69ec078801d76c5d84a02c6efd92b88457835d2dd67a`.
@@ -30,7 +30,7 @@ returned `1`. Android display evidence then reported a logical 2400x1080 frame,
 and the captured frame below is 2400x1080, proving the NativeActivity helper can
 request landscape without creating a second Activity or window.
 
-![Landscape orientation helper evidence](assets/voxel-landscape-orientation.png)
+[Landscape orientation helper evidence (screenshot)](evidence/voxel-landscape-orientation.png)
 
 Landscape screenshot SHA-256:
 `a9124b6dd0bab8b1b55ab792607fd81fcc88a5f0325e03622b489c44cac7904e`.
@@ -40,7 +40,7 @@ an immediate NativeActivity exit. The current safe host build therefore keeps
 Voxel in portrait and records the orientation event without applying it. The
 restart-safe landscape handoff remains unimplemented.
 
-![Portrait restoration evidence](assets/voxel-portrait-restore.png)
+[Portrait restoration evidence (screenshot)](evidence/voxel-portrait-restore.png)
 
 Portrait screenshot SHA-256:
 `a930b3f4062763660234d6a32b65ba21a7f46fc9350ea543129c01fe96e2994b`.

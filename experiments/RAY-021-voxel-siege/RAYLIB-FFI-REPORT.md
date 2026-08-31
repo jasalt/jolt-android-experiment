@@ -33,7 +33,7 @@ batching.
 
 ## Visual context
 
-![Direct FFI measurement visual context](assets/voxel-scene-live.png)
+[Direct FFI measurement visual context (screenshot)](evidence/voxel-scene-live.png)
 
 The embedded image is a live Voxel scene-shell capture, not a performance
 claim. Its SHA-256 is recorded in `RAYLIB-VOXEL-SIEGE-SCENE.md`.

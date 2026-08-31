@@ -42,7 +42,7 @@ test failure that should be hidden.
 This is the upstream documentation screenshot, copied for local evidence. It
 is not a runtime APK asset and is not used by the planned gallery scene.
 
-![Voxel Siege upstream reference screenshot](assets/voxel-siege-upstream-baseline.png)
+[Voxel Siege upstream reference screenshot (screenshot)](evidence/voxel-siege-upstream-baseline.png)
 
 SHA-256: `755cdd7d5f8297d2bc5bb32c3f5cef8a31473f2f07258846b2b02593578b1b68`
 
