@@ -1,3 +1,6 @@
+> **News:**
+> The Android Raylib demo gallery implementation with Jolt has been polished and taken further at [jlt-commons/raylib-android](https://github.com/jlt-commons/raylib-android) with it's iOS sibling project [jlt-commons/raylib-ios](https://github.com/jlt-commons/raylib-ios) 🎉!
+
 # Jolt Android PoC
 
 An experimental proof of concept for running [Jolt](https://jolt-lang.net/) and
